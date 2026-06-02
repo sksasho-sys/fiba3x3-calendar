@@ -502,34 +502,6 @@ footer { border-top:1px solid var(--border); }
     <div class="hero-eyebrow">FIBA 3×3 · Official Event Calendar</div>
     <h1 class="hero-title">2026 <span>Season</span></h1>
 
-    <div class="series-pills">
-      <div class="series-pill">
-        <div class="pill-dot" style="background:var(--wt)"></div>
-        <span class="pill-label">World Tour</span>
-        <span class="pill-count" style="color:var(--wt)">18</span>
-      </div>
-      <div class="series-pill">
-        <div class="pill-dot" style="background:var(--ch)"></div>
-        <span class="pill-label">Challenger</span>
-        <span class="pill-count" style="color:var(--ch)">28</span>
-      </div>
-      <div class="series-pill">
-        <div class="pill-dot" style="background:var(--ws)"></div>
-        <span class="pill-label">Women's Series</span>
-        <span class="pill-count" style="color:var(--ws)">25</span>
-      </div>
-      <div class="series-pill">
-        <div class="pill-dot" style="background:var(--nl)"></div>
-        <span class="pill-label">Nations League</span>
-        <span class="pill-count" style="color:var(--nl)">102</span>
-      </div>
-      <div class="series-pill">
-        <div class="pill-dot" style="background:var(--nt)"></div>
-        <span class="pill-label">National</span>
-        <span class="pill-count" style="color:var(--nt)">7</span>
-      </div>
-    </div>
-
     <div class="hero-stats">
       <div class="hstat">
         <span class="hstat-n" id="hero-total">182</span>
@@ -563,10 +535,6 @@ footer { border-top:1px solid var(--border); }
 
 <!-- CONTROLS -->
 <div class="controls-bar" id="controls-bar">
-  <div class="search-wrap">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="search" placeholder="Search city, country or event…">
-  </div>
   <div class="time-tabs">
     <button class="time-tab active" data-time="upcoming">
       <span class="time-tab-dot"></span>
@@ -982,7 +950,7 @@ document.querySelectorAll(".time-tab").forEach(btn => {
   });
 });
 
-document.getElementById("search").addEventListener("input", render);
+document.getElementById("search") && document.getElementById("search").addEventListener("input", render);
 
 // ── HELPERS ──────────────────────────────────────────────────────────────────
 const SERIES_LABEL = {wt:"World Tour", ch:"Challenger", ws:"Women's Series", nl:"Nations League", nt:"National"};
@@ -1000,7 +968,7 @@ function isPast(e){ return (e.end || e.start) < TODAY_STR; }
 
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function render(){
-  const q = document.getElementById("search").value.toLowerCase().trim();
+  const q = "";
 
   // Base filter: series + region + search
   let base = ALL_EVENTS.filter(e => {
