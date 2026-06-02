@@ -10,6 +10,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ─── DARK THEME (default) ─── */
 :root {
   --bg:      #070b18;
   --s1:      #0c1122;
@@ -21,13 +22,93 @@
   --white:   #eef2ff;
   --muted:   #4e5f80;
   --muted2:  #7a8fbb;
+  --hero-grad: linear-gradient(150deg, #101836 0%, #070b18 65%);
+  --hero-bg-text-color: rgba(255,255,255,0.025);
+  --tabs-bg: rgba(7,11,24,0.94);
+  --toggle-bg: #1a2340;
+  --toggle-border: rgba(255,255,255,0.15);
+  --toggle-icon-color: #7a8fbb;
+}
 
-  /* Series colours */
-  --wt:  #f5a623;   /* World Tour — gold */
-  --ch:  #22d3ee;   /* Challenger — cyan */
-  --ws:  #f472b6;   /* Women Series — pink */
-  --nl:  #818cf8;   /* Nations League — indigo */
-  --nt:  #34d399;   /* National — emerald */
+/* ─── LIGHT THEME ─── */
+[data-theme="light"] {
+  --bg:      #f4f6fb;
+  --s1:      #ffffff;
+  --s2:      #eef1f8;
+  --s3:      #e4e8f4;
+  --s4:      #d4daf0;
+  --border:  rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.12);
+  --white:   #0f1629;
+  --muted:   #8896b8;
+  --muted2:  #5a6e9a;
+  --hero-grad: linear-gradient(150deg, #dde5f8 0%, #f4f6fb 65%);
+  --hero-bg-text-color: rgba(0,0,0,0.04);
+  --tabs-bg: rgba(244,246,251,0.96);
+  --toggle-bg: #ffffff;
+  --toggle-border: rgba(0,0,0,0.14);
+  --toggle-icon-color: #5a6e9a;
+
+  /* Brighten series colours slightly for light bg */
+  --wt:  #d4870a;
+  --ch:  #0891b2;
+  --ws:  #be185d;
+  --nl:  #4338ca;
+  --nt:  #059669;
+
+  --wt-bg:  rgba(212,135,10,0.09);
+  --ch-bg:  rgba(8,145,178,0.09);
+  --ws-bg:  rgba(190,24,93,0.09);
+  --nl-bg:  rgba(67,56,202,0.09);
+  --nt-bg:  rgba(5,150,105,0.09);
+}
+
+[data-theme="light"] .event-link:hover {
+  background: var(--s3);
+  color: var(--white);
+  border-color: rgba(0,0,0,0.2);
+}
+[data-theme="light"] .rfbtn:hover { color: var(--white); border-color: rgba(0,0,0,0.2); }
+[data-theme="light"] .tab-btn:hover { color: var(--white); }
+[data-theme="light"] .time-tab:hover { color: var(--white); border-color: rgba(0,0,0,0.2); }
+[data-theme="light"] .time-tab.active { background: var(--s3); color: var(--white); }
+[data-theme="light"] .event-row:hover { background: var(--s2); }
+[data-theme="light"] body::after { opacity: 0.2; }
+[data-theme="light"] .today-marker { background: rgba(8,145,178,0.07); border-color: rgba(8,145,178,0.2); }
+[data-theme="light"] .tag-eu  { color: #1d4ed8; background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2); }
+[data-theme="light"] .tag-u21 { color: #6d28d9; background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.2); }
+[data-theme="light"] .tag-am  { color: #92400e; background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2); }
+[data-theme="light"] .tag-af  { color: #991b1b; background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); }
+[data-theme="light"] .tag-as  { color: #0e7490; background: rgba(6,182,212,0.1); border-color: rgba(6,182,212,0.2); }
+[data-theme="light"] .tag-pa  { color: #065f46; background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); }
+
+/* ─── THEME TOGGLE BUTTON ─── */
+.theme-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  color: var(--toggle-icon-color);
+  cursor: pointer;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--border2); color: var(--white); }
+.theme-toggle svg { width: 16px; height: 16px; transition: transform .35s; }
+.theme-toggle:hover svg { transform: rotate(20deg); }
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+[data-theme="light"] .icon-sun { display: block; }
+[data-theme="light"] .icon-moon { display: none; }
+
+/* Series colour vars for dark (unchanged from before) */
+:root {
+  --wt:  #f5a623;
+  --ch:  #22d3ee;
+  --ws:  #f472b6;
+  --nl:  #818cf8;
+  --nt:  #34d399;
 
   --wt-bg:  rgba(245,166,35,0.10);
   --ch-bg:  rgba(34,211,238,0.10);
@@ -67,7 +148,7 @@ body::after {
   position: relative;
   overflow: hidden;
   padding: 3.5rem 2rem 2rem;
-  background: linear-gradient(150deg, #101836 0%, var(--bg) 65%);
+  background: var(--hero-grad);
   border-bottom: 1px solid var(--border2);
 }
 .hero-bg-text {
@@ -76,11 +157,16 @@ body::after {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(140px, 24vw, 320px);
   line-height: 1;
-  color: rgba(255,255,255,0.025);
+  color: var(--hero-bg-text-color);
   pointer-events: none; user-select: none;
   letter-spacing: -0.02em;
 }
 .hero-inner { max-width: 1040px; margin: 0 auto; position: relative; z-index: 1; }
+
+.theme-toggle {
+  position: absolute;
+  top: 0; right: 0;
+}
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
@@ -123,7 +209,7 @@ body::after {
 /* ─── SERIES TABS ─── */
 .tabs-wrap {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(7,11,24,0.94);
+  background: var(--tabs-bg);
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border2);
 }
@@ -499,6 +585,12 @@ footer { border-top:1px solid var(--border); }
 <section class="hero">
   <div class="hero-bg-text">3×3</div>
   <div class="hero-inner">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+      <!-- Moon icon (shown in dark mode) -->
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <!-- Sun icon (shown in light mode) -->
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
     <div class="hero-eyebrow">FIBA 3×3 · Official Event Calendar</div>
     <h1 class="hero-title">2026 <span>Season</span></h1>
 
@@ -1069,6 +1161,18 @@ function render(){
     </div>`;
   }).join("");
 }
+
+// ── THEME TOGGLE ─────────────────────────────────────────────────────────────
+const html = document.documentElement;
+const savedTheme = localStorage.getItem('fiba3x3-theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
 
 // init badges on load then render
 render();
