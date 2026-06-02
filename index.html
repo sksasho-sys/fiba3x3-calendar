@@ -52,6 +52,7 @@ body {
   font-size: 14px;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* grain */
@@ -231,19 +232,24 @@ body::after {
 .event-row:last-child { border-bottom:none; }
 .event-row:hover { background:var(--s2); }
 
-/* left colour stripe via box-shadow */
+/* left colour stripe — desktop: ::before pseudo; mobile: date-cell border-left (see media query) */
 .event-row::before {
   content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
   background:var(--stripe, transparent);
   transition:width .2s;
 }
 .event-row:hover::before { width:4px; }
+/* On desktop the date-cell border-left should be transparent (stripe is on ::before) */
+@media(min-width:641px){
+  .date-cell { border-left-color: transparent !important; }
+}
 
 /* date */
 .date-cell {
   padding:11px 12px;
   border-right:1px solid var(--border);
   display:flex; flex-direction:column; align-items:flex-start; gap:1px;
+  border-left: 3px solid var(--stripe, transparent);
 }
 .date-d { font-family:'Bebas Neue',sans-serif; font-size:22px; line-height:1; letter-spacing:.02em; }
 .date-m { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); }
@@ -377,14 +383,113 @@ footer { border-top:1px solid var(--border); }
 .footer-inner p { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
 .footer-inner strong { color:var(--wt); font-weight:500; }
 
+/* ─── MOBILE RESPONSIVE ─────────────────────────────────────────────────── */
+
+/* On mobile the event row becomes a 2-col stacked layout:
+   [date] [info]
+          [tags + link]              */
 @media(max-width:640px){
-  .hero { padding:2.5rem 1rem 1.8rem; }
-  .controls-bar { padding:1rem; }
-  .content { padding:1rem 1rem 3rem; }
-  .event-row { grid-template-columns:68px 14px 1fr; }
-  .tag-cell { display:none; }
-  footer .footer-inner { padding:1.2rem 1rem; }
-  .tabs-inner { padding:0 1rem; }
+
+  /* Hero */
+  .hero { padding: 2rem 1rem 1.5rem; }
+  .hero-title { font-size: clamp(38px, 11vw, 56px); margin-bottom: 1rem; }
+  .series-pills { gap: 7px; }
+  .series-pill { padding: 6px 10px; gap: 6px; }
+  .pill-label { font-size: 10px; }
+  .pill-count { font-size: 15px; }
+  .hero-stats { gap: 1rem; }
+  .hstat-n { font-size: 22px; }
+  .hdiv { height: 26px; }
+
+  /* Tabs bar */
+  .tabs-inner { padding: 0; gap: 0; }
+  .tab-btn { padding: 12px 14px; font-size: 10px; letter-spacing: .1em; }
+  .tab-badge { display: none; }
+
+  /* Controls */
+  .controls-bar { padding: 0.75rem 1rem; gap: 0.6rem; }
+  .time-tabs { gap: 5px; flex-wrap: nowrap; }
+  .time-tab { padding: 6px 11px; font-size: 10px; flex: 1; justify-content: center; }
+  .time-tab-dot { display: none; }
+  .time-badge { font-size: 9px; padding: 1px 5px; }
+  .region-filters { gap: 4px; }
+  .rfbtn { font-size: 9px; padding: 4px 9px; }
+
+  /* Content area */
+  .content { padding: 1rem 0.75rem 4rem; }
+  .month-heading { margin-bottom: 5px; }
+
+  /* ── Event row: 2-column on mobile ── */
+  .event-row {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "date info"
+      "date bottom";
+    align-items: start;
+    padding: 0;
+  }
+
+  /* The series-stripe column is gone on mobile — hide it */
+  .series-stripe { display: none; }
+
+  .date-cell {
+    grid-area: date;
+    grid-row: 1 / 3;
+    padding: 12px 10px;
+    border-right: 1px solid var(--border);
+    align-self: stretch;
+    justify-content: flex-start;
+  }
+  .date-d { font-size: 20px; }
+  .date-m { font-size: 9px; }
+  .date-w { font-size: 9px; }
+  .date-end { font-size: 9px; }
+
+  .info-cell {
+    grid-area: info;
+    padding: 10px 12px 4px 12px;
+  }
+  .event-series { font-size: 9px; margin-bottom: 2px; }
+  .event-name { font-size: 13px; margin-bottom: 2px; }
+  .event-loc { font-size: 11px; }
+
+  /* Bottom row: tags + view button */
+  .tag-cell {
+    grid-area: bottom;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 4px 12px 10px 12px;
+  }
+
+  /* Make view button touch-friendly */
+  .event-link {
+    font-size: 9px;
+    padding: 4px 9px;
+    min-height: 28px;
+  }
+
+  /* Tags smaller on mobile */
+  .tag { font-size: 8px; padding: 2px 6px; }
+
+  /* Footer */
+  footer .footer-inner {
+    padding: 1.2rem 1rem 2rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* Mid-range tablets */
+@media(min-width:641px) and (max-width:860px){
+  .hero { padding: 2.5rem 1.5rem 2rem; }
+  .controls-bar { padding: 1rem 1.5rem; }
+  .content { padding: 1.25rem 1.5rem 4rem; }
+  .tag-cell { max-width: 160px; }
+  .tabs-inner { padding: 0 1.5rem; }
 }
 </style>
 </head>
@@ -818,13 +923,13 @@ const NL = NL_RAW.map(r => ({
 
 // ── NATIONAL ─────────────────────────────────────────────────────────────────
 const NT = [
-  {s:"nt",name:"3x3 Champions Cup 2026",city:"TBC",country:"TBC",start:"2026-03-13",end:"2026-03-15",url:"https://fiba3x3.com/2026/championscup"},
-  {s:"nt",name:"3x3 Asia Cup 2026",city:"TBC",country:"Asia",start:"2026-04-01",end:"2026-04-05",url:"https://fiba3x3.basketball/2026/asiacup"},
-  {s:"nt",name:"FIBA 3x3 World Cup 2026",city:"TBC",country:"TBC",start:"2026-06-01",end:"2026-06-07",url:"https://fiba3x3.basketball/2026/worldcup"},
-  {s:"nt",name:"3x3 Europe Cup 2026",city:"TBC",country:"Europe",start:"2026-09-11",end:"2026-09-13",url:"https://fiba3x3.basketball/2026/europecup"},
+  {s:"nt",name:"3x3 Champions Cup 2026",city:"Bangkok",country:"Thailand",start:"2026-03-13",end:"2026-03-15",url:"https://fiba3x3.com/2026/championscup"},
+  {s:"nt",name:"3x3 Asia Cup 2026",city:"Lion City",country:"Singapore",start:"2026-04-01",end:"2026-04-05",url:"https://fiba3x3.basketball/2026/asiacup"},
+  {s:"nt",name:"FIBA 3x3 World Cup 2026",city:"Warsaw",country:"Poland",start:"2026-06-01",end:"2026-06-07",url:"https://fiba3x3.basketball/2026/worldcup"},
+  {s:"nt",name:"3x3 Europe Cup 2026",city:"Antwerp",country:"Belgium",start:"2026-09-11",end:"2026-09-13",url:"https://fiba3x3.basketball/2026/europecup"},
   {s:"nt",name:"3x3 U23 World Cup 2026",city:"Wuhan",country:"China",start:"2026-09-15",end:"2026-09-19",url:"https://fiba3x3.basketball/2026/U23worldcup"},
-  {s:"nt",name:"FIBA 3x3 AmeriCup 2026",city:"TBC",country:"Americas",start:"2026-10-28",end:"2026-11-01",url:"https://fiba3x3.com/2026/americup"},
-  {s:"nt",name:"FIBA 3x3 Africa Cup 2026",city:"TBC",country:"Africa",start:"2026-12-03",end:"2026-12-06",url:"https://fiba3x3.basketball/2026/africa-cup"},
+  {s:"nt",name:"FIBA 3x3 AmeriCup 2026",city:"El Salvador",country:"El Salvador",start:"2026-10-28",end:"2026-11-01",url:"https://fiba3x3.com/2026/americup"},
+  {s:"nt",name:"FIBA 3x3 Africa Cup 2026",city:"Antananarivo",country:"Madagascar",start:"2026-12-03",end:"2026-12-06",url:"https://fiba3x3.basketball/2026/africa-cup"},
 ];
 
 // ── MERGE & SORT ─────────────────────────────────────────────────────────────
