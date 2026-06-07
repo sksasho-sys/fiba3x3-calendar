@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — Asia Cup 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--nt:#2dd4bf;--nt-bg:rgba(45,212,191,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#141e1e 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--nt:#0f766e;--nt-bg:rgba(15,118,110,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#e0f4f2 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--nt-bg);color:var(--nt);border:1px solid rgba(45,212,191,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(15,118,110,.22)}
+.gender-toggle{display:flex;border:1px solid var(--border2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.gender-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border:none;background:none;cursor:pointer;color:var(--muted2);transition:all .14s}
+.gender-btn.active{background:var(--text);color:var(--bg)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(45,212,191,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(15,118,110,0.04)}
+.hero-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--nt);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--nt);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--nt)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+.gender-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:500}
+.gender-tag.w{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.22)}
+.gender-tag.m{background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.22)}
+[data-theme="light"] .gender-tag.w{background:rgba(190,18,60,.09);color:#be123c;border-color:rgba(190,18,60,.2)}
+[data-theme="light"] .gender-tag.m{background:rgba(3,105,161,.09);color:#0369a1;border-color:rgba(3,105,161,.2)}
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}.lost{color:var(--lost)}
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">Asia Cup 2026 Stats</div>
+    <div class="topbar-badge">National</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">AC</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">National Tournament · 2026</div>
+    <h1 class="hero-title">Asia Cup <em>Stats</em></h1>
+    <div class="hero-meta">
+      <span><strong>Lion City</strong>, Singapore</span>
+      <span>·</span>
+      <span><strong>Apr 1–5, 2026</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ─────────────────────────────────────────────────────────────────────
+const htmlEl = document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const RAW = [
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Kazakhstan","3","Tamila Zhakipova","5"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Kazakhstan","11","Shugyla Kemel","3"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Kazakhstan","12","Dilnaz Yerkebay","7"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Kazakhstan","33","Ulyana Kudryavtseva","5"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Republic of Korea","7","Jiyoon Ha","3"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Republic of Korea","10","Duna Lee","7"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Republic of Korea","17","Hyeonji Ko","1"],
+["aef14e48","Kazakhstan","20","17","Republic of Korea","Republic of Korea","21","Yeseul Choi","6"],
+["63fea02d","Malaysia","20","16","Macau, China","Malaysia","13","Chang Zi Fueng","4"],
+["63fea02d","Malaysia","20","16","Macau, China","Malaysia","23","Zhen Yang Chong","7"],
+["63fea02d","Malaysia","20","16","Macau, China","Malaysia","27","Ting Chun Hong","6"],
+["63fea02d","Malaysia","20","16","Macau, China","Malaysia","33","XianFu Ooi","3"],
+["63fea02d","Malaysia","20","16","Macau, China","Macau, China","0","Iaowai Hoi","0"],
+["63fea02d","Malaysia","20","16","Macau, China","Macau, China","2","HOU IN HO","12"],
+["63fea02d","Malaysia","20","16","Macau, China","Macau, China","10","Pucheng Zeng","4"],
+["63fea02d","Malaysia","20","16","Macau, China","Macau, China","14","Chi Hin Cheang","0"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Saudi Arabia","1","Hani Mohammed M Almohammed","5"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Saudi Arabia","15","Raad Barnawi","0"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Saudi Arabia","21","Saad Sultan A. Al Subaiei","0"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Saudi Arabia","24","HAZIM BADER ALJOHAR","5"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Turkmenistan","4","Kerim Mammetmyradov","3"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Turkmenistan","6","Yevgeniy Nazipov","4"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Turkmenistan","13","Shalar Hydyrov","4"],
+["7876be5a","Saudi Arabia","10","19","Turkmenistan","Turkmenistan","14","Merdan Hojamedov","8"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Vietnam","1","Hoàng Vân San Nguyễn","1"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Vietnam","9","Thị Thảo Hoàng","5"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Vietnam","23","Thị Như Quynh Mầu","1"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Vietnam","31","Thi Thao Huong Tran","4"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Republic of Korea","7","Jiyoon Ha","2"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Republic of Korea","10","Duna Lee","7"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Republic of Korea","17","Hyeonji Ko","5"],
+["c2c5c461","Vietnam","11","21","Republic of Korea","Republic of Korea","21","Yeseul Choi","7"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Chinese Taipei","5","Chun-Hsi Chiu","6"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Chinese Taipei","7","Yu-Tsz Lee","7"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Chinese Taipei","17","Chen-I Li","6"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Chinese Taipei","23","Yu Min Chang","2"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Bahrain","9","Bayan Osama Ebrahim Abdali Salman","3"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Bahrain","10","Shirin Madwar","1"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Bahrain","12","Noor Yahya N Malek","0"],
+["74657fdc","Chinese Taipei","21","4","Bahrain","Bahrain","18","Noof Abdulla B Badow","0"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Saudi Arabia","6","Rand Khalid N Alnuwaiser","0"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Saudi Arabia","7","Aljawharah Mohammed A Alkhathlan","5"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Saudi Arabia","9","KAWTHER AHMED M KHAYYAT","4"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Saudi Arabia","22","Awrad Ahmad A Alfaleh","3"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Hong Kong, China","6","Hui Yin Yam","6"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Hong Kong, China","8","Hiu Lui Tong","4"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Hong Kong, China","12","Hoi Pui Kwan","10"],
+["8962120e","Saudi Arabia","12","21","Hong Kong, China","Hong Kong, China","15","Sheung hok lau","1"],
+["0eb7613e","Kazakhstan","18","20","India","Kazakhstan","8","Akylbek Oralbekov","2"],
+["0eb7613e","Kazakhstan","18","20","India","Kazakhstan","14","Yesset Zharkylov","9"],
+["0eb7613e","Kazakhstan","18","20","India","Kazakhstan","23","Ibragim Konyssov","1"],
+["0eb7613e","Kazakhstan","18","20","India","Kazakhstan","77","Samsin Ramazan","6"],
+["0eb7613e","Kazakhstan","18","20","India","India","5","Harsh Dagar","2"],
+["0eb7613e","Kazakhstan","18","20","India","India","9","Kushal Singh","4"],
+["0eb7613e","Kazakhstan","18","20","India","India","10","Arvind Muthu","5"],
+["0eb7613e","Kazakhstan","18","20","India","India","19","Pranav Prince","9"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Bahrain","12","Mohamed Yusuf Abdulwahab Hasan Taha Ghazwan","3"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Bahrain","23","Salman Ahmed Isa Alkaabi","4"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Bahrain","91","Isa Jasim J Jasim","1"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Bahrain","93","Naser Almusawi","6"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Hong Kong, China","4","Man To Chan","5"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Hong Kong, China","13","Chun Tat Lam","9"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Hong Kong, China","15","Wing Hei Chan","0"],
+["dd1f58c4","Bahrain","14","15","Hong Kong, China","Hong Kong, China","31","Kwok Chuen Cheung","1"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Kazakhstan","3","Tamila Zhakipova","2"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Kazakhstan","11","Shugyla Kemel","2"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Kazakhstan","12","Dilnaz Yerkebay","12"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Kazakhstan","33","Ulyana Kudryavtseva","5"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Vietnam","1","Hoàng Vân San Nguyễn","1"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Vietnam","9","Thị Thảo Hoàng","0"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Vietnam","23","Thị Như Quynh Mầu","4"],
+["a50c858f","Kazakhstan","21","12","Vietnam","Vietnam","31","Thi Thao Huong Tran","7"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Macau, China","0","Iaowai Hoi","0"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Macau, China","2","HOU IN HO","3"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Macau, China","10","Pucheng Zeng","0"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Macau, China","14","Chi Hin Cheang","2"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Turkmenistan","4","Kerim Mammetmyradov","4"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Turkmenistan","6","Yevgeniy Nazipov","11"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Turkmenistan","13","Shalar Hydyrov","2"],
+["1967b5d4","Macau, China","5","21","Turkmenistan","Turkmenistan","14","Merdan Hojamedov","4"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Malaysia","13","Chang Zi Fueng","4"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Malaysia","23","Zhen Yang Chong","2"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Malaysia","27","Ting Chun Hong","7"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Malaysia","33","XianFu Ooi","9"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Saudi Arabia","1","Hani Mohammed M Almohammed","4"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Saudi Arabia","15","Raad Barnawi","2"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Saudi Arabia","21","Saad Sultan A. Al Subaiei","2"],
+["6e09d051","Malaysia","22","14","Saudi Arabia","Saudi Arabia","24","HAZIM BADER ALJOHAR","6"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Bahrain","9","Bayan Osama Ebrahim Abdali Salman","10"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Bahrain","10","Shirin Madwar","4"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Bahrain","12","Noor Yahya N Malek","0"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Bahrain","18","Noof Abdulla B Badow","0"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Hong Kong, China","6","Hui Yin Yam","4"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Hong Kong, China","8","Hiu Lui Tong","5"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Hong Kong, China","12","Hoi Pui Kwan","8"],
+["9f50284f","Bahrain","14","20","Hong Kong, China","Hong Kong, China","15","Sheung hok lau","3"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Chinese Taipei","5","Chun-Hsi Chiu","6"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Chinese Taipei","7","Yu-Tsz Lee","0"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Chinese Taipei","17","Chen-I Li","10"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Chinese Taipei","23","Yu Min Chang","3"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Saudi Arabia","6","Rand Khalid N Alnuwaiser","1"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Saudi Arabia","7","Aljawharah Mohammed A Alkhathlan","0"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Saudi Arabia","9","KAWTHER AHMED M KHAYYAT","4"],
+["8e038ad0","Chinese Taipei","19","8","Saudi Arabia","Saudi Arabia","22","Awrad Ahmad A Alfaleh","3"],
+["eee5418b","India","19","18","Hong Kong, China","India","5","Harsh Dagar","4"],
+["eee5418b","India","19","18","Hong Kong, China","India","9","Kushal Singh","5"],
+["eee5418b","India","19","18","Hong Kong, China","India","10","Arvind Muthu","7"],
+["eee5418b","India","19","18","Hong Kong, China","India","19","Pranav Prince","3"],
+["eee5418b","India","19","18","Hong Kong, China","Hong Kong, China","4","Man To Chan","2"],
+["eee5418b","India","19","18","Hong Kong, China","Hong Kong, China","13","Chun Tat Lam","8"],
+["eee5418b","India","19","18","Hong Kong, China","Hong Kong, China","15","Wing Hei Chan","3"],
+["eee5418b","India","19","18","Hong Kong, China","Hong Kong, China","31","Kwok Chuen Cheung","5"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Kazakhstan","8","Akylbek Oralbekov","1"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Kazakhstan","14","Yesset Zharkylov","10"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Kazakhstan","23","Ibragim Konyssov","3"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Kazakhstan","77","Samsin Ramazan","6"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Bahrain","12","Mohamed Yusuf Abdulwahab Hasan Taha Ghazwan","5"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Bahrain","23","Salman Ahmed Isa Alkaabi","1"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Bahrain","91","Isa Jasim J Jasim","2"],
+["a4742abe","Kazakhstan","20","16","Bahrain","Bahrain","93","Naser Almusawi","8"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Saudi Arabia","6","Rand Khalid N Alnuwaiser","1"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Saudi Arabia","7","Aljawharah Mohammed A Alkhathlan","2"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Saudi Arabia","9","KAWTHER AHMED M KHAYYAT","4"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Saudi Arabia","22","Awrad Ahmad A Alfaleh","2"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Bahrain","9","Bayan Osama Ebrahim Abdali Salman","8"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Bahrain","10","Shirin Madwar","5"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Bahrain","12","Noor Yahya N Malek","1"],
+["60a98709","Saudi Arabia","9","14","Bahrain","Bahrain","18","Noof Abdulla B Badow","0"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Hong Kong, China","6","Hui Yin Yam","3"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Hong Kong, China","8","Hiu Lui Tong","2"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Hong Kong, China","12","Hoi Pui Kwan","5"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Hong Kong, China","15","Sheung hok lau","1"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Chinese Taipei","5","Chun-Hsi Chiu","7"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Chinese Taipei","7","Yu-Tsz Lee","0"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Chinese Taipei","17","Chen-I Li","7"],
+["8994bc77","Hong Kong, China","11","19","Chinese Taipei","Chinese Taipei","23","Yu Min Chang","5"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Saudi Arabia","1","Hani Mohammed M Almohammed","4"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Saudi Arabia","15","Raad Barnawi","5"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Saudi Arabia","21","Saad Sultan A. Al Subaiei","2"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Saudi Arabia","24","HAZIM BADER ALJOHAR","5"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Macau, China","0","Iaowai Hoi","3"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Macau, China","2","HOU IN HO","7"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Macau, China","10","Pucheng Zeng","3"],
+["e2aa5e88","Saudi Arabia","16","22","Macau, China","Macau, China","14","Chi Hin Cheang","9"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Turkmenistan","4","Kerim Mammetmyradov","0"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Turkmenistan","6","Yevgeniy Nazipov","12"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Turkmenistan","13","Shalar Hydyrov","2"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Turkmenistan","14","Merdan Hojamedov","6"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Malaysia","13","Chang Zi Fueng","5"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Malaysia","23","Zhen Yang Chong","4"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Malaysia","27","Ting Chun Hong","5"],
+["e8a81778","Turkmenistan","20","22","Malaysia","Malaysia","33","XianFu Ooi","8"],
+["ec9febd6","Bahrain","12","21","India","Bahrain","12","Mohamed Yusuf Abdulwahab Hasan Taha Ghazwan","3"],
+["ec9febd6","Bahrain","12","21","India","Bahrain","23","Salman Ahmed Isa Alkaabi","2"],
+["ec9febd6","Bahrain","12","21","India","Bahrain","91","Isa Jasim J Jasim","1"],
+["ec9febd6","Bahrain","12","21","India","Bahrain","93","Naser Almusawi","6"],
+["ec9febd6","Bahrain","12","21","India","India","5","Harsh Dagar","15"],
+["ec9febd6","Bahrain","12","21","India","India","9","Kushal Singh","4"],
+["ec9febd6","Bahrain","12","21","India","India","10","Arvind Muthu","0"],
+["ec9febd6","Bahrain","12","21","India","India","19","Pranav Prince","2"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Hong Kong, China","4","Man To Chan","3"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Hong Kong, China","13","Chun Tat Lam","3"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Hong Kong, China","15","Wing Hei Chan","5"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Hong Kong, China","31","Kwok Chuen Cheung","3"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Kazakhstan","8","Akylbek Oralbekov","2"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Kazakhstan","14","Yesset Zharkylov","9"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Kazakhstan","23","Ibragim Konyssov","4"],
+["32951566","Hong Kong, China","14","21","Kazakhstan","Kazakhstan","77","Samsin Ramazan","6"],
+["cff220d2","Malaysia","16","13","India","Malaysia","9","SinJie Tan","1"],
+["cff220d2","Malaysia","16","13","India","Malaysia","23","hui pin pang","0"],
+["cff220d2","Malaysia","16","13","India","Malaysia","24","Suet Ying Foo","9"],
+["cff220d2","Malaysia","16","13","India","Malaysia","35","Fook Yee Yap","6"],
+["cff220d2","Malaysia","16","13","India","India","3","Sreekala Rani","2"],
+["cff220d2","Malaysia","16","13","India","India","9","Dharshini Thirunavukkarasu","4"],
+["cff220d2","Malaysia","16","13","India","India","18","Pushpa Senthil Kumar","6"],
+["cff220d2","Malaysia","16","13","India","India","25","Sanjana Ramesh","1"],
+["81715682","Tonga","13","4","Maldives","Tonga","1","Kara-Lynne Enari","0"],
+["81715682","Tonga","13","4","Maldives","Tonga","4","Lesila Kefu Finau","7"],
+["81715682","Tonga","13","4","Maldives","Tonga","7","Ana Rachel Salote Fui Enari","3"],
+["81715682","Tonga","13","4","Maldives","Tonga","21","Makeili Talia Ika","3"],
+["81715682","Tonga","13","4","Maldives","Maldives","4","Aminath Shiura Abdul Bari","0"],
+["81715682","Tonga","13","4","Maldives","Maldives","5","Raifa Ibrahim","0"],
+["81715682","Tonga","13","4","Maldives","Maldives","11","Fathmath E Hau Shameem","3"],
+["81715682","Tonga","13","4","Maldives","Maldives","44","Aishath Inasha","1"],
+["785557d7","Philippines","21","16","Maldives","Philippines","6","Christopher Koon","3"],
+["785557d7","Philippines","21","16","Maldives","Philippines","7","Jerrick Ahanmisi","4"],
+["785557d7","Philippines","21","16","Maldives","Philippines","13","Louis Raphael Cu","3"],
+["785557d7","Philippines","21","16","Maldives","Philippines","33","Sean Alter","11"],
+["785557d7","Philippines","21","16","Maldives","Maldives","1","Ismail Vildhan Yoosuf","10"],
+["785557d7","Philippines","21","16","Maldives","Maldives","2","Mohamed Aik Wajeeh","3"],
+["785557d7","Philippines","21","16","Maldives","Maldives","7","Mohamed Naaf Irushan","0"],
+["785557d7","Philippines","21","16","Maldives","Maldives","11","Mohamed Khuwailid Ali","3"],
+["8d92a51f","Tonga","19","21","Vietnam","Tonga","1","Marcus Christian Alipate","8"],
+["8d92a51f","Tonga","19","21","Vietnam","Tonga","9","Luke Sinisa","3"],
+["8d92a51f","Tonga","19","21","Vietnam","Tonga","11","Jonah Palelei","3"],
+["8d92a51f","Tonga","19","21","Vietnam","Tonga","18","Viliami Foketi","5"],
+["8d92a51f","Tonga","19","21","Vietnam","Vietnam","1","Huỳnh Phú Vinh Nguyễn","11"],
+["8d92a51f","Tonga","19","21","Vietnam","Vietnam","2","Thanh Tâm Huỳnh","0"],
+["8d92a51f","Tonga","19","21","Vietnam","Vietnam","6","Phuc Vinh Nguyen","2"],
+["8d92a51f","Tonga","19","21","Vietnam","Vietnam","13","Anh Kiệt Nguyễn","8"],
+["59a1c70e","Turkmenistan","4","21","India","Turkmenistan","4","Zybagozel Hydyrova","0"],
+["59a1c70e","Turkmenistan","4","21","India","Turkmenistan","9","Farangiz Saidova","1"],
+["59a1c70e","Turkmenistan","4","21","India","Turkmenistan","12","Jennet Hajymammedowa","2"],
+["59a1c70e","Turkmenistan","4","21","India","Turkmenistan","15","Dilfuza Azizova","1"],
+["59a1c70e","Turkmenistan","4","21","India","India","3","Sreekala Rani","6"],
+["59a1c70e","Turkmenistan","4","21","India","India","9","Dharshini Thirunavukkarasu","5"],
+["59a1c70e","Turkmenistan","4","21","India","India","18","Pushpa Senthil Kumar","6"],
+["59a1c70e","Turkmenistan","4","21","India","India","25","Sanjana Ramesh","4"],
+["c6898424","Macau, China","12","9","Maldives","Macau, China","8","UN KEI TAI","3"],
+["c6898424","Macau, China","12","9","Maldives","Macau, China","10","Ka I Chan","0"],
+["c6898424","Macau, China","12","9","Maldives","Macau, China","11","Cheng Lam Chan","3"],
+["c6898424","Macau, China","12","9","Maldives","Macau, China","14","IAN LENG LEI","6"],
+["c6898424","Macau, China","12","9","Maldives","Maldives","4","Aminath Shiura Abdul Bari","5"],
+["c6898424","Macau, China","12","9","Maldives","Maldives","5","Raifa Ibrahim","1"],
+["c6898424","Macau, China","12","9","Maldives","Maldives","11","Fathmath E Hau Shameem","2"],
+["c6898424","Macau, China","12","9","Maldives","Maldives","44","Aishath Inasha","1"],
+["1c94588a","Thailand","21","11","Maldives","Thailand","2","Noppachai Thongpool","1"],
+["1c94588a","Thailand","21","11","Maldives","Thailand","3","Frederick Lish","12"],
+["1c94588a","Thailand","21","11","Maldives","Thailand","31","Chanatip Jakrawan","5"],
+["1c94588a","Thailand","21","11","Maldives","Thailand","34","Panthawat Techamasran","3"],
+["1c94588a","Thailand","21","11","Maldives","Maldives","1","Ismail Vildhan Yoosuf","0"],
+["1c94588a","Thailand","21","11","Maldives","Maldives","2","Mohamed Aik Wajeeh","0"],
+["1c94588a","Thailand","21","11","Maldives","Maldives","7","Mohamed Naaf Irushan","5"],
+["1c94588a","Thailand","21","11","Maldives","Maldives","11","Mohamed Khuwailid Ali","6"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Republic of Korea","5","Juyeong Lee","5"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Republic of Korea","6","Seungwoo Kim","1"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Republic of Korea","11","Donggeun Lee","12"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Republic of Korea","23","Mingyo Ku","3"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Vietnam","1","Huỳnh Phú Vinh Nguyễn","0"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Vietnam","2","Thanh Tâm Huỳnh","0"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Vietnam","6","Phuc Vinh Nguyen","6"],
+["f44acc14","Republic of Korea","21","7","Vietnam","Vietnam","13","Anh Kiệt Nguyễn","1"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Malaysia","9","SinJie Tan","3"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Malaysia","23","hui pin pang","1"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Malaysia","24","Suet Ying Foo","8"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Malaysia","35","Fook Yee Yap","9"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Turkmenistan","4","Zybagozel Hydyrova","0"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Turkmenistan","9","Farangiz Saidova","2"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Turkmenistan","12","Jennet Hajymammedowa","3"],
+["acd16afb","Malaysia","21","9","Turkmenistan","Turkmenistan","15","Dilfuza Azizova","4"],
+["f24c51ed","Tonga","15","7","Macau, China","Tonga","1","Kara-Lynne Enari","1"],
+["f24c51ed","Tonga","15","7","Macau, China","Tonga","4","Lesila Kefu Finau","6"],
+["f24c51ed","Tonga","15","7","Macau, China","Tonga","7","Ana Rachel Salote Fui Enari","4"],
+["f24c51ed","Tonga","15","7","Macau, China","Tonga","21","Makeili Talia Ika","4"],
+["f24c51ed","Tonga","15","7","Macau, China","Macau, China","8","UN KEI TAI","1"],
+["f24c51ed","Tonga","15","7","Macau, China","Macau, China","10","Ka I Chan","2"],
+["f24c51ed","Tonga","15","7","Macau, China","Macau, China","11","Cheng Lam Chan","1"],
+["f24c51ed","Tonga","15","7","Macau, China","Macau, China","14","IAN LENG LEI","3"],
+["9f8ff870","Philippines","17","15","Thailand","Philippines","6","Christopher Koon","5"],
+["9f8ff870","Philippines","17","15","Thailand","Philippines","7","Jerrick Ahanmisi","4"],
+["9f8ff870","Philippines","17","15","Thailand","Philippines","13","Louis Raphael Cu","6"],
+["9f8ff870","Philippines","17","15","Thailand","Philippines","33","Sean Alter","2"],
+["9f8ff870","Philippines","17","15","Thailand","Thailand","2","Noppachai Thongpool","2"],
+["9f8ff870","Philippines","17","15","Thailand","Thailand","3","Frederick Lish","5"],
+["9f8ff870","Philippines","17","15","Thailand","Thailand","31","Chanatip Jakrawan","7"],
+["9f8ff870","Philippines","17","15","Thailand","Thailand","34","Panthawat Techasamran","1"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Tonga","1","Marcus Christian Alipate","1"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Tonga","9","Luke Sinisa","4"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Tonga","11","Jonah Palelei","1"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Tonga","18","Viliami Foketi","5"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Republic of Korea","5","Juyeong Lee","3"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Republic of Korea","6","Seungwoo Kim","9"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Republic of Korea","11","Donggeun Lee","2"],
+["41c7d29c","Tonga","11","21","Republic of Korea","Republic of Korea","23","Mingyo Ku","7"],
+["f22e32c8","China","19","21","Malaysia","China","6","Dianliang Zhang","7"],
+["f22e32c8","China","19","21","Malaysia","China","10","Shihao Han","3"],
+["f22e32c8","China","19","21","Malaysia","China","12","MA DIAN CHENG","4"],
+["f22e32c8","China","19","21","Malaysia","China","15","Qianhao Liu","5"],
+["f22e32c8","China","19","21","Malaysia","Malaysia","13","Chang Zi Fueng","0"],
+["f22e32c8","China","19","21","Malaysia","Malaysia","23","Zhen Yang Chong","11"],
+["f22e32c8","China","19","21","Malaysia","Malaysia","27","Ting Chun Hong","6"],
+["f22e32c8","China","19","21","Malaysia","Malaysia","33","XianFu Ooi","4"],
+["c6cdd6bd","New Zealand","16","11","India","New Zealand","0","Aidan Tonge","3"],
+["c6cdd6bd","New Zealand","16","11","India","New Zealand","8","Joshua Book","2"],
+["c6cdd6bd","New Zealand","16","11","India","New Zealand","13","Te Tuhi Lewis","9"],
+["c6cdd6bd","New Zealand","16","11","India","New Zealand","21","Chris Martin","2"],
+["c6cdd6bd","New Zealand","16","11","India","India","5","Harsh Dagar","3"],
+["c6cdd6bd","New Zealand","16","11","India","India","9","Kushal Singh","3"],
+["c6cdd6bd","New Zealand","16","11","India","India","10","Arvind Muthu","2"],
+["c6cdd6bd","New Zealand","16","11","India","India","19","Pranav Prince","3"],
+["f645d05a","China","16","13","Thailand","China","0","A Ganajing","2"],
+["f645d05a","China","16","13","Thailand","China","2","Wanglai Zhang","7"],
+["f645d05a","China","16","13","Thailand","China","10","ZhiTing Zhang","6"],
+["f645d05a","China","16","13","Thailand","China","15","JianPing Zhang","1"],
+["f645d05a","China","16","13","Thailand","Thailand","8","Supavadee Kunchuan","4"],
+["f645d05a","China","16","13","Thailand","Thailand","10","Sroifa Phetnin","3"],
+["f645d05a","China","16","13","Thailand","Thailand","25","Sasiporn Wongtapha","4"],
+["f645d05a","China","16","13","Thailand","Thailand","39","Kanokwan Prajuapsook","2"],
+["6036838b","Japan","21","11","Singapore","Japan","5","Aya Tsurumi","4"],
+["6036838b","Japan","21","11","Singapore","Japan","7","Miku Takahashi","2"],
+["6036838b","Japan","21","11","Singapore","Japan","8","Momoka Hanashima","6"],
+["6036838b","Japan","21","11","Singapore","Japan","13","Sakura Noguchi","9"],
+["6036838b","Japan","21","11","Singapore","Singapore","5","Lai Hor Ying Matilda","2"],
+["6036838b","Japan","21","11","Singapore","Singapore","7","Lydia Ang Zi Yi","3"],
+["6036838b","Japan","21","11","Singapore","Singapore","11","XingYue Han","1"],
+["6036838b","Japan","21","11","Singapore","Singapore","27","Jermaine Lim Jia Ying","5"],
+["0d9c20c2","Australia","21","10","Malaysia","Australia","8","Jonah Antonio","6"],
+["0d9c20c2","Australia","21","10","Malaysia","Australia","13","Donovan Mitchell","8"],
+["0d9c20c2","Australia","21","10","Malaysia","Australia","26","Samuel McDaniel","4"],
+["0d9c20c2","Australia","21","10","Malaysia","Australia","77","Dillon Stith","3"],
+["0d9c20c2","Australia","21","10","Malaysia","Malaysia","13","Chang Zi Fueng","0"],
+["0d9c20c2","Australia","21","10","Malaysia","Malaysia","23","Zhen Yang Chong","3"],
+["0d9c20c2","Australia","21","10","Malaysia","Malaysia","27","Ting Chun Hong","6"],
+["0d9c20c2","Australia","21","10","Malaysia","Malaysia","33","XianFu Ooi","1"],
+["cf014e44","Qatar","16","10","India","Qatar","3","Dejan Janjić","5"],
+["cf014e44","Qatar","16","10","India","Qatar","6","Nedim Muslic","7"],
+["cf014e44","Qatar","16","10","India","Qatar","14","Mohammed Abbasher","3"],
+["cf014e44","Qatar","16","10","India","Qatar","15","Mubarak Jama","1"],
+["cf014e44","Qatar","16","10","India","India","5","Harsh Dagar","2"],
+["cf014e44","Qatar","16","10","India","India","9","Kushal Singh","3"],
+["cf014e44","Qatar","16","10","India","India","10","Arvind Muthu","1"],
+["cf014e44","Qatar","16","10","India","India","19","Pranav Prince","4"],
+["c53c82cf","China","21","14","Kazakhstan","China","0","A Ganajing","5"],
+["c53c82cf","China","21","14","Kazakhstan","China","2","Wanglai Zhang","2"],
+["c53c82cf","China","21","14","Kazakhstan","China","10","ZhiTing Zhang","9"],
+["c53c82cf","China","21","14","Kazakhstan","China","15","JianPing Zhang","5"],
+["c53c82cf","China","21","14","Kazakhstan","Kazakhstan","3","Tamila Zhakipova","4"],
+["c53c82cf","China","21","14","Kazakhstan","Kazakhstan","11","Shugyla Kemel","1"],
+["c53c82cf","China","21","14","Kazakhstan","Kazakhstan","12","Dilnaz Yerkebay","5"],
+["c53c82cf","China","21","14","Kazakhstan","Kazakhstan","33","Ulyana Kudryavtseva","4"],
+["565fd633","Japan","14","11","Chinese Taipei","Japan","5","Aya Tsurumi","2"],
+["565fd633","Japan","14","11","Chinese Taipei","Japan","7","Miku Takahashi","3"],
+["565fd633","Japan","14","11","Chinese Taipei","Japan","8","Momoka Hanashima","3"],
+["565fd633","Japan","14","11","Chinese Taipei","Japan","13","Sakura Noguchi","6"],
+["565fd633","Japan","14","11","Chinese Taipei","Chinese Taipei","5","Chun-Hsi Chiu","2"],
+["565fd633","Japan","14","11","Chinese Taipei","Chinese Taipei","7","Yu-Tsz Lee","3"],
+["565fd633","Japan","14","11","Chinese Taipei","Chinese Taipei","17","Chen-I Li","5"],
+["565fd633","Japan","14","11","Chinese Taipei","Chinese Taipei","23","Yu Min Chang","1"],
+["d074408c","China","21","15","Australia","China","6","Dianliang Zhang","4"],
+["d074408c","China","21","15","Australia","China","10","Shihao Han","1"],
+["d074408c","China","21","15","Australia","China","12","MA DIAN CHENG","3"],
+["d074408c","China","21","15","Australia","China","15","Qianhao Liu","13"],
+["d074408c","China","21","15","Australia","Australia","8","Jonah Antonio","3"],
+["d074408c","China","21","15","Australia","Australia","13","Donovan Mitchell","5"],
+["d074408c","China","21","15","Australia","Australia","26","Samuel McDaniel","2"],
+["d074408c","China","21","15","Australia","Australia","77","Dillon Stith","5"],
+["87d4d898","New Zealand","21","11","Qatar","New Zealand","0","Aidan Tonge","3"],
+["87d4d898","New Zealand","21","11","Qatar","New Zealand","8","Joshua Book","1"],
+["87d4d898","New Zealand","21","11","Qatar","New Zealand","13","Te Tuhi Lewis","11"],
+["87d4d898","New Zealand","21","11","Qatar","New Zealand","21","Chris Martin","6"],
+["87d4d898","New Zealand","21","11","Qatar","Qatar","3","Dejan Janjić","6"],
+["87d4d898","New Zealand","21","11","Qatar","Qatar","6","Nedim Muslic","2"],
+["87d4d898","New Zealand","21","11","Qatar","Qatar","14","Mohammed Abbasher","1"],
+["87d4d898","New Zealand","21","11","Qatar","Qatar","15","Mubarak Jama","2"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Thailand","8","Supavadee Kunchuan","6"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Thailand","10","Sroifa Phetnin","8"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Thailand","25","Sasiporn Wongtapha","3"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Thailand","39","Kanokwan Prajuapsook","4"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Kazakhstan","3","Tamila Zhakipova","1"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Kazakhstan","11","Shugyla Kemel","1"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Kazakhstan","12","Dilnaz Yerkebay","0"],
+["a4b72a9c","Thailand","21","6","Kazakhstan","Kazakhstan","33","Ulyana Kudryavtseva","4"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Singapore","5","Lai Hor Ying Matilda","5"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Singapore","7","Lydia Ang Zi Yi","6"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Singapore","11","XingYue Han","4"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Singapore","27","Jermaine Lim Jia Ying","4"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Chinese Taipei","5","Chun-Hsi Chiu","7"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Chinese Taipei","7","Yu-Tsz Lee","5"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Chinese Taipei","17","Chen-I Li","3"],
+["3dc6345e","Singapore","19","16","Chinese Taipei","Chinese Taipei","23","Yu Min Chang","1"],
+["dc90aca6","Mongolia","20","6","Malaysia","Mongolia","5","Ariuntsetseg Bat-Erdene","6"],
+["dc90aca6","Mongolia","20","6","Malaysia","Mongolia","10","Nandinkhusel Nyamjav","4"],
+["dc90aca6","Mongolia","20","6","Malaysia","Mongolia","13","Khulan Onolbaatar","8"],
+["dc90aca6","Mongolia","20","6","Malaysia","Mongolia","24","Narangoo Erdenebayan","2"],
+["dc90aca6","Mongolia","20","6","Malaysia","Malaysia","9","SinJie Tan","1"],
+["dc90aca6","Mongolia","20","6","Malaysia","Malaysia","23","hui pin pang","0"],
+["dc90aca6","Mongolia","20","6","Malaysia","Malaysia","24","Suet Ying Foo","2"],
+["dc90aca6","Mongolia","20","6","Malaysia","Malaysia","35","Fook Yee Yap","3"],
+["9fad3bfe","Australia","21","3","Tonga","Australia","3","Kristy Wallace","2"],
+["9fad3bfe","Australia","21","3","Tonga","Australia","14","Lara McSpadden","6"],
+["9fad3bfe","Australia","21","3","Tonga","Australia","25","Amy Atwell","6"],
+["9fad3bfe","Australia","21","3","Tonga","Australia","77","Emma Clarke","7"],
+["9fad3bfe","Australia","21","3","Tonga","Tonga","1","Kara-Lynne Enari","0"],
+["9fad3bfe","Australia","21","3","Tonga","Tonga","4","Lesila Kefu Finau","1"],
+["9fad3bfe","Australia","21","3","Tonga","Tonga","7","Ana Rachel Salote Fui Enari","0"],
+["9fad3bfe","Australia","21","3","Tonga","Tonga","21","Makeili Talia Ika","2"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Mongolia","4","Bolor-Erdene Gantsolmon","7"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Mongolia","5","Chinkhutag Munkh-Ulzii","2"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Mongolia","32","Sugar-Ochir Erdenetsetseg","6"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Mongolia","34","Ganbaatar Nyamdorj","6"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Chinese Taipei","1","Chia Chuan Chen","4"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Chinese Taipei","7","Chun-Sheng Chang","10"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Chinese Taipei","10","Yu Fu","1"],
+["b2c4a2b8","Mongolia","21","15","Chinese Taipei","Chinese Taipei","77","Ting-Lin Chen","0"],
+["a1ebd090","Japan","20","16","Singapore","Japan","13","Ryo Ozawa","4"],
+["a1ebd090","Japan","20","16","Singapore","Japan","15","Kenya Igo","6"],
+["a1ebd090","Japan","20","16","Singapore","Japan","24","Yuki Nakanishi","4"],
+["a1ebd090","Japan","20","16","Singapore","Japan","33","Souleymane Coulibaly","6"],
+["a1ebd090","Japan","20","16","Singapore","Singapore","1","Liam Arman","5"],
+["a1ebd090","Japan","20","16","Singapore","Singapore","5","Aufa Emil","2"],
+["a1ebd090","Japan","20","16","Singapore","Singapore","13","Zhenyu Ching","5"],
+["a1ebd090","Japan","20","16","Singapore","Singapore","25","Xu Duanyang","4"],
+["47b19e85","New Zealand","22","4","Malaysia","New Zealand","10","Eva Sydney Langton","5"],
+["47b19e85","New Zealand","22","4","Malaysia","New Zealand","11","Sharne Pupuke-Robati","10"],
+["47b19e85","New Zealand","22","4","Malaysia","New Zealand","38","Azure Luseane Anderson","7"],
+["47b19e85","New Zealand","22","4","Malaysia","New Zealand","42","Gabriella Fotu","0"],
+["47b19e85","New Zealand","22","4","Malaysia","Malaysia","9","SinJie Tan","2"],
+["47b19e85","New Zealand","22","4","Malaysia","Malaysia","23","hui pin pang","0"],
+["47b19e85","New Zealand","22","4","Malaysia","Malaysia","24","Suet Ying Foo","0"],
+["47b19e85","New Zealand","22","4","Malaysia","Malaysia","35","Fook Yee Yap","2"],
+["d9f191d4","Philippines","19","10","Tonga","Philippines","0","Mikka Cacho","1"],
+["d9f191d4","Philippines","19","10","Tonga","Philippines","3","Afril Bernardino","6"],
+["d9f191d4","Philippines","19","10","Tonga","Philippines","23","Cheska Apag","4"],
+["d9f191d4","Philippines","19","10","Tonga","Philippines","28","Kacey Dela Rosa","8"],
+["d9f191d4","Philippines","19","10","Tonga","Tonga","1","Kara-Lynne Enari","1"],
+["d9f191d4","Philippines","19","10","Tonga","Tonga","4","Lesila Kefu Finau","5"],
+["d9f191d4","Philippines","19","10","Tonga","Tonga","7","Ana Rachel Salote Fui Enari","1"],
+["d9f191d4","Philippines","19","10","Tonga","Tonga","21","Makeili Talia Ika","3"],
+["287b4565","Mongolia","21","19","Philippines","Mongolia","4","Bolor-Erdene Gantsolmon","7"],
+["287b4565","Mongolia","21","19","Philippines","Mongolia","5","Chinkhutag Munkh-Ulzii","4"],
+["287b4565","Mongolia","21","19","Philippines","Mongolia","32","Sugar-Ochir Erdenetsetseg","4"],
+["287b4565","Mongolia","21","19","Philippines","Mongolia","34","Ganbaatar Nyamdorj","6"],
+["287b4565","Mongolia","21","19","Philippines","Philippines","6","Christopher Koon","7"],
+["287b4565","Mongolia","21","19","Philippines","Philippines","7","Jerrick Ahanmisi","2"],
+["287b4565","Mongolia","21","19","Philippines","Philippines","13","Louis Raphael Cu","8"],
+["287b4565","Mongolia","21","19","Philippines","Philippines","33","Sean Alter","2"],
+["5383b405","Japan","15","20","Republic of Korea","Japan","13","Ryo Ozawa","5"],
+["5383b405","Japan","15","20","Republic of Korea","Japan","15","Kenya Igo","1"],
+["5383b405","Japan","15","20","Republic of Korea","Japan","24","Yuki Nakanishi","2"],
+["5383b405","Japan","15","20","Republic of Korea","Japan","33","Souleymane Coulibaly","7"],
+["5383b405","Japan","15","20","Republic of Korea","Republic of Korea","5","Juyeong Lee","8"],
+["5383b405","Japan","15","20","Republic of Korea","Republic of Korea","6","Seungwoo Kim","9"],
+["5383b405","Japan","15","20","Republic of Korea","Republic of Korea","11","Donggeun Lee","1"],
+["5383b405","Japan","15","20","Republic of Korea","Republic of Korea","23","Mingyo Ku","2"],
+["a5f288c1","Mongolia","12","10","New Zealand","Mongolia","5","Ariuntsetseg Bat-Erdene","6"],
+["a5f288c1","Mongolia","12","10","New Zealand","Mongolia","10","Nandinkhusel Nyamjav","2"],
+["a5f288c1","Mongolia","12","10","New Zealand","Mongolia","13","Khulan Onolbaatar","4"],
+["a5f288c1","Mongolia","12","10","New Zealand","Mongolia","24","Narangoo Erdenebayan","0"],
+["a5f288c1","Mongolia","12","10","New Zealand","New Zealand","10","Eva Sydney Langton","3"],
+["a5f288c1","Mongolia","12","10","New Zealand","New Zealand","11","Sharne Pupuke-Robati","5"],
+["a5f288c1","Mongolia","12","10","New Zealand","New Zealand","38","Azure Luseane Anderson","0"],
+["a5f288c1","Mongolia","12","10","New Zealand","New Zealand","42","Gabriella Fotu","2"],
+["e2c76ab8","Australia","21","10","Philippines","Australia","3","Kristy Wallace","3"],
+["e2c76ab8","Australia","21","10","Philippines","Australia","14","Lara McSpadden","8"],
+["e2c76ab8","Australia","21","10","Philippines","Australia","25","Amy Atwell","3"],
+["e2c76ab8","Australia","21","10","Philippines","Australia","77","Emma Clarke","7"],
+["e2c76ab8","Australia","21","10","Philippines","Philippines","0","Mikka Cacho","0"],
+["e2c76ab8","Australia","21","10","Philippines","Philippines","3","Afril Bernardino","4"],
+["e2c76ab8","Australia","21","10","Philippines","Philippines","23","Cheska Apag","2"],
+["e2c76ab8","Australia","21","10","Philippines","Philippines","28","Kacey Dela Rosa","4"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Chinese Taipei","1","Chia Chuan Chen","5"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Chinese Taipei","7","Chun-Sheng Chang","5"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Chinese Taipei","10","Yu Fu","3"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Chinese Taipei","77","Ting-Lin Chen","0"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Philippines","6","Christopher Koon","5"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Philippines","7","Jerrick Ahanmisi","11"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Philippines","13","Louis Raphael Cu","3"],
+["3fc2536c","Chinese Taipei","13","21","Philippines","Philippines","33","Sean Alter","2"],
+["e55ee826","Singapore","19","21","Republic of Korea","Singapore","1","Liam Arman","2"],
+["e55ee826","Singapore","19","21","Republic of Korea","Singapore","5","Aufa Emil","6"],
+["e55ee826","Singapore","19","21","Republic of Korea","Singapore","13","Zhenyu Ching","4"],
+["e55ee826","Singapore","19","21","Republic of Korea","Singapore","25","Xu Duanyang","7"],
+["e55ee826","Singapore","19","21","Republic of Korea","Republic of Korea","5","Juyeong Lee","6"],
+["e55ee826","Singapore","19","21","Republic of Korea","Republic of Korea","6","Seungwoo Kim","10"],
+["e55ee826","Singapore","19","21","Republic of Korea","Republic of Korea","11","Donggeun Lee","2"],
+["e55ee826","Singapore","19","21","Republic of Korea","Republic of Korea","23","Mingyo Ku","3"],
+["c04d5cc5","China","16","12","Singapore","China","0","A Ganajing","2"],
+["c04d5cc5","China","16","12","Singapore","China","2","Wanglai Zhang","5"],
+["c04d5cc5","China","16","12","Singapore","China","10","ZhiTing Zhang","7"],
+["c04d5cc5","China","16","12","Singapore","China","15","JianPing Zhang","2"],
+["c04d5cc5","China","16","12","Singapore","Singapore","5","Lai Hor Ying Matilda","5"],
+["c04d5cc5","China","16","12","Singapore","Singapore","7","Lydia Ang Zi Yi","1"],
+["c04d5cc5","China","16","12","Singapore","Singapore","11","XingYue Han","4"],
+["c04d5cc5","China","16","12","Singapore","Singapore","27","Jermaine Lim Jia Ying","2"],
+["3463bb0e","Australia","19","11","New Zealand","Australia","3","Kristy Wallace","6"],
+["3463bb0e","Australia","19","11","New Zealand","Australia","14","Lara McSpadden","2"],
+["3463bb0e","Australia","19","11","New Zealand","Australia","25","Amy Atwell","8"],
+["3463bb0e","Australia","19","11","New Zealand","Australia","77","Emma Clarke","3"],
+["3463bb0e","Australia","19","11","New Zealand","New Zealand","10","Eva Sydney Langton","4"],
+["3463bb0e","Australia","19","11","New Zealand","New Zealand","11","Sharne Pupuke-Robati","3"],
+["3463bb0e","Australia","19","11","New Zealand","New Zealand","38","Azure Luseane Anderson","1"],
+["3463bb0e","Australia","19","11","New Zealand","New Zealand","42","Gabriella Fotu","3"],
+["8d2cdd2c","Mongolia","20","21","Japan","Mongolia","4","Bolor-Erdene Gantsolmon","4"],
+["8d2cdd2c","Mongolia","20","21","Japan","Mongolia","5","Chinkhutag Munkh-Ulzii","0"],
+["8d2cdd2c","Mongolia","20","21","Japan","Mongolia","32","Sugar-Ochir Erdenetsetseg","10"],
+["8d2cdd2c","Mongolia","20","21","Japan","Mongolia","34","Ganbaatar Nyamdorj","6"],
+["8d2cdd2c","Mongolia","20","21","Japan","Japan","13","Ryo Ozawa","4"],
+["8d2cdd2c","Mongolia","20","21","Japan","Japan","15","Kenya Igo","1"],
+["8d2cdd2c","Mongolia","20","21","Japan","Japan","24","Yuki Nakanishi","5"],
+["8d2cdd2c","Mongolia","20","21","Japan","Japan","33","Souleymane Coulibaly","11"],
+["84d1d99b","New Zealand","21","16","Australia","New Zealand","0","Aidan Tonge","6"],
+["84d1d99b","New Zealand","21","16","Australia","New Zealand","8","Joshua Book","1"],
+["84d1d99b","New Zealand","21","16","Australia","New Zealand","13","Te Tuhi Lewis","9"],
+["84d1d99b","New Zealand","21","16","Australia","New Zealand","21","Chris Martin","5"],
+["84d1d99b","New Zealand","21","16","Australia","Australia","8","Jonah Antonio","5"],
+["84d1d99b","New Zealand","21","16","Australia","Australia","13","Donovan Mitchell","4"],
+["84d1d99b","New Zealand","21","16","Australia","Australia","26","Samuel McDaniel","5"],
+["84d1d99b","New Zealand","21","16","Australia","Australia","77","Dillon Stith","2"],
+["285c0f57","Mongolia","12","15","Philippines","Mongolia","5","Ariuntsetseg Bat-Erdene","5"],
+["285c0f57","Mongolia","12","15","Philippines","Mongolia","10","Nandinkhusel Nyamjav","1"],
+["285c0f57","Mongolia","12","15","Philippines","Mongolia","13","Khulan Onolbaatar","5"],
+["285c0f57","Mongolia","12","15","Philippines","Mongolia","24","Narangoo Erdenebayan","1"],
+["285c0f57","Mongolia","12","15","Philippines","Philippines","0","Mikka Cacho","4"],
+["285c0f57","Mongolia","12","15","Philippines","Philippines","3","Afril Bernardino","4"],
+["285c0f57","Mongolia","12","15","Philippines","Philippines","23","Cheska Apag","1"],
+["285c0f57","Mongolia","12","15","Philippines","Philippines","28","Kacey Dela Rosa","6"],
+["05e29fe3","Japan","15","13","Thailand","Japan","5","Aya Tsurumi","3"],
+["05e29fe3","Japan","15","13","Thailand","Japan","7","Miku Takahashi","4"],
+["05e29fe3","Japan","15","13","Thailand","Japan","8","Momoka Hanashima","6"],
+["05e29fe3","Japan","15","13","Thailand","Japan","13","Sakura Noguchi","2"],
+["05e29fe3","Japan","15","13","Thailand","Thailand","8","Supavadee Kunchuan","3"],
+["05e29fe3","Japan","15","13","Thailand","Thailand","10","Sroifa Phetnin","4"],
+["05e29fe3","Japan","15","13","Thailand","Thailand","25","Sasiporn Wongtapha","4"],
+["05e29fe3","Japan","15","13","Thailand","Thailand","39","Kanokwan Prajuapsook","2"],
+["e723a0c3","China","20","17","Qatar","China","6","Dianliang Zhang","4"],
+["e723a0c3","China","20","17","Qatar","China","10","Shihao Han","5"],
+["e723a0c3","China","20","17","Qatar","China","12","MA DIAN CHENG","3"],
+["e723a0c3","China","20","17","Qatar","China","15","Qianhao Liu","8"],
+["e723a0c3","China","20","17","Qatar","Qatar","3","Dejan Janjić","4"],
+["e723a0c3","China","20","17","Qatar","Qatar","6","Nedim Muslic","4"],
+["e723a0c3","China","20","17","Qatar","Qatar","14","Mohammed Abbasher","7"],
+["e723a0c3","China","20","17","Qatar","Qatar","15","Mubarak Jama","2"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Republic of Korea","5","Juyeong Lee","5"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Republic of Korea","6","Seungwoo Kim","1"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Republic of Korea","11","Donggeun Lee","8"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Republic of Korea","23","Mingyo Ku","4"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Philippines","6","Christopher Koon","3"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Philippines","7","Jerrick Ahanmisi","8"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Philippines","13","Louis Raphael Cu","1"],
+["5ac4aaf7","Republic of Korea","18","15","Philippines","Philippines","33","Sean Alter","3"],
+["fdbfe5a6","China","20","21","Australia","China","0","A Ganajing","3"],
+["fdbfe5a6","China","20","21","Australia","China","2","Wanglai Zhang","4"],
+["fdbfe5a6","China","20","21","Australia","China","10","ZhiTing Zhang","7"],
+["fdbfe5a6","China","20","21","Australia","China","15","JianPing Zhang","6"],
+["fdbfe5a6","China","20","21","Australia","Australia","3","Kristy Wallace","2"],
+["fdbfe5a6","China","20","21","Australia","Australia","14","Lara McSpadden","2"],
+["fdbfe5a6","China","20","21","Australia","Australia","25","Amy Atwell","12"],
+["fdbfe5a6","China","20","21","Australia","Australia","77","Emma Clarke","5"],
+["2c7e2470","Philippines","21","19","Japan","Philippines","0","Mikka Cacho","4"],
+["2c7e2470","Philippines","21","19","Japan","Philippines","3","Afril Bernardino","5"],
+["2c7e2470","Philippines","21","19","Japan","Philippines","23","Cheska Apag","2"],
+["2c7e2470","Philippines","21","19","Japan","Philippines","28","Kacey Dela Rosa","10"],
+["2c7e2470","Philippines","21","19","Japan","Japan","5","Aya Tsurumi","0"],
+["2c7e2470","Philippines","21","19","Japan","Japan","7","Miku Takahashi","11"],
+["2c7e2470","Philippines","21","19","Japan","Japan","8","Momoka Hanashima","6"],
+["2c7e2470","Philippines","21","19","Japan","Japan","13","Sakura Noguchi","2"],
+["7d6f05d2","Japan","16","21","New Zealand","Japan","13","Ryo Ozawa","2"],
+["7d6f05d2","Japan","16","21","New Zealand","Japan","15","Kenya Igo","5"],
+["7d6f05d2","Japan","16","21","New Zealand","Japan","24","Yuki Nakanishi","3"],
+["7d6f05d2","Japan","16","21","New Zealand","Japan","33","Souleymane Coulibaly","6"],
+["7d6f05d2","Japan","16","21","New Zealand","New Zealand","0","Aidan Tonge","6"],
+["7d6f05d2","Japan","16","21","New Zealand","New Zealand","8","Joshua Book","7"],
+["7d6f05d2","Japan","16","21","New Zealand","New Zealand","13","Te Tuhi Lewis","2"],
+["7d6f05d2","Japan","16","21","New Zealand","New Zealand","21","Chris Martin","6"],
+["b349d67f","China","15","21","Republic of Korea","China","6","Dianliang Zhang","11"],
+["b349d67f","China","15","21","Republic of Korea","China","10","Shihao Han","0"],
+["b349d67f","China","15","21","Republic of Korea","China","12","MA DIAN CHENG","1"],
+["b349d67f","China","15","21","Republic of Korea","China","15","Qianhao Liu","3"],
+["b349d67f","China","15","21","Republic of Korea","Republic of Korea","5","Juyeong Lee","0"],
+["b349d67f","China","15","21","Republic of Korea","Republic of Korea","6","Seungwoo Kim","11"],
+["b349d67f","China","15","21","Republic of Korea","Republic of Korea","11","Donggeun Lee","8"],
+["b349d67f","China","15","21","Republic of Korea","Republic of Korea","23","Mingyo Ku","2"],
+["b17a84a0","China","20","15","Japan","China","0","A Ganajing","0"],
+["b17a84a0","China","20","15","Japan","China","2","Wanglai Zhang","5"],
+["b17a84a0","China","20","15","Japan","China","10","ZhiTing Zhang","9"],
+["b17a84a0","China","20","15","Japan","China","15","JianPing Zhang","6"],
+["b17a84a0","China","20","15","Japan","Japan","5","Aya Tsurumi","4"],
+["b17a84a0","China","20","15","Japan","Japan","7","Miku Takahashi","4"],
+["b17a84a0","China","20","15","Japan","Japan","8","Momoka Hanashima","4"],
+["b17a84a0","China","20","15","Japan","Japan","13","Sakura Noguchi","3"],
+["7200585e","Japan","20","22","China","Japan","13","Ryo Ozawa","7"],
+["7200585e","Japan","20","22","China","Japan","15","Kenya Igo","5"],
+["7200585e","Japan","20","22","China","Japan","24","Yuki Nakanishi","7"],
+["7200585e","Japan","20","22","China","Japan","33","Souleymane Coulibaly","1"],
+["7200585e","Japan","20","22","China","China","6","Dianliang Zhang","6"],
+["7200585e","Japan","20","22","China","China","10","Shihao Han","2"],
+["7200585e","Japan","20","22","China","China","12","MA DIAN CHENG","4"],
+["7200585e","Japan","20","22","China","China","15","Qianhao Liu","10"],
+["8b006ada","Australia","18","9","Philippines","Australia","3","Kristy Wallace","5"],
+["8b006ada","Australia","18","9","Philippines","Australia","14","Lara McSpadden","2"],
+["8b006ada","Australia","18","9","Philippines","Australia","25","Amy Atwell","8"],
+["8b006ada","Australia","18","9","Philippines","Australia","77","Emma Clarke","3"],
+["8b006ada","Australia","18","9","Philippines","Philippines","0","Mikka Cacho","0"],
+["8b006ada","Australia","18","9","Philippines","Philippines","3","Afril Bernardino","4"],
+["8b006ada","Australia","18","9","Philippines","Philippines","23","Cheska Apag","2"],
+["8b006ada","Australia","18","9","Philippines","Philippines","28","Kacey Dela Rosa","3"],
+["848a308e","New Zealand","21","15","Republic of Korea","New Zealand","0","Aidan Tonge","2"],
+["848a308e","New Zealand","21","15","Republic of Korea","New Zealand","8","Joshua Book","3"],
+["848a308e","New Zealand","21","15","Republic of Korea","New Zealand","13","Te Tuhi Lewis","10"],
+["848a308e","New Zealand","21","15","Republic of Korea","New Zealand","21","Chris Martin","6"],
+["848a308e","New Zealand","21","15","Republic of Korea","Republic of Korea","5","Juyeong Lee","3"],
+["848a308e","New Zealand","21","15","Republic of Korea","Republic of Korea","6","Seungwoo Kim","5"],
+["848a308e","New Zealand","21","15","Republic of Korea","Republic of Korea","11","Donggeun Lee","3"],
+["848a308e","New Zealand","21","15","Republic of Korea","Republic of Korea","23","Mingyo Ku","4"],
+];
+
+const WOMEN_GAMES = new Set([
+  "aef14e48","c2c5c461","74657fdc","8962120e","a50c858f",
+  "9f50284f","8e038ad0","60a98709","8994bc77","cff220d2",
+  "81715682","59a1c70e","c6898424","acd16afb","f24c51ed","f645d05a",
+  "6036838b","c53c82cf","565fd633","a4b72a9c","3dc6345e","dc90aca6","9fad3bfe",
+  "47b19e85","d9f191d4","a5f288c1","e2c76ab8","c04d5cc5",
+  "3463bb0e","285c0f57","05e29fe3","fdbfe5a6","2c7e2470","b17a84a0",
+  "8b006ada"
+]);
+
+const GAME_ORDER = [
+  "aef14e48","63fea02d","7876be5a","c2c5c461","74657fdc","8962120e","0eb7613e",
+  "dd1f58c4","a50c858f","1967b5d4","6e09d051","9f50284f","8e038ad0","eee5418b",
+  "a4742abe","60a98709","8994bc77","e2aa5e88","e8a81778","ec9febd6","32951566",
+  "cff220d2","81715682","785557d7","8d92a51f","59a1c70e","c6898424","1c94588a",
+  "f44acc14","acd16afb","f24c51ed","9f8ff870","41c7d29c","f22e32c8","c6cdd6bd",
+  "f645d05a","6036838b","0d9c20c2","cf014e44","c53c82cf","565fd633","d074408c",
+  "87d4d898","a4b72a9c","3dc6345e","dc90aca6","9fad3bfe","b2c4a2b8","a1ebd090",
+  "47b19e85","d9f191d4","287b4565","5383b405","a5f288c1","e2c76ab8","3fc2536c",
+  "e55ee826","c04d5cc5","3463bb0e","8d2cdd2c","84d1d99b","285c0f57","05e29fe3",
+  "e723a0c3","5ac4aaf7","fdbfe5a6","2c7e2470","7d6f05d2","b349d67f","b17a84a0",
+  "7200585e","8b006ada","848a308e"
+];
+
+const FINISH_ORDER = {
+  W: ["Australia","Philippines","China","Japan","Mongolia","Singapore",
+      "Thailand","New Zealand","Kazakhstan","Republic of Korea","India",
+      "Chinese Taipei","Malaysia","Tonga","Macau, China","Vietnam",
+      "Turkmenistan","Maldives","Hong Kong, China","Saudi Arabia","Bahrain"],
+  M: ["New Zealand","Republic of Korea","China","Japan","Philippines","Singapore",
+      "Australia","India","Thailand","Tonga","Malaysia","Chinese Taipei",
+      "Vietnam","Maldives","Qatar","Saudi Arabia","Bahrain","Hong Kong, China",
+      "Turkmenistan","Macau, China","Mongolia","Kazakhstan"],
+};
+
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid,ht,hs,as_,at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid,ht,hs:+hs,as:+as_,at};
+}
+
+function buildData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [gid,ht,hs,as_,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let gender = 'W';
+let activeTeams = new Set();
+
+function rankTeams(g) {
+  const order = FINISH_ORDER[g];
+  const available = Object.keys(teamData[g]);
+  return [...order.filter(t=>available.includes(t)), ...available.filter(t=>!order.includes(t)).sort()];
+}
+
+function getTeamGames(team, g) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[g][team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos) {
+  return pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';
+}
+
+function updateHero(g) {
+  const teams = rankTeams(g);
+  const gids = new Set(); let players = 0;
+  for (const t of teams) { getTeamGames(t,g).forEach(id=>gids.add(id)); players+=Object.keys(teamData[g][t]).length; }
+  document.getElementById('hero-games').textContent = (gids.size/2|0)+' games';
+  document.getElementById('hero-players').textContent = players+' players';
+}
+
+function renderFinishRow(g) {
+  const row = document.getElementById('finish-row');
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  FINISH_ORDER[g].forEach((team,i) => {
+    const pos=i+1, cls=getFinishClass(pos);
+    const pill=document.createElement('div');
+    pill.className='finish-pill'+(cls?' '+cls:'');
+    pill.innerHTML=`<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips(g) {
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of rankTeams(g)) {
+    const b=document.createElement('button');
+    b.className='team-chip'+(activeTeams.has(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{activeTeams.has(t)?activeTeams.delete(t):activeTeams.add(t);renderAll();};
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  updateHero(gender); renderFinishRow(gender); renderChips(gender);
+  const teams=rankTeams(gender);
+  const show=activeTeams.size>0?teams.filter(t=>activeTeams.has(t)):teams;
+  const content=document.getElementById('content');
+  content.innerHTML='';
+  if(!show.length){content.innerHTML='<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';return;}
+  const order=FINISH_ORDER[gender];
+  for (const team of show) content.appendChild(buildBlock(team,gender,order.indexOf(team)+1));
+}
+
+function buildBlock(team,g,pos) {
+  const players=teamData[g][team], allGames=getTeamGames(team,g);
+  const sorted=Object.entries(players).sort((a,b)=>{
+    const ta=Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb=Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const block=document.createElement('div'); block.className='team-block';
+  const gTag=g==='W'?'<span class="gender-tag w">W</span>':'<span class="gender-tag m">M</span>';
+  const finCls=getFinishClass(pos);
+  const finLabel=pos?`<span class="team-finish${finCls?' '+finCls:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>`:'';
+  const title=document.createElement('div'); title.className='team-title';
+  title.innerHTML=`${gTag}<h2>${team}</h2>${finLabel}<span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span><span class="toggle-icon">▾</span>`;
+  const bodyWrap=document.createElement('div'); bodyWrap.className='team-body-wrap';
+  title.onclick=()=>{bodyWrap.classList.toggle('collapsed');title.classList.toggle('collapsed');};
+  block.appendChild(title);
+  const table=document.createElement('table');
+  const thead=document.createElement('thead');
+  const tr1=document.createElement('tr');
+  tr1.appendChild(mkTh('#','num')); tr1.appendChild(mkTh('Player',''));
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],gi=gameIndex[gid];
+    const opp=gi.ht===team?gi.at:gi.ht;
+    const myS=gi.ht===team?gi.hs:gi.as,opS=gi.ht===team?gi.as:gi.hs;
+    const won=myS>opS;
+    const cell=mkTh('','game-th center'+(i===0?' divider':''));
+    cell.innerHTML=`<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider')); tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1); table.appendChild(thead);
+  const tbody=document.createElement('tbody');
+  for (const [name,pd] of sorted){
+    const total=Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp=Object.keys(pd.games).length;
+    const avg=gp>0?(total/gp).toFixed(1):'—';
+    const tr=document.createElement('tr');
+    tr.appendChild(mkTd(pd.num,'num')); tr.appendChild(mkTd(name,'name'));
+    for (let i=0;i<allGames.length;i++){
+      const gid=allGames[i],pts=pd.games[gid];
+      const cls=(i===0?'divider ':'')+(pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts),cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider')); tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+  const totRow=document.createElement('tr'); totRow.className='totrow';
+  totRow.appendChild(mkTd('','')); totRow.appendChild(mkTd('Team total',''));
+  let grand=0;
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],col=sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand+=col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider')); totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow); table.appendChild(tbody);
+  bodyWrap.appendChild(table); block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text,cls){const el=document.createElement('th');if(cls)el.className=cls;if(text)el.textContent=text;return el;}
+function mkTd(text,cls){const el=document.createElement('td');if(cls)el.className=cls;el.textContent=text;return el;}
+function setGender(g){gender=g;activeTeams.clear();document.getElementById('btn-w').classList.toggle('active',g==='W');document.getElementById('btn-m').classList.toggle('active',g==='M');renderAll();}
+
+renderAll();
+</script>
+</body>
+</html>
