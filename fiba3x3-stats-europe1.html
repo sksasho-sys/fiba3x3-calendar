@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — NL 2026 Europe-1 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── THEME TOKENS ── */
+:root {
+  --bg:      #141210;
+  --s1:      #1c1916;
+  --s2:      #222018;
+  --s3:      #2c2820;
+  --s4:      #38332a;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #f0ece4;
+  --muted:   #6b6256;
+  --muted2:  #9e9082;
+  --accent:  #e8400c;
+  --nl:      #a78bfa;
+  --nl-bg:   rgba(167,139,250,0.10);
+  --won:     #34d399;
+  --lost:    #f87171;
+  --hero-grad: linear-gradient(150deg, #1e1a14 0%, #141210 60%);
+  --tabs-bg: rgba(20,18,16,0.95);
+}
+[data-theme="light"] {
+  --bg:      #faf8f5;
+  --s1:      #ffffff;
+  --s2:      #f3f0eb;
+  --s3:      #e8e3da;
+  --s4:      #dcd6cc;
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text:    #1a1612;
+  --muted:   #a09080;
+  --muted2:  #6e5e50;
+  --accent:  #d13408;
+  --nl:      #6d28d9;
+  --nl-bg:   rgba(109,40,217,0.09);
+  --won:     #0f766e;
+  --lost:    #be123c;
+  --hero-grad: linear-gradient(150deg, #f0ece3 0%, #faf8f5 60%);
+  --tabs-bg: rgba(250,248,245,0.97);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* grain */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+[data-theme="light"] body::after { opacity:.15; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  background: var(--tabs-bg);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 2rem;
+}
+.topbar-inner {
+  max-width: 1040px; margin: 0 auto;
+  height: 56px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: nowrap;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted2); text-decoration: none;
+  padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border2); background: transparent;
+  transition: all .15s; flex-shrink: 0;
+}
+.back-link:hover { color: var(--text); border-color: var(--border2); background: var(--s3); }
+.topbar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: .06em;
+  color: var(--text); flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-nl-badge {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 3px;
+  background: var(--nl-bg); color: var(--nl); border: 1px solid rgba(167,139,250,.22);
+  white-space: nowrap; flex-shrink: 0;
+}
+[data-theme="light"] .topbar-nl-badge { background: rgba(109,40,217,0.09); color: var(--nl); border-color: rgba(109,40,217,.22); }
+
+/* gender toggle */
+.gender-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; flex-shrink:0;
+}
+.gender-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 13px; border: none; background: none; cursor: pointer;
+  color: var(--muted2); transition: all .14s;
+}
+.gender-btn.active { background: var(--text); color: var(--bg); }
+
+/* theme toggle */
+.theme-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted2); cursor: pointer; transition: all .2s; flex-shrink:0;
+}
+.theme-toggle-btn:hover { color: var(--text); }
+.theme-toggle-btn svg { width:14px; height:14px; transition: transform .3s; }
+.theme-toggle-btn:hover svg { transform: rotate(18deg); }
+.t-sun { display:none; }
+.t-moon { display:block; }
+[data-theme="light"] .t-sun { display:block; }
+[data-theme="light"] .t-moon { display:none; }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  background: var(--hero-grad);
+  border-bottom: 1px solid var(--border2);
+  padding: 1.8rem 2rem 1.4rem;
+  position: relative; overflow: hidden;
+}
+.hero-strip-bg {
+  position: absolute; right: -0.04em; top: -0.1em;
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,16vw,180px);
+  line-height:1; color: rgba(167,139,250,0.05); pointer-events:none; user-select:none;
+}
+.hero-strip-inner { max-width: 1040px; margin: 0 auto; position:relative; z-index:1; }
+.hero-strip-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nl); display: flex; align-items: center; gap: 8px; margin-bottom: .4rem;
+}
+.hero-strip-eyebrow::before { content:''; width:18px; height:2px; background:var(--nl); flex-shrink:0; }
+.hero-strip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 46px); line-height:.95; letter-spacing:.02em;
+  margin-bottom:.8rem;
+}
+.hero-strip-title em { color: var(--accent); font-style:normal; }
+.hero-strip-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted2);
+}
+.hero-strip-meta strong { color: var(--text); font-weight:500; }
+
+/* ── TEAM FILTER ROW ── */
+.filter-row {
+  max-width: 1040px; margin: 0 auto;
+  padding: .9rem 2rem;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.filter-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); flex-shrink: 0;
+}
+.team-chip {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 4px;
+  border: 1px solid var(--border2); background: transparent; color: var(--muted2);
+  cursor: pointer; transition: all .14s; white-space: nowrap;
+}
+.team-chip:hover { color: var(--text); border-color: rgba(255,255,255,.22); }
+[data-theme="light"] .team-chip:hover { border-color: rgba(0,0,0,.2); }
+.team-chip.active { background: var(--text); color: var(--bg); border-color: transparent; }
+
+/* ── CONTENT ── */
+.content { max-width: 1040px; margin: 0 auto; padding: 1.5rem 2rem 5rem; }
+
+/* team block */
+.team-block {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.team-title {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: var(--s2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+}
+.team-title:hover { background: var(--s3); }
+.team-title h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: .04em; color: var(--text);
+}
+.team-meta { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); margin-left:auto; }
+.toggle-icon { font-size:14px; color:var(--muted); transition:transform .2s; }
+.team-body-wrap { overflow-x: auto; }
+.team-body-wrap.collapsed { display: none; }
+.team-title.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+.gender-tag {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:2px 7px; border-radius:3px; font-weight:500;
+}
+.gender-tag.w { background:rgba(248,113,113,.12); color:#f87171; border:1px solid rgba(248,113,113,.22); }
+.gender-tag.m { background:rgba(56,189,248,.12); color:#38bdf8; border:1px solid rgba(56,189,248,.22); }
+[data-theme="light"] .gender-tag.w { background:rgba(190,18,60,.09); color:#be123c; border-color:rgba(190,18,60,.2); }
+[data-theme="light"] .gender-tag.m { background:rgba(3,105,161,.09); color:#0369a1; border-color:rgba(3,105,161,.2); }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; font-size:12px; }
+thead th {
+  background: var(--s2);
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted2); font-weight: 500; white-space: nowrap;
+  position: sticky; top: 0;
+}
+thead th.col-num { text-align:center; }
+thead th.divider { border-left: 2px solid var(--border2); }
+thead th.stop-group {
+  text-align:center;
+  background: var(--s3);
+  border-left: 2px solid var(--border2);
+  color: var(--nl); letter-spacing: .12em;
+}
+
+tbody tr { border-top: 1px solid var(--border); }
+tbody tr:hover { background: var(--s2); }
+td { padding: 7px 8px; vertical-align: middle; }
+
+.col-num { width:28px; text-align:center; color:var(--muted); }
+.col-name { min-width:140px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:500; color:var(--text); }
+.col-pts { text-align:center; min-width:36px; font-weight:600; color:var(--text); }
+.col-total { text-align:center; min-width:40px; font-weight:700; color:var(--text); }
+.col-avg { text-align:center; min-width:38px; color:var(--muted2); font-family:'DM Mono',monospace; font-size:11px; }
+.pts-zero { color:var(--muted) !important; font-weight:400 !important; }
+.pts-dash { color:var(--border2); text-align:center; }
+.divider { border-left: 2px solid var(--border2); }
+.total-row td { background:var(--s3); font-weight:600; border-top:2px solid var(--border2); color:var(--muted2); font-size:11px; font-family:'DM Mono',monospace; }
+.total-row td.col-total { color:var(--text); font-size:14px; }
+
+.score-won { color:var(--won); font-weight:600; font-size:10px; }
+.score-lost { color:var(--lost); font-weight:600; font-size:10px; }
+.opp-name { display:block; font-size:10px; color:var(--muted2); margin-bottom:1px; white-space:nowrap; }
+
+/* badges */
+.badge-new { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(240,165,0,.15); color:var(--wt,#f0a500); margin-left:4px; }
+.badge-left { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(248,113,113,.12); color:#f87171; margin-left:4px; }
+[data-theme="light"] .badge-new { background:rgba(184,120,0,.12); color:#b87800; }
+[data-theme="light"] .badge-left { background:rgba(190,18,60,.1); color:#be123c; }
+
+/* empty */
+.empty { text-align:center; padding:4rem 0; color:var(--muted); }
+.empty-big { font-family:'Bebas Neue',sans-serif; font-size:52px; display:block; color:var(--s4); margin-bottom:.4rem; }
+
+@media(max-width:640px){
+  .topbar { padding: 0 1rem; }
+  .topbar-inner { gap:8px; }
+  .hero-strip { padding:1.4rem 1rem 1rem; }
+  .filter-row { padding:.75rem 1rem; }
+  .content { padding:1rem 1rem 3rem; }
+  .topbar-title { font-size:14px; }
+  .back-link span { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">NL 2026 — Europe-1 Stats</div>
+    <div class="topbar-nl-badge">Nations League</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <div class="hero-strip-bg">EU-1</div>
+  <div class="hero-strip-inner">
+    <div class="hero-strip-eyebrow">Nations League 2026 · Stops 1–6</div>
+    <h1 class="hero-strip-title">Europe-1 <em>Stats</em></h1>
+    <div class="hero-strip-meta">
+      <span><strong>Vilnius</strong>, Lithuania</span>
+      <span>·</span>
+      <span><strong>Jun 1–3</strong> &amp; <strong>Jun 16–18</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM FILTER -->
+<div class="filter-row" id="filter-row">
+  <span class="filter-label">Teams:</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ────────────────────────────────────────────────────────────────────
+const html = document.documentElement;
+const saved = localStorage.getItem('fiba3x3-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── RAW DATA ─────────────────────────────────────────────────────────────────
+// ── Raw data ──────────────────────────────────────────────────────────────────
+const RAW = [
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Germany","3","Marianna Byvatov","14"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Germany","12","Olivia Okpara","4"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Germany","15","Maja Marie Manten","1"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Germany","34","Lilly Küppers","2"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Croatia","2","Lea Vukić","7"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Croatia","4","Ivana Mamić","4"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Croatia","9","Dalija Stabile","2"],
+["Stop 1","4d250ae1","Germany","21","16","Croatia","Croatia","10","Jelena Brkičić","3"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Germany","3","Kilian Walter","1"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Germany","12","Joshua Günther","7"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Germany","15","David Galusic","3"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Germany","30","Maximilian Matthias Eichbaum","4"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Slovenia","7","Luka Lampret","3"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Slovenia","11","mark filip ivankovič","4"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Slovenia","13","Lon Ličan","2"],
+["Stop 1","bf015dff","Germany","15","13","Slovenia","Slovenia","36","Tadej Colnarič","4"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Italy","0","Ludovica Sammartino","5"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Italy","10","Ilaria Bernardi","5"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Italy","11","Nancy Alessandra N'guessan","4"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Italy","20","Cristina Osazuwa","7"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Azerbaijan","10","Ela Nur Gokcol","1"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","6"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Azerbaijan","12","Shilan Akbingol","1"],
+["Stop 1","dfe402ed","Italy","21","8","Azerbaijan","Azerbaijan","20","Adila Yusubova","0"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Lithuania","2","Nojus Vaivada","2"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Lithuania","3","Paulius Velutis","6"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Lithuania","7","Gediminas Alisas","4"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Lithuania","13","Kajus Leliukas","9"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Azerbaijan","4","Nijat Nasirov","0"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","3"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Azerbaijan","8","Alibay Mammadli","2"],
+["Stop 1","84111677","Lithuania","21","11","Azerbaijan","Azerbaijan","21","Rashid Abbasov","6"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Slovenia","5","Hana Sambolic","4"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Slovenia","11","Tina Tomšič","4"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Slovenia","22","Anja Dragar","7"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Slovenia","76","Mia Žekš","0"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Croatia","2","Lea Vukić","4"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Croatia","4","Ivana Mamić","1"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Croatia","9","Dalija Stabile","3"],
+["Stop 1","dce585e2","Slovenia","15","10","Croatia","Croatia","10","Jelena Brkičić","2"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Croatia","7","Jakov Jacović","1"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Croatia","9","Marko Malekinušić","5"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Croatia","10","Patrik Ćavar","6"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Croatia","11","Luka Petranović","5"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Slovenia","7","Luka Lampret","6"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Slovenia","11","mark filip ivankovič","3"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Slovenia","13","Lon Ličan","4"],
+["Stop 1","bc029765","Croatia","17","13","Slovenia","Slovenia","36","Tadej Colnarič","0"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Lithuania","1","Danielė Paunksnytė","2"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Lithuania","10","Urtė Čižauskaitė","7"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Lithuania","77","Miglė Kisarauskaitė","7"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Lithuania","95","Audronė Zdanevičiūtė","5"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Azerbaijan","10","Ela Nur Gokcol","0"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","2"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Azerbaijan","12","Shilan Akbingol","1"],
+["Stop 1","adb55c5a","Lithuania","21","3","Azerbaijan","Azerbaijan","20","Adila Yusubova","0"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Italy","1","Tiagande Willis Alex Tio","5"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Italy","3","Alleia Ivan Mobio","6"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Italy","10","Tommaso Paolo Vecchiola","2"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Italy","18","Matteo Gherardini","8"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Azerbaijan","4","Nijat Nasirov","2"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","1"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Azerbaijan","8","Alibay Mammadli","0"],
+["Stop 1","2e22b9dd","Italy","21","11","Azerbaijan","Azerbaijan","21","Rashid Abbasov","8"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Germany","3","Marianna Byvatov","7"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Germany","12","Olivia Okpara","4"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Germany","15","Maja Marie Manten","4"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Germany","34","Lilly Küppers","2"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Slovenia","5","Hana Sambolic","9"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Slovenia","11","Tina Tomšič","6"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Slovenia","22","Anja Dragar","3"],
+["Stop 1","8356631b","Germany","17","21","Slovenia","Slovenia","76","Mia Žekš","3"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Germany","3","Kilian Walter","2"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Germany","12","Joshua Günther","4"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Germany","15","David Galusic","4"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Germany","30","Maximilian Matthias Eichbaum","2"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Croatia","7","Jakov Jacović","8"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Croatia","9","Marko Malekinušić","6"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Croatia","10","Patrik Ćavar","5"],
+["Stop 1","7f0058f5","Germany","12","20","Croatia","Croatia","11","Luka Petranović","1"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Italy","0","Ludovica Sammartino","6"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Italy","10","Ilaria Bernardi","4"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Italy","11","Nancy Alessandra N'guessan","2"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Italy","20","Cristina Osazuwa","7"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Lithuania","1","Danielė Paunksnytė","2"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Lithuania","10","Urtė Čižauskaitė","2"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Lithuania","77","Miglė Kisarauskaitė","7"],
+["Stop 1","14e46063","Italy","19","18","Lithuania","Lithuania","95","Audronė Zdanevičiūtė","7"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Lithuania","2","Nojus Vaivada","7"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Lithuania","3","Paulius Velutis","3"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Lithuania","7","Gediminas Alisas","4"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Lithuania","13","Kajus Leliukas","7"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Italy","1","Tiagande Willis Alex Tio","4"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Italy","3","Alleia Ivan Mobio","2"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Italy","10","Tommaso Paolo Vecchiola","2"],
+["Stop 1","cd4934aa","Lithuania","21","12","Italy","Italy","18","Matteo Gherardini","4"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Slovenia","5","Hana Sambolic","9"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Slovenia","11","Tina Tomšič","3"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Slovenia","22","Anja Dragar","5"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Slovenia","76","Mia Žekš","3"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Italy","0","Ludovica Sammartino","0"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Italy","10","Ilaria Bernardi","3"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Italy","11","Nancy Alessandra N'guessan","4"],
+["Stop 1","d33e2f20","Slovenia","20","13","Italy","Italy","20","Cristina Osazuwa","6"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Croatia","7","Jakov Jacović","3"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Croatia","9","Marko Malekinušić","5"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Croatia","10","Patrik Ćavar","8"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Croatia","11","Luka Petranović","3"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Lithuania","2","Nojus Vaivada","2"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Lithuania","3","Paulius Velutis","6"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Lithuania","7","Gediminas Alisas","7"],
+["Stop 1","35e25180","Croatia","19","16","Lithuania","Lithuania","13","Kajus Leliukas","1"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Italy","0","Ludovica Sammartino","3"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Italy","2","Kenko Loredana Ngamene Takougang","2"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Italy","10","Ilaria Bernardi","2"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Italy","20","Cristina Osazuwa","5"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Croatia","2","Lea Vukić","3"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Croatia","4","Ivana Mamić","0"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Croatia","10","Jelena Brkičić","0"],
+["Stop 2","aeefe536","Italy","12","5","Croatia","Croatia","12","Elena Peričić","2"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Croatia","7","Jakov Jacović","10"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Croatia","9","Marko Malekinušić","2"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Croatia","10","Patrik Ćavar","3"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Croatia","11","Luka Petranović","2"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Slovenia","6","Vito Bajazet","4"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Slovenia","7","Luka Lampret","5"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Slovenia","11","mark filip ivankovič","5"],
+["Stop 2","0f32da88","Croatia","17","21","Slovenia","Slovenia","13","Lon Ličan","7"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Lithuania","1","Danielė Paunksnytė","3"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Lithuania","10","Urtė Čižauskaitė","10"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Lithuania","77","Miglė Kisarauskaitė","2"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Lithuania","95","Audronė Zdanevičiūtė","2"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","4"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Azerbaijan","12","Shilan Akbingol","0"],
+["Stop 2","d268f08d","Lithuania","17","4","Azerbaijan","Azerbaijan","20","Adila Yusubova","0"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Germany","3","Kilian Walter","2"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Germany","12","Joshua Günther","5"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Germany","15","David Galusic","8"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Germany","30","Maximilian Matthias Eichbaum","6"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Azerbaijan","4","Nijat Nasirov","3"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","1"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Azerbaijan","8","Alibay Mammadli","3"],
+["Stop 2","9dc4503a","Germany","21","12","Azerbaijan","Azerbaijan","21","Rashid Abbasov","5"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Slovenia","5","Hana Sambolic","5"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Slovenia","11","Tina Tomšič","4"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Slovenia","22","Anja Dragar","3"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Slovenia","76","Mia Žekš","3"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Croatia","2","Lea Vukić","7"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Croatia","4","Ivana Mamić","0"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Croatia","10","Jelena Brkičić","1"],
+["Stop 2","77d0d02e","Slovenia","15","12","Croatia","Croatia","12","Elena Peričić","4"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Lithuania","2","Nojus Vaivada","3"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Lithuania","3","Paulius Velutis","6"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Lithuania","7","Gediminas Alisas","4"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Lithuania","13","Kajus Leliukas","8"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Slovenia","6","Vito Bajazet","1"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Slovenia","7","Luka Lampret","1"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Slovenia","11","mark filip ivankovič","5"],
+["Stop 2","1838e58d","Lithuania","21","11","Slovenia","Slovenia","13","Lon Ličan","4"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Germany","3","Marianna Byvatov","7"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Germany","12","Olivia Okpara","3"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Germany","15","Maja Marie Manten","3"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Germany","34","Lilly Küppers","3"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Lithuania","1","Danielė Paunksnytė","5"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Lithuania","10","Urtė Čižauskaitė","6"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Lithuania","77","Miglė Kisarauskaitė","3"],
+["Stop 2","cf4dee4b","Germany","16","17","Lithuania","Lithuania","95","Audronė Zdanevičiūtė","3"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Italy","1","Tiagande Willis Alex Tio","5"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Italy","10","Tommaso Paolo Vecchiola","4"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Italy","18","Matteo Gherardini","8"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Italy","20","Francesco Gravaghi","4"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Azerbaijan","4","Nijat Nasirov","0"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","2"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Azerbaijan","8","Alibay Mammadli","3"],
+["Stop 2","b9815c59","Italy","21","8","Azerbaijan","Azerbaijan","21","Rashid Abbasov","3"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Italy","0","Ludovica Sammartino","2"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Italy","2","Kenko Loredana Ngamene Takougang","3"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Italy","10","Ilaria Bernardi","4"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Italy","20","Cristina Osazuwa","3"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Slovenia","5","Hana Sambolic","3"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Slovenia","11","Tina Tomšič","7"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Slovenia","22","Anja Dragar","4"],
+["Stop 2","a6aaa48d","Italy","12","14","Slovenia","Slovenia","76","Mia Žekš","0"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Lithuania","2","Nojus Vaivada","0"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Lithuania","3","Paulius Velutis","6"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Lithuania","7","Gediminas Alisas","9"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Lithuania","13","Kajus Leliukas","6"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Croatia","7","Jakov Jacović","2"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Croatia","9","Marko Malekinušić","2"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Croatia","10","Patrik Ćavar","2"],
+["Stop 2","039e890c","Lithuania","21","11","Croatia","Croatia","11","Luka Petranović","5"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Germany","3","Marianna Byvatov","5"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Germany","12","Olivia Okpara","5"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Germany","15","Maja Marie Manten","8"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Germany","34","Lilly Küppers","3"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","5"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Azerbaijan","12","Shilan Akbingol","4"],
+["Stop 2","d221e903","Germany","21","9","Azerbaijan","Azerbaijan","20","Adila Yusubova","0"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Germany","3","Kilian Walter","6"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Germany","12","Joshua Günther","0"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Germany","15","David Galusic","3"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Germany","30","Maximilian Matthias Eichbaum","3"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Italy","1","Tiagande Willis Alex Tio","3"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Italy","10","Tommaso Paolo Vecchiola","5"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Italy","18","Matteo Gherardini","5"],
+["Stop 2","497bcb92","Germany","12","17","Italy","Italy","20","Francesco Gravaghi","4"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Slovenia","5","Hana Sambolic","0"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Slovenia","11","Tina Tomšič","3"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Slovenia","22","Anja Dragar","4"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Slovenia","76","Mia Žekš","2"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Lithuania","1","Danielė Paunksnytė","9"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Lithuania","10","Urtė Čižauskaitė","7"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Lithuania","77","Miglė Kisarauskaitė","1"],
+["Stop 2","53e24539","Slovenia","9","21","Lithuania","Lithuania","95","Audronė Zdanevičiūtė","4"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Lithuania","2","Nojus Vaivada","3"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Lithuania","3","Paulius Velutis","1"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Lithuania","7","Gediminas Alisas","7"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Lithuania","13","Kajus Leliukas","7"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Italy","1","Tiagande Willis Alex Tio","6"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Italy","10","Tommaso Paolo Vecchiola","6"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Italy","18","Matteo Gherardini","0"],
+["Stop 2","1579383b","Lithuania","18","15","Italy","Italy","20","Francesco Gravaghi","3"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Germany","3","Marianna Byvatov","5"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Germany","12","Olivia Okpara","5"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Germany","15","Maja Marie Manten","4"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Germany","34","Lilly Küppers","3"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Croatia","2","Lea Vukić","8"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Croatia","9","Dalija Stabile","0"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Croatia","10","Jelena Brkičić","1"],
+["Stop 3","c09760a5","Germany","17","12","Croatia","Croatia","12","Elena Peričić","3"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Germany","3","Kilian Walter","4"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Germany","12","Joshua Günther","3"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Germany","15","David Galusic","6"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Germany","30","Maximilian Matthias Eichbaum","0"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Slovenia","6","Vito Bajazet","6"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Slovenia","7","Luka Lampret","1"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Slovenia","11","mark filip ivankovič","5"],
+["Stop 3","0982a1d1","Germany","13","17","Slovenia","Slovenia","13","Lon Ličan","5"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Italy","2","Kenko Loredana Ngamene Takougang","3"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Italy","10","Ilaria Bernardi","4"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Italy","11","Nancy Alessandra N'guessan","2"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Italy","20","Cristina Osazuwa","12"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","2"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Azerbaijan","12","Shilan Akbingol","1"],
+["Stop 3","ead116f4","Italy","21","3","Azerbaijan","Azerbaijan","20","Adila Yusubova","0"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Lithuania","3","Paulius Velutis","9"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Lithuania","7","Gediminas Alisas","5"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Lithuania","13","Kajus Leliukas","4"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Lithuania","18","Nojus Lebskas","3"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Azerbaijan","4","Nijat Nasirov","1"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","0"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Azerbaijan","8","Alibay Mammadli","1"],
+["Stop 3","4eff1de8","Lithuania","21","10","Azerbaijan","Azerbaijan","21","Rashid Abbasov","8"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Lithuania","1","Danielė Paunksnytė","7"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Lithuania","10","Urtė Čižauskaitė","4"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Lithuania","77","Miglė Kisarauskaitė","1"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Lithuania","95","Audronė Zdanevičiūtė","9"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Croatia","2","Lea Vukić","6"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Croatia","9","Dalija Stabile","3"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Croatia","10","Jelena Brkičić","1"],
+["Stop 3","f3ca9e36","Lithuania","21","13","Croatia","Croatia","12","Elena Peričić","3"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Italy","1","Tiagande Willis Alex Tio","4"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Italy","3","Alleia Ivan Mobio","3"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Italy","18","Matteo Gherardini","8"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Italy","20","Francesco Gravaghi","6"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Slovenia","6","Vito Bajazet","2"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Slovenia","7","Luka Lampret","4"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Slovenia","11","mark filip ivankovič","5"],
+["Stop 3","bd4e552f","Italy","21","11","Slovenia","Slovenia","13","Lon Ličan","0"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Slovenia","5","Hana Sambolic","9"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Slovenia","11","Tina Tomšič","5"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Slovenia","22","Anja Dragar","3"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Slovenia","76","Mia Žekš","2"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Azerbaijan","11","Salminaz Ramazanli","7"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Azerbaijan","12","Shilan Akbingol","3"],
+["Stop 3","8e67171e","Slovenia","19","11","Azerbaijan","Azerbaijan","20","Adila Yusubova","1"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Croatia","7","Jakov Jacović","9"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Croatia","9","Marko Malekinušić","1"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Croatia","10","Patrik Ćavar","6"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Croatia","15","Toni Dević Obradović","5"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Azerbaijan","4","Nijat Nasirov","3"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Azerbaijan","7","AZAR AZIMOV","1"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Azerbaijan","8","Alibay Mammadli","0"],
+["Stop 3","d339286a","Croatia","21","7","Azerbaijan","Azerbaijan","21","Rashid Abbasov","3"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Germany","3","Marianna Byvatov","2"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Germany","12","Olivia Okpara","3"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Germany","15","Maja Marie Manten","5"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Germany","34","Lilly Küppers","6"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Lithuania","1","Danielė Paunksnytė","9"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Lithuania","10","Urtė Čižauskaitė","4"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Lithuania","77","Miglė Kisarauskaitė","4"],
+["Stop 3","8df8350f","Germany","16","17","Lithuania","Lithuania","95","Audronė Zdanevičiūtė","0"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Germany","3","Kilian Walter","3"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Germany","12","Joshua Günther","2"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Germany","15","David Galusic","1"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Germany","30","Maximilian Matthias Eichbaum","6"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Italy","1","Tiagande Willis Alex Tio","9"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Italy","3","Alleia Ivan Mobio","5"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Italy","18","Matteo Gherardini","2"],
+["Stop 3","f6711bfe","Germany","12","17","Italy","Italy","20","Francesco Gravaghi","1"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Italy","2","Kenko Loredana Ngamene Takougang","4"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Italy","10","Ilaria Bernardi","2"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Italy","11","Nancy Alessandra N'guessan","3"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Italy","20","Cristina Osazuwa","6"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Slovenia","5","Hana Sambolic","5"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Slovenia","11","Tina Tomšič","1"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Slovenia","22","Anja Dragar","0"],
+["Stop 3","76e8cad9","Italy","15","11","Slovenia","Slovenia","76","Mia Žekš","5"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Lithuania","3","Paulius Velutis","12"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Lithuania","7","Gediminas Alisas","2"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Lithuania","13","Kajus Leliukas","1"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Lithuania","18","Nojus Lebskas","6"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Croatia","7","Jakov Jacović","3"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Croatia","9","Marko Malekinušić","3"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Croatia","10","Patrik Ćavar","2"],
+["Stop 3","929dffc0","Lithuania","21","12","Croatia","Croatia","15","Toni Dević Obradović","4"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Lithuania","1","Danielė Paunksnytė","0"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Lithuania","10","Urtė Čižauskaitė","7"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Lithuania","77","Miglė Kisarauskaitė","3"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Lithuania","95","Audronė Zdanevičiūtė","2"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Italy","2","Kenko Loredana Ngamene Takougang","4"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Italy","10","Ilaria Bernardi","4"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Italy","11","Nancy Alessandra N'guessan","5"],
+["Stop 3","743b10a8","Lithuania","12","17","Italy","Italy","20","Cristina Osazuwa","4"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Italy","1","Tiagande Willis Alex Tio","3"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Italy","3","Alleia Ivan Mobio","4"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Italy","18","Matteo Gherardini","2"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Italy","20","Francesco Gravaghi","4"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Lithuania","3","Paulius Velutis","12"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Lithuania","7","Gediminas Alisas","1"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Lithuania","13","Kajus Leliukas","5"],
+["Stop 3","4156d901","Italy","13","21","Lithuania","Lithuania","18","Nojus Lebskas","3"],
+];
+
+
+// Women's player names (unique identifiers from the data)
+const WOMEN_NAMES = new Set([
+  "Marianna Byvatov","Olivia Okpara","Maja Marie Manten","Lilly Küppers",
+  "Kilian Walter","Joshua Günther","David Galusic","Maximilian Matthias Eichbaum",
+  "Ludovica Sammartino","Ilaria Bernardi","Nancy Alessandra N'guessan","Cristina Osazuwa",
+  "Kenko Loredana Ngamene Takougang",
+  "Ela Nur Gokcol","Salminaz Ramazanli","Shilan Akbingol","Adila Yusubova",
+  "Danielė Paunksnytė","Urtė Čižauskaitė","Miglė Kisarauskaitė","Audronė Zdanevičiūtė",
+  "Hana Sambolic","Tina Tomšič","Anja Dragar","Mia Žekš",
+  "Lea Vukić","Ivana Mamić","Dalija Stabile","Jelena Brkičić","Elena Peričić",
+]);
+// Everyone else = Men
+
+function isWomen(name) { return WOMEN_NAMES.has(name); }
+
+// ── Build game index ──────────────────────────────────────────────────────────
+const gameIndex = {}; // gid -> {stop,ht,hs,as,at}
+for (const r of RAW) {
+  const [stop,gid,,hs,,as,,,,,] = r;
+  const ht=r[2], at=r[5];
+  if (!gameIndex[gid]) gameIndex[gid] = {stop,ht,hs:+r[3],as:+r[4],at};
+}
+
+// ── Gender classification — by game ID ───────────────────────────────────────
+const WOMEN_GAMES = new Set([
+  "14e46063","4d250ae1","53e24539","743b10a8","76e8cad9","77d0d02e",
+  "8356631b","8df8350f","8e67171e","a6aaa48d","adb55c5a","aeefe536",
+  "c09760a5","cf4dee4b","d221e903","d268f08d","d33e2f20","dce585e2",
+  "dfe402ed","ead116f4","f3ca9e36"
+]);
+
+// ── Build per-team data ───────────────────────────────────────────────────────
+// teamData[gender][team][playerName] = {num, games:{gid:pts}}
+function buildTeamData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [stop,gid,ht,hs,as,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildTeamData();
+let currentGender = 'W';
+let visibleTeams = new Set();
+
+function getTeamsForGender(g) { return Object.keys(teamData[g]).sort(); }
+function getTeamGames(team, g) {
+  const players = teamData[g][team];
+  const gids = new Set();
+  for (const pd of Object.values(players)) for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return [...gids].sort((a,b) => {
+    const sa = gameIndex[a].stop, sb = gameIndex[b].stop;
+    if (sa !== sb) return sa.localeCompare(sb);
+    return a.localeCompare(b);
+  });
+}
+
+function updateHeroStats(g) {
+  const teams = getTeamsForGender(g);
+  const allGids = new Set();
+  let players = 0;
+  for (const t of teams) {
+    const gs = getTeamGames(t, g);
+    gs.forEach(id => allGids.add(id));
+    players += Object.keys(teamData[g][t]).length;
+  }
+  document.getElementById('hero-games').textContent = (allGids.size/2|0) + ' games';
+  document.getElementById('hero-players').textContent = players + ' players';
+}
+
+function renderAll() {
+  const g = currentGender;
+  const teams = getTeamsForGender(g);
+  updateHeroStats(g);
+
+  // Team filter chips
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of teams) {
+    const btn = document.createElement('button');
+    btn.className = 'team-chip' + (visibleTeams.has(t) ? ' active' : '');
+    btn.textContent = t;
+    btn.onclick = () => { visibleTeams.has(t) ? visibleTeams.delete(t) : visibleTeams.add(t); renderAll(); };
+    fr.appendChild(btn);
+  }
+
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  const filtered = visibleTeams.size > 0 ? teams.filter(t => visibleTeams.has(t)) : teams;
+  if (!filtered.length) {
+    content.innerHTML = '<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';
+    return;
+  }
+  for (const team of filtered) content.appendChild(buildTeamBlock(team, g));
+}
+
+function buildTeamBlock(team, g) {
+  const players = teamData[g][team];
+  const allGames = getTeamGames(team, g);
+  const byStop = {};
+  for (const gid of allGames) {
+    const s = gameIndex[gid].stop;
+    if (!byStop[s]) byStop[s] = [];
+    byStop[s].push(gid);
+  }
+  const stops = Object.keys(byStop).sort();
+  const playerStopMap = {};
+  for (const [name, pd] of Object.entries(players))
+    playerStopMap[name] = new Set(Object.keys(pd.games).map(g => gameIndex[g]?.stop));
+  const sortedPlayers = Object.entries(players).sort((a,b) => {
+    const ta = Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb = Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const totalGames = allGames.length;
+  const block = document.createElement('div');
+  block.className = 'team-block';
+
+  const title = document.createElement('div');
+  title.className = 'team-title';
+  const gTag = g === 'W'
+    ? '<span class="gender-tag w">W</span>'
+    : '<span class="gender-tag m">M</span>';
+  title.innerHTML = `${gTag}<h2>${team}</h2>
+    <span class="team-meta">${totalGames} game${totalGames!==1?'s':''} · ${sortedPlayers.length} players</span>
+    <span class="toggle-icon">▾</span>`;
+  block.appendChild(title);
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'team-body-wrap';
+  title.onclick = () => { bodyWrap.classList.toggle('collapsed'); title.classList.toggle('collapsed'); };
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+
+  // Row 1: stop group headers
+  const trStop = document.createElement('tr');
+  trStop.appendChild(mkTh('', 'col-num'));
+  trStop.appendChild(mkTh('Player', 'col-name'));
+  for (const stop of stops) {
+    const th1 = document.createElement('th');
+    th1.colSpan = byStop[stop].length;
+    th1.className = 'stop-group';
+    th1.textContent = stop;
+    trStop.appendChild(th1);
+  }
+  const thTot = mkTh('Total', 'col-total divider');
+  trStop.appendChild(thTot);
+  trStop.appendChild(mkTh('Avg', 'col-avg'));
+  thead.appendChild(trStop);
+
+  // Row 2: opponent headers
+  const trGame = document.createElement('tr');
+  trGame.appendChild(mkTh('#', 'col-num'));
+  trGame.appendChild(mkTh('', 'col-name'));
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const gi = gameIndex[gid];
+      const opp = gi.ht === team ? gi.at : gi.ht;
+      const myScore = gi.ht === team ? gi.hs : gi.as;
+      const oppScore = gi.ht === team ? gi.as : gi.hs;
+      const won = myScore > oppScore;
+      const cell = mkTh('', 'col-pts' + (i===0 ? ' divider':''));
+      cell.innerHTML = `<span class="opp-name">${opp}</span><span class="${won?'score-won':'score-lost'}">${myScore}–${oppScore}</span>`;
+      trGame.appendChild(cell);
+    }
+  }
+  trGame.appendChild(mkTh('', 'col-total divider'));
+  trGame.appendChild(mkTh('', 'col-avg'));
+  thead.appendChild(trGame);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  const allStops = stops;
+
+  for (const [name, pd] of sortedPlayers) {
+    const playerStops = playerStopMap[name];
+    const total = Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp = Object.keys(pd.games).length;
+    const avg = gp > 0 ? (total/gp).toFixed(1) : '—';
+    const tr = document.createElement('tr');
+
+    const tdNum = document.createElement('td');
+    tdNum.className = 'col-num'; tdNum.textContent = pd.num; tr.appendChild(tdNum);
+
+    const tdName = document.createElement('td');
+    tdName.className = 'col-name';
+    let nameHtml = name;
+    const missedStops = allStops.filter(s => !playerStops.has(s));
+    if (missedStops.length > 0 && playerStops.size > 0) {
+      if (!playerStops.has(allStops[0])) nameHtml += `<span class="badge-new">from ${[...playerStops][0]}</span>`;
+      else if (!playerStops.has(allStops[allStops.length-1])) nameHtml += `<span class="badge-left">left</span>`;
+    }
+    tdName.innerHTML = nameHtml;
+    tr.appendChild(tdName);
+
+    for (const stop of stops) {
+      for (let i = 0; i < byStop[stop].length; i++) {
+        const gid = byStop[stop][i];
+        const td = document.createElement('td');
+        if (i===0) td.classList.add('divider');
+        const pts = pd.games[gid];
+        if (pts === undefined) {
+          td.className += ' pts-dash'; td.textContent = '—';
+        } else if (pts === 0) {
+          td.className += ' pts-zero col-pts'; td.textContent = '0';
+        } else {
+          td.className += ' col-pts'; td.textContent = pts;
+        }
+        tr.appendChild(td);
+      }
+    }
+
+    const tdTot = document.createElement('td');
+    tdTot.className = 'col-total divider'; tdTot.textContent = total; tr.appendChild(tdTot);
+    const tdAvg = document.createElement('td');
+    tdAvg.className = 'col-avg'; tdAvg.textContent = avg; tr.appendChild(tdAvg);
+    tbody.appendChild(tr);
+  }
+
+  // Team totals row
+  const trTot = document.createElement('tr');
+  trTot.className = 'total-row';
+  const tdN = document.createElement('td'); tdN.textContent = ''; trTot.appendChild(tdN);
+  const tdNm = document.createElement('td'); tdNm.textContent = 'Team total'; trTot.appendChild(tdNm);
+  let grand = 0;
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const col = sortedPlayers.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+      grand += col;
+      const td = document.createElement('td');
+      td.style.textAlign='center';
+      if (i===0) td.classList.add('divider');
+      td.textContent = col; trTot.appendChild(td);
+    }
+  }
+  const tdG = document.createElement('td'); tdG.className='col-total divider'; tdG.textContent=grand; trTot.appendChild(tdG);
+  const tdGA = document.createElement('td'); tdGA.textContent=''; trTot.appendChild(tdGA);
+  tbody.appendChild(trTot);
+
+  table.appendChild(tbody);
+  bodyWrap.appendChild(table);
+  block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text, cls) {
+  const el = document.createElement('th');
+  if (cls) el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function setGender(g) {
+  currentGender = g;
+  visibleTeams.clear();
+  document.getElementById('btn-w').classList.toggle('active', g==='W');
+  document.getElementById('btn-m').classList.toggle('active', g==='M');
+  renderAll();
+}
+
+renderAll();
+</script>
+</body>
+</html>

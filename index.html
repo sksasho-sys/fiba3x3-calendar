@@ -449,6 +449,18 @@ body::after {
 }
 .event-link svg { flex-shrink: 0; transition: transform .16s; }
 .event-link:hover svg { transform: translate(1px, -1px); }
+/* Stats button — uses nl accent colour */
+.event-link.stats-link {
+  border-color: rgba(167,139,250,.3);
+  color: var(--nl);
+}
+.event-link.stats-link:hover {
+  background: var(--nl-bg);
+  border-color: rgba(167,139,250,.5);
+  color: var(--nl);
+}
+[data-theme="light"] .event-link.stats-link { border-color:rgba(109,40,217,.25); }
+[data-theme="light"] .event-link.stats-link:hover { background:rgba(109,40,217,.08); border-color:rgba(109,40,217,.4); }
 
 /* today marker row */
 .today-marker {
@@ -775,7 +787,18 @@ const REGION_META = {
   u21asia:   {tag:"tag-u21", label:"Asia U21"},
   pacific:   {tag:"tag-pa",  label:"Pacific"},
 };
-// ── NL URL LOOKUP ────────────────────────────────────────────────────────────
+// ── NL STATS LOOKUP ──────────────────────────────────────────────────────────
+// Maps "Conf – Stop N" → relative URL of the stats page
+const NL_STATS = {
+  "Europe-1 – Stop 1": "fiba3x3-stats-europe1.html",
+  "Europe-1 – Stop 2": "fiba3x3-stats-europe1.html",
+  "Europe-1 – Stop 3": "fiba3x3-stats-europe1.html",
+  "Europe-1 – Stop 4": "fiba3x3-stats-europe1.html",
+  "Europe-1 – Stop 5": "fiba3x3-stats-europe1.html",
+  "Europe-1 – Stop 6": "fiba3x3-stats-europe1.html",
+};
+
+// ── NL URL LOOKUP ─────────────────────────────────────────────────────────────
 const NL_URLS = {
   "Africa East – Stop 1":"https://nationsleague.fiba3x3.com/2026/6b0948da-7bbd-4f9a-95b3-78c1d36842b4",
   "Africa East – Stop 2":"https://nationsleague.fiba3x3.com/2026/29ce2655-7dba-4e4f-92e8-4b9a05c16723",
@@ -991,6 +1014,7 @@ const NL = NL_RAW.map(r => ({
   start:r.date, end:r.date,
   region:r.region, conf:r.conf, stop:r.stop,
   url: NL_URLS[`${r.conf} – ${r.stop}`] || null,
+  statsUrl: NL_STATS[`${r.conf} – ${r.stop}`] || null,
 }));
 
 // ── NATIONAL ─────────────────────────────────────────────────────────────────
@@ -1155,6 +1179,10 @@ function render(){
         <div class="tag-cell">
           <span class="tag ${seriesTag}">${seriesLabel}</span>
           ${regionTagHtml}
+          ${e.statsUrl ? `<a class="event-link stats-link" href="${e.statsUrl}" target="_blank" rel="noopener">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Stats
+          </a>` : ""}
           ${e.url ? `<a class="event-link" href="${e.url}" target="_blank" rel="noopener">
             View
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
