@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — Champions Cup 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;
+  --nt:#2dd4bf;--nt-bg:rgba(45,212,191,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#1a1e1a 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"] {
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;
+  --nt:#0f766e;--nt-bg:rgba(15,118,110,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#e8f5f3 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-nt-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--nt-bg);color:var(--nt);border:1px solid rgba(45,212,191,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-nt-badge{border-color:rgba(15,118,110,.22)}
+.gender-toggle{display:flex;border:1px solid var(--border2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.gender-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border:none;background:none;cursor:pointer;color:var(--muted2);transition:all .14s}
+.gender-btn.active{background:var(--text);color:var(--bg)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+
+/* ── HERO ── */
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-strip-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(45,212,191,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-strip-bg{color:rgba(15,118,110,0.04)}
+.hero-strip-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-strip-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--nt);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-strip-eyebrow::before{content:'';width:18px;height:2px;background:var(--nt);flex-shrink:0}
+.hero-strip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-strip-title em{color:var(--accent);font-style:normal}
+.hero-strip-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-strip-meta strong{color:var(--text);font-weight:500}
+
+/* finish positions */
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--nt)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+
+/* ── FILTER ROW ── */
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+
+/* ── CONTENT ── */
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+
+.gender-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:500}
+.gender-tag.w{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.22)}
+.gender-tag.m{background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.22)}
+[data-theme="light"] .gender-tag.w{background:rgba(190,18,60,.09);color:#be123c;border-color:rgba(190,18,60,.2)}
+[data-theme="light"] .gender-tag.m{background:rgba(3,105,161,.09);color:#0369a1;border-color:rgba(3,105,161,.2)}
+
+/* finish badge on team block */
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}
+.lost{color:var(--lost)}
+
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">Champions Cup 2026 Stats</div>
+    <div class="topbar-nt-badge">National</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-strip-bg">CC</div>
+  <div class="hero-strip-inner">
+    <div class="hero-strip-eyebrow">National Tournament · 2026</div>
+    <h1 class="hero-strip-title">Champions Cup <em>Stats</em></h1>
+    <div class="hero-strip-meta">
+      <span><strong>Bangkok</strong>, Thailand</span>
+      <span>·</span>
+      <span><strong>Mar 13–15, 2026</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ─────────────────────────────────────────────────────────────────────
+const htmlEl = document.documentElement;
+const savedTheme = localStorage.getItem('fiba3x3-theme') || 'dark';
+htmlEl.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const RAW = [
+["6eaff157","Lithuania","18","14","Spain","Lithuania","2","Ignas Vaitkus","5"],
+["6eaff157","Lithuania","18","14","Spain","Lithuania","13","Marijus Uzupis","2"],
+["6eaff157","Lithuania","18","14","Spain","Lithuania","24","Aurelijus Pukelis","4"],
+["6eaff157","Lithuania","18","14","Spain","Lithuania","26","Evaldas Džiaugys","7"],
+["6eaff157","Lithuania","18","14","Spain","Spain","3","Guim Expósito","3"],
+["6eaff157","Lithuania","18","14","Spain","Spain","7","Diego De Blas","1"],
+["6eaff157","Lithuania","18","14","Spain","Spain","8","Carlos Martinez","3"],
+["6eaff157","Lithuania","18","14","Spain","Spain","15","Iván Aurrecoechea","7"],
+["9cd15113","Canada","16","10","Azerbaijan","Canada","2","Katherine Plouffe","1"],
+["9cd15113","Canada","16","10","Azerbaijan","Canada","4","Kacie Bosch","4"],
+["9cd15113","Canada","16","10","Azerbaijan","Canada","7","Paige Crozon","5"],
+["9cd15113","Canada","16","10","Azerbaijan","Canada","77","Saicha Grant-Allen","6"],
+["9cd15113","Canada","16","10","Azerbaijan","Azerbaijan","7","Tatyana Deniskina","0"],
+["9cd15113","Canada","16","10","Azerbaijan","Azerbaijan","23","Arica Carter","3"],
+["9cd15113","Canada","16","10","Azerbaijan","Azerbaijan","24","Alexandra Mollenhauer","2"],
+["9cd15113","Canada","16","10","Azerbaijan","Azerbaijan","34","Brianna Fraser","5"],
+["2816e3d9","Spain","21","7","Thailand","Spain","11","Vega Gimeno","9"],
+["2816e3d9","Spain","21","7","Thailand","Spain","13","Sandra Ygueravide","10"],
+["2816e3d9","Spain","21","7","Thailand","Spain","22","Juana Camilion","0"],
+["2816e3d9","Spain","21","7","Thailand","Spain","44","Gracia Alonso De Armiño","2"],
+["2816e3d9","Spain","21","7","Thailand","Thailand","8","Supavadee Kunchuan","1"],
+["2816e3d9","Spain","21","7","Thailand","Thailand","10","Sroifa Phetnin","2"],
+["2816e3d9","Spain","21","7","Thailand","Thailand","25","Sasiporn Wongtapha","3"],
+["2816e3d9","Spain","21","7","Thailand","Thailand","39","Kanokwan Prajuapsook","1"],
+["f33a1588","Serbia","21","8","Thailand","Serbia","5","Nenad Nerandžić","7"],
+["f33a1588","Serbia","21","8","Thailand","Serbia","6","Stefan Milivojevic","2"],
+["f33a1588","Serbia","21","8","Thailand","Serbia","9","Marko Brankovic","3"],
+["f33a1588","Serbia","21","8","Thailand","Serbia","11","Filip Kaluđerović","9"],
+["f33a1588","Serbia","21","8","Thailand","Thailand","2","Noppachai Thongpool","0"],
+["f33a1588","Serbia","21","8","Thailand","Thailand","3","Frederick Lish","6"],
+["f33a1588","Serbia","21","8","Thailand","Thailand","31","Chanatip Jakrawan","2"],
+["f33a1588","Serbia","21","8","Thailand","Thailand","34","Panthawat Techasamran","0"],
+["cad31385","Madagascar","17","21","Australia","Madagascar","1","Elly Randriamampionona","8"],
+["cad31385","Madagascar","17","21","Australia","Madagascar","6","Livio Ratianarivo","2"],
+["cad31385","Madagascar","17","21","Australia","Madagascar","12","Alpha SOLONDRAINY","4"],
+["cad31385","Madagascar","17","21","Australia","Madagascar","15","Anthony Rasolomanana","3"],
+["cad31385","Madagascar","17","21","Australia","Australia","11","Alex Higgins-Titsha","9"],
+["cad31385","Madagascar","17","21","Australia","Australia","26","Samuel McDaniel","1"],
+["cad31385","Madagascar","17","21","Australia","Australia","38","Lachlan Barker","5"],
+["cad31385","Madagascar","17","21","Australia","Australia","77","Dillon Stith","6"],
+["d224de80","United States","15","20","Netherlands","United States","6","Justin Pierce","2"],
+["d224de80","United States","15","20","Netherlands","United States","10","James Parrott","4"],
+["d224de80","United States","15","20","Netherlands","United States","13","Caden Pierce","6"],
+["d224de80","United States","15","20","Netherlands","United States","14","Riley Battin","3"],
+["d224de80","United States","15","20","Netherlands","Netherlands","0","Maarten Bouwknecht","5"],
+["d224de80","United States","15","20","Netherlands","Netherlands","4","Jan Driessen","2"],
+["d224de80","United States","15","20","Netherlands","Netherlands","11","Adriaan Van Tilborg","8"],
+["d224de80","United States","15","20","Netherlands","Netherlands","54","Worthy de Jong","5"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Thailand","8","Supavadee Kunchuan","3"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Thailand","10","Sroifa Phetnin","2"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Thailand","25","Sasiporn Wongtapha","1"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Thailand","39","Kanokwan Prajuapsook","2"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Azerbaijan","7","Tatyana Deniskina","2"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Azerbaijan","23","Arica Carter","3"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Azerbaijan","24","Alexandra Mollenhauer","5"],
+["4f1f2775","Thailand","8","21","Azerbaijan","Azerbaijan","34","Brianna Fraser","11"],
+["f9d28fb8","Spain","14","21","Canada","Spain","11","Vega Gimeno","2"],
+["f9d28fb8","Spain","14","21","Canada","Spain","13","Sandra Ygueravide","8"],
+["f9d28fb8","Spain","14","21","Canada","Spain","22","Juana Camilion","1"],
+["f9d28fb8","Spain","14","21","Canada","Spain","44","Gracia Alonso De Armiño","3"],
+["f9d28fb8","Spain","14","21","Canada","Canada","2","Katherine Plouffe","4"],
+["f9d28fb8","Spain","14","21","Canada","Canada","4","Kacie Bosch","4"],
+["f9d28fb8","Spain","14","21","Canada","Canada","7","Paige Crozon","4"],
+["f9d28fb8","Spain","14","21","Canada","Canada","77","Saicha Grant-Allen","9"],
+["e85dc0b0","Netherlands","21","15","Australia","Netherlands","0","Maarten Bouwknecht","8"],
+["e85dc0b0","Netherlands","21","15","Australia","Netherlands","4","Jan Driessen","4"],
+["e85dc0b0","Netherlands","21","15","Australia","Netherlands","11","Adriaan Van Tilborg","3"],
+["e85dc0b0","Netherlands","21","15","Australia","Netherlands","54","Worthy de Jong","6"],
+["e85dc0b0","Netherlands","21","15","Australia","Australia","11","Alex Higgins-Titsha","2"],
+["e85dc0b0","Netherlands","21","15","Australia","Australia","26","Samuel McDaniel","5"],
+["e85dc0b0","Netherlands","21","15","Australia","Australia","38","Lachlan Barker","1"],
+["e85dc0b0","Netherlands","21","15","Australia","Australia","77","Dillon Stith","7"],
+["78d5ff4b","United States","22","11","Madagascar","United States","6","Justin Pierce","7"],
+["78d5ff4b","United States","22","11","Madagascar","United States","10","James Parrott","5"],
+["78d5ff4b","United States","22","11","Madagascar","United States","13","Caden Pierce","4"],
+["78d5ff4b","United States","22","11","Madagascar","United States","14","Riley Battin","6"],
+["78d5ff4b","United States","22","11","Madagascar","Madagascar","1","Elly Randriamampionona","5"],
+["78d5ff4b","United States","22","11","Madagascar","Madagascar","6","Livio Ratianarivo","4"],
+["78d5ff4b","United States","22","11","Madagascar","Madagascar","12","Alpha SOLONDRAINY","0"],
+["78d5ff4b","United States","22","11","Madagascar","Madagascar","15","Anthony Rasolomanana","2"],
+["29728341","Australia","11","16","Netherlands","Australia","3","Kristy Wallace","5"],
+["29728341","Australia","11","16","Netherlands","Australia","14","Lara McSpadden","2"],
+["29728341","Australia","11","16","Netherlands","Australia","21","Marena Whittle","3"],
+["29728341","Australia","11","16","Netherlands","Australia","77","Emma Clarke","1"],
+["29728341","Australia","11","16","Netherlands","Netherlands","4","Noortje Driessen","9"],
+["29728341","Australia","11","16","Netherlands","Netherlands","17","Ilse Kuijt","6"],
+["29728341","Australia","11","16","Netherlands","Netherlands","24","Evelien Lutje Schipholt","0"],
+["29728341","Australia","11","16","Netherlands","Netherlands","33","Janis Boonstra","1"],
+["182d628e","United States","21","5","Madagascar","United States","6","Veronica Burton","2"],
+["182d628e","United States","21","5","Madagascar","United States","11","Naz Hillmon","7"],
+["182d628e","United States","21","5","Madagascar","United States","13","Shakira Austin","4"],
+["182d628e","United States","21","5","Madagascar","United States","15","Allisha Gray","8"],
+["182d628e","United States","21","5","Madagascar","Madagascar","7","Minaoharisoa Jaofera","3"],
+["182d628e","United States","21","5","Madagascar","Madagascar","10","Ravaka Randriatahiana","0"],
+["182d628e","United States","21","5","Madagascar","Madagascar","11","Tokin'Iaina Sambatrarimiora","2"],
+["182d628e","United States","21","5","Madagascar","Madagascar","17","Sydonie Andriamihajanirina","0"],
+["1c17fd99","Serbia","20","18","Lithuania","Serbia","5","Nenad Nerandžić","4"],
+["1c17fd99","Serbia","20","18","Lithuania","Serbia","6","Stefan Milivojevic","3"],
+["1c17fd99","Serbia","20","18","Lithuania","Serbia","9","Marko Brankovic","6"],
+["1c17fd99","Serbia","20","18","Lithuania","Serbia","11","Filip Kaluđerović","7"],
+["1c17fd99","Serbia","20","18","Lithuania","Lithuania","2","Ignas Vaitkus","0"],
+["1c17fd99","Serbia","20","18","Lithuania","Lithuania","13","Marijus Uzupis","7"],
+["1c17fd99","Serbia","20","18","Lithuania","Lithuania","24","Aurelijus Pukelis","5"],
+["1c17fd99","Serbia","20","18","Lithuania","Lithuania","26","Evaldas Džiaugys","6"],
+["182234d2","Azerbaijan","16","11","Spain","Azerbaijan","7","Tatyana Deniskina","0"],
+["182234d2","Azerbaijan","16","11","Spain","Azerbaijan","23","Arica Carter","5"],
+["182234d2","Azerbaijan","16","11","Spain","Azerbaijan","24","Alexandra Mollenhauer","4"],
+["182234d2","Azerbaijan","16","11","Spain","Azerbaijan","34","Brianna Fraser","7"],
+["182234d2","Azerbaijan","16","11","Spain","Spain","11","Vega Gimeno","5"],
+["182234d2","Azerbaijan","16","11","Spain","Spain","13","Sandra Ygueravide","2"],
+["182234d2","Azerbaijan","16","11","Spain","Spain","22","Juana Camilion","1"],
+["182234d2","Azerbaijan","16","11","Spain","Spain","44","Gracia Alonso De Armiño","3"],
+["ebaf517e","Thailand","3","21","Spain","Thailand","2","Noppachai Thongpool","2"],
+["ebaf517e","Thailand","3","21","Spain","Thailand","3","Frederick Lish","1"],
+["ebaf517e","Thailand","3","21","Spain","Thailand","31","Chanatip Jakrawan","0"],
+["ebaf517e","Thailand","3","21","Spain","Thailand","34","Panthawat Techasamran","0"],
+["ebaf517e","Thailand","3","21","Spain","Spain","3","Guim Expósito","2"],
+["ebaf517e","Thailand","3","21","Spain","Spain","7","Diego De Blas","6"],
+["ebaf517e","Thailand","3","21","Spain","Spain","8","Carlos Martinez","4"],
+["ebaf517e","Thailand","3","21","Spain","Spain","15","Iván Aurrecoechea","9"],
+["7a3b5765","Canada","20","13","Thailand","Canada","2","Katherine Plouffe","6"],
+["7a3b5765","Canada","20","13","Thailand","Canada","4","Kacie Bosch","4"],
+["7a3b5765","Canada","20","13","Thailand","Canada","7","Paige Crozon","4"],
+["7a3b5765","Canada","20","13","Thailand","Canada","77","Saicha Grant-Allen","6"],
+["7a3b5765","Canada","20","13","Thailand","Thailand","8","Supavadee Kunchuan","5"],
+["7a3b5765","Canada","20","13","Thailand","Thailand","10","Sroifa Phetnin","1"],
+["7a3b5765","Canada","20","13","Thailand","Thailand","25","Sasiporn Wongtapha","6"],
+["7a3b5765","Canada","20","13","Thailand","Thailand","39","Kanokwan Prajuapsook","1"],
+["457b441e","Madagascar","5","19","Australia","Madagascar","7","Minaoharisoa Jaofera","3"],
+["457b441e","Madagascar","5","19","Australia","Madagascar","10","Ravaka Randriatahiana","1"],
+["457b441e","Madagascar","5","19","Australia","Madagascar","11","Tokin'Iaina Sambatrarimiora","1"],
+["457b441e","Madagascar","5","19","Australia","Madagascar","17","Sydonie Andriamihajanirina","0"],
+["457b441e","Madagascar","5","19","Australia","Australia","3","Kristy Wallace","3"],
+["457b441e","Madagascar","5","19","Australia","Australia","14","Lara McSpadden","2"],
+["457b441e","Madagascar","5","19","Australia","Australia","21","Marena Whittle","6"],
+["457b441e","Madagascar","5","19","Australia","Australia","77","Emma Clarke","8"],
+["a3a165f0","Netherlands","18","21","United States","Netherlands","4","Noortje Driessen","11"],
+["a3a165f0","Netherlands","18","21","United States","Netherlands","17","Ilse Kuijt","6"],
+["a3a165f0","Netherlands","18","21","United States","Netherlands","24","Evelien Lutje Schipholt","0"],
+["a3a165f0","Netherlands","18","21","United States","Netherlands","33","Janis Boonstra","1"],
+["a3a165f0","Netherlands","18","21","United States","United States","6","Veronica Burton","1"],
+["a3a165f0","Netherlands","18","21","United States","United States","11","Naz Hillmon","2"],
+["a3a165f0","Netherlands","18","21","United States","United States","13","Shakira Austin","7"],
+["a3a165f0","Netherlands","18","21","United States","United States","15","Allisha Gray","11"],
+["9fd0d80e","Spain","17","21","Serbia","Spain","3","Guim Expósito","3"],
+["9fd0d80e","Spain","17","21","Serbia","Spain","7","Diego De Blas","1"],
+["9fd0d80e","Spain","17","21","Serbia","Spain","8","Carlos Martinez","5"],
+["9fd0d80e","Spain","17","21","Serbia","Spain","15","Iván Aurrecoechea","8"],
+["9fd0d80e","Spain","17","21","Serbia","Serbia","5","Nenad Nerandžić","1"],
+["9fd0d80e","Spain","17","21","Serbia","Serbia","6","Stefan Milivojevic","14"],
+["9fd0d80e","Spain","17","21","Serbia","Serbia","9","Marko Brankovic","5"],
+["9fd0d80e","Spain","17","21","Serbia","Serbia","11","Filip Kaluđerović","1"],
+["d52d414c","Lithuania","15","21","Thailand","Lithuania","2","Ignas Vaitkus","6"],
+["d52d414c","Lithuania","15","21","Thailand","Lithuania","13","Marijus Uzupis","0"],
+["d52d414c","Lithuania","15","21","Thailand","Lithuania","24","Aurelijus Pukelis","5"],
+["d52d414c","Lithuania","15","21","Thailand","Lithuania","26","Evaldas Džiaugys","4"],
+["d52d414c","Lithuania","15","21","Thailand","Thailand","2","Noppachai Thongpool","4"],
+["d52d414c","Lithuania","15","21","Thailand","Thailand","3","Frederick Lish","2"],
+["d52d414c","Lithuania","15","21","Thailand","Thailand","31","Chanatip Jakrawan","1"],
+["d52d414c","Lithuania","15","21","Thailand","Thailand","34","Panthawat Techasamran","14"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Netherlands","4","Noortje Driessen","13"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Netherlands","17","Ilse Kuijt","4"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Netherlands","24","Evelien Lutje Schipholt","0"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Netherlands","33","Janis Boonstra","4"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Madagascar","7","Minaoharisoa Jaofera","1"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Madagascar","10","Ravaka Randriatahiana","1"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Madagascar","11","Tokin'Iaina Sambatrarimiora","3"],
+["a1ce01fe","Netherlands","21","6","Madagascar","Madagascar","17","Sydonie Andriamihajanirina","1"],
+["3f486fa2","United States","18","15","Australia","United States","6","Veronica Burton","3"],
+["3f486fa2","United States","18","15","Australia","United States","11","Naz Hillmon","5"],
+["3f486fa2","United States","18","15","Australia","United States","13","Shakira Austin","4"],
+["3f486fa2","United States","18","15","Australia","United States","15","Allisha Gray","6"],
+["3f486fa2","United States","18","15","Australia","Australia","3","Kristy Wallace","4"],
+["3f486fa2","United States","18","15","Australia","Australia","14","Lara McSpadden","1"],
+["3f486fa2","United States","18","15","Australia","Australia","21","Marena Whittle","5"],
+["3f486fa2","United States","18","15","Australia","Australia","77","Emma Clarke","5"],
+["f20765ba","Netherlands","19","16","Madagascar","Netherlands","0","Maarten Bouwknecht","5"],
+["f20765ba","Netherlands","19","16","Madagascar","Netherlands","4","Jan Driessen","2"],
+["f20765ba","Netherlands","19","16","Madagascar","Netherlands","11","Adriaan Van Tilborg","2"],
+["f20765ba","Netherlands","19","16","Madagascar","Netherlands","54","Worthy de Jong","10"],
+["f20765ba","Netherlands","19","16","Madagascar","Madagascar","1","Elly Randriamampionona","7"],
+["f20765ba","Netherlands","19","16","Madagascar","Madagascar","6","Livio Ratianarivo","3"],
+["f20765ba","Netherlands","19","16","Madagascar","Madagascar","12","Alpha SOLONDRAINY","2"],
+["f20765ba","Netherlands","19","16","Madagascar","Madagascar","15","Anthony Rasolomanana","4"],
+["22dc72a0","Azerbaijan","12","21","United States","Azerbaijan","7","Tatyana Deniskina","0"],
+["22dc72a0","Azerbaijan","12","21","United States","Azerbaijan","23","Arica Carter","4"],
+["22dc72a0","Azerbaijan","12","21","United States","Azerbaijan","24","Alexandra Mollenhauer","3"],
+["22dc72a0","Azerbaijan","12","21","United States","Azerbaijan","34","Brianna Fraser","5"],
+["22dc72a0","Azerbaijan","12","21","United States","United States","6","Justin Pierce","5"],
+["22dc72a0","Azerbaijan","12","21","United States","United States","10","James Parrott","5"],
+["22dc72a0","Azerbaijan","12","21","United States","United States","13","Caden Pierce","5"],
+["22dc72a0","Azerbaijan","12","21","United States","United States","14","Riley Battin","6"],
+["813b32a8","Australia","14","21","Canada","Australia","3","Kristy Wallace","5"],
+["813b32a8","Australia","14","21","Canada","Australia","14","Lara McSpadden","4"],
+["813b32a8","Australia","14","21","Canada","Australia","21","Marena Whittle","3"],
+["813b32a8","Australia","14","21","Canada","Australia","77","Emma Clarke","2"],
+["813b32a8","Australia","14","21","Canada","Canada","2","Katherine Plouffe","9"],
+["813b32a8","Australia","14","21","Canada","Canada","4","Kacie Bosch","4"],
+["813b32a8","Australia","14","21","Canada","Canada","7","Paige Crozon","5"],
+["813b32a8","Australia","14","21","Canada","Canada","77","Saicha Grant-Allen","3"],
+["5fdb5307","Canada","12","21","Netherlands","Canada","2","Katherine Plouffe","6"],
+["5fdb5307","Canada","12","21","Netherlands","Canada","4","Kacie Bosch","0"],
+["5fdb5307","Canada","12","21","Netherlands","Canada","7","Paige Crozon","3"],
+["5fdb5307","Canada","12","21","Netherlands","Canada","77","Saicha Grant-Allen","3"],
+["5fdb5307","Canada","12","21","Netherlands","Netherlands","4","Noortje Driessen","11"],
+["5fdb5307","Canada","12","21","Netherlands","Netherlands","17","Ilse Kuijt","6"],
+["5fdb5307","Canada","12","21","Netherlands","Netherlands","24","Evelien Lutje Schipholt","0"],
+["5fdb5307","Canada","12","21","Netherlands","Netherlands","33","Janis Boonstra","4"],
+["b7374527","Serbia","14","15","United States","Serbia","5","Nenad Nerandžić","4"],
+["b7374527","Serbia","14","15","United States","Serbia","6","Stefan Milivojevic","1"],
+["b7374527","Serbia","14","15","United States","Serbia","9","Marko Brankovic","2"],
+["b7374527","Serbia","14","15","United States","Serbia","11","Filip Kaluđerović","7"],
+["b7374527","Serbia","14","15","United States","United States","6","Justin Pierce","4"],
+["b7374527","Serbia","14","15","United States","United States","10","James Parrott","4"],
+["b7374527","Serbia","14","15","United States","United States","13","Caden Pierce","4"],
+["b7374527","Serbia","14","15","United States","United States","14","Riley Battin","3"],
+["a2a1b0c3","Netherlands","15","20","Spain","Netherlands","0","Maarten Bouwknecht","4"],
+["a2a1b0c3","Netherlands","15","20","Spain","Netherlands","4","Jan Driessen","3"],
+["a2a1b0c3","Netherlands","15","20","Spain","Netherlands","11","Adriaan Van Tilborg","3"],
+["a2a1b0c3","Netherlands","15","20","Spain","Netherlands","54","Worthy de Jong","5"],
+["a2a1b0c3","Netherlands","15","20","Spain","Spain","3","Guim Expósito","5"],
+["a2a1b0c3","Netherlands","15","20","Spain","Spain","7","Diego De Blas","4"],
+["a2a1b0c3","Netherlands","15","20","Spain","Spain","8","Carlos Martinez","5"],
+["a2a1b0c3","Netherlands","15","20","Spain","Spain","15","Iván Aurrecoechea","6"],
+["52287f2f","United States","20","10","Canada","United States","6","Veronica Burton","8"],
+["52287f2f","United States","20","10","Canada","United States","11","Naz Hillmon","4"],
+["52287f2f","United States","20","10","Canada","United States","13","Shakira Austin","6"],
+["52287f2f","United States","20","10","Canada","United States","15","Allisha Gray","2"],
+["52287f2f","United States","20","10","Canada","Canada","2","Katherine Plouffe","1"],
+["52287f2f","United States","20","10","Canada","Canada","4","Kacie Bosch","2"],
+["52287f2f","United States","20","10","Canada","Canada","7","Paige Crozon","4"],
+["52287f2f","United States","20","10","Canada","Canada","77","Saicha Grant-Allen","3"],
+["4d42a0ef","Serbia","17","20","Netherlands","Serbia","5","Nenad Nerandžić","5"],
+["4d42a0ef","Serbia","17","20","Netherlands","Serbia","6","Stefan Milivojevic","4"],
+["4d42a0ef","Serbia","17","20","Netherlands","Serbia","9","Marko Brankovic","6"],
+["4d42a0ef","Serbia","17","20","Netherlands","Serbia","11","Filip Kaluđerović","2"],
+["4d42a0ef","Serbia","17","20","Netherlands","Netherlands","0","Maarten Bouwknecht","4"],
+["4d42a0ef","Serbia","17","20","Netherlands","Netherlands","4","Jan Driessen","3"],
+["4d42a0ef","Serbia","17","20","Netherlands","Netherlands","11","Adriaan Van Tilborg","1"],
+["4d42a0ef","Serbia","17","20","Netherlands","Netherlands","54","Worthy de Jong","12"],
+["19b61185","Azerbaijan","12","21","Netherlands","Azerbaijan","7","Tatyana Deniskina","0"],
+["19b61185","Azerbaijan","12","21","Netherlands","Azerbaijan","23","Arica Carter","1"],
+["19b61185","Azerbaijan","12","21","Netherlands","Azerbaijan","24","Alexandra Mollenhauer","4"],
+["19b61185","Azerbaijan","12","21","Netherlands","Azerbaijan","34","Brianna Fraser","7"],
+["19b61185","Azerbaijan","12","21","Netherlands","Netherlands","4","Noortje Driessen","15"],
+["19b61185","Azerbaijan","12","21","Netherlands","Netherlands","17","Ilse Kuijt","0"],
+["19b61185","Azerbaijan","12","21","Netherlands","Netherlands","24","Evelien Lutje Schipholt","0"],
+["19b61185","Azerbaijan","12","21","Netherlands","Netherlands","33","Janis Boonstra","6"],
+["2e281403","United States","19","14","Spain","United States","6","Justin Pierce","5"],
+["2e281403","United States","19","14","Spain","United States","10","James Parrott","7"],
+["2e281403","United States","19","14","Spain","United States","13","Caden Pierce","3"],
+["2e281403","United States","19","14","Spain","United States","14","Riley Battin","4"],
+["2e281403","United States","19","14","Spain","Spain","3","Guim Expósito","5"],
+["2e281403","United States","19","14","Spain","Spain","7","Diego De Blas","3"],
+["2e281403","United States","19","14","Spain","Spain","8","Carlos Martinez","3"],
+["2e281403","United States","19","14","Spain","Spain","15","Iván Aurrecoechea","3"],
+];
+
+const WOMEN_GAMES = new Set([
+  "9cd15113","2816e3d9","4f1f2775","f9d28fb8","29728341","182d628e",
+  "182234d2","7a3b5765","457b441e","a3a165f0","a1ce01fe","3f486fa2",
+  "813b32a8","5fdb5307","52287f2f","19b61185"
+]);
+
+const GAME_CHRON_ORDER = [
+  "6eaff157","9cd15113","2816e3d9","f33a1588","cad31385","d224de80",
+  "4f1f2775","f9d28fb8","e85dc0b0","78d5ff4b","29728341","182d628e",
+  "1c17fd99","182234d2","ebaf517e","7a3b5765","457b441e","a3a165f0",
+  "9fd0d80e","d52d414c","a1ce01fe","3f486fa2","f20765ba","22dc72a0",
+  "813b32a8","5fdb5307","b7374527","a2a1b0c3","52287f2f","4d42a0ef",
+  "19b61185","2e281403"
+];
+
+const FINISH_ORDER = {
+  W: ["Netherlands","Azerbaijan","United States","Canada","Australia","Madagascar","Spain","Thailand"],
+  M: ["United States","Spain","Netherlands","Serbia","Thailand","Australia","Lithuania","Madagascar"],
+};
+
+// Build game index
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid, ht, hs, as_, at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid, ht, hs:+hs, as:+as_, at};
+}
+
+// Build team data
+function buildData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [gid, ht, hs, as_, at, team, num, name, pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let gender = 'W';
+let activeTeams = new Set();
+
+function getTeamsForGender(g) {
+  const order = FINISH_ORDER[g];
+  const available = Object.keys(teamData[g]);
+  const ranked = order.filter(t => available.includes(t));
+  const rest = available.filter(t => !order.includes(t)).sort();
+  return [...ranked, ...rest];
+}
+
+function getTeamGames(team, g) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[g][team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_CHRON_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos) {
+  if (pos === 1) return 'gold';
+  if (pos === 2) return 'silver';
+  if (pos === 3) return 'bronze';
+  return '';
+}
+
+function updateHero(g) {
+  const teams = getTeamsForGender(g);
+  const allGids = new Set();
+  let players = 0;
+  for (const t of teams) {
+    getTeamGames(t, g).forEach(id => allGids.add(id));
+    players += Object.keys(teamData[g][t]).length;
+  }
+  document.getElementById('hero-games').textContent = (allGids.size / 2 | 0) + ' games';
+  document.getElementById('hero-players').textContent = players + ' players';
+}
+
+function renderFinishRow(g) {
+  const row = document.getElementById('finish-row');
+  const order = FINISH_ORDER[g];
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  order.forEach((team, i) => {
+    const pos = i + 1;
+    const cls = getFinishClass(pos);
+    const pill = document.createElement('div');
+    pill.className = `finish-pill${cls ? ' '+cls : ''}`;
+    pill.innerHTML = `<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips(g) {
+  const teams = getTeamsForGender(g);
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of teams) {
+    const b = document.createElement('button');
+    b.className = 'team-chip' + (activeTeams.has(t) ? ' active' : '');
+    b.textContent = t;
+    b.onclick = () => { activeTeams.has(t) ? activeTeams.delete(t) : activeTeams.add(t); renderAll(); };
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  const g = gender;
+  updateHero(g);
+  renderFinishRow(g);
+  renderChips(g);
+  const teams = getTeamsForGender(g);
+  const show = activeTeams.size > 0 ? teams.filter(t => activeTeams.has(t)) : teams;
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  if (!show.length) {
+    content.innerHTML = '<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';
+    return;
+  }
+  const order = FINISH_ORDER[g];
+  for (const team of show) content.appendChild(buildBlock(team, g, order.indexOf(team) + 1));
+}
+
+function buildBlock(team, g, pos) {
+  const players = teamData[g][team];
+  const allGames = getTeamGames(team, g);
+  const sorted = Object.entries(players).sort((a,b) => {
+    const ta = Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb = Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+
+  const block = document.createElement('div');
+  block.className = 'team-block';
+
+  const gTag = g==='W'
+    ? '<span class="gender-tag w">W</span>'
+    : '<span class="gender-tag m">M</span>';
+
+  const finClass = getFinishClass(pos);
+  const finLabel = pos ? `<span class="team-finish${finClass?' '+finClass:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>` : '';
+
+  const title = document.createElement('div');
+  title.className = 'team-title';
+  title.innerHTML = `${gTag}<h2>${team}</h2>${finLabel}
+    <span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span>
+    <span class="toggle-icon">▾</span>`;
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'team-body-wrap';
+  title.onclick = () => { bodyWrap.classList.toggle('collapsed'); title.classList.toggle('collapsed'); };
+  block.appendChild(title);
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const tr1 = document.createElement('tr');
+  tr1.appendChild(mkTh('#','num'));
+  tr1.appendChild(mkTh('Player',''));
+  for (let i=0; i<allGames.length; i++) {
+    const gid = allGames[i];
+    const gi = gameIndex[gid];
+    const opp = gi.ht===team ? gi.at : gi.ht;
+    const myS = gi.ht===team ? gi.hs : gi.as;
+    const opS = gi.ht===team ? gi.as : gi.hs;
+    const won = myS > opS;
+    const cls = 'game-th center' + (i===0?' divider':'');
+    const cell = mkTh('', cls);
+    cell.innerHTML = `<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider'));
+  tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (const [name, pd] of sorted) {
+    const total = Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp = Object.keys(pd.games).length;
+    const avg = gp > 0 ? (total/gp).toFixed(1) : '—';
+    const tr = document.createElement('tr');
+    tr.appendChild(mkTd(pd.num, 'num'));
+    tr.appendChild(mkTd(name, 'name'));
+    for (let i=0; i<allGames.length; i++) {
+      const gid = allGames[i];
+      const pts = pd.games[gid];
+      const cls = (i===0?'divider ':'') + (pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts), cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider'));
+    tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+
+  // Totals row
+  const totRow = document.createElement('tr');
+  totRow.className = 'totrow';
+  totRow.appendChild(mkTd('',''));
+  totRow.appendChild(mkTd('Team total',''));
+  let grand = 0;
+  for (let i=0; i<allGames.length; i++) {
+    const gid = allGames[i];
+    const col = sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand += col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider'));
+  totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow);
+
+  table.appendChild(tbody);
+  bodyWrap.appendChild(table);
+  block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text, cls) {
+  const el = document.createElement('th');
+  if (cls) el.className = cls;
+  if (text) el.textContent = text;
+  return el;
+}
+function mkTd(text, cls) {
+  const el = document.createElement('td');
+  if (cls) el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function setGender(g) {
+  gender = g;
+  activeTeams.clear();
+  document.getElementById('btn-w').classList.toggle('active', g==='W');
+  document.getElementById('btn-m').classList.toggle('active', g==='M');
+  renderAll();
+}
+
+renderAll();
+</script>
+</body>
+</html>
