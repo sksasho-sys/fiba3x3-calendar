@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — WT Zadar 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--wt:#f0a500;--wt-bg:rgba(240,165,0,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#1e1a10 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--wt:#b87800;--wt-bg:rgba(184,120,0,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#f5efe0 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--wt-bg);color:var(--wt);border:1px solid rgba(240,165,0,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(184,120,0,.22)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(240,165,0,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(184,120,0,0.04)}
+.hero-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--wt);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--wt);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--wt)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}.lost{color:var(--lost)}
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">WT Zadar 2026 Stats</div>
+    <div class="topbar-badge">World Tour</div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">ZD</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">World Tour · 2026</div>
+    <h1 class="hero-title">WT Zadar <em>Stats</em></h1>
+    <div class="hero-meta">
+      <span><strong>Zadar</strong>, Croatia</span>
+      <span>·</span>
+      <span><strong>May 15–16, 2026</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ──
+const htmlEl = document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──
+const RAW = [
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Los Angeles", "1", "Jeremy Lieberman", "4"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Los Angeles", "3", "Bryan De Valck", "4"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Los Angeles", "4", "Taylor Braun", "3"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Los Angeles", "5", "Raphael Wilson", "5"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Utsunomiya", "1", "Souleymane Coulibaly", "6"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Utsunomiya", "2", "Botsile Ramabu", "4"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Utsunomiya", "3", "Yudai Ara", "0"],
+["200defb2", "Los Angeles", "16", "11", "Utsunomiya", "Utsunomiya", "6", "Daniils Smirnovs", "1"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Kaunas", "2", "Nojus Vaivada", "2"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Kaunas", "3", "Gabrius Čelka", "4"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Kaunas", "4", "Rokas Jocys", "9"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Kaunas", "5", "Kajus Leliukas", "7"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Utsunomiya", "1", "Souleymane Coulibaly", "6"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Utsunomiya", "2", "Botsile Ramabu", "4"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Utsunomiya", "3", "Yudai Ara", "3"],
+["af2ca2a7", "Kaunas", "22", "18", "Utsunomiya", "Utsunomiya", "6", "Daniils Smirnovs", "5"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Los Angeles", "1", "Jeremy Lieberman", "0"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Los Angeles", "3", "Bryan De Valck", "9"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Los Angeles", "4", "Taylor Braun", "4"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Los Angeles", "5", "Raphael Wilson", "7"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Kaunas", "2", "Nojus Vaivada", "5"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Kaunas", "3", "Gabrius Čelka", "3"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Kaunas", "4", "Rokas Jocys", "6"],
+["76f797f0", "Los Angeles", "20", "18", "Kaunas", "Kaunas", "5", "Kajus Leliukas", "4"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Amsterdam", "1", "Jan Driessen", "8"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Amsterdam", "5", "Adriaan Van Tilborg", "4"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Amsterdam", "6", "Worthy de Jong", "4"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Amsterdam", "8", "Bryan Alberts", "5"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Los Angeles", "1", "Jeremy Lieberman", "0"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Los Angeles", "3", "Bryan De Valck", "3"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Los Angeles", "4", "Taylor Braun", "0"],
+["a24561f5", "Amsterdam", "21", "7", "Los Angeles", "Los Angeles", "5", "Raphael Wilson", "4"],
+["4957334f", "Liman", "12", "10", "Cibona", "Liman", "3", "Andreja Milutinovic", "1"],
+["4957334f", "Liman", "12", "10", "Cibona", "Liman", "4", "Dorde Simeunovic", "3"],
+["4957334f", "Liman", "12", "10", "Cibona", "Liman", "7", "Stefan Milivojevic", "3"],
+["4957334f", "Liman", "12", "10", "Cibona", "Liman", "8", "Nemanja Zigon", "5"],
+["4957334f", "Liman", "12", "10", "Cibona", "Cibona", "1", "Fran Grgić", "2"],
+["4957334f", "Liman", "12", "10", "Cibona", "Cibona", "3", "Roko Spaseski", "6"],
+["4957334f", "Liman", "12", "10", "Cibona", "Cibona", "6", "Ivan Vrgoč", "1"],
+["4957334f", "Liman", "12", "10", "Cibona", "Cibona", "7", "Jakov Jacović", "1"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Miami", "2", "James Parrott", "9"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Miami", "4", "Mitch Hahn", "1"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Miami", "5", "Henry Caruso", "5"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Miami", "7", "Dylan Travis", "7"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Fuengirola", "3", "Isaac Mayo", "4"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Fuengirola", "5", "Jose Blázquez", "5"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Fuengirola", "7", "Diego De Blas", "0"],
+["c3a3e675", "Miami", "22", "10", "Fuengirola", "Fuengirola", "9", "Javier Vega", "1"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Ub", "1", "Filip Kaluđerović", "8"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Ub", "3", "Strahinja Stojacic", "5"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Ub", "5", "Nenad Nerandžić", "4"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Ub", "9", "Marko Brankovic", "4"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Baskets Bonn", "0", "Lennart Schultz", "5"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Baskets Bonn", "1", "Denzel Agyeman", "3"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Baskets Bonn", "3", "Sidi Beikame", "1"],
+["c18a3da4", "Ub", "21", "13", "Baskets Bonn", "Baskets Bonn", "8", "Miloš Jovanović", "4"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Amsterdam", "1", "Jan Driessen", "5"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Amsterdam", "5", "Adriaan Van Tilborg", "2"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Amsterdam", "6", "Worthy de Jong", "8"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Amsterdam", "8", "Bryan Alberts", "5"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Shanghai", "2", "Karlis Lasmanis", "3"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Shanghai", "6", "Yuanbo Zhu", "3"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Shanghai", "7", "Xingrui Wu", "2"],
+["f1a8813f", "Amsterdam", "20", "12", "Shanghai", "Shanghai", "8", "Pengcheng Lu", "4"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Liman", "3", "Andreja Milutinovic", "6"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Liman", "4", "Dorde Simeunovic", "8"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Liman", "7", "Stefan Milivojevic", "2"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Liman", "8", "Nemanja Zigon", "4"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Antwerp", "1", "Dennis Donkor", "10"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Antwerp", "3", "Jonas Foerts", "8"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Antwerp", "4", "Vic Van Oosterwyck", "1"],
+["4f18d5cc", "Liman", "20", "22", "Antwerp", "Antwerp", "8", "Caspar Augustijnen", "3"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Miami", "2", "James Parrott", "10"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Miami", "4", "Mitch Hahn", "4"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Miami", "5", "Henry Caruso", "5"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Miami", "7", "Dylan Travis", "3"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Vienna", "0", "Quincy Diggs", "6"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Vienna", "2", "Stefan Stojacic", "0"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Vienna", "4", "Fabio Söhnel", "1"],
+["4fd9e2ec", "Miami", "22", "19", "Vienna", "Vienna", "9", "Toni Blazan", "12"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Ub", "1", "Filip Kaluđerović", "5"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Ub", "3", "Strahinja Stojacic", "5"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Ub", "5", "Nenad Nerandžić", "5"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Ub", "9", "Marko Brankovic", "1"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Toronto", "1", "Adam Paige", "2"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Toronto", "2", "Thibaut Vervoort", "4"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Toronto", "3", "Carlos Zesati", "5"],
+["f11caaab", "Ub", "16", "14", "Toronto", "Toronto", "8", "Westher Molteni", "3"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Shanghai", "2", "Karlis Lasmanis", "6"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Shanghai", "6", "Yuanbo Zhu", "6"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Shanghai", "7", "Xingrui Wu", "5"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Shanghai", "8", "Pengcheng Lu", "3"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Los Angeles", "1", "Jeremy Lieberman", "2"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Los Angeles", "3", "Bryan De Valck", "2"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Los Angeles", "4", "Taylor Braun", "3"],
+["cf8a75a5", "Shanghai", "20", "15", "Los Angeles", "Los Angeles", "5", "Raphael Wilson", "8"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Antwerp", "1", "Dennis Donkor", "3"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Antwerp", "3", "Jonas Foerts", "4"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Antwerp", "4", "Vic Van Oosterwyck", "2"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Antwerp", "8", "Caspar Augustijnen", "5"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Cibona", "1", "Fran Grgić", "4"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Cibona", "3", "Roko Spaseski", "6"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Cibona", "6", "Ivan Vrgoč", "6"],
+["49327e50", "Antwerp", "14", "18", "Cibona", "Cibona", "7", "Jakov Jacović", "2"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Vienna", "0", "Quincy Diggs", "4"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Vienna", "2", "Stefan Stojacic", "6"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Vienna", "4", "Fabio Söhnel", "4"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Vienna", "9", "Toni Blazan", "7"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Fuengirola", "3", "Isaac Mayo", "6"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Fuengirola", "5", "Jose Blázquez", "2"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Fuengirola", "7", "Diego De Blas", "3"],
+["29feecc4", "Vienna", "21", "15", "Fuengirola", "Fuengirola", "9", "Javier Vega", "4"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Toronto", "1", "Adam Paige", "4"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Toronto", "2", "Thibaut Vervoort", "7"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Toronto", "3", "Carlos Zesati", "7"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Toronto", "8", "Westher Molteni", "3"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Baskets Bonn", "0", "Lennart Schultz", "2"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Baskets Bonn", "1", "Denzel Agyeman", "10"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Baskets Bonn", "3", "Sidi Beikame", "1"],
+["7200bbd0", "Toronto", "21", "18", "Baskets Bonn", "Baskets Bonn", "8", "Miloš Jovanović", "5"],
+["7058d95b", "Ub", "21", "17", "Liman", "Ub", "1", "Filip Kaluđerović", "2"],
+["7058d95b", "Ub", "21", "17", "Liman", "Ub", "3", "Strahinja Stojacic", "5"],
+["7058d95b", "Ub", "21", "17", "Liman", "Ub", "5", "Nenad Nerandžić", "10"],
+["7058d95b", "Ub", "21", "17", "Liman", "Ub", "9", "Marko Brankovic", "4"],
+["7058d95b", "Ub", "21", "17", "Liman", "Liman", "3", "Andreja Milutinovic", "5"],
+["7058d95b", "Ub", "21", "17", "Liman", "Liman", "4", "Dorde Simeunovic", "3"],
+["7058d95b", "Ub", "21", "17", "Liman", "Liman", "7", "Stefan Milivojevic", "4"],
+["7058d95b", "Ub", "21", "17", "Liman", "Liman", "8", "Nemanja Zigon", "5"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Amsterdam", "1", "Jan Driessen", "3"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Amsterdam", "5", "Adriaan Van Tilborg", "5"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Amsterdam", "6", "Worthy de Jong", "7"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Amsterdam", "8", "Bryan Alberts", "6"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Vienna", "0", "Quincy Diggs", "2"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Vienna", "2", "Stefan Stojacic", "11"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Vienna", "4", "Fabio Söhnel", "2"],
+["fcd28d74", "Amsterdam", "21", "16", "Vienna", "Vienna", "9", "Toni Blazan", "1"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Miami", "2", "James Parrott", "7"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Miami", "4", "Mitch Hahn", "7"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Miami", "5", "Henry Caruso", "4"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Miami", "7", "Dylan Travis", "2"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Shanghai", "2", "Karlis Lasmanis", "8"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Shanghai", "6", "Yuanbo Zhu", "5"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Shanghai", "7", "Xingrui Wu", "6"],
+["0e36de8d", "Miami", "20", "19", "Shanghai", "Shanghai", "8", "Pengcheng Lu", "0"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Antwerp", "1", "Dennis Donkor", "8"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Antwerp", "3", "Jonas Foerts", "2"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Antwerp", "4", "Vic Van Oosterwyck", "0"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Antwerp", "8", "Caspar Augustijnen", "5"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Toronto", "1", "Adam Paige", "2"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Toronto", "2", "Thibaut Vervoort", "8"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Toronto", "3", "Carlos Zesati", "8"],
+["4e6f300e", "Antwerp", "15", "21", "Toronto", "Toronto", "8", "Westher Molteni", "3"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Ub", "1", "Filip Kaluđerović", "6"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Ub", "3", "Strahinja Stojacic", "2"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Ub", "5", "Nenad Nerandžić", "6"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Ub", "9", "Marko Brankovic", "3"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Amsterdam", "1", "Jan Driessen", "1"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Amsterdam", "5", "Adriaan Van Tilborg", "2"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Amsterdam", "6", "Worthy de Jong", "15"],
+["6906e2e2", "Ub", "17", "21", "Amsterdam", "Amsterdam", "8", "Bryan Alberts", "3"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Miami", "2", "James Parrott", "4"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Miami", "4", "Mitch Hahn", "6"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Miami", "5", "Henry Caruso", "6"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Miami", "7", "Dylan Travis", "5"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Toronto", "1", "Adam Paige", "3"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Toronto", "2", "Thibaut Vervoort", "5"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Toronto", "3", "Carlos Zesati", "7"],
+["0df3c7b4", "Miami", "21", "16", "Toronto", "Toronto", "8", "Westher Molteni", "1"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Amsterdam", "1", "Jan Driessen", "1"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Amsterdam", "5", "Adriaan Van Tilborg", "6"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Amsterdam", "6", "Worthy de Jong", "9"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Amsterdam", "8", "Bryan Alberts", "3"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Miami", "2", "James Parrott", "4"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Miami", "4", "Mitch Hahn", "4"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Miami", "5", "Henry Caruso", "6"],
+["d3a3281e", "Amsterdam", "19", "21", "Miami", "Miami", "7", "Dylan Travis", "7"],
+];
+
+const GAME_ORDER = ["200defb2", "af2ca2a7", "76f797f0", "a24561f5", "4957334f", "c3a3e675", "c18a3da4", "f1a8813f", "4f18d5cc", "4fd9e2ec", "f11caaab", "cf8a75a5", "49327e50", "29feecc4", "7200bbd0", "7058d95b", "fcd28d74", "0e36de8d", "4e6f300e", "6906e2e2", "0df3c7b4", "d3a3281e"];
+
+const FINISH_ORDER = ["Miami", "Amsterdam", "Ub", "Los Angeles", "Toronto", "Cibona", "Kaunas", "Antwerp", "Liman", "Shanghai", "Vienna", "Baskets Bonn", "Fuengirola", "Utsunomiya"];
+
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid,ht,hs,as_,at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid,ht,hs:+hs,as:+as_,at};
+}
+
+function buildData() {
+  const td = {};
+  for (const r of RAW) {
+    const [gid,ht,hs,as_,at,team,num,name,pts] = r;
+    if (!td[team]) td[team] = {};
+    if (!td[team][name]) td[team][name] = {num, games:{}};
+    td[team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let activeTeams = new Set();
+
+function rankTeams() {
+  const available = Object.keys(teamData);
+  return [...FINISH_ORDER.filter(t=>available.includes(t)), ...available.filter(t=>!FINISH_ORDER.includes(t)).sort()];
+}
+
+function getTeamGames(team) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos){return pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';}
+
+function updateHero() {
+  const teams = rankTeams();
+  const gids = new Set(); let players = 0;
+  for (const t of teams) { getTeamGames(t).forEach(id=>gids.add(id)); players+=Object.keys(teamData[t]).length; }
+  document.getElementById('hero-games').textContent = gids.size+' games';
+  document.getElementById('hero-players').textContent = players+' players';
+}
+
+function renderFinishRow() {
+  const row = document.getElementById('finish-row');
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  FINISH_ORDER.forEach((team,i) => {
+    const pos=i+1, cls=getFinishClass(pos);
+    const pill=document.createElement('div');
+    pill.className='finish-pill'+(cls?' '+cls:'');
+    pill.innerHTML=`<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips() {
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of rankTeams()) {
+    const b=document.createElement('button');
+    b.className='team-chip'+(activeTeams.has(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{activeTeams.has(t)?activeTeams.delete(t):activeTeams.add(t);renderAll();};
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  updateHero(); renderFinishRow(); renderChips();
+  const teams=rankTeams();
+  const show=activeTeams.size>0?teams.filter(t=>activeTeams.has(t)):teams;
+  const content=document.getElementById('content');
+  content.innerHTML='';
+  if(!show.length){content.innerHTML='<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';return;}
+  for (const team of show) content.appendChild(buildBlock(team, FINISH_ORDER.indexOf(team)+1));
+}
+
+function buildBlock(team,pos) {
+  const players=teamData[team], allGames=getTeamGames(team);
+  const sorted=Object.entries(players).sort((a,b)=>{
+    const ta=Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb=Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const block=document.createElement('div'); block.className='team-block';
+  const finCls=getFinishClass(pos);
+  const finLabel=pos?`<span class="team-finish${finCls?' '+finCls:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>`:'';
+  const title=document.createElement('div'); title.className='team-title';
+  title.innerHTML=`<h2>${team}</h2>${finLabel}<span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span><span class="toggle-icon">▾</span>`;
+  const bodyWrap=document.createElement('div'); bodyWrap.className='team-body-wrap';
+  title.onclick=()=>{bodyWrap.classList.toggle('collapsed');title.classList.toggle('collapsed');};
+  block.appendChild(title);
+  const table=document.createElement('table');
+  const thead=document.createElement('thead');
+  const tr1=document.createElement('tr');
+  tr1.appendChild(mkTh('#','num')); tr1.appendChild(mkTh('Player',''));
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],gi=gameIndex[gid];
+    const opp=gi.ht===team?gi.at:gi.ht;
+    const myS=gi.ht===team?gi.hs:gi.as,opS=gi.ht===team?gi.as:gi.hs;
+    const won=myS>opS;
+    const cell=mkTh('','game-th center'+(i===0?' divider':''));
+    cell.innerHTML=`<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider')); tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1); table.appendChild(thead);
+  const tbody=document.createElement('tbody');
+  for (const [name,pd] of sorted){
+    const total=Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp=Object.keys(pd.games).length;
+    const avg=gp>0?(total/gp).toFixed(1):'—';
+    const tr=document.createElement('tr');
+    tr.appendChild(mkTd(pd.num,'num')); tr.appendChild(mkTd(name,'name'));
+    for (let i=0;i<allGames.length;i++){
+      const gid=allGames[i],pts=pd.games[gid];
+      const cls=(i===0?'divider ':'')+(pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts),cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider')); tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+  const totRow=document.createElement('tr'); totRow.className='totrow';
+  totRow.appendChild(mkTd('','')); totRow.appendChild(mkTd('Team total',''));
+  let grand=0;
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],col=sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand+=col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider')); totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow); table.appendChild(tbody);
+  bodyWrap.appendChild(table); block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text,cls){const el=document.createElement('th');if(cls)el.className=cls;if(text)el.textContent=text;return el;}
+function mkTd(text,cls){const el=document.createElement('td');if(cls)el.className=cls;el.textContent=text;return el;}
+
+renderAll();
+</script>
+</body>
+</html>

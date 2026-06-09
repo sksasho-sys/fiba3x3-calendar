@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — WT Utsunomiya Opener 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--wt:#f0a500;--wt-bg:rgba(240,165,0,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#1e1a10 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--wt:#b87800;--wt-bg:rgba(184,120,0,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#f5efe0 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--wt-bg);color:var(--wt);border:1px solid rgba(240,165,0,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(184,120,0,.22)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(240,165,0,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(184,120,0,0.04)}
+.hero-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--wt);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--wt);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--wt)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}.lost{color:var(--lost)}
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">WT Utsunomiya Opener 2026 Stats</div>
+    <div class="topbar-badge">World Tour</div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">UT</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">World Tour · 2026</div>
+    <h1 class="hero-title">WT Utsunomiya Opener <em>Stats</em></h1>
+    <div class="hero-meta">
+      <span><strong>Utsunomiya</strong>, Japan</span>
+      <span>·</span>
+      <span><strong>Apr 25–26, 2026</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ──
+const htmlEl = document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──
+const RAW = [
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Taipei", "1", "Hsin-wei Wang", "2"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Taipei", "3", "Petar Ivanovic", "7"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Taipei", "6", "Nikola Kovacevic", "7"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Taipei", "7", "Leo Branquinho", "4"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Hiratsuka", "1", "Tomoyuki Kato", "10"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Hiratsuka", "3", "Dušan Samardžić", "4"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Hiratsuka", "4", "Shibata Masakatsu", "0"],
+["e3f44457", "Taipei", "20", "16", "Hiratsuka", "Hiratsuka", "6", "Ryota Iwata", "2"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Shinagawa", "1", "Hayate Suzuki", "8"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Shinagawa", "3", "Mike Harry", "5"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Shinagawa", "4", "Tomoya Ochiai", "2"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Shinagawa", "6", "Vonni Scott", "6"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Hiratsuka", "1", "Tomoyuki Kato", "5"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Hiratsuka", "3", "Dušan Samardžić", "5"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Hiratsuka", "4", "Shibata Masakatsu", "0"],
+["e4f7da74", "Shinagawa", "21", "12", "Hiratsuka", "Hiratsuka", "6", "Ryota Iwata", "2"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Taipei", "1", "Hsin-wei Wang", "2"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Taipei", "3", "Petar Ivanovic", "9"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Taipei", "6", "Nikola Kovacevic", "7"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Taipei", "7", "Leo Branquinho", "3"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Shinagawa", "1", "Hayate Suzuki", "5"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Shinagawa", "3", "Mike Harry", "2"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Shinagawa", "4", "Tomoya Ochiai", "1"],
+["c8e9234a", "Taipei", "21", "12", "Shinagawa", "Shinagawa", "6", "Vonni Scott", "4"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Liman", "3", "Andreja Milutinovic", "3"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Liman", "4", "Dorde Simeunovic", "8"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Liman", "8", "Nemanja Zigon", "5"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Liman", "9", "Mihailo Vasic", "6"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Taipei", "1", "Hsin-wei Wang", "5"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Taipei", "3", "Petar Ivanovic", "5"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Taipei", "6", "Nikola Kovacevic", "3"],
+["40c0fdb7", "Liman", "22", "15", "Taipei", "Taipei", "7", "Leo Branquinho", "2"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Amsterdam", "0", "Maarten Bouwknecht", "10"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Amsterdam", "1", "Jan Driessen", "2"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Amsterdam", "5", "Adriaan Van Tilborg", "7"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Amsterdam", "6", "Worthy de Jong", "2"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Utsunomiya", "1", "Souleymane Coulibaly", "3"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Utsunomiya", "2", "Botsile Ramabu", "3"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Utsunomiya", "3", "Yudai Ara", "2"],
+["689857a6", "Amsterdam", "21", "9", "Utsunomiya", "Utsunomiya", "6", "Daniils Smirnovs", "1"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Miami", "0", "Riley Battin", "2"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Miami", "2", "James Parrott", "9"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Miami", "5", "Henry Caruso", "4"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Miami", "7", "Dylan Travis", "6"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Vienna", "0", "Quincy Diggs", "3"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Vienna", "3", "Nico Kaltenbrunner", "5"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Vienna", "4", "Fabio Söhnel", "6"],
+["ada0e5be", "Miami", "21", "15", "Vienna", "Vienna", "7", "Steven Kaltenbrunner", "1"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Ub", "1", "Filip Kaluđerović", "3"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Ub", "3", "Strahinja Stojacic", "6"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Ub", "5", "Nenad Nerandžić", "2"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Ub", "6", "Nemanja Barać", "7"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Antwerp", "1", "Dennis Donkor", "4"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Antwerp", "3", "Jonas Foerts", "5"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Antwerp", "4", "Vic Van Oosterwyck", "2"],
+["8b241ecc", "Ub", "18", "17", "Antwerp", "Antwerp", "8", "Caspar Augustijnen", "6"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Liman", "3", "Andreja Milutinovic", "5"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Liman", "4", "Dorde Simeunovic", "6"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Liman", "8", "Nemanja Zigon", "2"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Liman", "9", "Mihailo Vasic", "3"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Raudondvaris", "1", "Paulius Beliavicius", "1"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Raudondvaris", "3", "Evaldas Džiaugys", "7"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Raudondvaris", "8", "Modestas Kumpys", "1"],
+["a3b6d037", "Liman", "16", "11", "Raudondvaris", "Raudondvaris", "9", "Grantas Vasiliauskas", "2"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Amsterdam", "0", "Maarten Bouwknecht", "7"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Amsterdam", "1", "Jan Driessen", "1"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Amsterdam", "5", "Adriaan Van Tilborg", "6"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Amsterdam", "6", "Worthy de Jong", "7"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Shanghai", "2", "Karlis Lasmanis", "5"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Shanghai", "5", "Cameron Forte", "7"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Shanghai", "6", "Yuanbo Zhu", "4"],
+["8cf5597e", "Amsterdam", "21", "17", "Shanghai", "Shanghai", "7", "Xingrui Wu", "1"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Miami", "0", "Riley Battin", "2"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Miami", "2", "James Parrott", "7"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Miami", "5", "Henry Caruso", "2"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Miami", "7", "Dylan Travis", "4"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Skyliners", "0", "Kevin Bryant", "3"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Skyliners", "1", "Leon Fertig", "10"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Skyliners", "5", "Niklas Kropp", "7"],
+["fe7590e9", "Miami", "15", "21", "Skyliners", "Skyliners", "7", "Stefan Kojic", "1"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Ub", "1", "Filip Kaluđerović", "4"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Ub", "3", "Strahinja Stojacic", "6"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Ub", "5", "Nenad Nerandžić", "6"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Ub", "6", "Nemanja Barać", "6"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Toulouse", "1", "Franck Seguela", "6"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Toulouse", "3", "Hugo Suhard", "4"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Toulouse", "4", "Jules Rambaut", "3"],
+["671252f0", "Ub", "22", "17", "Toulouse", "Toulouse", "7", "Alexis Dargenton", "4"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Raudondvaris", "1", "Paulius Beliavicius", "2"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Raudondvaris", "3", "Evaldas Džiaugys", "12"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Raudondvaris", "8", "Modestas Kumpys", "1"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Raudondvaris", "9", "Grantas Vasiliauskas", "0"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Taipei", "1", "Hsin-wei Wang", "0"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Taipei", "3", "Petar Ivanovic", "5"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Taipei", "6", "Nikola Kovacevic", "2"],
+["9bb5862c", "Raudondvaris", "15", "12", "Taipei", "Taipei", "7", "Leo Branquinho", "5"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Shanghai", "2", "Karlis Lasmanis", "5"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Shanghai", "5", "Cameron Forte", "9"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Shanghai", "6", "Yuanbo Zhu", "4"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Shanghai", "7", "Xingrui Wu", "2"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Utsunomiya", "1", "Souleymane Coulibaly", "3"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Utsunomiya", "2", "Botsile Ramabu", "3"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Utsunomiya", "3", "Yudai Ara", "3"],
+["23f50dd6", "Shanghai", "20", "17", "Utsunomiya", "Utsunomiya", "6", "Daniils Smirnovs", "8"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Skyliners", "0", "Kevin Bryant", "5"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Skyliners", "1", "Leon Fertig", "2"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Skyliners", "5", "Niklas Kropp", "8"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Skyliners", "7", "Stefan Kojic", "3"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Vienna", "0", "Quincy Diggs", "5"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Vienna", "3", "Nico Kaltenbrunner", "5"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Vienna", "4", "Fabio Söhnel", "5"],
+["13d3a6f9", "Skyliners", "18", "17", "Vienna", "Vienna", "7", "Steven Kaltenbrunner", "2"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Toulouse", "1", "Franck Seguela", "6"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Toulouse", "3", "Hugo Suhard", "3"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Toulouse", "4", "Jules Rambaut", "4"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Toulouse", "7", "Alexis Dargenton", "2"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Antwerp", "1", "Dennis Donkor", "9"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Antwerp", "3", "Jonas Foerts", "3"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Antwerp", "4", "Vic Van Oosterwyck", "1"],
+["49fb5f5a", "Toulouse", "15", "16", "Antwerp", "Antwerp", "8", "Caspar Augustijnen", "3"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Ub", "1", "Filip Kaluđerović", "7"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Ub", "3", "Strahinja Stojacic", "4"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Ub", "5", "Nenad Nerandžić", "5"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Ub", "6", "Nemanja Barać", "4"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Shanghai", "2", "Karlis Lasmanis", "3"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Shanghai", "5", "Cameron Forte", "4"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Shanghai", "6", "Yuanbo Zhu", "2"],
+["b5228c85", "Ub", "20", "15", "Shanghai", "Shanghai", "7", "Xingrui Wu", "6"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Liman", "3", "Andreja Milutinovic", "11"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Liman", "4", "Dorde Simeunovic", "5"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Liman", "8", "Nemanja Zigon", "0"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Liman", "9", "Mihailo Vasic", "4"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Miami", "0", "Riley Battin", "2"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Miami", "2", "James Parrott", "2"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Miami", "5", "Henry Caruso", "2"],
+["9e3cdd44", "Liman", "20", "8", "Miami", "Miami", "7", "Dylan Travis", "2"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Skyliners", "0", "Kevin Bryant", "4"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Skyliners", "1", "Leon Fertig", "1"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Skyliners", "5", "Niklas Kropp", "7"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Skyliners", "7", "Stefan Kojic", "4"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Raudondvaris", "1", "Paulius Beliavicius", "0"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Raudondvaris", "3", "Evaldas Džiaugys", "8"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Raudondvaris", "8", "Modestas Kumpys", "3"],
+["59b58753", "Skyliners", "16", "14", "Raudondvaris", "Raudondvaris", "9", "Grantas Vasiliauskas", "3"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Amsterdam", "0", "Maarten Bouwknecht", "3"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Amsterdam", "1", "Jan Driessen", "4"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Amsterdam", "5", "Adriaan Van Tilborg", "2"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Amsterdam", "6", "Worthy de Jong", "7"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Antwerp", "1", "Dennis Donkor", "8"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Antwerp", "3", "Jonas Foerts", "7"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Antwerp", "4", "Vic Van Oosterwyck", "2"],
+["f6e9e87c", "Amsterdam", "16", "21", "Antwerp", "Antwerp", "8", "Caspar Augustijnen", "4"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Ub", "1", "Filip Kaluđerović", "8"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Ub", "3", "Strahinja Stojacic", "1"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Ub", "5", "Nenad Nerandžić", "3"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Ub", "6", "Nemanja Barać", "1"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Liman", "3", "Andreja Milutinovic", "7"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Liman", "4", "Dorde Simeunovic", "4"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Liman", "8", "Nemanja Zigon", "1"],
+["1af2c25b", "Ub", "13", "14", "Liman", "Liman", "9", "Mihailo Vasic", "2"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Skyliners", "0", "Kevin Bryant", "3"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Skyliners", "1", "Leon Fertig", "0"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Skyliners", "5", "Niklas Kropp", "12"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Skyliners", "7", "Stefan Kojic", "4"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Antwerp", "1", "Dennis Donkor", "4"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Antwerp", "3", "Jonas Foerts", "3"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Antwerp", "4", "Vic Van Oosterwyck", "2"],
+["88f02684", "Skyliners", "19", "12", "Antwerp", "Antwerp", "8", "Caspar Augustijnen", "3"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Liman", "3", "Andreja Milutinovic", "7"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Liman", "4", "Dorde Simeunovic", "8"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Liman", "8", "Nemanja Zigon", "2"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Liman", "9", "Mihailo Vasic", "4"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Skyliners", "0", "Kevin Bryant", "2"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Skyliners", "1", "Leon Fertig", "0"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Skyliners", "5", "Niklas Kropp", "5"],
+["c8e20a2a", "Liman", "21", "15", "Skyliners", "Skyliners", "7", "Stefan Kojic", "8"],
+];
+
+const GAME_ORDER = ["e3f44457", "e4f7da74", "c8e9234a", "40c0fdb7", "689857a6", "ada0e5be", "8b241ecc", "a3b6d037", "8cf5597e", "fe7590e9", "671252f0", "9bb5862c", "23f50dd6", "13d3a6f9", "49fb5f5a", "b5228c85", "9e3cdd44", "59b58753", "f6e9e87c", "1af2c25b", "88f02684", "c8e20a2a"];
+
+const FINISH_ORDER = ["Liman", "Skyliners", "Ub", "Amsterdam", "Antwerp", "Taipei", "Shinagawa", "Miami", "Raudondvaris", "Shanghai", "Hiratsuka", "Toulouse", "Utsunomiya", "Vienna"];
+
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid,ht,hs,as_,at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid,ht,hs:+hs,as:+as_,at};
+}
+
+function buildData() {
+  const td = {};
+  for (const r of RAW) {
+    const [gid,ht,hs,as_,at,team,num,name,pts] = r;
+    if (!td[team]) td[team] = {};
+    if (!td[team][name]) td[team][name] = {num, games:{}};
+    td[team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let activeTeams = new Set();
+
+function rankTeams() {
+  const available = Object.keys(teamData);
+  return [...FINISH_ORDER.filter(t=>available.includes(t)), ...available.filter(t=>!FINISH_ORDER.includes(t)).sort()];
+}
+
+function getTeamGames(team) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos){return pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';}
+
+function updateHero() {
+  const teams = rankTeams();
+  const gids = new Set(); let players = 0;
+  for (const t of teams) { getTeamGames(t).forEach(id=>gids.add(id)); players+=Object.keys(teamData[t]).length; }
+  document.getElementById('hero-games').textContent = gids.size+' games';
+  document.getElementById('hero-players').textContent = players+' players';
+}
+
+function renderFinishRow() {
+  const row = document.getElementById('finish-row');
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  FINISH_ORDER.forEach((team,i) => {
+    const pos=i+1, cls=getFinishClass(pos);
+    const pill=document.createElement('div');
+    pill.className='finish-pill'+(cls?' '+cls:'');
+    pill.innerHTML=`<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips() {
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of rankTeams()) {
+    const b=document.createElement('button');
+    b.className='team-chip'+(activeTeams.has(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{activeTeams.has(t)?activeTeams.delete(t):activeTeams.add(t);renderAll();};
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  updateHero(); renderFinishRow(); renderChips();
+  const teams=rankTeams();
+  const show=activeTeams.size>0?teams.filter(t=>activeTeams.has(t)):teams;
+  const content=document.getElementById('content');
+  content.innerHTML='';
+  if(!show.length){content.innerHTML='<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';return;}
+  for (const team of show) content.appendChild(buildBlock(team, FINISH_ORDER.indexOf(team)+1));
+}
+
+function buildBlock(team,pos) {
+  const players=teamData[team], allGames=getTeamGames(team);
+  const sorted=Object.entries(players).sort((a,b)=>{
+    const ta=Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb=Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const block=document.createElement('div'); block.className='team-block';
+  const finCls=getFinishClass(pos);
+  const finLabel=pos?`<span class="team-finish${finCls?' '+finCls:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>`:'';
+  const title=document.createElement('div'); title.className='team-title';
+  title.innerHTML=`<h2>${team}</h2>${finLabel}<span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span><span class="toggle-icon">▾</span>`;
+  const bodyWrap=document.createElement('div'); bodyWrap.className='team-body-wrap';
+  title.onclick=()=>{bodyWrap.classList.toggle('collapsed');title.classList.toggle('collapsed');};
+  block.appendChild(title);
+  const table=document.createElement('table');
+  const thead=document.createElement('thead');
+  const tr1=document.createElement('tr');
+  tr1.appendChild(mkTh('#','num')); tr1.appendChild(mkTh('Player',''));
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],gi=gameIndex[gid];
+    const opp=gi.ht===team?gi.at:gi.ht;
+    const myS=gi.ht===team?gi.hs:gi.as,opS=gi.ht===team?gi.as:gi.hs;
+    const won=myS>opS;
+    const cell=mkTh('','game-th center'+(i===0?' divider':''));
+    cell.innerHTML=`<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider')); tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1); table.appendChild(thead);
+  const tbody=document.createElement('tbody');
+  for (const [name,pd] of sorted){
+    const total=Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp=Object.keys(pd.games).length;
+    const avg=gp>0?(total/gp).toFixed(1):'—';
+    const tr=document.createElement('tr');
+    tr.appendChild(mkTd(pd.num,'num')); tr.appendChild(mkTd(name,'name'));
+    for (let i=0;i<allGames.length;i++){
+      const gid=allGames[i],pts=pd.games[gid];
+      const cls=(i===0?'divider ':'')+(pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts),cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider')); tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+  const totRow=document.createElement('tr'); totRow.className='totrow';
+  totRow.appendChild(mkTd('','')); totRow.appendChild(mkTd('Team total',''));
+  let grand=0;
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],col=sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand+=col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider')); totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow); table.appendChild(tbody);
+  bodyWrap.appendChild(table); block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text,cls){const el=document.createElement('th');if(cls)el.className=cls;if(text)el.textContent=text;return el;}
+function mkTd(text,cls){const el=document.createElement('td');if(cls)el.className=cls;el.textContent=text;return el;}
+
+renderAll();
+</script>
+</body>
+</html>
