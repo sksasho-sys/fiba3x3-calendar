@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — FIBA 3x3 World Cup 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--nt:#2dd4bf;--nt-bg:rgba(45,212,191,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#141e1e 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--nt:#0f766e;--nt-bg:rgba(15,118,110,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#e0f4f2 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--nt-bg);color:var(--nt);border:1px solid rgba(45,212,191,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(15,118,110,.22)}
+.gender-toggle{display:flex;border:1px solid var(--border2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.gender-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border:none;background:none;cursor:pointer;color:var(--muted2);transition:all .14s}
+.gender-btn.active{background:var(--text);color:var(--bg)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(45,212,191,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(15,118,110,0.04)}
+.hero-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--nt);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--nt);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--nt)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+.gender-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:500}
+.gender-tag.w{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.22)}
+.gender-tag.m{background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.22)}
+[data-theme="light"] .gender-tag.w{background:rgba(190,18,60,.09);color:#be123c;border-color:rgba(190,18,60,.2)}
+[data-theme="light"] .gender-tag.m{background:rgba(3,105,161,.09);color:#0369a1;border-color:rgba(3,105,161,.2)}
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}.lost{color:var(--lost)}
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">World Cup 2026 Stats</div>
+    <div class="topbar-badge">National</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">WC</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">National Tournament · 2026</div>
+    <h1 class="hero-title">World Cup <em>Stats</em></h1>
+    <div class="hero-meta">
+      <span><strong>Warsaw</strong>, Poland</span>
+      <span>·</span>
+      <span><strong>Jun 1–7, 2026</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ─────────────────────────────────────────────────────────────────────
+const htmlEl = document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const RAW = [
+["98076704", "China", "14", "21", "Germany", "China", "10", "ZhiTing Zhang", "4"],
+["98076704", "China", "14", "21", "Germany", "China", "12", "Yuyan Li", "0"],
+["98076704", "China", "14", "21", "Germany", "China", "21", "Wenxia Li", "5"],
+["98076704", "China", "14", "21", "Germany", "China", "23", "Lili Wang", "5"],
+["98076704", "China", "14", "21", "Germany", "Germany", "4", "Laura Zolper", "7"],
+["98076704", "China", "14", "21", "Germany", "Germany", "6", "Marie Reichert", "6"],
+["98076704", "China", "14", "21", "Germany", "Germany", "19", "Britta Daub", "1"],
+["98076704", "China", "14", "21", "Germany", "Germany", "25", "Ama Degbeon", "7"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Latvia", "6", "Ketija Vihmane", "2"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Latvia", "13", "Marta Miščenko", "5"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Latvia", "36", "Paula Cirša", "2"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Latvia", "45", "Digna Strautmane", "5"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Philippines", "0", "Mikka Cacho", "3"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Philippines", "3", "Afril Bernardino", "1"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Philippines", "21", "Camille Clarin", "2"],
+["2c77a174", "Latvia", "14", "11", "Philippines", "Philippines", "28", "Kacey Dela Rosa", "5"],
+["424409b9", "China", "22", "14", "Japan", "China", "2", "Hanyu Guo", "5"],
+["424409b9", "China", "22", "14", "Japan", "China", "6", "Dianliang Zhang", "11"],
+["424409b9", "China", "22", "14", "Japan", "China", "9", "Pengcheng Lu", "1"],
+["424409b9", "China", "22", "14", "Japan", "China", "13", "Xingrui Wu", "5"],
+["424409b9", "China", "22", "14", "Japan", "Japan", "13", "Ryo Ozawa", "2"],
+["424409b9", "China", "22", "14", "Japan", "Japan", "15", "Kenya Igo", "1"],
+["424409b9", "China", "22", "14", "Japan", "Japan", "24", "Yuki Nakanishi", "3"],
+["424409b9", "China", "22", "14", "Japan", "Japan", "33", "Souleymane Coulibaly", "8"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "New Zealand", "0", "Aidan Tonge", "3"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "New Zealand", "8", "Joshua Book", "3"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "New Zealand", "13", "Te Tuhi Lewis", "4"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "New Zealand", "21", "Chris Martin", "3"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "Netherlands", "4", "Jan Driessen", "4"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "Netherlands", "8", "Bryan Alberts", "7"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "Netherlands", "11", "Adriaan Van Tilborg", "4"],
+["9b7ed6bc", "New Zealand", "13", "21", "Netherlands", "Netherlands", "54", "Worthy de Jong", "6"],
+["cd5e7b5c", "Italy", "12", "21", "China", "Italy", "2", "Giorgia Palmieri", "4"],
+["cd5e7b5c", "Italy", "12", "21", "China", "Italy", "8", "Beatrice Caloro", "3"],
+["cd5e7b5c", "Italy", "12", "21", "China", "Italy", "15", "Maria Miccoli", "1"],
+["cd5e7b5c", "Italy", "12", "21", "China", "Italy", "18", "Caterina Gilli", "4"],
+["cd5e7b5c", "Italy", "12", "21", "China", "China", "10", "ZhiTing Zhang", "5"],
+["cd5e7b5c", "Italy", "12", "21", "China", "China", "12", "Yuyan Li", "1"],
+["cd5e7b5c", "Italy", "12", "21", "China", "China", "21", "Wenxia Li", "9"],
+["cd5e7b5c", "Italy", "12", "21", "China", "China", "23", "Lili Wang", "6"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Germany", "4", "Laura Zolper", "7"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Germany", "6", "Marie Reichert", "1"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Germany", "19", "Britta Daub", "4"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Germany", "25", "Ama Degbeon", "10"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Philippines", "0", "Mikka Cacho", "4"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Philippines", "3", "Afril Bernardino", "2"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Philippines", "21", "Camille Clarin", "0"],
+["3e11d99b", "Germany", "22", "10", "Philippines", "Philippines", "28", "Kacey Dela Rosa", "4"],
+["76aa270c", "Japan", "15", "21", "Germany", "Japan", "13", "Ryo Ozawa", "10"],
+["76aa270c", "Japan", "15", "21", "Germany", "Japan", "15", "Kenya Igo", "0"],
+["76aa270c", "Japan", "15", "21", "Germany", "Japan", "24", "Yuki Nakanishi", "1"],
+["76aa270c", "Japan", "15", "21", "Germany", "Japan", "33", "Souleymane Coulibaly", "4"],
+["76aa270c", "Japan", "15", "21", "Germany", "Germany", "1", "Denzel Agyeman", "9"],
+["76aa270c", "Japan", "15", "21", "Germany", "Germany", "5", "Niklas Kropp", "2"],
+["76aa270c", "Japan", "15", "21", "Germany", "Germany", "20", "Fabian Giessmann", "9"],
+["76aa270c", "Japan", "15", "21", "Germany", "Germany", "44", "Kevin Bryant", "1"],
+["0a840a9e", "China", "10", "22", "Netherlands", "China", "2", "Hanyu Guo", "2"],
+["0a840a9e", "China", "10", "22", "Netherlands", "China", "6", "Dianliang Zhang", "5"],
+["0a840a9e", "China", "10", "22", "Netherlands", "China", "9", "Pengcheng Lu", "2"],
+["0a840a9e", "China", "10", "22", "Netherlands", "China", "13", "Xingrui Wu", "1"],
+["0a840a9e", "China", "10", "22", "Netherlands", "Netherlands", "4", "Jan Driessen", "2"],
+["0a840a9e", "China", "10", "22", "Netherlands", "Netherlands", "8", "Bryan Alberts", "5"],
+["0a840a9e", "China", "10", "22", "Netherlands", "Netherlands", "11", "Adriaan Van Tilborg", "5"],
+["0a840a9e", "China", "10", "22", "Netherlands", "Netherlands", "54", "Worthy de Jong", "10"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Italy", "2", "Giorgia Palmieri", "1"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Italy", "8", "Beatrice Caloro", "2"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Italy", "15", "Maria Miccoli", "4"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Italy", "18", "Caterina Gilli", "6"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Latvia", "6", "Ketija Vihmane", "7"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Latvia", "13", "Marta Miščenko", "4"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Latvia", "36", "Paula Cirša", "4"],
+["e6e79f68", "Italy", "13", "21", "Latvia", "Latvia", "45", "Digna Strautmane", "6"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Azerbaijan", "8", "Dina Ulyanova", "5"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Azerbaijan", "23", "Arica Carter", "0"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Azerbaijan", "24", "Alexandra Mollenhauer", "5"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Azerbaijan", "34", "Brianna Fraser", "11"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Madagascar", "1", "Harisoa Hajanirina", "2"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Madagascar", "7", "Minaoharisoa Jaofera", "8"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Madagascar", "10", "Ravaka Randriatahiana", "1"],
+["b967a56b", "Azerbaijan", "21", "13", "Madagascar", "Madagascar", "11", "Tokin'Iaina Sambatrarimiora", "2"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "Germany", "1", "Denzel Agyeman", "3"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "Germany", "5", "Niklas Kropp", "4"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "Germany", "20", "Fabian Giessmann", "11"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "Germany", "44", "Kevin Bryant", "1"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "New Zealand", "0", "Aidan Tonge", "2"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "New Zealand", "8", "Joshua Book", "2"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "New Zealand", "13", "Te Tuhi Lewis", "5"],
+["35c27d55", "Germany", "19", "10", "New Zealand", "New Zealand", "21", "Chris Martin", "1"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Austria", "10", "Toni Blazan", "4"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Austria", "14", "Nico Kaltenbrunner", "6"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Austria", "22", "Quincy Diggs", "5"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Austria", "44", "Fabio Söhnel", "5"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Madagascar", "1", "Elly Randriamampionona", "5"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Madagascar", "12", "Alpha SOLONDRAINY", "2"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Madagascar", "15", "Anthony Rasolomanana", "2"],
+["d47467bc", "Austria", "20", "15", "Madagascar", "Madagascar", "30", "Marco Rakotovao", "6"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Czechia", "3", "Kateřina Galíčková", "4"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Czechia", "4", "Lucie Svatoňová", "1"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Czechia", "9", "Karolina Sotolova", "0"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Czechia", "24", "Monika Fučíková", "3"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Netherlands", "4", "Noortje Driessen", "2"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Netherlands", "15", "Lotte van Kruistum", "1"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Netherlands", "17", "Ilse Kuijt", "6"],
+["71a0eb44", "Czechia", "8", "12", "Netherlands", "Netherlands", "44", "Zoë Slagter", "3"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Poland", "0", "Aleksandra Zięmborska", "10"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Poland", "4", "Anna Pawłowska", "4"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Poland", "15", "Klaudia Gertchen", "6"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Poland", "33", "Weronika Telenga", "0"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Madagascar", "1", "Harisoa Hajanirina", "0"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Madagascar", "7", "Minaoharisoa Jaofera", "7"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Madagascar", "10", "Ravaka Randriatahiana", "0"],
+["b3f267e8", "Poland", "20", "10", "Madagascar", "Madagascar", "11", "Tokin'Iaina Sambatrarimiora", "3"],
+["08b953e8", "Spain", "21", "12", "Australia", "Spain", "3", "Guim Expósito", "3"],
+["08b953e8", "Spain", "21", "12", "Australia", "Spain", "7", "Diego De Blas", "0"],
+["08b953e8", "Spain", "21", "12", "Australia", "Spain", "8", "Carlos Martinez", "7"],
+["08b953e8", "Spain", "21", "12", "Australia", "Spain", "15", "Iván Aurrecoechea", "11"],
+["08b953e8", "Spain", "21", "12", "Australia", "Australia", "8", "Jonah Antonio", "3"],
+["08b953e8", "Spain", "21", "12", "Australia", "Australia", "11", "Alex Higgins-Titsha", "2"],
+["08b953e8", "Spain", "21", "12", "Australia", "Australia", "21", "Jarred Bairstow", "3"],
+["08b953e8", "Spain", "21", "12", "Australia", "Australia", "38", "Lachlan Barker", "4"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Madagascar", "1", "Elly Randriamampionona", "7"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Madagascar", "12", "Alpha SOLONDRAINY", "4"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Madagascar", "15", "Anthony Rasolomanana", "2"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Madagascar", "30", "Marco Rakotovao", "1"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Serbia", "1", "Andreja Milutinovic", "2"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Serbia", "3", "Strahinja Stojacic", "4"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Serbia", "5", "Nenad Nerandžić", "10"],
+["c7babe92", "Madagascar", "14", "21", "Serbia", "Serbia", "6", "Nemanja Barać", "5"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Netherlands", "4", "Noortje Driessen", "6"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Netherlands", "15", "Lotte van Kruistum", "3"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Netherlands", "17", "Ilse Kuijt", "8"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Netherlands", "44", "Zoë Slagter", "2"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Azerbaijan", "8", "Dina Ulyanova", "1"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Azerbaijan", "23", "Arica Carter", "0"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Azerbaijan", "24", "Alexandra Mollenhauer", "4"],
+["6b0af057", "Netherlands", "19", "13", "Azerbaijan", "Azerbaijan", "34", "Brianna Fraser", "8"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Poland", "0", "Aleksandra Zięmborska", "4"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Poland", "4", "Anna Pawłowska", "3"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Poland", "15", "Klaudia Gertchen", "3"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Poland", "33", "Weronika Telenga", "2"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Czechia", "3", "Kateřina Galíčková", "2"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Czechia", "4", "Lucie Svatoňová", "6"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Czechia", "9", "Karolina Sotolova", "6"],
+["f6f30509", "Poland", "12", "14", "Czechia", "Czechia", "24", "Monika Fučíková", "0"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Australia", "8", "Jonah Antonio", "7"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Australia", "11", "Alex Higgins-Titsha", "3"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Australia", "21", "Jarred Bairstow", "1"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Australia", "38", "Lachlan Barker", "3"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Austria", "10", "Toni Blazan", "7"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Austria", "14", "Nico Kaltenbrunner", "5"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Austria", "22", "Quincy Diggs", "5"],
+["3d72ffe5", "Australia", "14", "21", "Austria", "Austria", "44", "Fabio Söhnel", "4"],
+["75652272", "Spain", "12", "16", "Serbia", "Spain", "3", "Guim Expósito", "0"],
+["75652272", "Spain", "12", "16", "Serbia", "Spain", "7", "Diego De Blas", "3"],
+["75652272", "Spain", "12", "16", "Serbia", "Spain", "8", "Carlos Martinez", "5"],
+["75652272", "Spain", "12", "16", "Serbia", "Spain", "15", "Iván Aurrecoechea", "4"],
+["75652272", "Spain", "12", "16", "Serbia", "Serbia", "1", "Andreja Milutinovic", "3"],
+["75652272", "Spain", "12", "16", "Serbia", "Serbia", "3", "Strahinja Stojacic", "9"],
+["75652272", "Spain", "12", "16", "Serbia", "Serbia", "5", "Nenad Nerandžić", "4"],
+["75652272", "Spain", "12", "16", "Serbia", "Serbia", "6", "Nemanja Barać", "0"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Canada", "2", "Katherine Plouffe", "4"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Canada", "4", "Kacie Bosch", "0"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Canada", "7", "Paige Crozon", "8"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Canada", "8", "Tara Wallack", "5"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Lithuania", "6", "Kamile Nacickaite-van der Horst", "10"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Lithuania", "7", "Giedre Labuckiene", "2"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Lithuania", "9", "Gabriele Sulske", "3"],
+["6ea5679e", "Canada", "17", "19", "Lithuania", "Lithuania", "77", "Justina Miknaite", "4"],
+["aa8af5a3", "Japan", "16", "13", "France", "Japan", "5", "Aya Tsurumi", "4"],
+["aa8af5a3", "Japan", "16", "13", "France", "Japan", "7", "Miku Takahashi", "4"],
+["aa8af5a3", "Japan", "16", "13", "France", "Japan", "18", "Kiho Miyashita", "2"],
+["aa8af5a3", "Japan", "16", "13", "France", "Japan", "25", "Aoi Katsura", "6"],
+["aa8af5a3", "Japan", "16", "13", "France", "France", "3", "Hortense Limouzin", "4"],
+["aa8af5a3", "Japan", "16", "13", "France", "France", "12", "Laetitia Guapo", "5"],
+["aa8af5a3", "Japan", "16", "13", "France", "France", "13", "Marie Milapie", "1"],
+["aa8af5a3", "Japan", "16", "13", "France", "France", "53", "Marie Mané", "3"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Belgium", "0", "Bryan De Valck", "1"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Belgium", "1", "Dennis Donkor", "7"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Belgium", "3", "Jonas Foerts", "2"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Belgium", "8", "Caspar Augustijnen", "4"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Lithuania", "10", "Rokas Jocys", "9"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Lithuania", "22", "Ignas Vaitkus", "5"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Lithuania", "24", "Aurelijus Pukelis", "5"],
+["5a5fb51c", "Belgium", "14", "21", "Lithuania", "Lithuania", "26", "Evaldas Džiaugys", "2"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Puerto Rico", "5", "Leandro Allende", "5"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Puerto Rico", "13", "Miguel Angel Martínez", "2"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Puerto Rico", "17", "Bryan Gonzalez", "7"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Puerto Rico", "33", "Luis Cuascut", "5"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Brazil", "3", "William Weihermann", "1"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Brazil", "6", "Leo Branquinho", "6"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Brazil", "7", "Leandro Da Silva", "6"],
+["ed88dff0", "Puerto Rico", "19", "17", "Brazil", "Brazil", "35", "Jonatas Mello", "4"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Ukraine", "1", "Anzhelika Liashko", "4"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Ukraine", "3", "Krystyna Filevych", "3"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Ukraine", "5", "Miriam Uro-Nilie", "2"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Ukraine", "6", "Kateryna Koval", "2"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Canada", "2", "Katherine Plouffe", "0"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Canada", "4", "Kacie Bosch", "6"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Canada", "7", "Paige Crozon", "6"],
+["c86f8036", "Ukraine", "11", "14", "Canada", "Canada", "8", "Tara Wallack", "2"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "Lithuania", "6", "Kamile Nacickaite-van der Horst", "4"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "Lithuania", "7", "Giedre Labuckiene", "4"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "Lithuania", "9", "Gabriele Sulske", "3"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "Lithuania", "77", "Justina Miknaite", "1"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "France", "3", "Hortense Limouzin", "5"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "France", "12", "Laetitia Guapo", "5"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "France", "13", "Marie Milapie", "1"],
+["3ca98c0b", "Lithuania", "12", "21", "France", "France", "53", "Marie Mané", "10"],
+["2652c679", "France", "21", "20", "Belgium", "France", "7", "Hugo Suhard", "13"],
+["2652c679", "France", "21", "20", "Belgium", "France", "9", "Emmanuel Monceau", "2"],
+["2652c679", "France", "21", "20", "Belgium", "France", "15", "Alex Vialaret", "3"],
+["2652c679", "France", "21", "20", "Belgium", "France", "26", "Jules Rambaut", "3"],
+["2652c679", "France", "21", "20", "Belgium", "Belgium", "0", "Bryan De Valck", "5"],
+["2652c679", "France", "21", "20", "Belgium", "Belgium", "1", "Dennis Donkor", "3"],
+["2652c679", "France", "21", "20", "Belgium", "Belgium", "3", "Jonas Foerts", "5"],
+["2652c679", "France", "21", "20", "Belgium", "Belgium", "8", "Caspar Augustijnen", "7"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Brazil", "3", "William Weihermann", "2"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Brazil", "6", "Leo Branquinho", "1"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Brazil", "7", "Leandro Da Silva", "11"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Brazil", "35", "Jonatas Mello", "6"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Lithuania", "10", "Rokas Jocys", "4"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Lithuania", "22", "Ignas Vaitkus", "3"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Lithuania", "24", "Aurelijus Pukelis", "8"],
+["a04741a9", "Brazil", "20", "22", "Lithuania", "Lithuania", "26", "Evaldas Džiaugys", "7"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Japan", "5", "Aya Tsurumi", "3"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Japan", "7", "Miku Takahashi", "6"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Japan", "18", "Kiho Miyashita", "5"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Japan", "25", "Aoi Katsura", "4"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Ukraine", "1", "Anzhelika Liashko", "0"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Ukraine", "3", "Krystyna Filevych", "10"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Ukraine", "5", "Miriam Uro-Nilie", "5"],
+["cd7d63be", "Japan", "18", "19", "Ukraine", "Ukraine", "6", "Kateryna Koval", "4"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Hungary", "2", "Virág Takács-Kiss", "7"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Hungary", "10", "Klaudia Papp", "5"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Hungary", "13", "Réka Lelik", "3"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Hungary", "44", "Vivi Böröndy", "6"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Spain", "2", "Txell Alarcón", "5"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Spain", "4", "Alba Prieto", "3"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Spain", "33", "Cecilia Muhate", "3"],
+["5b127f38", "Hungary", "21", "12", "Spain", "Spain", "44", "Gracia Alonso De Armiño", "1"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "Puerto Rico", "5", "Leandro Allende", "8"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "Puerto Rico", "13", "Miguel Angel Martínez", "1"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "Puerto Rico", "17", "Bryan Gonzalez", "3"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "Puerto Rico", "33", "Luis Cuascut", "4"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "France", "7", "Hugo Suhard", "1"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "France", "9", "Emmanuel Monceau", "8"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "France", "15", "Alex Vialaret", "3"],
+["4aeb7f8a", "Puerto Rico", "16", "18", "France", "France", "26", "Jules Rambaut", "6"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Czechia", "3", "Lukáš Stegbauer", "1"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Czechia", "9", "Filip Novotny", "8"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Czechia", "14", "Štěpán Borovka", "4"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Czechia", "22", "Adam Růžička", "4"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Mongolia", "4", "Bolor-Erdene Gantsolmon", "4"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Mongolia", "5", "Anand Ariunbold", "0"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Mongolia", "8", "Dulguun Gankhuyag", "5"],
+["33a70428", "Czechia", "17", "14", "Mongolia", "Mongolia", "22", "Sugar-Ochir Erdenetsetseg", "5"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Mongolia", "5", "Ariuntsetseg Bat-Erdene", "4"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Mongolia", "13", "Khulan Onolbaatar", "7"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Mongolia", "16", "Bolor-Erdene Battsooj", "4"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Mongolia", "24", "Narangoo Erdenebayan", "0"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Australia", "12", "Hannah Hank", "9"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Australia", "21", "Marena Whittle", "1"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Australia", "25", "Amy Atwell", "7"],
+["d82abfe5", "Mongolia", "15", "21", "Australia", "Australia", "77", "Emma Clarke", "4"],
+["52ab4107", "United States", "18", "15", "Hungary", "United States", "4", "Milaysia Fulwiley", "4"],
+["52ab4107", "United States", "18", "15", "Hungary", "United States", "6", "Sahara Williams", "7"],
+["52ab4107", "United States", "18", "15", "Hungary", "United States", "12", "Mikaylah Williams", "4"],
+["52ab4107", "United States", "18", "15", "Hungary", "United States", "13", "Joyce Edwards", "3"],
+["52ab4107", "United States", "18", "15", "Hungary", "Hungary", "2", "Virág Takács-Kiss", "8"],
+["52ab4107", "United States", "18", "15", "Hungary", "Hungary", "10", "Klaudia Papp", "4"],
+["52ab4107", "United States", "18", "15", "Hungary", "Hungary", "13", "Réka Lelik", "2"],
+["52ab4107", "United States", "18", "15", "Hungary", "Hungary", "44", "Vivi Böröndy", "1"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "United States", "10", "James Parrott", "8"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "United States", "12", "Henry Caruso", "0"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "United States", "14", "Mitch Hahn", "2"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "United States", "15", "Dylan Travis", "7"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "Latvia", "1", "Nauris Miezis", "2"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "Latvia", "2", "Karlis Lasmanis", "2"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "Latvia", "6", "Francis Lacis", "6"],
+["4a9e9fbb", "United States", "17", "14", "Latvia", "Latvia", "9", "Zigmars Raimo", "4"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Mongolia", "4", "Bolor-Erdene Gantsolmon", "5"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Mongolia", "5", "Anand Ariunbold", "9"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Mongolia", "8", "Dulguun Gankhuyag", "4"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Mongolia", "22", "Sugar-Ochir Erdenetsetseg", "3"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Poland", "3", "Michal Aniol Sokolowski", "2"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Poland", "8", "Przemyslaw Zamojski", "8"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Poland", "11", "Marcel Ponitka", "2"],
+["4b832c2f", "Mongolia", "21", "19", "Poland", "Poland", "21", "Adam Waczynski", "7"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Mongolia", "5", "Ariuntsetseg Bat-Erdene", "3"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Mongolia", "13", "Khulan Onolbaatar", "4"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Mongolia", "16", "Bolor-Erdene Battsooj", "3"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Mongolia", "24", "Narangoo Erdenebayan", "1"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Spain", "2", "Txell Alarcón", "3"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Spain", "4", "Alba Prieto", "3"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Spain", "33", "Cecilia Muhate", "5"],
+["d88ff765", "Mongolia", "11", "13", "Spain", "Spain", "44", "Gracia Alonso De Armiño", "2"],
+["b041d8cb", "Australia", "18", "21", "United States", "Australia", "12", "Hannah Hank", "2"],
+["b041d8cb", "Australia", "18", "21", "United States", "Australia", "21", "Marena Whittle", "4"],
+["b041d8cb", "Australia", "18", "21", "United States", "Australia", "25", "Amy Atwell", "9"],
+["b041d8cb", "Australia", "18", "21", "United States", "Australia", "77", "Emma Clarke", "3"],
+["b041d8cb", "Australia", "18", "21", "United States", "United States", "4", "Milaysia Fulwiley", "4"],
+["b041d8cb", "Australia", "18", "21", "United States", "United States", "6", "Sahara Williams", "4"],
+["b041d8cb", "Australia", "18", "21", "United States", "United States", "12", "Mikaylah Williams", "9"],
+["b041d8cb", "Australia", "18", "21", "United States", "United States", "13", "Joyce Edwards", "4"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "Czechia", "3", "Lukáš Stegbauer", "6"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "Czechia", "9", "Filip Novotny", "1"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "Czechia", "14", "Štěpán Borovka", "8"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "Czechia", "22", "Adam Růžička", "6"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "United States", "10", "James Parrott", "7"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "United States", "12", "Henry Caruso", "3"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "United States", "14", "Mitch Hahn", "1"],
+["2f8bd02b", "Czechia", "21", "20", "United States", "United States", "15", "Dylan Travis", "9"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Poland", "3", "Michal Aniol Sokolowski", "7"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Poland", "8", "Przemyslaw Zamojski", "6"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Poland", "11", "Marcel Ponitka", "6"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Poland", "21", "Adam Waczynski", "1"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Latvia", "1", "Nauris Miezis", "6"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Latvia", "2", "Karlis Lasmanis", "9"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Latvia", "6", "Francis Lacis", "7"],
+["8c86942b", "Poland", "20", "22", "Latvia", "Latvia", "9", "Zigmars Raimo", "0"],
+["7306e276", "Philippines", "12", "20", "China", "Philippines", "0", "Mikka Cacho", "2"],
+["7306e276", "Philippines", "12", "20", "China", "Philippines", "3", "Afril Bernardino", "4"],
+["7306e276", "Philippines", "12", "20", "China", "Philippines", "21", "Camille Clarin", "2"],
+["7306e276", "Philippines", "12", "20", "China", "Philippines", "28", "Kacey Dela Rosa", "4"],
+["7306e276", "Philippines", "12", "20", "China", "China", "10", "ZhiTing Zhang", "4"],
+["7306e276", "Philippines", "12", "20", "China", "China", "12", "Yuyan Li", "5"],
+["7306e276", "Philippines", "12", "20", "China", "China", "21", "Wenxia Li", "4"],
+["7306e276", "Philippines", "12", "20", "China", "China", "23", "Lili Wang", "7"],
+["cbc88045", "Germany", "15", "8", "Italy", "Germany", "4", "Laura Zolper", "6"],
+["cbc88045", "Germany", "15", "8", "Italy", "Germany", "6", "Marie Reichert", "4"],
+["cbc88045", "Germany", "15", "8", "Italy", "Germany", "19", "Britta Daub", "2"],
+["cbc88045", "Germany", "15", "8", "Italy", "Germany", "25", "Ama Degbeon", "3"],
+["cbc88045", "Germany", "15", "8", "Italy", "Italy", "2", "Giorgia Palmieri", "2"],
+["cbc88045", "Germany", "15", "8", "Italy", "Italy", "8", "Beatrice Caloro", "0"],
+["cbc88045", "Germany", "15", "8", "Italy", "Italy", "15", "Maria Miccoli", "3"],
+["cbc88045", "Germany", "15", "8", "Italy", "Italy", "18", "Caterina Gilli", "3"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Netherlands", "4", "Jan Driessen", "2"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Netherlands", "8", "Bryan Alberts", "7"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Netherlands", "11", "Adriaan Van Tilborg", "8"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Netherlands", "54", "Worthy de Jong", "4"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Japan", "13", "Ryo Ozawa", "6"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Japan", "15", "Kenya Igo", "1"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Japan", "24", "Yuki Nakanishi", "4"],
+["87f9e045", "Netherlands", "21", "14", "Japan", "Japan", "33", "Souleymane Coulibaly", "3"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "New Zealand", "0", "Aidan Tonge", "1"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "New Zealand", "8", "Joshua Book", "8"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "New Zealand", "13", "Te Tuhi Lewis", "12"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "New Zealand", "21", "Chris Martin", "1"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "China", "2", "Hanyu Guo", "1"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "China", "6", "Dianliang Zhang", "6"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "China", "9", "Pengcheng Lu", "9"],
+["fe6c4c6e", "New Zealand", "22", "19", "China", "China", "13", "Xingrui Wu", "3"],
+["35afba7e", "China", "16", "21", "Latvia", "China", "10", "ZhiTing Zhang", "5"],
+["35afba7e", "China", "16", "21", "Latvia", "China", "12", "Yuyan Li", "0"],
+["35afba7e", "China", "16", "21", "Latvia", "China", "21", "Wenxia Li", "7"],
+["35afba7e", "China", "16", "21", "Latvia", "China", "23", "Lili Wang", "4"],
+["35afba7e", "China", "16", "21", "Latvia", "Latvia", "6", "Ketija Vihmane", "8"],
+["35afba7e", "China", "16", "21", "Latvia", "Latvia", "13", "Marta Miščenko", "2"],
+["35afba7e", "China", "16", "21", "Latvia", "Latvia", "36", "Paula Cirša", "4"],
+["35afba7e", "China", "16", "21", "Latvia", "Latvia", "45", "Digna Strautmane", "7"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Philippines", "0", "Mikka Cacho", "3"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Philippines", "3", "Afril Bernardino", "4"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Philippines", "21", "Camille Clarin", "8"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Philippines", "28", "Kacey Dela Rosa", "2"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Italy", "2", "Giorgia Palmieri", "1"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Italy", "8", "Beatrice Caloro", "0"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Italy", "15", "Maria Miccoli", "3"],
+["534b0b78", "Philippines", "17", "13", "Italy", "Italy", "18", "Caterina Gilli", "9"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Netherlands", "4", "Jan Driessen", "3"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Netherlands", "8", "Bryan Alberts", "2"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Netherlands", "11", "Adriaan Van Tilborg", "1"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Netherlands", "54", "Worthy de Jong", "7"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Germany", "1", "Denzel Agyeman", "10"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Germany", "5", "Niklas Kropp", "3"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Germany", "20", "Fabian Giessmann", "7"],
+["aa183e1a", "Netherlands", "13", "21", "Germany", "Germany", "44", "Kevin Bryant", "1"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "Japan", "13", "Ryo Ozawa", "0"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "Japan", "15", "Kenya Igo", "2"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "Japan", "24", "Yuki Nakanishi", "4"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "Japan", "33", "Souleymane Coulibaly", "9"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "New Zealand", "0", "Aidan Tonge", "9"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "New Zealand", "8", "Joshua Book", "4"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "New Zealand", "13", "Te Tuhi Lewis", "2"],
+["5f8cec2b", "Japan", "15", "19", "New Zealand", "New Zealand", "21", "Chris Martin", "4"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Latvia", "6", "Ketija Vihmane", "1"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Latvia", "13", "Marta Miščenko", "8"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Latvia", "36", "Paula Cirša", "1"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Latvia", "45", "Digna Strautmane", "6"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Germany", "4", "Laura Zolper", "4"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Germany", "6", "Marie Reichert", "5"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Germany", "19", "Britta Daub", "5"],
+["349fb3ec", "Latvia", "16", "17", "Germany", "Germany", "25", "Ama Degbeon", "3"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Czechia", "3", "Kateřina Galíčková", "3"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Czechia", "4", "Lucie Svatoňová", "3"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Czechia", "9", "Karolina Sotolova", "5"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Czechia", "24", "Monika Fučíková", "0"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Azerbaijan", "8", "Dina Ulyanova", "0"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Azerbaijan", "23", "Arica Carter", "3"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Azerbaijan", "24", "Alexandra Mollenhauer", "5"],
+["79271d1a", "Czechia", "11", "14", "Azerbaijan", "Azerbaijan", "34", "Brianna Fraser", "6"],
+["9111cc36", "Germany", "22", "12", "China", "Germany", "1", "Denzel Agyeman", "6"],
+["9111cc36", "Germany", "22", "12", "China", "Germany", "5", "Niklas Kropp", "9"],
+["9111cc36", "Germany", "22", "12", "China", "Germany", "20", "Fabian Giessmann", "6"],
+["9111cc36", "Germany", "22", "12", "China", "Germany", "44", "Kevin Bryant", "1"],
+["9111cc36", "Germany", "22", "12", "China", "China", "2", "Hanyu Guo", "2"],
+["9111cc36", "Germany", "22", "12", "China", "China", "6", "Dianliang Zhang", "4"],
+["9111cc36", "Germany", "22", "12", "China", "China", "9", "Pengcheng Lu", "2"],
+["9111cc36", "Germany", "22", "12", "China", "China", "13", "Xingrui Wu", "4"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Australia", "8", "Jonah Antonio", "7"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Australia", "11", "Alex Higgins-Titsha", "3"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Australia", "21", "Jarred Bairstow", "4"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Australia", "38", "Lachlan Barker", "3"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Madagascar", "1", "Elly Randriamampionona", "8"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Madagascar", "12", "Alpha SOLONDRAINY", "4"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Madagascar", "15", "Anthony Rasolomanana", "5"],
+["86d7f16e", "Australia", "17", "22", "Madagascar", "Madagascar", "30", "Marco Rakotovao", "5"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Madagascar", "1", "Harisoa Hajanirina", "5"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Madagascar", "7", "Minaoharisoa Jaofera", "3"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Madagascar", "10", "Ravaka Randriatahiana", "1"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Madagascar", "11", "Tokin'Iaina Sambatrarimiora", "3"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Netherlands", "4", "Noortje Driessen", "4"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Netherlands", "15", "Lotte van Kruistum", "5"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Netherlands", "17", "Ilse Kuijt", "7"],
+["bbdfdf27", "Madagascar", "12", "21", "Netherlands", "Netherlands", "44", "Zoë Slagter", "5"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Azerbaijan", "8", "Dina Ulyanova", "4"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Azerbaijan", "23", "Arica Carter", "4"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Azerbaijan", "24", "Alexandra Mollenhauer", "4"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Azerbaijan", "34", "Brianna Fraser", "8"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Poland", "0", "Aleksandra Zięmborska", "6"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Poland", "4", "Anna Pawłowska", "3"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Poland", "15", "Klaudia Gertchen", "0"],
+["eef56789", "Azerbaijan", "20", "13", "Poland", "Poland", "33", "Weronika Telenga", "4"],
+["41e78663", "Austria", "17", "14", "Spain", "Austria", "10", "Toni Blazan", "6"],
+["41e78663", "Austria", "17", "14", "Spain", "Austria", "14", "Nico Kaltenbrunner", "6"],
+["41e78663", "Austria", "17", "14", "Spain", "Austria", "22", "Quincy Diggs", "5"],
+["41e78663", "Austria", "17", "14", "Spain", "Austria", "44", "Fabio Söhnel", "0"],
+["41e78663", "Austria", "17", "14", "Spain", "Spain", "3", "Guim Expósito", "2"],
+["41e78663", "Austria", "17", "14", "Spain", "Spain", "7", "Diego De Blas", "6"],
+["41e78663", "Austria", "17", "14", "Spain", "Spain", "8", "Carlos Martinez", "0"],
+["41e78663", "Austria", "17", "14", "Spain", "Spain", "15", "Iván Aurrecoechea", "6"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Serbia", "1", "Andreja Milutinovic", "1"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Serbia", "3", "Strahinja Stojacic", "3"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Serbia", "5", "Nenad Nerandžić", "8"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Serbia", "6", "Nemanja Barać", "8"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Australia", "8", "Jonah Antonio", "5"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Australia", "11", "Alex Higgins-Titsha", "7"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Australia", "21", "Jarred Bairstow", "2"],
+["fd6f13c2", "Serbia", "20", "16", "Australia", "Australia", "38", "Lachlan Barker", "2"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Madagascar", "1", "Harisoa Hajanirina", "0"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Madagascar", "7", "Minaoharisoa Jaofera", "4"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Madagascar", "10", "Ravaka Randriatahiana", "1"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Madagascar", "11", "Tokin'Iaina Sambatrarimiora", "5"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Czechia", "3", "Kateřina Galíčková", "5"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Czechia", "4", "Lucie Svatoňová", "3"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Czechia", "9", "Karolina Sotolova", "4"],
+["4e889f44", "Madagascar", "10", "15", "Czechia", "Czechia", "24", "Monika Fučíková", "3"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Netherlands", "4", "Noortje Driessen", "7"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Netherlands", "15", "Lotte van Kruistum", "7"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Netherlands", "17", "Ilse Kuijt", "3"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Netherlands", "44", "Zoë Slagter", "4"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Poland", "0", "Aleksandra Zięmborska", "3"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Poland", "4", "Anna Pawłowska", "2"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Poland", "15", "Klaudia Gertchen", "5"],
+["3a27dcd8", "Netherlands", "21", "10", "Poland", "Poland", "33", "Weronika Telenga", "0"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Madagascar", "1", "Elly Randriamampionona", "10"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Madagascar", "12", "Alpha SOLONDRAINY", "6"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Madagascar", "15", "Anthony Rasolomanana", "2"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Madagascar", "30", "Marco Rakotovao", "2"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Spain", "3", "Guim Expósito", "3"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Spain", "7", "Diego De Blas", "6"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Spain", "8", "Carlos Martinez", "4"],
+["3c6c1e22", "Madagascar", "20", "19", "Spain", "Spain", "15", "Iván Aurrecoechea", "6"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Serbia", "1", "Andreja Milutinovic", "4"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Serbia", "3", "Strahinja Stojacic", "8"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Serbia", "5", "Nenad Nerandžić", "3"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Serbia", "6", "Nemanja Barać", "6"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Austria", "10", "Toni Blazan", "2"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Austria", "14", "Nico Kaltenbrunner", "2"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Austria", "22", "Quincy Diggs", "3"],
+["fd30798a", "Serbia", "21", "11", "Austria", "Austria", "44", "Fabio Söhnel", "4"],
+["1b4c8634", "France", "10", "11", "Ukraine", "France", "3", "Hortense Limouzin", "3"],
+["1b4c8634", "France", "10", "11", "Ukraine", "France", "12", "Laetitia Guapo", "3"],
+["1b4c8634", "France", "10", "11", "Ukraine", "France", "13", "Marie Milapie", "0"],
+["1b4c8634", "France", "10", "11", "Ukraine", "France", "53", "Marie Mané", "4"],
+["1b4c8634", "France", "10", "11", "Ukraine", "Ukraine", "1", "Anzhelika Liashko", "1"],
+["1b4c8634", "France", "10", "11", "Ukraine", "Ukraine", "3", "Krystyna Filevych", "6"],
+["1b4c8634", "France", "10", "11", "Ukraine", "Ukraine", "5", "Miriam Uro-Nilie", "2"],
+["1b4c8634", "France", "10", "11", "Ukraine", "Ukraine", "6", "Kateryna Koval", "2"],
+["b0355146", "Canada", "14", "11", "Japan", "Canada", "2", "Katherine Plouffe", "3"],
+["b0355146", "Canada", "14", "11", "Japan", "Canada", "4", "Kacie Bosch", "5"],
+["b0355146", "Canada", "14", "11", "Japan", "Canada", "7", "Paige Crozon", "3"],
+["b0355146", "Canada", "14", "11", "Japan", "Canada", "8", "Tara Wallack", "3"],
+["b0355146", "Canada", "14", "11", "Japan", "Japan", "5", "Aya Tsurumi", "0"],
+["b0355146", "Canada", "14", "11", "Japan", "Japan", "7", "Miku Takahashi", "3"],
+["b0355146", "Canada", "14", "11", "Japan", "Japan", "18", "Kiho Miyashita", "2"],
+["b0355146", "Canada", "14", "11", "Japan", "Japan", "25", "Aoi Katsura", "6"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Brazil", "3", "William Weihermann", "4"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Brazil", "6", "Leo Branquinho", "5"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Brazil", "7", "Leandro Da Silva", "7"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Brazil", "35", "Jonatas Mello", "4"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Belgium", "0", "Bryan De Valck", "4"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Belgium", "1", "Dennis Donkor", "7"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Belgium", "3", "Jonas Foerts", "5"],
+["2c5d85c9", "Brazil", "20", "19", "Belgium", "Belgium", "8", "Caspar Augustijnen", "3"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Lithuania", "10", "Rokas Jocys", "0"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Lithuania", "22", "Ignas Vaitkus", "2"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Lithuania", "24", "Aurelijus Pukelis", "6"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Lithuania", "26", "Evaldas Džiaugys", "9"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Puerto Rico", "5", "Leandro Allende", "5"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Puerto Rico", "13", "Miguel Angel Martínez", "2"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Puerto Rico", "17", "Bryan Gonzalez", "4"],
+["b3aef302", "Lithuania", "17", "16", "Puerto Rico", "Puerto Rico", "33", "Luis Cuascut", "5"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Ukraine", "1", "Anzhelika Liashko", "3"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Ukraine", "3", "Krystyna Filevych", "4"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Ukraine", "5", "Miriam Uro-Nilie", "6"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Ukraine", "6", "Kateryna Koval", "3"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Lithuania", "6", "Kamile Nacickaite-van der Horst", "7"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Lithuania", "7", "Giedre Labuckiene", "3"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Lithuania", "9", "Gabriele Sulske", "2"],
+["19966cdb", "Ukraine", "16", "14", "Lithuania", "Lithuania", "77", "Justina Miknaite", "2"],
+["30e50dde", "France", "16", "12", "Canada", "France", "3", "Hortense Limouzin", "6"],
+["30e50dde", "France", "16", "12", "Canada", "France", "12", "Laetitia Guapo", "4"],
+["30e50dde", "France", "16", "12", "Canada", "France", "13", "Marie Milapie", "2"],
+["30e50dde", "France", "16", "12", "Canada", "France", "53", "Marie Mané", "4"],
+["30e50dde", "France", "16", "12", "Canada", "Canada", "2", "Katherine Plouffe", "3"],
+["30e50dde", "France", "16", "12", "Canada", "Canada", "4", "Kacie Bosch", "2"],
+["30e50dde", "France", "16", "12", "Canada", "Canada", "7", "Paige Crozon", "4"],
+["30e50dde", "France", "16", "12", "Canada", "Canada", "8", "Tara Wallack", "3"],
+["e737446e", "France", "20", "15", "Brazil", "France", "7", "Hugo Suhard", "5"],
+["e737446e", "France", "20", "15", "Brazil", "France", "9", "Emmanuel Monceau", "1"],
+["e737446e", "France", "20", "15", "Brazil", "France", "15", "Alex Vialaret", "6"],
+["e737446e", "France", "20", "15", "Brazil", "France", "26", "Jules Rambaut", "8"],
+["e737446e", "France", "20", "15", "Brazil", "Brazil", "3", "William Weihermann", "2"],
+["e737446e", "France", "20", "15", "Brazil", "Brazil", "6", "Leo Branquinho", "2"],
+["e737446e", "France", "20", "15", "Brazil", "Brazil", "7", "Leandro Da Silva", "2"],
+["e737446e", "France", "20", "15", "Brazil", "Brazil", "35", "Jonatas Mello", "9"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Belgium", "0", "Bryan De Valck", "1"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Belgium", "1", "Dennis Donkor", "6"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Belgium", "3", "Jonas Foerts", "8"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Belgium", "8", "Caspar Augustijnen", "5"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Puerto Rico", "5", "Leandro Allende", "3"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Puerto Rico", "13", "Miguel Angel Martínez", "1"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Puerto Rico", "17", "Bryan Gonzalez", "7"],
+["dbc9ddca", "Belgium", "20", "14", "Puerto Rico", "Puerto Rico", "33", "Luis Cuascut", "3"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Lithuania", "6", "Kamile Nacickaite-van der Horst", "6"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Lithuania", "7", "Giedre Labuckiene", "7"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Lithuania", "9", "Gabriele Sulske", "8"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Lithuania", "77", "Justina Miknaite", "0"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Japan", "5", "Aya Tsurumi", "1"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Japan", "7", "Miku Takahashi", "8"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Japan", "18", "Kiho Miyashita", "0"],
+["0d650d1e", "Lithuania", "21", "11", "Japan", "Japan", "25", "Aoi Katsura", "2"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Spain", "2", "Txell Alarcón", "9"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Spain", "4", "Alba Prieto", "9"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Spain", "33", "Cecilia Muhate", "1"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Spain", "44", "Gracia Alonso De Armiño", "1"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Australia", "12", "Hannah Hank", "2"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Australia", "21", "Marena Whittle", "9"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Australia", "25", "Amy Atwell", "7"],
+["b807d8cb", "Spain", "20", "18", "Australia", "Australia", "77", "Emma Clarke", "0"],
+["e2481ddf", "Lithuania", "21", "15", "France", "Lithuania", "10", "Rokas Jocys", "7"],
+["e2481ddf", "Lithuania", "21", "15", "France", "Lithuania", "22", "Ignas Vaitkus", "3"],
+["e2481ddf", "Lithuania", "21", "15", "France", "Lithuania", "24", "Aurelijus Pukelis", "4"],
+["e2481ddf", "Lithuania", "21", "15", "France", "Lithuania", "26", "Evaldas Džiaugys", "7"],
+["e2481ddf", "Lithuania", "21", "15", "France", "France", "7", "Hugo Suhard", "5"],
+["e2481ddf", "Lithuania", "21", "15", "France", "France", "9", "Emmanuel Monceau", "2"],
+["e2481ddf", "Lithuania", "21", "15", "France", "France", "15", "Alex Vialaret", "6"],
+["e2481ddf", "Lithuania", "21", "15", "France", "France", "26", "Jules Rambaut", "2"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Latvia", "1", "Nauris Miezis", "8"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Latvia", "2", "Karlis Lasmanis", "7"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Latvia", "6", "Francis Lacis", "5"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Latvia", "9", "Zigmars Raimo", "1"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Czechia", "3", "Lukáš Stegbauer", "4"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Czechia", "9", "Filip Novotny", "5"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Czechia", "14", "Štěpán Borovka", "4"],
+["a6494488", "Latvia", "21", "15", "Czechia", "Czechia", "22", "Adam Růžička", "2"],
+["6b401f34", "United States", "20", "17", "Mongolia", "United States", "4", "Milaysia Fulwiley", "6"],
+["6b401f34", "United States", "20", "17", "Mongolia", "United States", "6", "Sahara Williams", "6"],
+["6b401f34", "United States", "20", "17", "Mongolia", "United States", "12", "Mikaylah Williams", "1"],
+["6b401f34", "United States", "20", "17", "Mongolia", "United States", "13", "Joyce Edwards", "7"],
+["6b401f34", "United States", "20", "17", "Mongolia", "Mongolia", "5", "Ariuntsetseg Bat-Erdene", "1"],
+["6b401f34", "United States", "20", "17", "Mongolia", "Mongolia", "13", "Khulan Onolbaatar", "14"],
+["6b401f34", "United States", "20", "17", "Mongolia", "Mongolia", "16", "Bolor-Erdene Battsooj", "2"],
+["6b401f34", "United States", "20", "17", "Mongolia", "Mongolia", "24", "Narangoo Erdenebayan", "0"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Australia", "12", "Hannah Hank", "6"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Australia", "21", "Marena Whittle", "6"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Australia", "25", "Amy Atwell", "8"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Australia", "77", "Emma Clarke", "1"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Hungary", "2", "Virág Takács-Kiss", "8"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Hungary", "10", "Klaudia Papp", "3"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Hungary", "13", "Réka Lelik", "4"],
+["b68b1d94", "Australia", "21", "18", "Hungary", "Hungary", "44", "Vivi Böröndy", "3"],
+["734280fe", "Mongolia", "19", "22", "United States", "Mongolia", "4", "Bolor-Erdene Gantsolmon", "2"],
+["734280fe", "Mongolia", "19", "22", "United States", "Mongolia", "5", "Anand Ariunbold", "8"],
+["734280fe", "Mongolia", "19", "22", "United States", "Mongolia", "8", "Dulguun Gankhuyag", "5"],
+["734280fe", "Mongolia", "19", "22", "United States", "Mongolia", "22", "Sugar-Ochir Erdenetsetseg", "4"],
+["734280fe", "Mongolia", "19", "22", "United States", "United States", "10", "James Parrott", "9"],
+["734280fe", "Mongolia", "19", "22", "United States", "United States", "12", "Henry Caruso", "5"],
+["734280fe", "Mongolia", "19", "22", "United States", "United States", "14", "Mitch Hahn", "4"],
+["734280fe", "Mongolia", "19", "22", "United States", "United States", "15", "Dylan Travis", "4"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Poland", "3", "Michal Aniol Sokolowski", "0"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Poland", "8", "Przemyslaw Zamojski", "4"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Poland", "11", "Marcel Ponitka", "2"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Poland", "21", "Adam Waczynski", "9"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Czechia", "3", "Lukáš Stegbauer", "4"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Czechia", "9", "Filip Novotny", "6"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Czechia", "14", "Štěpán Borovka", "6"],
+["79b67aaf", "Poland", "15", "21", "Czechia", "Czechia", "22", "Adam Růžička", "5"],
+["6527f928", "Spain", "18", "21", "United States", "Spain", "2", "Txell Alarcón", "7"],
+["6527f928", "Spain", "18", "21", "United States", "Spain", "4", "Alba Prieto", "4"],
+["6527f928", "Spain", "18", "21", "United States", "Spain", "33", "Cecilia Muhate", "1"],
+["6527f928", "Spain", "18", "21", "United States", "Spain", "44", "Gracia Alonso De Armiño", "6"],
+["6527f928", "Spain", "18", "21", "United States", "United States", "4", "Milaysia Fulwiley", "2"],
+["6527f928", "Spain", "18", "21", "United States", "United States", "6", "Sahara Williams", "4"],
+["6527f928", "Spain", "18", "21", "United States", "United States", "12", "Mikaylah Williams", "11"],
+["6527f928", "Spain", "18", "21", "United States", "United States", "13", "Joyce Edwards", "4"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Hungary", "2", "Virág Takács-Kiss", "4"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Hungary", "10", "Klaudia Papp", "4"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Hungary", "13", "Réka Lelik", "2"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Hungary", "44", "Vivi Böröndy", "7"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Mongolia", "5", "Ariuntsetseg Bat-Erdene", "3"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Mongolia", "13", "Khulan Onolbaatar", "3"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Mongolia", "16", "Bolor-Erdene Battsooj", "0"],
+["91cc2ec0", "Hungary", "17", "6", "Mongolia", "Mongolia", "24", "Narangoo Erdenebayan", "0"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Latvia", "1", "Nauris Miezis", "1"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Latvia", "2", "Karlis Lasmanis", "12"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Latvia", "6", "Francis Lacis", "5"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Latvia", "9", "Zigmars Raimo", "3"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Mongolia", "4", "Bolor-Erdene Gantsolmon", "5"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Mongolia", "5", "Anand Ariunbold", "0"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Mongolia", "8", "Dulguun Gankhuyag", "2"],
+["598f9623", "Latvia", "21", "12", "Mongolia", "Mongolia", "22", "Sugar-Ochir Erdenetsetseg", "5"],
+["f285692e", "United States", "21", "14", "Poland", "United States", "10", "James Parrott", "4"],
+["f285692e", "United States", "21", "14", "Poland", "United States", "12", "Henry Caruso", "11"],
+["f285692e", "United States", "21", "14", "Poland", "United States", "14", "Mitch Hahn", "4"],
+["f285692e", "United States", "21", "14", "Poland", "United States", "15", "Dylan Travis", "2"],
+["f285692e", "United States", "21", "14", "Poland", "Poland", "3", "Michal Aniol Sokolowski", "7"],
+["f285692e", "United States", "21", "14", "Poland", "Poland", "8", "Przemyslaw Zamojski", "4"],
+["f285692e", "United States", "21", "14", "Poland", "Poland", "11", "Marcel Ponitka", "0"],
+["f285692e", "United States", "21", "14", "Poland", "Poland", "21", "Adam Waczynski", "3"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Latvia", "6", "Ketija Vihmane", "7"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Latvia", "13", "Marta Miščenko", "2"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Latvia", "36", "Paula Cirša", "5"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Latvia", "45", "Digna Strautmane", "2"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Hungary", "2", "Virág Takács-Kiss", "5"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Hungary", "10", "Klaudia Papp", "4"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Hungary", "13", "Réka Lelik", "5"],
+["c66a0776", "Latvia", "16", "17", "Hungary", "Hungary", "44", "Vivi Böröndy", "3"],
+["40982bbb", "Australia", "21", "11", "China", "Australia", "12", "Hannah Hank", "4"],
+["40982bbb", "Australia", "21", "11", "China", "Australia", "21", "Marena Whittle", "6"],
+["40982bbb", "Australia", "21", "11", "China", "Australia", "25", "Amy Atwell", "9"],
+["40982bbb", "Australia", "21", "11", "China", "Australia", "77", "Emma Clarke", "2"],
+["40982bbb", "Australia", "21", "11", "China", "China", "10", "ZhiTing Zhang", "2"],
+["40982bbb", "Australia", "21", "11", "China", "China", "12", "Yuyan Li", "1"],
+["40982bbb", "Australia", "21", "11", "China", "China", "21", "Wenxia Li", "2"],
+["40982bbb", "Australia", "21", "11", "China", "China", "23", "Lili Wang", "6"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Netherlands", "4", "Jan Driessen", "0"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Netherlands", "8", "Bryan Alberts", "7"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Netherlands", "11", "Adriaan Van Tilborg", "8"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Netherlands", "54", "Worthy de Jong", "6"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Czechia", "3", "Lukáš Stegbauer", "1"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Czechia", "9", "Filip Novotny", "3"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Czechia", "14", "Štěpán Borovka", "5"],
+["d0880d0f", "Netherlands", "21", "15", "Czechia", "Czechia", "22", "Adam Růžička", "6"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "Latvia", "1", "Nauris Miezis", "10"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "Latvia", "2", "Karlis Lasmanis", "6"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "Latvia", "6", "Francis Lacis", "3"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "Latvia", "9", "Zigmars Raimo", "2"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "New Zealand", "0", "Aidan Tonge", "3"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "New Zealand", "8", "Joshua Book", "3"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "New Zealand", "13", "Te Tuhi Lewis", "10"],
+["52abe84e", "Latvia", "21", "19", "New Zealand", "New Zealand", "21", "Chris Martin", "3"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Azerbaijan", "8", "Dina Ulyanova", "1"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Azerbaijan", "23", "Arica Carter", "3"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Azerbaijan", "24", "Alexandra Mollenhauer", "3"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Azerbaijan", "34", "Brianna Fraser", "7"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Lithuania", "6", "Kamile Nacickaite-van der Horst", "3"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Lithuania", "7", "Giedre Labuckiene", "2"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Lithuania", "9", "Gabriele Sulske", "3"],
+["13841d29", "Azerbaijan", "14", "12", "Lithuania", "Lithuania", "77", "Justina Miknaite", "4"],
+["21b99175", "France", "10", "9", "Czechia", "France", "3", "Hortense Limouzin", "4"],
+["21b99175", "France", "10", "9", "Czechia", "France", "12", "Laetitia Guapo", "3"],
+["21b99175", "France", "10", "9", "Czechia", "France", "13", "Marie Milapie", "1"],
+["21b99175", "France", "10", "9", "Czechia", "France", "53", "Marie Mané", "2"],
+["21b99175", "France", "10", "9", "Czechia", "Czechia", "3", "Kateřina Galíčková", "4"],
+["21b99175", "France", "10", "9", "Czechia", "Czechia", "4", "Lucie Svatoňová", "2"],
+["21b99175", "France", "10", "9", "Czechia", "Czechia", "9", "Karolina Sotolova", "2"],
+["21b99175", "France", "10", "9", "Czechia", "Czechia", "24", "Monika Fučíková", "1"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Austria", "10", "Toni Blazan", "10"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Austria", "14", "Nico Kaltenbrunner", "3"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Austria", "22", "Quincy Diggs", "5"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Austria", "44", "Fabio Söhnel", "3"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Belgium", "0", "Bryan De Valck", "3"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Belgium", "1", "Dennis Donkor", "3"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Belgium", "3", "Jonas Foerts", "3"],
+["7f15c09a", "Austria", "21", "13", "Belgium", "Belgium", "8", "Caspar Augustijnen", "4"],
+["62798e53", "France", "16", "10", "Madagascar", "France", "7", "Hugo Suhard", "5"],
+["62798e53", "France", "16", "10", "Madagascar", "France", "9", "Emmanuel Monceau", "4"],
+["62798e53", "France", "16", "10", "Madagascar", "France", "15", "Alex Vialaret", "3"],
+["62798e53", "France", "16", "10", "Madagascar", "France", "26", "Jules Rambaut", "4"],
+["62798e53", "France", "16", "10", "Madagascar", "Madagascar", "1", "Elly Randriamampionona", "4"],
+["62798e53", "France", "16", "10", "Madagascar", "Madagascar", "12", "Alpha SOLONDRAINY", "3"],
+["62798e53", "France", "16", "10", "Madagascar", "Madagascar", "15", "Anthony Rasolomanana", "1"],
+["62798e53", "France", "16", "10", "Madagascar", "Madagascar", "30", "Marco Rakotovao", "2"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Netherlands", "4", "Noortje Driessen", "3"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Netherlands", "15", "Lotte van Kruistum", "8"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Netherlands", "17", "Ilse Kuijt", "2"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Netherlands", "44", "Zoë Slagter", "8"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Hungary", "2", "Virág Takács-Kiss", "9"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Hungary", "10", "Klaudia Papp", "8"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Hungary", "13", "Réka Lelik", "1"],
+["053c520b", "Netherlands", "21", "20", "Hungary", "Hungary", "44", "Vivi Böröndy", "2"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Australia", "12", "Hannah Hank", "2"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Australia", "21", "Marena Whittle", "8"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Australia", "25", "Amy Atwell", "6"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Australia", "77", "Emma Clarke", "5"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Ukraine", "1", "Anzhelika Liashko", "2"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Ukraine", "3", "Krystyna Filevych", "2"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Ukraine", "5", "Miriam Uro-Nilie", "5"],
+["f12fb5d7", "Australia", "21", "10", "Ukraine", "Ukraine", "6", "Kateryna Koval", "1"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Serbia", "1", "Andreja Milutinovic", "1"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Serbia", "3", "Strahinja Stojacic", "9"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Serbia", "5", "Nenad Nerandžić", "5"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Serbia", "6", "Nemanja Barać", "6"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Netherlands", "4", "Jan Driessen", "8"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Netherlands", "8", "Bryan Alberts", "2"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Netherlands", "11", "Adriaan Van Tilborg", "3"],
+["cceb7d4d", "Serbia", "21", "19", "Netherlands", "Netherlands", "54", "Worthy de Jong", "6"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Latvia", "1", "Nauris Miezis", "10"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Latvia", "2", "Karlis Lasmanis", "8"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Latvia", "6", "Francis Lacis", "1"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Latvia", "9", "Zigmars Raimo", "3"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Lithuania", "10", "Rokas Jocys", "1"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Lithuania", "22", "Ignas Vaitkus", "4"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Lithuania", "24", "Aurelijus Pukelis", "5"],
+["6b8a959e", "Latvia", "22", "13", "Lithuania", "Lithuania", "26", "Evaldas Džiaugys", "3"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Germany", "4", "Laura Zolper", "6"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Germany", "6", "Marie Reichert", "6"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Germany", "19", "Britta Daub", "0"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Germany", "25", "Ama Degbeon", "4"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Azerbaijan", "8", "Dina Ulyanova", "1"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Azerbaijan", "23", "Arica Carter", "2"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Azerbaijan", "24", "Alexandra Mollenhauer", "6"],
+["d49ed056", "Germany", "16", "18", "Azerbaijan", "Azerbaijan", "34", "Brianna Fraser", "9"],
+["9de80b27", "France", "16", "18", "United States", "France", "3", "Hortense Limouzin", "7"],
+["9de80b27", "France", "16", "18", "United States", "France", "12", "Laetitia Guapo", "4"],
+["9de80b27", "France", "16", "18", "United States", "France", "13", "Marie Milapie", "0"],
+["9de80b27", "France", "16", "18", "United States", "France", "53", "Marie Mané", "5"],
+["9de80b27", "France", "16", "18", "United States", "United States", "4", "Milaysia Fulwiley", "3"],
+["9de80b27", "France", "16", "18", "United States", "United States", "6", "Sahara Williams", "1"],
+["9de80b27", "France", "16", "18", "United States", "United States", "12", "Mikaylah Williams", "8"],
+["9de80b27", "France", "16", "18", "United States", "United States", "13", "Joyce Edwards", "6"],
+["631ba068", "Germany", "21", "19", "Austria", "Germany", "1", "Denzel Agyeman", "10"],
+["631ba068", "Germany", "21", "19", "Austria", "Germany", "5", "Niklas Kropp", "1"],
+["631ba068", "Germany", "21", "19", "Austria", "Germany", "20", "Fabian Giessmann", "6"],
+["631ba068", "Germany", "21", "19", "Austria", "Germany", "44", "Kevin Bryant", "4"],
+["631ba068", "Germany", "21", "19", "Austria", "Austria", "10", "Toni Blazan", "3"],
+["631ba068", "Germany", "21", "19", "Austria", "Austria", "14", "Nico Kaltenbrunner", "7"],
+["631ba068", "Germany", "21", "19", "Austria", "Austria", "22", "Quincy Diggs", "7"],
+["631ba068", "Germany", "21", "19", "Austria", "Austria", "44", "Fabio Söhnel", "2"],
+["463195e9", "France", "14", "11", "United States", "France", "7", "Hugo Suhard", "8"],
+["463195e9", "France", "14", "11", "United States", "France", "9", "Emmanuel Monceau", "3"],
+["463195e9", "France", "14", "11", "United States", "France", "15", "Alex Vialaret", "0"],
+["463195e9", "France", "14", "11", "United States", "France", "26", "Jules Rambaut", "3"],
+["463195e9", "France", "14", "11", "United States", "United States", "10", "James Parrott", "3"],
+["463195e9", "France", "14", "11", "United States", "United States", "12", "Henry Caruso", "4"],
+["463195e9", "France", "14", "11", "United States", "United States", "14", "Mitch Hahn", "2"],
+["463195e9", "France", "14", "11", "United States", "United States", "15", "Dylan Travis", "2"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Netherlands", "4", "Noortje Driessen", "6"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Netherlands", "15", "Lotte van Kruistum", "1"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Netherlands", "17", "Ilse Kuijt", "7"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Netherlands", "44", "Zoë Slagter", "0"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Australia", "12", "Hannah Hank", "4"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Australia", "21", "Marena Whittle", "4"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Australia", "25", "Amy Atwell", "8"],
+["f7ad5420", "Netherlands", "14", "16", "Australia", "Australia", "77", "Emma Clarke", "0"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "Azerbaijan", "8", "Dina Ulyanova", "2"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "Azerbaijan", "23", "Arica Carter", "2"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "Azerbaijan", "24", "Alexandra Mollenhauer", "11"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "Azerbaijan", "34", "Brianna Fraser", "3"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "United States", "4", "Milaysia Fulwiley", "4"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "United States", "6", "Sahara Williams", "3"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "United States", "12", "Mikaylah Williams", "9"],
+["efd77bc1", "Azerbaijan", "18", "19", "United States", "United States", "13", "Joyce Edwards", "3"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Serbia", "1", "Andreja Milutinovic", "4"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Serbia", "3", "Strahinja Stojacic", "12"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Serbia", "5", "Nenad Nerandžić", "1"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Serbia", "6", "Nemanja Barać", "2"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Latvia", "1", "Nauris Miezis", "9"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Latvia", "2", "Karlis Lasmanis", "6"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Latvia", "6", "Francis Lacis", "3"],
+["9701412a", "Serbia", "19", "20", "Latvia", "Latvia", "9", "Zigmars Raimo", "2"],
+["71c33413", "Germany", "19", "18", "France", "Germany", "1", "Denzel Agyeman", "7"],
+["71c33413", "Germany", "19", "18", "France", "Germany", "5", "Niklas Kropp", "0"],
+["71c33413", "Germany", "19", "18", "France", "Germany", "20", "Fabian Giessmann", "10"],
+["71c33413", "Germany", "19", "18", "France", "Germany", "44", "Kevin Bryant", "2"],
+["71c33413", "Germany", "19", "18", "France", "France", "7", "Hugo Suhard", "7"],
+["71c33413", "Germany", "19", "18", "France", "France", "9", "Emmanuel Monceau", "2"],
+["71c33413", "Germany", "19", "18", "France", "France", "15", "Alex Vialaret", "1"],
+["71c33413", "Germany", "19", "18", "France", "France", "26", "Jules Rambaut", "8"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Netherlands", "4", "Noortje Driessen", "13"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Netherlands", "15", "Lotte van Kruistum", "3"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Netherlands", "17", "Ilse Kuijt", "2"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Netherlands", "44", "Zoë Slagter", "3"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Azerbaijan", "8", "Dina Ulyanova", "5"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Azerbaijan", "23", "Arica Carter", "5"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Azerbaijan", "24", "Alexandra Mollenhauer", "4"],
+["20fa9210", "Netherlands", "21", "14", "Azerbaijan", "Azerbaijan", "34", "Brianna Fraser", "0"],
+["40045ec1", "Serbia", "20", "19", "France", "Serbia", "1", "Andreja Milutinovic", "3"],
+["40045ec1", "Serbia", "20", "19", "France", "Serbia", "3", "Strahinja Stojacic", "4"],
+["40045ec1", "Serbia", "20", "19", "France", "Serbia", "5", "Nenad Nerandžić", "8"],
+["40045ec1", "Serbia", "20", "19", "France", "Serbia", "6", "Nemanja Barać", "5"],
+["40045ec1", "Serbia", "20", "19", "France", "France", "7", "Hugo Suhard", "7"],
+["40045ec1", "Serbia", "20", "19", "France", "France", "9", "Emmanuel Monceau", "2"],
+["40045ec1", "Serbia", "20", "19", "France", "France", "15", "Alex Vialaret", "1"],
+["40045ec1", "Serbia", "20", "19", "France", "France", "26", "Jules Rambaut", "9"],
+["a44d5d09", "Australia", "20", "21", "United States", "Australia", "12", "Hannah Hank", "4"],
+["a44d5d09", "Australia", "20", "21", "United States", "Australia", "21", "Marena Whittle", "11"],
+["a44d5d09", "Australia", "20", "21", "United States", "Australia", "25", "Amy Atwell", "4"],
+["a44d5d09", "Australia", "20", "21", "United States", "Australia", "77", "Emma Clarke", "1"],
+["a44d5d09", "Australia", "20", "21", "United States", "United States", "4", "Milaysia Fulwiley", "9"],
+["a44d5d09", "Australia", "20", "21", "United States", "United States", "6", "Sahara Williams", "4"],
+["a44d5d09", "Australia", "20", "21", "United States", "United States", "12", "Mikaylah Williams", "4"],
+["a44d5d09", "Australia", "20", "21", "United States", "United States", "13", "Joyce Edwards", "4"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Latvia", "1", "Nauris Miezis", "3"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Latvia", "2", "Karlis Lasmanis", "12"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Latvia", "6", "Francis Lacis", "4"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Latvia", "9", "Zigmars Raimo", "1"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Germany", "1", "Denzel Agyeman", "9"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Germany", "5", "Niklas Kropp", "0"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Germany", "20", "Fabian Giessmann", "3"],
+["175cb4c1", "Latvia", "20", "15", "Germany", "Germany", "44", "Kevin Bryant", "3"],
+];
+
+const WOMEN_GAMES = new Set(["98076704", "2c77a174", "cd5e7b5c", "3e11d99b", "e6e79f68", "b967a56b", "71a0eb44", "b3f267e8", "6b0af057", "f6f30509", "6ea5679e", "aa8af5a3", "c86f8036", "3ca98c0b", "cd7d63be", "5b127f38", "d82abfe5", "52ab4107", "d88ff765", "b041d8cb", "7306e276", "cbc88045", "35afba7e", "534b0b78", "349fb3ec", "79271d1a", "bbdfdf27", "eef56789", "4e889f44", "3a27dcd8", "1b4c8634", "b0355146", "19966cdb", "30e50dde", "0d650d1e", "b807d8cb", "6b401f34", "b68b1d94", "6527f928", "91cc2ec0", "c66a0776", "40982bbb", "13841d29", "21b99175", "053c520b", "f12fb5d7", "d49ed056", "9de80b27", "f7ad5420", "efd77bc1", "20fa9210", "a44d5d09"]);
+
+const GAME_ORDER = ["98076704", "2c77a174", "424409b9", "9b7ed6bc", "cd5e7b5c", "3e11d99b", "76aa270c", "0a840a9e", "e6e79f68", "b967a56b", "35c27d55", "d47467bc", "71a0eb44", "b3f267e8", "08b953e8", "c7babe92", "6b0af057", "f6f30509", "3d72ffe5", "75652272", "6ea5679e", "aa8af5a3", "5a5fb51c", "ed88dff0", "c86f8036", "3ca98c0b", "2652c679", "a04741a9", "cd7d63be", "5b127f38", "4aeb7f8a", "33a70428", "d82abfe5", "52ab4107", "4a9e9fbb", "4b832c2f", "d88ff765", "b041d8cb", "2f8bd02b", "8c86942b", "7306e276", "cbc88045", "87f9e045", "fe6c4c6e", "35afba7e", "534b0b78", "aa183e1a", "5f8cec2b", "349fb3ec", "79271d1a", "9111cc36", "86d7f16e", "bbdfdf27", "eef56789", "41e78663", "fd6f13c2", "4e889f44", "3a27dcd8", "3c6c1e22", "fd30798a", "1b4c8634", "b0355146", "2c5d85c9", "b3aef302", "19966cdb", "30e50dde", "e737446e", "dbc9ddca", "0d650d1e", "b807d8cb", "e2481ddf", "a6494488", "6b401f34", "b68b1d94", "734280fe", "79b67aaf", "6527f928", "91cc2ec0", "598f9623", "f285692e", "c66a0776", "40982bbb", "d0880d0f", "52abe84e", "13841d29", "21b99175", "7f15c09a", "62798e53", "053c520b", "f12fb5d7", "cceb7d4d", "6b8a959e", "d49ed056", "9de80b27", "631ba068", "463195e9", "f7ad5420", "efd77bc1", "9701412a", "71c33413", "20fa9210", "40045ec1", "a44d5d09", "175cb4c1"];
+
+const FINISH_ORDER = {"W": ["United States", "Australia", "Netherlands", "Azerbaijan", "Germany", "Ukraine", "Latvia", "Hungary", "France", "Canada", "Spain", "Lithuania", "China", "Czechia", "Philippines", "Poland", "Japan", "Mongolia", "Italy", "Madagascar"], "M": ["Latvia", "Germany", "Serbia", "France", "Lithuania", "Netherlands", "Austria", "Czechia", "United States", "New Zealand", "Madagascar", "China", "Mongolia", "Spain", "Puerto Rico", "Brazil", "Belgium", "Australia", "Poland", "Japan"]};
+
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid,ht,hs,as_,at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid,ht,hs:+hs,as:+as_,at};
+}
+
+function buildData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [gid,ht,hs,as_,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let gender = 'W';
+let activeTeams = new Set();
+
+function rankTeams(g) {
+  const order = FINISH_ORDER[g];
+  const available = Object.keys(teamData[g]);
+  return [...order.filter(t=>available.includes(t)), ...available.filter(t=>!order.includes(t)).sort()];
+}
+
+function getTeamGames(team, g) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[g][team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos) {
+  return pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';
+}
+
+function updateHero(g) {
+  const teams = rankTeams(g);
+  const gids = new Set(); let players = 0;
+  for (const t of teams) { getTeamGames(t,g).forEach(id=>gids.add(id)); players+=Object.keys(teamData[g][t]).length; }
+  document.getElementById('hero-games').textContent = (gids.size/2|0)+' games';
+  document.getElementById('hero-players').textContent = players+' players';
+}
+
+function renderFinishRow(g) {
+  const row = document.getElementById('finish-row');
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  FINISH_ORDER[g].forEach((team,i) => {
+    const pos=i+1, cls=getFinishClass(pos);
+    const pill=document.createElement('div');
+    pill.className='finish-pill'+(cls?' '+cls:'');
+    pill.innerHTML=`<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips(g) {
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of rankTeams(g)) {
+    const b=document.createElement('button');
+    b.className='team-chip'+(activeTeams.has(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{activeTeams.has(t)?activeTeams.delete(t):activeTeams.add(t);renderAll();};
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  updateHero(gender); renderFinishRow(gender); renderChips(gender);
+  const teams=rankTeams(gender);
+  const show=activeTeams.size>0?teams.filter(t=>activeTeams.has(t)):teams;
+  const content=document.getElementById('content');
+  content.innerHTML='';
+  if(!show.length){content.innerHTML='<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';return;}
+  const order=FINISH_ORDER[gender];
+  for (const team of show) content.appendChild(buildBlock(team,gender,order.indexOf(team)+1));
+}
+
+function buildBlock(team,g,pos) {
+  const players=teamData[g][team], allGames=getTeamGames(team,g);
+  const sorted=Object.entries(players).sort((a,b)=>{
+    const ta=Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb=Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const block=document.createElement('div'); block.className='team-block';
+  const gTag=g==='W'?'<span class="gender-tag w">W</span>':'<span class="gender-tag m">M</span>';
+  const finCls=getFinishClass(pos);
+  const finLabel=pos?`<span class="team-finish${finCls?' '+finCls:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>`:'';
+  const title=document.createElement('div'); title.className='team-title';
+  title.innerHTML=`${gTag}<h2>${team}</h2>${finLabel}<span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span><span class="toggle-icon">▾</span>`;
+  const bodyWrap=document.createElement('div'); bodyWrap.className='team-body-wrap';
+  title.onclick=()=>{bodyWrap.classList.toggle('collapsed');title.classList.toggle('collapsed');};
+  block.appendChild(title);
+  const table=document.createElement('table');
+  const thead=document.createElement('thead');
+  const tr1=document.createElement('tr');
+  tr1.appendChild(mkTh('#','num')); tr1.appendChild(mkTh('Player',''));
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],gi=gameIndex[gid];
+    const opp=gi.ht===team?gi.at:gi.ht;
+    const myS=gi.ht===team?gi.hs:gi.as,opS=gi.ht===team?gi.as:gi.hs;
+    const won=myS>opS;
+    const cell=mkTh('','game-th center'+(i===0?' divider':''));
+    cell.innerHTML=`<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider')); tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1); table.appendChild(thead);
+  const tbody=document.createElement('tbody');
+  for (const [name,pd] of sorted){
+    const total=Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp=Object.keys(pd.games).length;
+    const avg=gp>0?(total/gp).toFixed(1):'—';
+    const tr=document.createElement('tr');
+    tr.appendChild(mkTd(pd.num,'num')); tr.appendChild(mkTd(name,'name'));
+    for (let i=0;i<allGames.length;i++){
+      const gid=allGames[i],pts=pd.games[gid];
+      const cls=(i===0?'divider ':'')+(pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts),cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider')); tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+  const totRow=document.createElement('tr'); totRow.className='totrow';
+  totRow.appendChild(mkTd('','')); totRow.appendChild(mkTd('Team total',''));
+  let grand=0;
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],col=sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand+=col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider')); totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow); table.appendChild(tbody);
+  bodyWrap.appendChild(table); block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text,cls){const el=document.createElement('th');if(cls)el.className=cls;if(text)el.textContent=text;return el;}
+function mkTd(text,cls){const el=document.createElement('td');if(cls)el.className=cls;el.textContent=text;return el;}
+function setGender(g){gender=g;activeTeams.clear();document.getElementById('btn-w').classList.toggle('active',g==='W');document.getElementById('btn-m').classList.toggle('active',g==='M');renderAll();}
+
+renderAll();
+</script>
+</body>
+</html>
