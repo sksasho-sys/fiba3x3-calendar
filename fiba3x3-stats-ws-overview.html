@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women's Series — Team Participation | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--ws:#f472b6;--ws-bg:rgba(244,114,182,0.10);
+  --hero-grad:linear-gradient(150deg,#1e1018 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--ws:#be123c;--ws-bg:rgba(244,114,182,0.09);
+  --hero-grad:linear-gradient(150deg,#f5e0ea 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1200px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--ws-bg);color:var(--ws);border:1px solid rgba(244,114,182,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(190,18,60,.22)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(244,114,182,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(190,18,60,0.04)}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ws);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--ws);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+
+.controls{max-width:1200px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.search-box{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--s1)}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
+.search-box svg{width:14px;height:14px;color:var(--muted);flex-shrink:0}
+.hint{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:1rem 2rem 5rem;overflow-x:auto}
+
+table.matrix{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;min-width:800px}
+table.matrix thead th{position:sticky;top:0;background:var(--s2);z-index:2}
+.th-team{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;position:sticky;left:0;background:var(--s2);z-index:3;min-width:150px}
+.th-tour{padding:10px 6px;border-bottom:2px solid var(--border2);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);font-weight:500;text-align:center;min-width:58px;vertical-align:bottom}
+.th-tour a{color:var(--ws);text-decoration:none}
+.th-tour a:hover{text-decoration:underline}
+.th-count{padding:10px 8px;border-bottom:2px solid var(--border2);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;min-width:40px}
+
+tr.team-row{border-top:1px solid var(--border);cursor:pointer;transition:background .12s}
+tr.team-row:hover{background:var(--s2)}
+tr.team-row td{padding:0;border-bottom:1px solid var(--border)}
+.team-cell{display:flex;align-items:center;gap:8px;padding:9px 12px;position:sticky;left:0;background:var(--bg);z-index:1;min-width:150px}
+tr.team-row:hover .team-cell{background:var(--s2)}
+.team-cell .caret{font-size:10px;color:var(--muted);transition:transform .18s;flex-shrink:0}
+tr.expanded .team-cell .caret{transform:rotate(90deg)}
+.team-name{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell-check{text-align:center;vertical-align:middle}
+.cell-check a{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;background:var(--ws-bg);color:var(--ws);text-decoration:none;transition:all .14s}
+.cell-check a:hover{background:var(--ws);color:#fff;transform:scale(1.12)}
+.cell-check a svg{width:12px;height:12px}
+.cell-empty{text-align:center;color:var(--s4)}
+.cell-count{text-align:center;font-family:'DM Mono',monospace;font-weight:600;color:var(--text)}
+
+/* Player detail row */
+tr.detail-row td{padding:0;border-bottom:1px solid var(--border);background:var(--s1)}
+.detail-inner{padding:0;overflow-x:auto}
+.detail-inner.collapsed{display:none}
+table.players{width:100%;border-collapse:collapse;font-size:11px}
+table.players th{background:var(--s2);padding:6px 8px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);font-weight:500;text-align:center;white-space:nowrap}
+table.players th.pl-name{text-align:left;position:sticky;left:0;background:var(--s2);min-width:160px}
+table.players td{padding:5px 8px;border-bottom:1px solid var(--border);text-align:center}
+table.players td.pl-name{text-align:left;color:var(--text);font-weight:500;position:sticky;left:0;background:var(--s1);white-space:nowrap}
+table.players tr:hover td{background:var(--s2)}
+table.players tr:hover td.pl-name{background:var(--s2)}
+.pl-check{color:var(--ws);font-weight:700}
+.pl-dot{color:var(--s4)}
+.detail-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 12px;background:var(--s2);border-bottom:1px solid var(--border)}
+
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.hero-strip{padding:1.4rem 1rem 1rem}
+  .controls{padding:.75rem 1rem}.wrap{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}.back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">Women's Series — Team Participation</div>
+    <div class="topbar-badge">Women's Series</div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">WS</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Women's Series 2026 · Season Overview</div>
+    <h1 class="hero-title">Team <em>Participation</em></h1>
+    <div class="hero-meta">
+      <span id="hero-teams">— teams</span>
+      <span>·</span>
+      <span id="hero-tours">— tournaments</span>
+      <span>·</span>
+      <span>Tap a team for its player roster</span>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="search" placeholder="Search team or player…">
+  </div>
+  <span class="hint">✓ = played · click ✓ to open stats</span>
+</div>
+
+<div class="wrap" id="wrap"></div>
+
+<script>
+const htmlEl=document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme')||'dark');
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const n=htmlEl.getAttribute('data-theme')==='dark'?'light':'dark';
+  htmlEl.setAttribute('data-theme',n);localStorage.setItem('fiba3x3-theme',n);
+});
+
+const TOURNAMENTS = ["Chengdu", "Manila", "Shanghai", "Orléans", "Vienna", "Amsterdam", "Sumgait", "Bucharest", "Marseille", "Poitiers", "Ulaanbaatar", "Xiantao"];
+const PAGES = {"Chengdu": "fiba3x3-stats-ws-chengdu.html", "Manila": "fiba3x3-stats-ws-manila.html", "Shanghai": "fiba3x3-stats-ws-shanghai.html", "Orléans": "fiba3x3-stats-ws-orleans.html", "Vienna": "fiba3x3-stats-ws-vienna.html", "Amsterdam": "fiba3x3-stats-ws-amsterdam.html", "Sumgait": "fiba3x3-stats-ws-sumgait.html", "Bucharest": "fiba3x3-stats-ws-bucharest.html", "Marseille": "fiba3x3-stats-ws-marseille.html", "Poitiers": "fiba3x3-stats-ws-poitiers.html", "Ulaanbaatar": "fiba3x3-stats-ws-ulaanbaatar.html", "Xiantao": "fiba3x3-stats-ws-xiantao.html"};
+const TEAMS = [{"name": "Beijing", "t": {"Chengdu": ["FengYi Sun", "JianPing Zhang", "Wanglai Zhang", "ZhiTing Zhang"], "Manila": ["JianPing Zhang", "Lili Wang", "Wanglai Zhang", "ZhiTing Zhang"], "Shanghai": ["FengYi Sun", "Lili Wang", "Wanglai Zhang", "ZhiTing Zhang"], "Orléans": ["FengYi Sun", "JianPing Zhang", "Lili Wang", "ZhiTing Zhang"], "Vienna": ["FengYi Sun", "JianPing Zhang", "Wanglai Zhang", "Xuemeng Wang"], "Amsterdam": ["FengYi Sun", "JianPing Zhang", "Wanglai Zhang", "Xuemeng Wang"], "Marseille": ["FengYi Sun", "JianPing Zhang", "TongTong WU", "Xuemeng Wang"], "Poitiers": ["FengYi Sun", "Wanglai Zhang", "Xuemeng Wang", "ZhiTing Zhang"]}}, {"name": "China", "t": {"Chengdu": ["A Ganajing", "Mengyun Zhou", "Wenxia Li", "Yuyan Li"], "Manila": ["A Ganajing", "Hengyu Yang", "Mengyun Zhou", "Yuyan Li"], "Shanghai": ["A Ganajing", "Hengyu Yang", "Mengyun Zhou", "Wenxia Li"], "Sumgait": ["A Ganajing", "Hengyu Yang", "Mengyun Zhou", "Yuyan Li"], "Ulaanbaatar": ["A Ganajing", "Hengyu Yang", "Mengyun Zhou", "Yuyan Li"], "Xiantao": ["Hengyu Yang", "Mengyun Zhou", "Wenxia Li", "yike Ding"]}}, {"name": "Germany", "t": {"Chengdu": ["Ama Degbeon", "Marie Reichert", "Sarah Polleros", "Victoria Poros"], "Manila": ["Ama Degbeon", "Marie Reichert", "Sarah Polleros", "Victoria Poros"], "Vienna": ["Ama Degbeon", "Britta Daub", "Laura Zolper", "Marie Reichert"], "Sumgait": ["Ama Degbeon", "Britta Daub", "Laura Zolper", "Marie Reichert"], "Bucharest": ["Ama Degbeon", "Britta Daub", "Laura Zolper", "Marie Reichert"], "Ulaanbaatar": ["Ama Degbeon", "Laura Zolper", "Marie Reichert", "Victoria Poros"]}}, {"name": "Neftchi SOCAR", "t": {"Manila": ["Alexandra Mollenhauer", "Aoi Katsura", "Brianna Fraser", "Dina Ulyanova"], "Shanghai": ["Alexandra Mollenhauer", "Aoi Katsura", "Brianna Fraser", "Dina Ulyanova"], "Orléans": ["Alexandra Mollenhauer", "Aoi Katsura", "Arica Carter", "Nevena Vuckovic"], "Sumgait": ["Alexandra Mollenhauer", "Aoi Katsura", "Arica Carter", "Nevena Vuckovic"], "Marseille": ["Alexandra Mollenhauer", "Aoi Katsura", "Arica Carter", "Nevena Vuckovic"], "Poitiers": ["Aoi Katsura", "Arica Carter", "Dina Ulyanova", "Nevena Vuckovic"]}}, {"name": "Ulaanbaatar", "t": {"Chengdu": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"], "Manila": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"], "Shanghai": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"], "Vienna": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"], "Ulaanbaatar": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"], "Xiantao": ["Amari Robinson", "Ariuntsetseg Bat-Erdene", "Khulan Onolbaatar", "Thao My Truong"]}}, {"name": "Mitsubishi", "t": {"Manila": ["Chihiro Sawa", "Fuyuko Takahashi", "Haruka Yamamoto", "Natalie Kucowski"], "Shanghai": ["Chihiro Sawa", "Fuyuko Takahashi", "Natalie Kucowski", "Yurin Yamamoto"], "Orléans": ["Fuyuko Takahashi", "Haruka Yamamoto", "Natalie Kucowski", "Yurin Yamamoto"], "Vienna": ["Chihiro Sawa", "Fuyuko Takahashi", "Haruka Yamamoto", "Yurin Yamamoto"], "Amsterdam": ["Chihiro Sawa", "Fuyuko Takahashi", "Haruka Yamamoto", "Yurin Yamamoto"]}}, {"name": "Yanjing", "t": {"Chengdu": ["JiaJie Liu", "Junya Wang", "Yue Wang", "xinyang wang"], "Shanghai": ["Junya Wang", "KeTong Liu", "Yue Wang", "xinyang wang"], "Sumgait": ["JiaJie Liu", "Junya Wang", "KeTong Liu", "Yue Wang"], "Ulaanbaatar": ["JiaJie Liu", "Junya Wang", "Yue Wang", "xinyang wang"], "Xiantao": ["Juntong Huo", "KeTong Liu", "Yue Wang", "xinyang wang"]}}, {"name": "Amsterdam", "t": {"Chengdu": ["Julia Jorritsma", "Kiki Fleuren", "Liselot Kulk", "Lotte Sant"], "Shanghai": ["Julia Jorritsma", "Kiki Fleuren", "Liselot Kulk", "Zoë Slagter"], "Orléans": ["Kiki Fleuren", "Liselot Kulk", "Lotte Sant", "Zoë Slagter"], "Poitiers": ["Keona Douwstra", "Kiki Fleuren", "Liselot Kulk"]}}, {"name": "Australia", "t": {"Chengdu": ["Amy Atwell", "Hannah Hank", "Lauren Nicholson", "Marena Whittle"], "Shanghai": ["Brooke Basham", "Emma Clarke", "Hannah Hank", "Marena Whittle"], "Sumgait": ["Emma Clarke", "Hannah Hank", "Lauren Nicholson", "Marena Whittle"], "Poitiers": ["Emma Clarke", "Hannah Hank", "Lauren Nicholson", "Marena Whittle"]}}, {"name": "Canada", "t": {"Shanghai": ["Katherine Plouffe", "Merissah Russell", "Paige Crozon", "Tara Wallack"], "Vienna": ["Katherine Plouffe", "Merissah Russell", "Paige Crozon", "Tara Wallack"], "Marseille": ["Cassandra Brown", "Katherine Plouffe", "Merissah Russell", "Paige Crozon"], "Poitiers": ["Cassandra Brown", "Katherine Plouffe", "Merissah Russell", "Paige Crozon"]}}, {"name": "France", "t": {"Orléans": ["Marie Mané", "Marie-Eve Paget", "Myriam Djekoundade", "Rosanne Le Seyec"], "Vienna": ["Marie Mané", "Marie-Eve Paget", "Myriam Djekoundade", "Rosanne Le Seyec"], "Marseille": ["Laetitia Guapo", "Marie Mané", "Marie Milapie", "Marie-Eve Paget"], "Poitiers": ["Laetitia Guapo", "Marie Mané", "Marie Milapie", "Marie-Eve Paget"]}}, {"name": "France U25", "t": {"Orléans": ["Louise Bussiere", "Samantha Peytour", "Vaciana Gomis", "Yohana Ewodo"], "Amsterdam": ["Louise Bussiere", "Louise Préneau", "Samantha Peytour", "Vaciana Gomis"], "Marseille": ["Louise Bussiere", "Louise Préneau", "Samantha Peytour", "Yohana Ewodo"], "Ulaanbaatar": ["Louise Bussiere", "Louise Préneau", "Samantha Peytour", "Vaciana Gomis"]}}, {"name": "Japan", "t": {"Chengdu": ["Aya Tsurumi", "Kiho Miyashita", "Sakura Noguchi", "Ufuoma Tanaka"], "Manila": ["Aya Tsurumi", "Kiho Miyashita", "Sakura Noguchi", "Ufuoma Tanaka"], "Sumgait": ["Kiho Miyashita", "Miku Takahashi", "Sakura Noguchi", "Ufuoma Tanaka"], "Ulaanbaatar": ["Kiho Miyashita", "Miku Takahashi", "Sakura Noguchi", "Ufuoma Tanaka"]}}, {"name": "Mongolia", "t": {"Chengdu": ["Bolor-Erdene Battsooj", "Bolortsetseg Tsendjav", "Narangoo Erdenebayan", "Nyamtsetseg Batjargal"], "Manila": ["Bolor-Erdene Battsooj", "Bolortsetseg Tsendjav", "Narangoo Erdenebayan", "Nyamtsetseg Batjargal"], "Ulaanbaatar": ["Bolor-Erdene Battsooj", "Bolortsetseg Tsendjav", "Narangoo Erdenebayan", "Nyamtsetseg Batjargal"], "Xiantao": ["Bolor-Erdene Battsooj", "Bolortsetseg Tsendjav", "Narangoo Erdenebayan", "Nyamtsetseg Batjargal"]}}, {"name": "Philippines", "t": {"Chengdu": ["Camille Clarin", "Elisha Gabriell Bade", "Mikka Cacho", "Reynalyn Ferrer"], "Manila": ["Camille Clarin", "Elisha Gabriell Bade", "Mikka Cacho", "Reynalyn Ferrer"], "Ulaanbaatar": ["Camille Clarin", "Kacey Dela Rosa", "Mikka Cacho", "Reynalyn Ferrer"], "Xiantao": ["Camille Clarin", "Elizabeth Jeanette Means", "Mikka Cacho", "Reynalyn Ferrer"]}}, {"name": "Poland", "t": {"Chengdu": ["Aleksandra Zięmborska", "Anna Pawłowska", "Klaudia Gertchen", "Weronika Telenga"], "Manila": ["Aleksandra Zięmborska", "Anna Pawłowska", "Klaudia Gertchen", "Weronika Telenga"], "Bucharest": ["Aleksandra Zięmborska", "Amalia Rembiszewska", "Anna Pawłowska", "Martyna Jasiulewicz"], "Poitiers": ["Aleksandra Zięmborska", "Amalia Rembiszewska", "Anna Pawłowska", "Klaudia Gertchen"]}}, {"name": "Rapid", "t": {"Vienna": ["Ainhoa Gervasini", "Hortense Limouzin", "Marta Miščenko", "Nagy-Voica Bianca-Ioana"], "Amsterdam": ["Ainhoa Gervasini", "Ana-Alexandra Ivan", "Hortense Limouzin", "Martyna Petrenaite"], "Bucharest": ["Bianca Nagy Voica", "Hortense Limouzin", "Marta Miščenko", "Martyna Petrenaite"], "Poitiers": ["Ainhoa Gervasini", "Hortense Limouzin", "Marta Miščenko", "Martyna Petrenaite"]}}, {"name": "Thailand", "t": {"Shanghai": ["Rattiyakorn Udomsuk", "Sasiporn Wongtapha", "Supavadee Kunchuan", "Warinthon Summat"], "Sumgait": ["Rattiyakorn Udomsuk", "Sasiporn Wongtapha", "Supavadee Kunchuan", "Warinthon Summat"], "Ulaanbaatar": ["Rattiyakorn Udomsuk", "Sasiporn Wongtapha", "Supavadee Kunchuan", "Warinthon Summat"], "Xiantao": ["Rattiyakorn Udomsuk", "Sasiporn Wongtapha", "Supavadee Kunchuan", "Warinthon Summat"]}}, {"name": "Austria", "t": {"Shanghai": ["Alexia Allesch", "Anja Fuchs-Robetin", "Sigrid Koizar", "Sina Höllerl"], "Vienna": ["Alexia Allesch", "Anja Fuchs-Robetin", "Sigrid Koizar", "Simone Sill"], "Sumgait": ["Alexia Allesch", "Anja Fuchs-Robetin", "Magdalena Schmidt", "Sigrid Koizar"]}}, {"name": "Hungary", "t": {"Orléans": ["Fanni Szabó", "Franka Toth", "Klaudia Papp", "Vivi Böröndy"], "Marseille": ["Franka Toth", "Mia David", "Tamara Szerencsés", "Vivi Böröndy"], "Poitiers": ["Fanni Szabó", "Franka Toth", "Mia David", "Tamara Szerencsés"]}}, {"name": "Ireland", "t": {"Orléans": ["Abigail Rafferty", "Hazel Finn", "Maura Fitzpatrick", "Sarah Ellen Hickey"], "Amsterdam": ["Abigail Rafferty", "Hazel Finn", "Maura Fitzpatrick", "Sarah Hickey"], "Bucharest": ["Abigail Rafferty", "Hazel Finn", "Maura Fitzpatrick", "Sarah Hickey"]}}, {"name": "Italy", "t": {"Orléans": ["Caterina Gilli", "Gina Marie Conti", "Giorgia Palmieri", "Maria Miccoli"], "Amsterdam": ["Caterina Gilli", "Gina Conti", "Maria Miccoli", "Silvia Nativi"], "Marseille": ["Caterina Gilli", "Gina Conti", "Ilaria Bernardi", "Maria Miccoli"]}}, {"name": "Lion City", "t": {"Chengdu": ["Choy Ting Tang", "Denise Choo Syn Ee", "Lim Lek Kar", "Sim Yu Na Kindra"], "Ulaanbaatar": ["Choy Ting Tang", "Denise Choo Syn Ee", "Lim Lek Kar", "Sim Yu Na Kindra"], "Xiantao": ["Choy Ting Tang", "Denise Choo Syn Ee", "Lim Lek Kar", "Sim Yu Na Kindra"]}}, {"name": "Lithuania", "t": {"Manila": ["Gabriele Sulske", "Giedre Labuckiene", "Justina Miknaite", "Kamile Nacickaite-van der Horst"], "Sumgait": ["Egle Zabotkaite", "Justina Miknaite", "Livija Sakevičiūtė", "Monika Grigalauskyte"], "Bucharest": ["Audronė Zdanevičiūtė", "Justina Miknaite", "Kamile Nacickaite-van der Horst", "Monika Grigalauskyte"]}}, {"name": "Manila", "t": {"Manila": ["Afril Bernardino", "Karl Ann Pingol", "Kaye Pingol", "Samantha Harada"], "Ulaanbaatar": ["Karl Pingol", "Kaye Pingol", "Kristine Cayabyab", "Samantha Harada"], "Xiantao": ["Karl Pingol", "Kaye Pingol", "Kristine Cayabyab", "Samantha Harada"]}}, {"name": "Netherlands", "t": {"Shanghai": ["Ilse Kuijt", "Janis Boonstra", "Lotte van Kruistum", "Noortje Driessen"], "Amsterdam": ["Evelien Lutje Schipholt", "Ilse Kuijt", "Janis Boonstra", "Noortje Driessen"], "Bucharest": ["Evelien Lutje Schipholt", "Ilse Kuijt", "Janis Boonstra", "Lotte van Kruistum"]}}, {"name": "Netherlands U25", "t": {"Vienna": ["Hennie van Schaik", "Iris Vennema", "Lotte Toornstra", "Quinta van Schijndel"], "Amsterdam": ["Alissa van Duijn", "Hennie van Schaik", "Lotte Toornstra", "Quinta van Schijndel"], "Bucharest": ["Alissa van Duijn", "Hennie van Schaik", "Iris Vennema", "Lotte Toornstra"]}}, {"name": "New Zealand", "t": {"Chengdu": ["Azure Luseane Anderson", "Eva Sydney Langton", "Gabriella Fotu", "Kate Herman"], "Ulaanbaatar": ["Azure Luseane Anderson", "Ella Fotu", "Eva Langton", "Sharne Pupuke-Robati"], "Xiantao": ["Azure Luseane Anderson", "Ella Fotu", "Eva Langton", "Sharne Pupuke-Robati"]}}, {"name": "Paraguay", "t": {"Sumgait": ["Marta Peralta", "Paloma Niz", "Paola Ferrari", "Ximena Ibarra"], "Ulaanbaatar": ["Marta Peralta", "Paloma Niz", "Paola Ferrari", "Ximena Ibarra"], "Xiantao": ["Marta Peralta", "Paloma Niz", "Paola Ferrari", "Ximena Ibarra"]}}, {"name": "Singapore", "t": {"Manila": ["Jermaine Lim Jia Ying", "Lai Hor Ying Matilda", "Lydia Ang Zi Yi", "XingYue Han"], "Bucharest": ["Jermaine Lim Jia Ying", "Lai Hor Ying Matilda", "Lydia Ang Zi Yi", "XingYue Han"], "Ulaanbaatar": ["Jermaine Lim Jia Ying", "Lai Hor Ying Matilda", "Lydia Ang Zi Yi", "XingYue Han"]}}, {"name": "Slovakia", "t": {"Orléans": ["Liana Užovičová", "Lucia Kašperanová", "Lucia Žilinská", "Vanda Mária Kristlová"], "Sumgait": ["Liana Užovičová", "Lucia Kašperanová", "Vanda Kozakova", "Vanda Kristlová"], "Marseille": ["Liana Užovičová", "Lucia Kašperanová", "Vanda Kozakova", "Vanda Kristlová"]}}, {"name": "Sukhbaatar", "t": {"Shanghai": ["Byambakhishig Purevdorj", "Enkhbuyan Enkhbayar", "Enkhtuul Bazargurev", "Nomin-Erdene Nyantaisuren"], "Ulaanbaatar": ["Enkhbuyan Enkhbayar", "Enkhtuul Bazargurev", "Lkhagva-ochir Javzandulam", "Nomin-Erdene Nyantaisuren"], "Xiantao": ["Enkhbuyan Enkhbayar", "Enkhtuul Bazargurev", "Lkhagva-ochir Javzandulam", "Nomin-Erdene Nyantaisuren"]}}, {"name": "Uganda", "t": {"Orléans": ["Jamila Nansikombi", "Jane Asinde", "Melissa Akullu"], "Marseille": ["Jane Asinde", "Leslie Vorpahl", "Melissa Akullu", "Perus Nyamwenge"], "Poitiers": ["Jamila Nansikombi", "Jane Asinde", "Leslie Vorpahl", "Melissa Akullu"]}}, {"name": "Amgalan", "t": {"Ulaanbaatar": ["Byambajav Chultemnamdag", "Enkhlen Ganbaatar", "Erdene-Od Magvannorov", "Urtnasan Chimedtseren"], "Xiantao": ["Byambajav Chultemnamdag", "Enkhlen Ganbaatar", "Erdene-Od Magvannorov", "Urtnasan Chimedtseren"]}}, {"name": "Azerbaijan", "t": {"Sumgait": ["Adila Yusubova", "Laman Ibrahimova", "Salminaz Ramazanli", "Shilan Akbingol"], "Poitiers": ["Adila Yusubova", "Binata Rizvanova", "Laman Ibrahimova", "Naila Alisultanova"]}}, {"name": "Belgium", "t": {"Amsterdam": ["Axelle Van Eupen", "Heleen Nauwelaers", "Sarah Dossou", "Tesse Kapenga"], "Bucharest": ["Heleen Nauwelaers", "Jitte Baelen", "Sarah Dossou", "Tesse Kapenga"]}}, {"name": "Benin", "t": {"Marseille": ["Aishatou Kondoh", "Gannigui Zime", "Ilimath Amouda", "Malikath Osseni"], "Poitiers": ["Aishatou Kondoh", "Gannigui Zime", "Malikath Osseni", "Océane Arlette Martine Nadiath Kounkou"]}}, {"name": "Chile", "t": {"Orléans": ["Catalina Ramirez", "Fernanda Ovalle", "Gabi Ahumada", "Valentina Ojeda"], "Sumgait": ["Catalina Ramirez", "Fernanda Ovalle", "Gabi Ahumada", "Valentina Ojeda"]}}, {"name": "Croatia", "t": {"Amsterdam": ["Andrijana Cvitkovic", "Gabriela Grizelj", "Josipa Pavić", "Lea Miletic"], "Bucharest": ["Gabriela Grizelj", "Josipa Pavić", "Lea Miletic", "Viktorija Ćurić"]}}, {"name": "Czechia", "t": {"Shanghai": ["Anna Rylichová", "Karolina Sotolova", "Kateřina Galíčková", "Monika Fučíková"], "Bucharest": ["Anna Brožová", "Anna Rylichová", "Kateřina Galíčková", "Tereza Vitulová"]}}, {"name": "Egypt", "t": {"Sumgait": ["Habiba Hatem", "Hagar Amer", "Hala ElShaarawy", "Nadine Selaawy"], "Poitiers": ["Hala ElShaarawy", "Nadine Selaawy", "Raneem Mohamed", "Soraya Mohamed"]}}, {"name": "Indonesia", "t": {"Manila": ["Angelica Jennifer Candra", "Diva Intan Nur Fadillah", "Evelyn Fiyo", "Thasya hery saputera"], "Xiantao": ["Ayu Sriartha", "Diva Intan Nur Fadillah", "Lidwina Ruth Riratri Dwi Saputri", "Thasya hery saputera"]}}, {"name": "Latvia", "t": {"Vienna": ["Ieva Korzāne", "Ketija Vihmane", "Paula Cirša", "Paula Mauriņa"], "Bucharest": ["Digna Strautmane", "Ieva Korzāne", "Ketija Vihmane", "Paula Mauriņa"]}}, {"name": "Madrid", "t": {"Vienna": ["Blanca Millán", "Cecilia Muhate", "Juana Camilion", "María Roters"], "Marseille": ["Blanca Millán", "Cecilia Muhate", "Irene Lahuerta", "María Roters"]}}, {"name": "Ottawa", "t": {"Marseille": ["Jade Belmore", "Kacie Bosch", "Niyah Becker", "Saicha Grant-Allen"], "Poitiers": ["Jade Belmore", "Kacie Bosch", "Niyah Becker", "Saicha Grant-Allen"]}}, {"name": "Paris", "t": {"Orléans": ["Camille Droguet", "Eve Wembanyama", "Sixtine Macquet", "Zoé Catherine Suzon Wadoux"], "Poitiers": ["Ana Tadic", "Camille Droguet", "Eve Wembanyama", "Zoé Wadoux"]}}, {"name": "Portugal", "t": {"Amsterdam": ["Emilia Ferreira", "Gabriela Ipinosa", "Maria Marinho", "Márcia da Costa"], "Marseille": ["Ana Cunha", "Emilia Ferreira", "Gabriela Ipinosa", "Márcia da Costa"]}}, {"name": "Romania", "t": {"Amsterdam": ["Alina-Maria Podar", "Andreea Mititelu", "Bianca Fota", "Ioana-Daria Toma"], "Bucharest": ["Alina-Maria Podar", "Andreea Preda", "Bianca Fota", "Ioana-Daria Toma"]}}, {"name": "Rome", "t": {"Marseille": ["Anastasia Conte", "Cristina Osazuwa", "Kenko Ngamene", "Nancy N’guessan"], "Poitiers": ["Anastasia Conte", "Cristina Osazuwa", "Ludovica Sammartino", "Nancy N’guessan"]}}, {"name": "Spain", "t": {"Orléans": ["Alba Prieto", "Helena Oma Giralt", "Maria Dolores Pendande Mendes", "Txell Alarcón"], "Bucharest": ["Alba Prieto", "Gracia Alonso De Armiño", "Helena Oma", "Marta Canella"]}}, {"name": "Takasaki", "t": {"Shanghai": ["Fatoumanana Nishi", "MISORA IHA", "Misa Yokoi", "NAMI NITTA"], "Xiantao": ["Misa Yokoi", "Mitsuki Hirano", "Saya Isai"]}}, {"name": "Ukraine", "t": {"Vienna": ["Anastasiia Kovtun", "Anzhelika Liashko", "Miriam Uro-Nilie", "Veronika Kosmach"], "Sumgait": ["Anastasiia Kovtun", "Krystyna Filevych", "Miriam Uro-Nilie", "Veronika Kosmach"]}}, {"name": "United States", "t": {"Chengdu": ["Joyce Edwards", "Mikaylah Williams", "Milaysia Fulwiley", "Sahara Williams"], "Manila": ["Joyce Edwards", "Mikaylah Williams", "Milaysia Fulwiley", "Sahara Williams"]}}, {"name": "Warsaw", "t": {"Chengdu": ["Klaudia Niedźwiedzka", "Klaudia Wnorowska", "Marta Marcinkowska", "Weronika Wesolowska"], "Manila": ["Klaudia Niedźwiedzka", "Klaudia Wnorowska", "Marta Marcinkowska", "Weronika Wesolowska"]}}, {"name": "Brazil", "t": {"Chengdu": ["Luana de Souza", "Mianna Hopkins", "Rayane de Freitas", "Vitória Moura"]}}, {"name": "Bucharest", "t": {"Bucharest": ["Irina Teodosiu", "Maria Stanescu", "Maria-Alexandra Militaru", "Sonia Cazacu"]}}, {"name": "Fuengirola", "t": {"Marseille": ["Alejandra Mastral", "Elena Moreno", "Marta García", "Marta Morales"]}}, {"name": "Jingshi", "t": {"Xiantao": ["Hong Wang", "Jiaxin Wang", "KeXin Zhao", "Xiyue Liu"]}}, {"name": "Madagascar", "t": {"Shanghai": ["Mianjasoa RAKOTONIRINA", "Ravaka Randriatahiana", "Sydonie Andriamihajanirina", "Tokin'Iaina Sambatrarimiora"]}}, {"name": "Prague", "t": {"Orléans": ["Eliška Brejchová", "Jesika Maud Hibalová", "Jindřiška Hrubá", "Luisa Vydrová"]}}, {"name": "Puerto Rico", "t": {"Orléans": ["Adryana Quezada", "Ashley Torres", "Leigha Don'l Brown", "Zaida Gonzalez"]}}, {"name": "Rīga", "t": {"Bucharest": ["Adelīna Urtāne", "Amanda Baumgarte", "Enija Ķīvīte", "Marta Daniela Leimane"]}}, {"name": "Slovakia U23", "t": {"Marseille": ["Hana Jakubčeková", "Rebeka Gažiová", "Tereza Vandlikova", "Terézia Kraislová"]}}, {"name": "Slovenia", "t": {"Sumgait": ["Eva Lisec", "Manca Vrečer", "Tina Cvijanovič", "Špela Brecelj"]}}, {"name": "Sweden", "t": {"Xiantao": ["Amanda Tivenius", "Emma Melina Johansson", "Kajsa Levin", "Tova Kristina Mariana Sabel"]}}];
+
+document.getElementById('hero-teams').textContent = TEAMS.length + ' teams';
+document.getElementById('hero-tours').textContent = TOURNAMENTS.length + ' tournaments';
+
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const expanded = new Set();
+
+function playerTournaments(team) {
+  // Build set of all players for this team + which tournaments each played
+  const pmap = {}; // player -> Set(tournament)
+  for (const [tour, players] of Object.entries(team.t)) {
+    for (const p of players) {
+      (pmap[p] = pmap[p] || new Set()).add(tour);
+    }
+  }
+  return pmap;
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const wrap = document.getElementById('wrap');
+
+  // Filter teams by team name OR any player name
+  let teams = TEAMS;
+  if (q) {
+    teams = TEAMS.filter(tm => {
+      if (tm.name.toLowerCase().includes(q)) return true;
+      for (const players of Object.values(tm.t))
+        if (players.some(p => p.toLowerCase().includes(q))) return true;
+      return false;
+    });
+  }
+
+  if (!teams.length) {
+    wrap.innerHTML = '<div class="empty"><span class="empty-big">NO MATCH</span>No teams or players found.</div>';
+    return;
+  }
+
+  // Build matrix table
+  let html = '<table class="matrix"><thead><tr>';
+  html += '<th class="th-team">Team</th>';
+  html += '<th class="th-count">#</th>';
+  for (const tour of TOURNAMENTS) {
+    html += `<th class="th-tour"><a href="${PAGES[tour]}" title="Open ${tour} stats">${tour}</a></th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  for (const team of teams) {
+    const count = Object.keys(team.t).length;
+    const tid = 'team-' + team.name.replace(/[^a-zA-Z0-9]/g,'_');
+    const isExp = expanded.has(team.name);
+    html += `<tr class="team-row${isExp?' expanded':''}" data-team="${encodeURIComponent(team.name)}">`;
+    html += `<td><div class="team-cell"><span class="caret">▶</span><span class="team-name">${team.name}</span></div></td>`;
+    html += `<td class="cell-count">${count}</td>`;
+    for (const tour of TOURNAMENTS) {
+      if (team.t[tour]) {
+        html += `<td class="cell-check"><a href="${PAGES[tour]}" title="${team.name} · ${tour} — open stats" onclick="event.stopPropagation()">${CHECK}</a></td>`;
+      } else {
+        html += `<td class="cell-empty">·</td>`;
+      }
+    }
+    html += '</tr>';
+
+    // Detail row (player table)
+    if (isExp) {
+      const pmap = playerTournaments(team);
+      const players = Object.keys(pmap).sort();
+      html += `<tr class="detail-row"><td colspan="${TOURNAMENTS.length+2}"><div class="detail-inner">`;
+      html += `<div class="detail-label">${players.length} players · ${team.name}</div>`;
+      html += '<table class="players"><thead><tr><th class="pl-name">Player</th>';
+      // only show tournaments this team actually attended
+      const teamTours = TOURNAMENTS.filter(t => team.t[t]);
+      for (const tour of teamTours) html += `<th>${tour}</th>`;
+      html += '</tr></thead><tbody>';
+      for (const p of players) {
+        html += `<tr><td class="pl-name">${p}</td>`;
+        for (const tour of teamTours) {
+          html += pmap[p].has(tour) ? '<td class="pl-check">✓</td>' : '<td class="pl-dot">·</td>';
+        }
+        html += '</tr>';
+      }
+      html += '</tbody></table></div></td></tr>';
+    }
+  }
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+
+  // Row click handlers (toggle expand)
+  wrap.querySelectorAll('tr.team-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const name = decodeURIComponent(row.dataset.team);
+      expanded.has(name) ? expanded.delete(name) : expanded.add(name);
+      render();
+    });
+  });
+}
+
+document.getElementById('search').addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

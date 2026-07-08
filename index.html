@@ -284,6 +284,17 @@ body::after {
 
 /* Region filters (only shown for NL tab) */
 .region-filters { display:flex; flex-wrap:wrap; gap:5px; }
+.overview-link {
+  display:none; align-items:center; gap:6px;
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  padding:6px 12px; border-radius:6px;
+  border:1px solid rgba(244,114,182,.3); background:var(--ws-bg); color:var(--ws);
+  text-decoration:none; transition:all .15s; white-space:nowrap;
+}
+.overview-link:hover { background:var(--ws); color:#fff; border-color:var(--ws); }
+.overview-link svg { flex-shrink:0; }
+[data-theme="light"] .overview-link { border-color:rgba(190,18,60,.28); }
+[data-theme="light"] .overview-link:hover { color:#fff; }
 .rfbtn {
   font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
   padding:5px 11px; border-radius:4px; border:1px solid var(--border2);
@@ -677,6 +688,10 @@ footer { border-top:1px solid var(--border); }
     <button class="rfbtn" data-r="u21asia">Asia U21</button>
     <button class="rfbtn" data-r="pacific">Pacific</button>
   </div>
+  <a id="ws-overview-link" href="fiba3x3-stats-ws-overview.html" class="overview-link">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg>
+    Team Participation Overview
+  </a>
 </div>
 
 <!-- CONTENT -->
@@ -1082,6 +1097,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById("region-bar").style.display = activeTab==="nl" ? "flex" : "none";
+    document.getElementById("ws-overview-link").style.display = activeTab==="ws" ? "inline-flex" : "none";
     if(activeTab !== "nl") { activeRegion = "all"; document.querySelectorAll(".rfbtn").forEach(b=>{ b.classList.toggle("active", b.dataset.r==="all"); }); }
     render();
   });
