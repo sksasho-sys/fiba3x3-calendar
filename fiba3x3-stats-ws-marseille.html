@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — Women's Series Marseille 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#141210;--s1:#1c1916;--s2:#222018;--s3:#2c2820;--s4:#38332a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0ece4;--muted:#6b6256;--muted2:#9e9082;
+  --accent:#e8400c;--ws:#f472b6;--ws-bg:rgba(244,114,182,0.10);
+  --won:#34d399;--lost:#f87171;
+  --hero-grad:linear-gradient(150deg,#1e1018 0%,#141210 60%);
+  --tabs-bg:rgba(20,18,16,0.95);
+}
+[data-theme="light"]{
+  --bg:#faf8f5;--s1:#ffffff;--s2:#f3f0eb;--s3:#e8e3da;--s4:#dcd6cc;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+  --text:#1a1612;--muted:#a09080;--muted2:#6e5e50;
+  --accent:#d13408;--ws:#be123c;--ws-bg:rgba(244,114,182,0.09);
+  --won:#0f766e;--lost:#be123c;
+  --hero-grad:linear-gradient(150deg,#f5e0ea 0%,#faf8f5 60%);
+  --tabs-bg:rgba(250,248,245,0.97);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;-webkit-tap-highlight-color:transparent}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5}
+[data-theme="light"] body::after{opacity:.15}
+.topbar{position:sticky;top:0;z-index:100;background:var(--tabs-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border2);padding:0 2rem}
+.topbar-inner{max-width:1040px;margin:0 auto;height:56px;display:flex;align-items:center;gap:14px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid var(--border2);background:transparent;transition:all .15s;flex-shrink:0}
+.back-link:hover{color:var(--text);background:var(--s3)}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--ws-bg);color:var(--ws);border:1px solid rgba(244,114,182,.22);white-space:nowrap;flex-shrink:0}
+[data-theme="light"] .topbar-badge{border-color:rgba(244,114,182,.22)}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .2s;flex-shrink:0}
+.theme-toggle-btn:hover{color:var(--text)}
+.theme-toggle-btn svg{width:14px;height:14px;transition:transform .3s}
+.theme-toggle-btn:hover svg{transform:rotate(18deg)}
+.t-sun{display:none}.t-moon{display:block}
+[data-theme="light"] .t-sun{display:block}[data-theme="light"] .t-moon{display:none}
+.hero-strip{background:var(--hero-grad);border-bottom:1px solid var(--border2);padding:1.8rem 2rem 1.4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-0.04em;top:-0.1em;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,16vw,180px);line-height:1;color:rgba(244,114,182,0.05);pointer-events:none;user-select:none}
+[data-theme="light"] .hero-bg{color:rgba(244,114,182,0.04)}
+.hero-inner{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ws);display:flex;align-items:center;gap:8px;margin-bottom:.4rem}
+.hero-eyebrow::before{content:'';width:18px;height:2px;background:var(--ws);flex-shrink:0}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:.02em;margin-bottom:.8rem}
+.hero-title em{color:var(--accent);font-style:normal}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.hero-meta strong{color:var(--text);font-weight:500}
+.finish-row{max-width:1040px;margin:0 auto;padding:.75rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap;overflow-x:auto}
+.finish-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.finish-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap}
+.finish-pos{font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:var(--ws)}
+.finish-pill.gold .finish-pos{color:#f0a500}
+.finish-pill.silver .finish-pos{color:#a0aec0}
+.finish-pill.bronze .finish-pos{color:#cd7c42}
+.filter-row{max-width:1040px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.team-chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all .14s;white-space:nowrap}
+.team-chip:hover{color:var(--text);border-color:rgba(255,255,255,.22)}
+[data-theme="light"] .team-chip:hover{border-color:rgba(0,0,0,.2)}
+.team-chip.active{background:var(--text);color:var(--bg);border-color:transparent}
+.content{max-width:1040px;margin:0 auto;padding:1.5rem 2rem 5rem}
+.team-block{background:var(--s1);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.team-title{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.team-title:hover{background:var(--s3)}
+.team-title h2{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--text)}
+.team-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-left:auto;display:flex;gap:10px;align-items:center}
+.toggle-icon{font-size:14px;color:var(--muted);transition:transform .2s}
+.team-body-wrap{overflow-x:auto}
+.team-body-wrap.collapsed{display:none}
+.team-title.collapsed .toggle-icon{transform:rotate(-90deg)}
+.team-finish{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:3px;background:var(--s3);color:var(--muted2);border:1px solid var(--border)}
+.team-finish.gold{background:rgba(240,165,0,.12);color:#f0a500;border-color:rgba(240,165,0,.25)}
+.team-finish.silver{background:rgba(160,174,192,.12);color:#a0aec0;border-color:rgba(160,174,192,.25)}
+.team-finish.bronze{background:rgba(205,124,66,.12);color:#cd7c42;border-color:rgba(205,124,66,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--s2);padding:7px 8px;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;white-space:nowrap}
+thead th.center{text-align:center}
+thead th.divider{border-left:2px solid var(--border2)}
+thead th.game-th{text-align:center;min-width:52px}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--s2)}
+td{padding:7px 8px;vertical-align:middle}
+td.num{text-align:center;color:var(--muted);font-size:11px;width:28px}
+td.name{font-weight:500;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+td.pts{text-align:center;font-weight:600;color:var(--text)}
+td.pts-zero{text-align:center;color:var(--muted);font-weight:400}
+td.pts-dash{text-align:center;color:var(--border2)}
+td.divider{border-left:2px solid var(--border2)}
+td.total{text-align:center;font-weight:700;color:var(--text)}
+td.avg{text-align:center;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px}
+tr.totrow td{background:var(--s3);font-weight:600;border-top:2px solid var(--border2);color:var(--muted2);font-size:11px;font-family:'DM Mono',monospace}
+tr.totrow td.total{color:var(--text);font-size:14px}
+.game-header-opp{display:block;font-size:10px;color:var(--muted2);margin-bottom:1px;white-space:nowrap}
+.game-header-score{display:block;font-size:10px;font-weight:600}
+.won{color:var(--won)}.lost{color:var(--lost)}
+.empty{text-align:center;padding:4rem 0;color:var(--muted)}
+.empty-big{font-family:'Bebas Neue',sans-serif;font-size:52px;display:block;color:var(--s4);margin-bottom:.4rem}
+@media(max-width:640px){
+  .topbar{padding:0 1rem}.topbar-inner{gap:8px}
+  .hero-strip{padding:1.4rem 1rem 1rem}
+  .filter-row,.finish-row{padding:.75rem 1rem}
+  .content{padding:1rem 1rem 3rem}
+  .topbar-title{font-size:14px}
+  .back-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">Women's Series Marseille 2026 Stats</div>
+    <div class="topbar-badge">Women’s Series</div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="hero-bg">MA</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Women’s Series · 2026</div>
+    <h1 class="hero-title">Women's Series Marseille <em>Stats</em></h1>
+    <div class="hero-meta">
+      <span><strong>Marseille</strong>, France</span>
+      <span>·</span>
+      <span><strong>2026 Season</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<div class="finish-row" id="finish-row"></div>
+<div class="filter-row" id="filter-row"><span class="filter-label">Teams:</span></div>
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ──
+const htmlEl = document.documentElement;
+htmlEl.setAttribute('data-theme', localStorage.getItem('fiba3x3-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── DATA ──
+const RAW = [
+["94052d53", "Benin", "1", "21", "Uganda", "Benin", "5", "Ilimath Amouda", "0"],
+["94052d53", "Benin", "1", "21", "Uganda", "Benin", "6", "Aishatou Kondoh", "1"],
+["94052d53", "Benin", "1", "21", "Uganda", "Benin", "15", "Malikath Osseni", "0"],
+["94052d53", "Benin", "1", "21", "Uganda", "Benin", "16", "Gannigui Zime", "0"],
+["94052d53", "Benin", "1", "21", "Uganda", "Uganda", "1", "Leslie Vorpahl", "2"],
+["94052d53", "Benin", "1", "21", "Uganda", "Uganda", "3", "Perus Nyamwenge", "4"],
+["94052d53", "Benin", "1", "21", "Uganda", "Uganda", "18", "Melissa Akullu", "7"],
+["94052d53", "Benin", "1", "21", "Uganda", "Uganda", "35", "Jane Asinde", "8"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Fuengirola", "4", "Elena Moreno", "5"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Fuengirola", "8", "Alejandra Mastral", "2"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Fuengirola", "13", "Marta Morales", "4"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Fuengirola", "22", "Marta García", "1"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Ottawa", "4", "Kacie Bosch", "4"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Ottawa", "12", "Jade Belmore", "3"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Ottawa", "14", "Niyah Becker", "8"],
+["aecd3202", "Fuengirola", "12", "19", "Ottawa", "Ottawa", "77", "Saicha Grant-Allen", "4"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Portugal", "9", "Gabriela Ipinosa", "1"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Portugal", "13", "Márcia da Costa", "7"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Portugal", "20", "Emilia Ferreira", "0"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Portugal", "37", "Ana Cunha", "2"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Uganda", "1", "Leslie Vorpahl", "3"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Uganda", "3", "Perus Nyamwenge", "3"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Uganda", "18", "Melissa Akullu", "4"],
+["3e4f6948", "Portugal", "10", "14", "Uganda", "Uganda", "35", "Jane Asinde", "4"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Slovakia U23", "4", "Rebeka Gažiová", "0"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Slovakia U23", "7", "Tereza Vandlikova", "4"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Slovakia U23", "8", "Hana Jakubčeková", "5"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Slovakia U23", "10", "Terézia Kraislová", "0"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Ottawa", "4", "Kacie Bosch", "2"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Ottawa", "12", "Jade Belmore", "2"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Ottawa", "14", "Niyah Becker", "6"],
+["d063b455", "Slovakia U23", "9", "18", "Ottawa", "Ottawa", "77", "Saicha Grant-Allen", "8"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Benin", "5", "Ilimath Amouda", "1"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Benin", "6", "Aishatou Kondoh", "2"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Benin", "15", "Malikath Osseni", "0"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Benin", "16", "Gannigui Zime", "0"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Portugal", "9", "Gabriela Ipinosa", "6"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Portugal", "13", "Márcia da Costa", "6"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Portugal", "20", "Emilia Ferreira", "4"],
+["83efbc30", "Benin", "3", "21", "Portugal", "Portugal", "37", "Ana Cunha", "5"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Fuengirola", "4", "Elena Moreno", "3"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Fuengirola", "8", "Alejandra Mastral", "0"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Fuengirola", "13", "Marta Morales", "7"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Fuengirola", "22", "Marta García", "4"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Slovakia U23", "4", "Rebeka Gažiová", "2"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Slovakia U23", "7", "Tereza Vandlikova", "0"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Slovakia U23", "8", "Hana Jakubčeková", "5"],
+["eb9150f4", "Fuengirola", "14", "15", "Slovakia U23", "Slovakia U23", "10", "Terézia Kraislová", "8"],
+["33095439", "France", "14", "12", "Ottawa", "France", "1", "Marie Mané", "6"],
+["33095439", "France", "14", "12", "Ottawa", "France", "5", "Marie-Eve Paget", "2"],
+["33095439", "France", "14", "12", "Ottawa", "France", "12", "Laetitia Guapo", "5"],
+["33095439", "France", "14", "12", "Ottawa", "France", "13", "Marie Milapie", "1"],
+["33095439", "France", "14", "12", "Ottawa", "Ottawa", "4", "Kacie Bosch", "3"],
+["33095439", "France", "14", "12", "Ottawa", "Ottawa", "12", "Jade Belmore", "2"],
+["33095439", "France", "14", "12", "Ottawa", "Ottawa", "14", "Niyah Becker", "5"],
+["33095439", "France", "14", "12", "Ottawa", "Ottawa", "77", "Saicha Grant-Allen", "2"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Madrid", "8", "Irene Lahuerta", "2"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Madrid", "11", "Blanca Millán", "3"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Madrid", "21", "María Roters", "1"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Madrid", "33", "Cecilia Muhate", "4"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Uganda", "1", "Leslie Vorpahl", "2"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Uganda", "3", "Perus Nyamwenge", "2"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Uganda", "18", "Melissa Akullu", "5"],
+["0c555335", "Madrid", "10", "12", "Uganda", "Uganda", "35", "Jane Asinde", "3"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Canada", "2", "Katherine Plouffe", "3"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Canada", "7", "Paige Crozon", "4"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Canada", "13", "Merissah Russell", "10"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Canada", "22", "Cassandra Brown", "4"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Rome", "2", "Kenko Ngamene", "0"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Rome", "5", "Anastasia Conte", "3"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Rome", "11", "Nancy N’guessan", "1"],
+["ff1b2eb8", "Canada", "21", "6", "Rome", "Rome", "20", "Cristina Osazuwa", "2"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Neftchi SOCAR", "14", "Nevena Vuckovic", "4"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Neftchi SOCAR", "23", "Arica Carter", "7"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Neftchi SOCAR", "24", "Alexandra Mollenhauer", "3"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Neftchi SOCAR", "25", "Aoi Katsura", "5"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Hungary", "17", "Tamara Szerencsés", "2"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Hungary", "18", "Mia David", "1"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Hungary", "24", "Franka Toth", "7"],
+["179fd454", "Neftchi SOCAR", "19", "18", "Hungary", "Hungary", "44", "Vivi Böröndy", "8"],
+["30e6c572", "France", "21", "12", "Beijing", "France", "1", "Marie Mané", "3"],
+["30e6c572", "France", "21", "12", "Beijing", "France", "5", "Marie-Eve Paget", "7"],
+["30e6c572", "France", "21", "12", "Beijing", "France", "12", "Laetitia Guapo", "7"],
+["30e6c572", "France", "21", "12", "Beijing", "France", "13", "Marie Milapie", "4"],
+["30e6c572", "France", "21", "12", "Beijing", "Beijing", "0", "TongTong WU", "3"],
+["30e6c572", "France", "21", "12", "Beijing", "Beijing", "9", "FengYi Sun", "3"],
+["30e6c572", "France", "21", "12", "Beijing", "Beijing", "15", "JianPing Zhang", "3"],
+["30e6c572", "France", "21", "12", "Beijing", "Beijing", "18", "Xuemeng Wang", "3"],
+["a14491d7", "Madrid", "10", "11", "France U25", "Madrid", "8", "Irene Lahuerta", "0"],
+["a14491d7", "Madrid", "10", "11", "France U25", "Madrid", "11", "Blanca Millán", "2"],
+["a14491d7", "Madrid", "10", "11", "France U25", "Madrid", "21", "María Roters", "3"],
+["a14491d7", "Madrid", "10", "11", "France U25", "Madrid", "33", "Cecilia Muhate", "5"],
+["a14491d7", "Madrid", "10", "11", "France U25", "France U25", "8", "Yohana Ewodo", "3"],
+["a14491d7", "Madrid", "10", "11", "France U25", "France U25", "27", "Louise Préneau", "3"],
+["a14491d7", "Madrid", "10", "11", "France U25", "France U25", "28", "Louise Bussiere", "2"],
+["a14491d7", "Madrid", "10", "11", "France U25", "France U25", "77", "Samantha Peytour", "3"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Canada", "2", "Katherine Plouffe", "3"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Canada", "7", "Paige Crozon", "9"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Canada", "13", "Merissah Russell", "5"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Canada", "22", "Cassandra Brown", "2"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Italy", "10", "Ilaria Bernardi", "5"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Italy", "15", "Maria Miccoli", "2"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Italy", "18", "Caterina Gilli", "2"],
+["dc51c74d", "Canada", "19", "10", "Italy", "Italy", "44", "Gina Conti", "1"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Neftchi SOCAR", "14", "Nevena Vuckovic", "4"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Neftchi SOCAR", "23", "Arica Carter", "8"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Neftchi SOCAR", "24", "Alexandra Mollenhauer", "6"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Neftchi SOCAR", "25", "Aoi Katsura", "3"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Slovakia", "3", "Vanda Kristlová", "2"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Slovakia", "4", "Lucia Kašperanová", "5"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Slovakia", "33", "Liana Užovičová", "1"],
+["9acd980d", "Neftchi SOCAR", "21", "14", "Slovakia", "Slovakia", "98", "Vanda Kozakova", "6"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Beijing", "0", "TongTong WU", "2"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Beijing", "9", "FengYi Sun", "0"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Beijing", "15", "JianPing Zhang", "4"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Beijing", "18", "Xuemeng Wang", "3"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Ottawa", "4", "Kacie Bosch", "0"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Ottawa", "12", "Jade Belmore", "3"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Ottawa", "14", "Niyah Becker", "5"],
+["33e7795c", "Beijing", "9", "17", "Ottawa", "Ottawa", "77", "Saicha Grant-Allen", "9"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "France U25", "8", "Yohana Ewodo", "8"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "France U25", "27", "Louise Préneau", "6"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "France U25", "28", "Louise Bussiere", "3"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "France U25", "77", "Samantha Peytour", "3"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "Uganda", "1", "Leslie Vorpahl", "7"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "Uganda", "3", "Perus Nyamwenge", "0"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "Uganda", "18", "Melissa Akullu", "4"],
+["5c8717e5", "France U25", "20", "17", "Uganda", "Uganda", "35", "Jane Asinde", "6"],
+["d74f7421", "Italy", "18", "12", "Rome", "Italy", "10", "Ilaria Bernardi", "4"],
+["d74f7421", "Italy", "18", "12", "Rome", "Italy", "15", "Maria Miccoli", "4"],
+["d74f7421", "Italy", "18", "12", "Rome", "Italy", "18", "Caterina Gilli", "2"],
+["d74f7421", "Italy", "18", "12", "Rome", "Italy", "44", "Gina Conti", "8"],
+["d74f7421", "Italy", "18", "12", "Rome", "Rome", "2", "Kenko Ngamene", "1"],
+["d74f7421", "Italy", "18", "12", "Rome", "Rome", "5", "Anastasia Conte", "3"],
+["d74f7421", "Italy", "18", "12", "Rome", "Rome", "11", "Nancy N’guessan", "2"],
+["d74f7421", "Italy", "18", "12", "Rome", "Rome", "20", "Cristina Osazuwa", "6"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Slovakia", "3", "Vanda Kristlová", "7"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Slovakia", "4", "Lucia Kašperanová", "5"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Slovakia", "33", "Liana Užovičová", "1"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Slovakia", "98", "Vanda Kozakova", "6"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Hungary", "17", "Tamara Szerencsés", "4"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Hungary", "18", "Mia David", "1"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Hungary", "24", "Franka Toth", "2"],
+["022fc8f2", "Slovakia", "19", "20", "Hungary", "Hungary", "44", "Vivi Böröndy", "13"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Neftchi SOCAR", "14", "Nevena Vuckovic", "0"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Neftchi SOCAR", "23", "Arica Carter", "5"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Neftchi SOCAR", "24", "Alexandra Mollenhauer", "8"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Neftchi SOCAR", "25", "Aoi Katsura", "5"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Uganda", "1", "Leslie Vorpahl", "1"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Uganda", "3", "Perus Nyamwenge", "2"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Uganda", "18", "Melissa Akullu", "6"],
+["970bb9c9", "Neftchi SOCAR", "18", "15", "Uganda", "Uganda", "35", "Jane Asinde", "6"],
+["e4afb7d0", "France", "15", "12", "Italy", "France", "1", "Marie Mané", "5"],
+["e4afb7d0", "France", "15", "12", "Italy", "France", "5", "Marie-Eve Paget", "3"],
+["e4afb7d0", "France", "15", "12", "Italy", "France", "12", "Laetitia Guapo", "3"],
+["e4afb7d0", "France", "15", "12", "Italy", "France", "13", "Marie Milapie", "4"],
+["e4afb7d0", "France", "15", "12", "Italy", "Italy", "10", "Ilaria Bernardi", "3"],
+["e4afb7d0", "France", "15", "12", "Italy", "Italy", "15", "Maria Miccoli", "0"],
+["e4afb7d0", "France", "15", "12", "Italy", "Italy", "18", "Caterina Gilli", "2"],
+["e4afb7d0", "France", "15", "12", "Italy", "Italy", "44", "Gina Conti", "7"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Canada", "2", "Katherine Plouffe", "4"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Canada", "7", "Paige Crozon", "12"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Canada", "13", "Merissah Russell", "4"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Canada", "22", "Cassandra Brown", "2"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Ottawa", "4", "Kacie Bosch", "1"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Ottawa", "12", "Jade Belmore", "2"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Ottawa", "14", "Niyah Becker", "4"],
+["4b78225d", "Canada", "22", "11", "Ottawa", "Ottawa", "77", "Saicha Grant-Allen", "4"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "France U25", "8", "Yohana Ewodo", "6"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "France U25", "27", "Louise Préneau", "5"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "France U25", "28", "Louise Bussiere", "1"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "France U25", "77", "Samantha Peytour", "3"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "Hungary", "17", "Tamara Szerencsés", "3"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "Hungary", "18", "Mia David", "0"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "Hungary", "24", "Franka Toth", "3"],
+["d01d2a92", "France U25", "15", "10", "Hungary", "Hungary", "44", "Vivi Böröndy", "4"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "Neftchi SOCAR", "14", "Nevena Vuckovic", "2"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "Neftchi SOCAR", "23", "Arica Carter", "6"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "Neftchi SOCAR", "24", "Alexandra Mollenhauer", "4"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "Neftchi SOCAR", "25", "Aoi Katsura", "2"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "France", "1", "Marie Mané", "2"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "France", "5", "Marie-Eve Paget", "2"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "France", "12", "Laetitia Guapo", "3"],
+["5bc49a0f", "Neftchi SOCAR", "14", "10", "France", "France", "13", "Marie Milapie", "3"],
+["a7266bf3", "Canada", "18", "16", "France U25", "Canada", "2", "Katherine Plouffe", "8"],
+["a7266bf3", "Canada", "18", "16", "France U25", "Canada", "7", "Paige Crozon", "2"],
+["a7266bf3", "Canada", "18", "16", "France U25", "Canada", "13", "Merissah Russell", "3"],
+["a7266bf3", "Canada", "18", "16", "France U25", "Canada", "22", "Cassandra Brown", "5"],
+["a7266bf3", "Canada", "18", "16", "France U25", "France U25", "8", "Yohana Ewodo", "4"],
+["a7266bf3", "Canada", "18", "16", "France U25", "France U25", "27", "Louise Préneau", "5"],
+["a7266bf3", "Canada", "18", "16", "France U25", "France U25", "28", "Louise Bussiere", "6"],
+["a7266bf3", "Canada", "18", "16", "France U25", "France U25", "77", "Samantha Peytour", "1"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Neftchi SOCAR", "14", "Nevena Vuckovic", "3"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Neftchi SOCAR", "23", "Arica Carter", "5"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Neftchi SOCAR", "24", "Alexandra Mollenhauer", "4"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Neftchi SOCAR", "25", "Aoi Katsura", "3"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Canada", "2", "Katherine Plouffe", "3"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Canada", "7", "Paige Crozon", "2"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Canada", "13", "Merissah Russell", "1"],
+["9f428e47", "Neftchi SOCAR", "15", "9", "Canada", "Canada", "22", "Cassandra Brown", "3"],
+];
+
+const GAME_ORDER = ["94052d53", "aecd3202", "3e4f6948", "d063b455", "83efbc30", "eb9150f4", "33095439", "0c555335", "ff1b2eb8", "179fd454", "30e6c572", "a14491d7", "dc51c74d", "9acd980d", "33e7795c", "5c8717e5", "d74f7421", "022fc8f2", "970bb9c9", "e4afb7d0", "4b78225d", "d01d2a92", "5bc49a0f", "a7266bf3", "9f428e47"];
+
+const FINISH_ORDER = ["Neftchi SOCAR", "Canada", "France", "France U25", "Ottawa", "Uganda", "Portugal", "Slovakia U23", "Hungary", "Italy", "Beijing", "Benin", "Fuengirola", "Madrid", "Rome", "Slovakia"];
+
+const gameIndex = {};
+for (const r of RAW) {
+  const [gid,ht,hs,as_,at] = r;
+  if (!gameIndex[gid]) gameIndex[gid] = {gid,ht,hs:+hs,as:+as_,at};
+}
+
+function buildData() {
+  const td = {};
+  for (const r of RAW) {
+    const [gid,ht,hs,as_,at,team,num,name,pts] = r;
+    if (!td[team]) td[team] = {};
+    if (!td[team][name]) td[team][name] = {num, games:{}};
+    td[team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildData();
+let activeTeams = new Set();
+
+function rankTeams() {
+  const available = Object.keys(teamData);
+  return [...FINISH_ORDER.filter(t=>available.includes(t)), ...available.filter(t=>!FINISH_ORDER.includes(t)).sort()];
+}
+
+function getTeamGames(team) {
+  const gids = new Set();
+  for (const pd of Object.values(teamData[team]))
+    for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return GAME_ORDER.filter(gid => gids.has(gid));
+}
+
+function getFinishClass(pos){return pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';}
+
+function updateHero() {
+  const teams = rankTeams();
+  const gids = new Set(); let players = 0;
+  for (const t of teams) { getTeamGames(t).forEach(id=>gids.add(id)); players+=Object.keys(teamData[t]).length; }
+  document.getElementById('hero-games').textContent = gids.size+' games';
+  document.getElementById('hero-players').textContent = players+' players';
+}
+
+function renderFinishRow() {
+  const row = document.getElementById('finish-row');
+  row.innerHTML = '<span class="finish-label">Final standings:</span>';
+  FINISH_ORDER.forEach((team,i) => {
+    const pos=i+1, cls=getFinishClass(pos);
+    const pill=document.createElement('div');
+    pill.className='finish-pill'+(cls?' '+cls:'');
+    pill.innerHTML=`<span class="finish-pos">${pos}</span><span>${team}</span>`;
+    row.appendChild(pill);
+  });
+}
+
+function renderChips() {
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of rankTeams()) {
+    const b=document.createElement('button');
+    b.className='team-chip'+(activeTeams.has(t)?' active':'');
+    b.textContent=t;
+    b.onclick=()=>{activeTeams.has(t)?activeTeams.delete(t):activeTeams.add(t);renderAll();};
+    fr.appendChild(b);
+  }
+}
+
+function renderAll() {
+  updateHero(); renderFinishRow(); renderChips();
+  const teams=rankTeams();
+  const show=activeTeams.size>0?teams.filter(t=>activeTeams.has(t)):teams;
+  const content=document.getElementById('content');
+  content.innerHTML='';
+  if(!show.length){content.innerHTML='<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';return;}
+  for (const team of show) content.appendChild(buildBlock(team, FINISH_ORDER.indexOf(team)+1));
+}
+
+function buildBlock(team,pos) {
+  const players=teamData[team], allGames=getTeamGames(team);
+  const sorted=Object.entries(players).sort((a,b)=>{
+    const ta=Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb=Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const block=document.createElement('div'); block.className='team-block';
+  const finCls=getFinishClass(pos);
+  const finLabel=pos?`<span class="team-finish${finCls?' '+finCls:''}">${pos}${pos===1?'st':pos===2?'nd':pos===3?'rd':'th'}</span>`:'';
+  const title=document.createElement('div'); title.className='team-title';
+  title.innerHTML=`<h2>${team}</h2>${finLabel}<span class="team-meta">${allGames.length} game${allGames.length!==1?'s':''} · ${sorted.length} players</span><span class="toggle-icon">▾</span>`;
+  const bodyWrap=document.createElement('div'); bodyWrap.className='team-body-wrap';
+  title.onclick=()=>{bodyWrap.classList.toggle('collapsed');title.classList.toggle('collapsed');};
+  block.appendChild(title);
+  const table=document.createElement('table');
+  const thead=document.createElement('thead');
+  const tr1=document.createElement('tr');
+  tr1.appendChild(mkTh('#','num')); tr1.appendChild(mkTh('Player',''));
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],gi=gameIndex[gid];
+    const opp=gi.ht===team?gi.at:gi.ht;
+    const myS=gi.ht===team?gi.hs:gi.as,opS=gi.ht===team?gi.as:gi.hs;
+    const won=myS>opS;
+    const cell=mkTh('','game-th center'+(i===0?' divider':''));
+    cell.innerHTML=`<span class="game-header-opp">${opp}</span><span class="game-header-score ${won?'won':'lost'}">${myS}–${opS}</span>`;
+    tr1.appendChild(cell);
+  }
+  tr1.appendChild(mkTh('Total','center divider')); tr1.appendChild(mkTh('Avg','center'));
+  thead.appendChild(tr1); table.appendChild(thead);
+  const tbody=document.createElement('tbody');
+  for (const [name,pd] of sorted){
+    const total=Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp=Object.keys(pd.games).length;
+    const avg=gp>0?(total/gp).toFixed(1):'—';
+    const tr=document.createElement('tr');
+    tr.appendChild(mkTd(pd.num,'num')); tr.appendChild(mkTd(name,'name'));
+    for (let i=0;i<allGames.length;i++){
+      const gid=allGames[i],pts=pd.games[gid];
+      const cls=(i===0?'divider ':'')+(pts===undefined?'pts-dash':pts===0?'pts-zero':'pts');
+      tr.appendChild(mkTd(pts===undefined?'—':String(pts),cls));
+    }
+    tr.appendChild(mkTd(String(total),'total divider')); tr.appendChild(mkTd(avg,'avg'));
+    tbody.appendChild(tr);
+  }
+  const totRow=document.createElement('tr'); totRow.className='totrow';
+  totRow.appendChild(mkTd('','')); totRow.appendChild(mkTd('Team total',''));
+  let grand=0;
+  for (let i=0;i<allGames.length;i++){
+    const gid=allGames[i],col=sorted.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+    grand+=col;
+    totRow.appendChild(mkTd(String(col),(i===0?'divider ':'')+' center'));
+  }
+  totRow.appendChild(mkTd(String(grand),'total divider')); totRow.appendChild(mkTd('',''));
+  tbody.appendChild(totRow); table.appendChild(tbody);
+  bodyWrap.appendChild(table); block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text,cls){const el=document.createElement('th');if(cls)el.className=cls;if(text)el.textContent=text;return el;}
+function mkTd(text,cls){const el=document.createElement('td');if(cls)el.className=cls;el.textContent=text;return el;}
+
+renderAll();
+</script>
+</body>
+</html>
