@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — U21 Asia-2 2026 | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── THEME TOKENS ── */
+:root {
+  --bg:      #141210;
+  --s1:      #1c1916;
+  --s2:      #222018;
+  --s3:      #2c2820;
+  --s4:      #38332a;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #f0ece4;
+  --muted:   #6b6256;
+  --muted2:  #9e9082;
+  --accent:  #e8400c;
+  --nl:      #a78bfa;
+  --nl-bg:   rgba(167,139,250,0.10);
+  --won:     #34d399;
+  --lost:    #f87171;
+  --hero-grad: linear-gradient(150deg, #1e1a14 0%, #141210 60%);
+  --tabs-bg: rgba(20,18,16,0.95);
+}
+[data-theme="light"] {
+  --bg:      #faf8f5;
+  --s1:      #ffffff;
+  --s2:      #f3f0eb;
+  --s3:      #e8e3da;
+  --s4:      #dcd6cc;
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text:    #1a1612;
+  --muted:   #a09080;
+  --muted2:  #6e5e50;
+  --accent:  #d13408;
+  --nl:      #6d28d9;
+  --nl-bg:   rgba(109,40,217,0.09);
+  --won:     #0f766e;
+  --lost:    #be123c;
+  --hero-grad: linear-gradient(150deg, #f0ece3 0%, #faf8f5 60%);
+  --tabs-bg: rgba(250,248,245,0.97);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* grain */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+[data-theme="light"] body::after { opacity:.15; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  background: var(--tabs-bg);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 2rem;
+}
+.topbar-inner {
+  max-width: 1040px; margin: 0 auto;
+  height: 56px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: nowrap;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted2); text-decoration: none;
+  padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border2); background: transparent;
+  transition: all .15s; flex-shrink: 0;
+}
+.back-link:hover { color: var(--text); border-color: var(--border2); background: var(--s3); }
+.topbar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: .06em;
+  color: var(--text); flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-nl-badge {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 3px;
+  background: var(--nl-bg); color: var(--nl); border: 1px solid rgba(167,139,250,.22);
+  white-space: nowrap; flex-shrink: 0;
+}
+[data-theme="light"] .topbar-nl-badge { background: rgba(109,40,217,0.09); color: var(--nl); border-color: rgba(109,40,217,.22); }
+
+/* gender toggle */
+.gender-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; flex-shrink:0;
+}
+.gender-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 13px; border: none; background: none; cursor: pointer;
+  color: var(--muted2); transition: all .14s;
+}
+.gender-btn.active { background: var(--text); color: var(--bg); }
+
+/* theme toggle */
+.theme-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted2); cursor: pointer; transition: all .2s; flex-shrink:0;
+}
+.theme-toggle-btn:hover { color: var(--text); }
+.theme-toggle-btn svg { width:14px; height:14px; transition: transform .3s; }
+.theme-toggle-btn:hover svg { transform: rotate(18deg); }
+.t-sun { display:none; }
+.t-moon { display:block; }
+[data-theme="light"] .t-sun { display:block; }
+[data-theme="light"] .t-moon { display:none; }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  background: var(--hero-grad);
+  border-bottom: 1px solid var(--border2);
+  padding: 1.8rem 2rem 1.4rem;
+  position: relative; overflow: hidden;
+}
+.hero-strip-bg {
+  position: absolute; right: -0.04em; top: -0.1em;
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,16vw,180px);
+  line-height:1; color: rgba(167,139,250,0.05); pointer-events:none; user-select:none;
+}
+.hero-strip-inner { max-width: 1040px; margin: 0 auto; position:relative; z-index:1; }
+.hero-strip-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nl); display: flex; align-items: center; gap: 8px; margin-bottom: .4rem;
+}
+.hero-strip-eyebrow::before { content:''; width:18px; height:2px; background:var(--nl); flex-shrink:0; }
+.hero-strip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 46px); line-height:.95; letter-spacing:.02em;
+  margin-bottom:.8rem;
+}
+.hero-strip-title em { color: var(--accent); font-style:normal; }
+.hero-strip-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted2);
+}
+.hero-strip-meta strong { color: var(--text); font-weight:500; }
+
+/* ── TEAM FILTER ROW ── */
+.filter-row {
+  max-width: 1040px; margin: 0 auto;
+  padding: .9rem 2rem;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.filter-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); flex-shrink: 0;
+}
+.team-chip {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 4px;
+  border: 1px solid var(--border2); background: transparent; color: var(--muted2);
+  cursor: pointer; transition: all .14s; white-space: nowrap;
+}
+.team-chip:hover { color: var(--text); border-color: rgba(255,255,255,.22); }
+[data-theme="light"] .team-chip:hover { border-color: rgba(0,0,0,.2); }
+.team-chip.active { background: var(--text); color: var(--bg); border-color: transparent; }
+
+/* ── CONTENT ── */
+.content { max-width: 1040px; margin: 0 auto; padding: 1.5rem 2rem 5rem; }
+
+/* team block */
+.team-block {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.team-title {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: var(--s2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+}
+.team-title:hover { background: var(--s3); }
+.team-title h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: .04em; color: var(--text);
+}
+.team-meta { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); margin-left:auto; }
+.toggle-icon { font-size:14px; color:var(--muted); transition:transform .2s; }
+.team-body-wrap { overflow-x: auto; }
+.team-body-wrap.collapsed { display: none; }
+.team-title.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+.gender-tag {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:2px 7px; border-radius:3px; font-weight:500;
+}
+.gender-tag.w { background:rgba(248,113,113,.12); color:#f87171; border:1px solid rgba(248,113,113,.22); }
+.gender-tag.m { background:rgba(56,189,248,.12); color:#38bdf8; border:1px solid rgba(56,189,248,.22); }
+[data-theme="light"] .gender-tag.w { background:rgba(190,18,60,.09); color:#be123c; border-color:rgba(190,18,60,.2); }
+[data-theme="light"] .gender-tag.m { background:rgba(3,105,161,.09); color:#0369a1; border-color:rgba(3,105,161,.2); }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; font-size:12px; }
+thead th {
+  background: var(--s2);
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted2); font-weight: 500; white-space: nowrap;
+  position: sticky; top: 0;
+}
+thead th.col-num { text-align:center; }
+thead th.divider { border-left: 2px solid var(--border2); }
+thead th.stop-group {
+  text-align:center;
+  background: var(--s3);
+  border-left: 2px solid var(--border2);
+  color: var(--nl); letter-spacing: .12em;
+}
+
+tbody tr { border-top: 1px solid var(--border); }
+tbody tr:hover { background: var(--s2); }
+td { padding: 7px 8px; vertical-align: middle; }
+
+.col-num { width:28px; text-align:center; color:var(--muted); }
+.col-name { min-width:140px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:500; color:var(--text); }
+.col-pts { text-align:center; min-width:36px; font-weight:600; color:var(--text); }
+.col-total { text-align:center; min-width:40px; font-weight:700; color:var(--text); }
+.col-avg { text-align:center; min-width:38px; color:var(--muted2); font-family:'DM Mono',monospace; font-size:11px; }
+.pts-zero { color:var(--muted) !important; font-weight:400 !important; }
+.pts-dash { color:var(--border2); text-align:center; }
+.divider { border-left: 2px solid var(--border2); }
+.total-row td { background:var(--s3); font-weight:600; border-top:2px solid var(--border2); color:var(--muted2); font-size:11px; font-family:'DM Mono',monospace; }
+.total-row td.col-total { color:var(--text); font-size:14px; }
+
+.score-won { color:var(--won); font-weight:600; font-size:10px; }
+.score-lost { color:var(--lost); font-weight:600; font-size:10px; }
+.opp-name { display:block; font-size:10px; color:var(--muted2); margin-bottom:1px; white-space:nowrap; }
+
+/* badges */
+.badge-new { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(240,165,0,.15); color:var(--wt,#f0a500); margin-left:4px; }
+.badge-left { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(248,113,113,.12); color:#f87171; margin-left:4px; }
+[data-theme="light"] .badge-new { background:rgba(184,120,0,.12); color:#b87800; }
+[data-theme="light"] .badge-left { background:rgba(190,18,60,.1); color:#be123c; }
+
+/* empty */
+.empty { text-align:center; padding:4rem 0; color:var(--muted); }
+.empty-big { font-family:'Bebas Neue',sans-serif; font-size:52px; display:block; color:var(--s4); margin-bottom:.4rem; }
+
+@media(max-width:640px){
+  .topbar { padding: 0 1rem; }
+  .topbar-inner { gap:8px; }
+  .hero-strip { padding:1.4rem 1rem 1rem; }
+  .filter-row { padding:.75rem 1rem; }
+  .content { padding:1rem 1rem 3rem; }
+  .topbar-title { font-size:14px; }
+  .back-link span { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">U21 Asia-2 2026 Stats</div>
+    <div class="topbar-nl-badge">Nations League</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <div class="hero-strip-bg">A2</div>
+  <div class="hero-strip-inner">
+    <div class="hero-strip-eyebrow">U21 Nations League 2026 · Stops 1–6</div>
+    <h1 class="hero-strip-title">Asia-2 <em>Stats</em></h1>
+    <div class="hero-strip-meta">
+      <span><strong>Asia-2 Conference</strong></span>
+      <span>·</span>
+      <span><strong>2026 Season</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM FILTER -->
+<div class="filter-row" id="filter-row">
+  <span class="filter-label">Teams:</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ────────────────────────────────────────────────────────────────────
+const html = document.documentElement;
+const saved = localStorage.getItem('fiba3x3-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── RAW DATA ─────────────────────────────────────────────────────────────────
+// ── Raw data ──────────────────────────────────────────────────────────────────
+const RAW = [
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "0"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "9"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "5"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "3"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "4"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "9"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "9"],
+["Stop 1", "25ad24d4", "New Zealand (U21)", "17", "22", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "0"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "4"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "3"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "2"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "4"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "5"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "7"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "7"],
+["Stop 1", "3677f0a6", "Malaysia (U21)", "13", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "2"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "3"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Malaysia (U21)", "5", "Sammi Tan", "2"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "9"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "6"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "5"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "2"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "1"],
+["Stop 1", "44d43aa9", "Malaysia (U21)", "20", "11", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "3"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "4"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "New Zealand (U21)", "8", "Alexa Kate Duff", "2"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "2"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "3"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "4"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "5"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "2"],
+["Stop 1", "51beca38", "New Zealand (U21)", "11", "15", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "4"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Singapore (U21)", "9", "Eshan Kaul", "5"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "2"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Singapore (U21)", "14", "Aditya Kaul", "2"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Singapore (U21)", "20", "Gurkeeret S/O Avtar Singh Singh Sandhu", "0"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "4"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "2"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "1"],
+["Stop 1", "557de127", "Singapore (U21)", "9", "14", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "7"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "3"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "8"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "1"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "9"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "7"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "0"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "1"],
+["Stop 1", "6361a862", "New Zealand (U21)", "21", "17", "Malaysia (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "9"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "2"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "5"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "5"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Philippines (U21)", "21", "John Earl Medina", "7"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "6"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "4"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "2"],
+["Stop 1", "70993d67", "Philippines (U21)", "19", "20", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "8"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "3"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "2"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Japan (U21)", "87", "Keito Tokumoto", "8"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "5"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "3"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "3"],
+["Stop 1", "831168fd", "Japan (U21)", "17", "13", "Singapore (U21)", "Singapore (U21)", "20", "Gurkeeret S/O Avtar Singh Singh Sandhu", "2"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "7"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "New Zealand (U21)", "8", "Alexa Kate Duff", "7"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "5"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "2"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "2"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 1", "904dad42", "New Zealand (U21)", "21", "5", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "2"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "2"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "1"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "1"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "2"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "8"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "2"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "8"],
+["Stop 1", "a14d75b4", "Singapore (U21)", "6", "21", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "3"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "0"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Japan (U21)", "12", "Haruka Yagi", "10"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "6"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Japan (U21)", "30", "Mio Shiraishi", "6"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "1"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Malaysia (U21)", "5", "Sammi Tan", "2"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "4"],
+["Stop 1", "a509f76a", "Japan (U21)", "22", "12", "Malaysia (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "5"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "6"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Japan (U21)", "12", "Haruka Yagi", "6"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "6"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Japan (U21)", "30", "Mio Shiraishi", "3"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "2"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "4"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "0"],
+["Stop 1", "cdaafb0f", "Japan (U21)", "21", "10", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "4"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "5"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "0"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Japan (U21)", "87", "Keito Tokumoto", "1"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "1"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "5"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "9"],
+["Stop 1", "d832bd5d", "Japan (U21)", "10", "20", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "5"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "5"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Japan (U21)", "12", "Haruka Yagi", "7"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "3"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Japan (U21)", "30", "Mio Shiraishi", "2"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "4"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "9"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "3"],
+["Stop 1", "ecfdc0a9", "Japan (U21)", "17", "19", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "3"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "4"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "New Zealand (U21)", "8", "Alexa Kate Duff", "0"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "5"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "6"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "5"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "3"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "Malaysia (U21)", "6", "Xin Yu OH", "0"],
+["Stop 2", "37b0d536", "New Zealand (U21)", "15", "14", "Malaysia (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "6"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "7"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Japan (U21)", "12", "Haruka Yagi", "3"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Japan (U21)", "24", "Kokone Ueno", "4"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Japan (U21)", "30", "Mio Shiraishi", "1"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "3"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "10"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "5"],
+["Stop 2", "441c2f32", "Japan (U21)", "15", "18", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "0"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "7"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "1"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Malaysia (U21)", "6", "Xin Yu OH", "0"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "7"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "9"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "2"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "6"],
+["Stop 2", "51b56aa3", "Malaysia (U21)", "15", "21", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "4"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "3"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "Japan (U21)", "7", "Takumi Ii", "4"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "Japan (U21)", "18", "Teruchika Naito", "8"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "Japan (U21)", "87", "Keito Tokumoto", "5"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "2"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "7"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "8"],
+["Stop 2", "5c87ea5c", "Japan (U21)", "20", "21", "New Zealand (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "4"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "3"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "New Zealand (U21)", "8", "Alexa Kate Duff", "0"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "1"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "5"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "4"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "5"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "1"],
+["Stop 2", "5e555724", "New Zealand (U21)", "9", "16", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "6"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "2"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Singapore (U21)", "9", "Eshan Kaul", "7"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "2"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Singapore (U21)", "14", "Aditya Kaul", "5"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "4"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "4"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "6"],
+["Stop 2", "8f5ca08d", "Singapore (U21)", "16", "21", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "7"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "11"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Japan (U21)", "7", "Takumi Ii", "6"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Japan (U21)", "18", "Teruchika Naito", "2"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Japan (U21)", "87", "Keito Tokumoto", "2"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "2"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "4"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "8"],
+["Stop 2", "a5cb996e", "Japan (U21)", "21", "18", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "4"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "6"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "2"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "4"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "5"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "6"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "5"],
+["Stop 2", "aa9f5117", "Singapore (U21)", "12", "21", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "5"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "5"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "12", "Haruka Yagi", "5"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "24", "Kokone Ueno", "7"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "30", "Mio Shiraishi", "4"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "4"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "0"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 2", "b7d2a6c7", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "3"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "12"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "2"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Malaysia (U21)", "6", "Xin Yu OH", "2"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "5"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "0"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "6"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "4"],
+["Stop 2", "bffc70af", "Malaysia (U21)", "21", "13", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "3"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "1"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "2"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "1"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "4"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "8"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "5"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "4"],
+["Stop 2", "c641f9ed", "Malaysia (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "4"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "2"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "10"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "4"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "4"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "2"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "4"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "10"],
+["Stop 2", "e4911696", "New Zealand (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "3"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "3"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "2"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "8"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "8"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "0"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "6"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "2"],
+["Stop 2", "ec2be460", "New Zealand (U21)", "21", "12", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "4"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "6"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Japan (U21)", "7", "Takumi Ii", "6"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Japan (U21)", "18", "Teruchika Naito", "2"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Japan (U21)", "87", "Keito Tokumoto", "8"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "6"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "1"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "5"],
+["Stop 2", "ee619d50", "Japan (U21)", "22", "16", "Malaysia (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "4"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "5"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "12", "Haruka Yagi", "4"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "6"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "24", "Kokone Ueno", "6"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "4"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "3"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "0"],
+["Stop 3", "0549c311", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "55", "Ariel En Rei Tan", "0"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "5"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "5"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Singapore (U21)", "55", "Ariel En Rei Tan", "0"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "2"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "4"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "0"],
+["Stop 3", "0d534e4d", "Singapore (U21)", "11", "15", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "9"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Malaysia (U21)", "21", "JIXIN PHAN", "1"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "3"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "5"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "0"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Belarus (U21)", "0", "Vitali Duchko", "4"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "9"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "5"],
+["Stop 3", "0d5fa9fe", "Malaysia (U21)", "9", "21", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "3"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "9"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "1"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "6"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "2"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "3"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "0"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "Malaysia (U21)", "5", "Sammi Tan", "1"],
+["Stop 3", "0ed284bc", "New Zealand (U21)", "18", "10", "Malaysia (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "6"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "2"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "0"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "1"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "5"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "Belarus (U21)", "6", "Ilona Katsura", "1"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "6"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "3"],
+["Stop 3", "17886f5e", "New Zealand (U21)", "8", "11", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "1"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "5"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Japan (U21)", "7", "Takumi Ii", "7"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Japan (U21)", "87", "Keito Tokumoto", "4"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "0", "Vitali Duchko", "3"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "7"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "4"],
+["Stop 3", "31caa5ba", "Japan (U21)", "20", "19", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "5"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "1"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Singapore (U21)", "9", "Eshan Kaul", "3"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "7"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Singapore (U21)", "14", "Aditya Kaul", "3"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "10"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "6"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "6"],
+["Stop 3", "33bd82bd", "Singapore (U21)", "14", "22", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "0"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Malaysia (U21)", "5", "Sammi Tan", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Belarus (U21)", "6", "Ilona Katsura", "5"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "3"],
+["Stop 3", "44c4c065", "Malaysia (U21)", "12", "16", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "5"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "2"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "5"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "4"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "5"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "11"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "4"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "2"],
+["Stop 3", "44d9659a", "New Zealand (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "4"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "7"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Japan (U21)", "7", "Takumi Ii", "5"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Japan (U21)", "87", "Keito Tokumoto", "5"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Malaysia (U21)", "21", "JIXIN PHAN", "3"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "1"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "7"],
+["Stop 3", "8424ee53", "Japan (U21)", "21", "11", "Malaysia (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "0"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "7"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "1"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "6"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Philippines (U21)", "21", "John Earl Medina", "5"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "1"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Japan (U21)", "7", "Takumi Ii", "5"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 3", "9c1da34d", "Philippines (U21)", "19", "14", "Japan (U21)", "Japan (U21)", "87", "Keito Tokumoto", "4"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "6"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Japan (U21)", "12", "Haruka Yagi", "7"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "1"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Japan (U21)", "24", "Kokone Ueno", "4"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Belarus (U21)", "6", "Ilona Katsura", "6"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "3"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "4"],
+["Stop 3", "bdcde639", "Japan (U21)", "18", "13", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "0"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "5"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "8"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "0"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "8"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "2"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "7"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "5"],
+["Stop 3", "bfdf786d", "New Zealand (U21)", "21", "19", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "5"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "5"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Japan (U21)", "12", "Haruka Yagi", "11"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "4"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Japan (U21)", "24", "Kokone Ueno", "1"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "0"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "5"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "0"],
+["Stop 3", "cd2c9d8b", "Japan (U21)", "21", "7", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "2"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "1"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "2"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Belarus (U21)", "6", "Ilona Katsura", "6"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "7"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "4"],
+["Stop 4", "0150506b", "Singapore (U21)", "4", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "4"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "3"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "10"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "5"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "2"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "2"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "10"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "4"],
+["Stop 4", "0352dd8c", "New Zealand (U21)", "20", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "5"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "2"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "1"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "10"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "4"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "Belarus (U21)", "6", "Ilona Katsura", "2"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "3"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "7"],
+["Stop 4", "255499ae", "New Zealand (U21)", "17", "15", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "3"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "3"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Japan (U21)", "12", "Haruka Yagi", "7"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Japan (U21)", "24", "Kokone Ueno", "4"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Japan (U21)", "30", "Mio Shiraishi", "7"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "0"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "2"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "0"],
+["Stop 4", "3b31acbb", "Japan (U21)", "21", "4", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "2"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "4"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Japan (U21)", "7", "Takumi Ii", "10"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Japan (U21)", "18", "Teruchika Naito", "1"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "0"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "5"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "7"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "2"],
+["Stop 4", "4cce025a", "Japan (U21)", "15", "14", "Singapore (U21)", "Singapore (U21)", "20", "Gurkeeret S/O Avtar Singh Singh Sandhu", "0"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "2"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "Japan (U21)", "12", "Haruka Yagi", "8"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "Japan (U21)", "24", "Kokone Ueno", "5"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "Japan (U21)", "30", "Mio Shiraishi", "3"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "3"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "0"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "4"],
+["Stop 4", "52d5d455", "Japan (U21)", "18", "7", "New Zealand (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "0"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "5"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "8"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "New Zealand (U21)", "12", "Ky-Mani Cayden Kaumoana", "2"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "7"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "1"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "0"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "2"],
+["Stop 4", "8ed4ef38", "New Zealand (U21)", "22", "8", "Malaysia (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "5"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "8"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Japan (U21)", "7", "Takumi Ii", "4"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Japan (U21)", "18", "Teruchika Naito", "6"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "2"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Belarus (U21)", "0", "Vitali Duchko", "3"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "1"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "2"],
+["Stop 4", "98a20003", "Japan (U21)", "20", "12", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "6"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "3"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "3"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "2"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Philippines (U21)", "21", "John Earl Medina", "5"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "11"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Japan (U21)", "7", "Takumi Ii", "2"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Japan (U21)", "18", "Teruchika Naito", "0"],
+["Stop 4", "9af0e48d", "Philippines (U21)", "13", "14", "Japan (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "1"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "7"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Malaysia (U21)", "28", "Ng Zhi Yi", "1"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "1"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "2"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "9"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "9"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "2"],
+["Stop 4", "a46f55bb", "Malaysia (U21)", "11", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "1"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "1"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Malaysia (U21)", "5", "Sammi Tan", "4"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "11"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "6"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "4"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "4"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "1"],
+["Stop 4", "aeec50b3", "Malaysia (U21)", "22", "12", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "3"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "0"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Japan (U21)", "12", "Haruka Yagi", "6"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Japan (U21)", "24", "Kokone Ueno", "2"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Japan (U21)", "30", "Mio Shiraishi", "8"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Malaysia (U21)", "1", "Erica Ng Mun Shuen", "2"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Malaysia (U21)", "5", "Sammi Tan", "2"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "6"],
+["Stop 4", "c29e8d20", "Japan (U21)", "16", "12", "Malaysia (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "2"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "5"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "2"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "2"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "12"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "2"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "2"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 4", "ccb71d2a", "New Zealand (U21)", "21", "6", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "2"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Singapore (U21)", "9", "Eshan Kaul", "5"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "5"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Singapore (U21)", "14", "Aditya Kaul", "0"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Singapore (U21)", "20", "Gurkeeret S/O Avtar Singh Singh Sandhu", "0"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Belarus (U21)", "0", "Vitali Duchko", "5"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "5"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "4"],
+["Stop 4", "e23414c5", "Singapore (U21)", "10", "17", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "3"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "6"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "7", "Takumi Ii", "6"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "18", "Teruchika Naito", "6"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "3"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "21", "JIXIN PHAN", "2"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "3"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "8"],
+["Stop 5", "09098bad", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "3"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "3"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "2"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "4"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "3"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "8"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "Japan (U21)", "12", "Haruka Yagi", "4"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "6"],
+["Stop 5", "320fd231", "New Zealand (U21)", "12", "20", "Japan (U21)", "Japan (U21)", "24", "Kokone Ueno", "2"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "2"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Singapore (U21)", "9", "Eshan Kaul", "4"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "6"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Singapore (U21)", "14", "Aditya Kaul", "1"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "0"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "2"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "5"],
+["Stop 5", "39eda5fa", "Singapore (U21)", "13", "12", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "5"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "6"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Japan (U21)", "12", "Haruka Yagi", "7"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "6"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Japan (U21)", "24", "Kokone Ueno", "2"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "1"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "1"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "4"],
+["Stop 5", "566a2059", "Japan (U21)", "21", "9", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "3"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "5"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Japan (U21)", "12", "Haruka Yagi", "6"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "5"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Japan (U21)", "24", "Kokone Ueno", "5"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "0"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "0"],
+["Stop 5", "5ee1164e", "Japan (U21)", "21", "1", "Singapore (U21)", "Singapore (U21)", "26", "Carrie Lim Zhi Yu", "0"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "1"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "5"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "2"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "4"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "4"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "0"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "Belarus (U21)", "27", "Pavel Rabushka", "4"],
+["Stop 5", "613e55b6", "New Zealand (U21)", "12", "14", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "6"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "8"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "5"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "3"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "5"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "Philippines (U21)", "2", "Nadine Faye Muñoz", "2"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "4"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "2"],
+["Stop 5", "6ecfe979", "New Zealand (U21)", "21", "17", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "9"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "4"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "5"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "6"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "6"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "4"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "Malaysia (U21)", "5", "Sammi Tan", "2"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "10"],
+["Stop 5", "8708c484", "New Zealand (U21)", "21", "20", "Malaysia (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "4"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "1"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Malaysia (U21)", "5", "Sammi Tan", "0"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "13"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "2"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "2", "Nadine Faye Muñoz", "1"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "8"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "2"],
+["Stop 5", "98ac30c8", "Malaysia (U21)", "16", "21", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "10"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Malaysia (U21)", "21", "JIXIN PHAN", "3"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "2"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "5"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "4"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "4"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "7"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "4"],
+["Stop 5", "9acc033d", "Malaysia (U21)", "14", "21", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "6"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "1"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "6"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Singapore (U21)", "26", "Carrie Lim Zhi Yu", "0"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "4"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Belarus (U21)", "9", "Yelizaveta Shyshliuk", "3"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "4"],
+["Stop 5", "9e0e77ea", "Singapore (U21)", "8", "21", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "10"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "0"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "8"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "8"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "Philippines (U21)", "21", "John Earl Medina", "5"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "1"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "5"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "11"],
+["Stop 5", "addadbce", "Philippines (U21)", "21", "19", "New Zealand (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "2"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "1"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Japan (U21)", "7", "Takumi Ii", "3"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Japan (U21)", "18", "Teruchika Naito", "2"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "2"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "3"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "2"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "5"],
+["Stop 5", "d41a2dcd", "Japan (U21)", "8", "13", "Philippines (U21)", "Philippines (U21)", "21", "John Earl Medina", "3"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "3"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "5"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "10"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "3"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "1"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "4"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "4"],
+["Stop 5", "d726946a", "New Zealand (U21)", "21", "9", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "0"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "3"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "12", "Haruka Yagi", "8"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "2"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Japan (U21)", "30", "Mio Shiraishi", "8"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "5"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "2"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 6", "2034dfbc", "Japan (U21)", "21", "7", "Singapore (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "0"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "2"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Malaysia (U21)", "5", "Sammi Tan", "2"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "12"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "0"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "5"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "9"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "1"],
+["Stop 6", "306dda32", "Malaysia (U21)", "16", "20", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "5"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "11"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "4"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "3"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "3"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "2"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "4"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "2"],
+["Stop 6", "3d2665ce", "Malaysia (U21)", "21", "14", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "6"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Singapore (U21)", "2", "Kayla Lim Yann Ying", "1"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Singapore (U21)", "12", "Jovita Lee Jia En", "2"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Singapore (U21)", "14", "Xinyi Zhang", "0"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Singapore (U21)", "21", "Madelin Sophie Lu Ruiyi Lock", "5"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "1"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "10"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "3"],
+["Stop 6", "438d8cf5", "Singapore (U21)", "8", "21", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "7"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "2"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Japan (U21)", "12", "Haruka Yagi", "4"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "4"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Japan (U21)", "30", "Mio Shiraishi", "7"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Philippines (U21)", "7", "Alyssa Kae Rodriguez", "2"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Philippines (U21)", "9", "Elaine Patio", "6"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Philippines (U21)", "20", "Kristan Geyl Yumul", "0"],
+["Stop 6", "471a9a41", "Japan (U21)", "17", "9", "Philippines (U21)", "Philippines (U21)", "27", "Alicia Margarett Villanueva", "1"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "3"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Japan (U21)", "7", "Takumi Ii", "11"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Japan (U21)", "18", "Teruchika Naito", "3"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "2"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Belarus (U21)", "7", "Arseni Viarzhbitski", "1"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Belarus (U21)", "12", "Ivan Litarny", "7"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Belarus (U21)", "13", "Aleksei Baldin", "1"],
+["Stop 6", "4ff0de7e", "Japan (U21)", "19", "17", "Belarus (U21)", "Belarus (U21)", "69", "David-Masenhe Mukete", "8"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "3"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "5"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "4"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "3"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "5"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "5"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "3"],
+["Stop 6", "58a840d8", "New Zealand (U21)", "15", "17", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "4"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "New Zealand (U21)", "5", "Cassidy Huia Lacey-Rameka", "4"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "New Zealand (U21)", "7", "Tia Pavihi", "0"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "New Zealand (U21)", "10", "Anika Anne Hyland", "3"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "New Zealand (U21)", "13", "Carly Rae Ohia", "5"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "Malaysia (U21)", "3", "Sandra Choe Yan Ting", "3"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "Malaysia (U21)", "5", "Sammi Tan", "4"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "Malaysia (U21)", "7", "ELAINE CHONG HUI LIN", "7"],
+["Stop 6", "61634926", "New Zealand (U21)", "12", "18", "Malaysia (U21)", "Malaysia (U21)", "77", "Ler Yee Low", "4"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Japan (U21)", "11", "Sakura Horiuchi", "3"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Japan (U21)", "12", "Haruka Yagi", "4"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Japan (U21)", "17", "Kohane Kadowaki", "8"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Japan (U21)", "30", "Mio Shiraishi", "3"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Belarus (U21)", "7", "Yauheniya Bernatskaya", "11"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Belarus (U21)", "10", "Aliaksandra Palubok", "4"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Belarus (U21)", "16", "KRYSTSINA KASTSIUKOVICH", "1"],
+["Stop 6", "7100778a", "Japan (U21)", "18", "21", "Belarus (U21)", "Belarus (U21)", "20", "Sofiya Lashkevich", "5"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "1"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "0"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "9"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "10"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "0"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "Singapore (U21)", "9", "Eshan Kaul", "5"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "11"],
+["Stop 6", "73de7aa2", "New Zealand (U21)", "20", "21", "Singapore (U21)", "Singapore (U21)", "14", "Aditya Kaul", "5"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "2"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "7", "Takumi Ii", "10"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "18", "Teruchika Naito", "4"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "5"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "24", "Matthew Ashton Lim U Kiat", "5"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "31", "Siew Hong Kee", "1"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "77", "Lau Leong Dong", "3"],
+["Stop 6", "85ab2bbe", "Japan (U21)", "21", "16", "Malaysia (U21)", "Malaysia (U21)", "99", "Eman Ajmal Bin Jamil", "7"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Singapore (U21)", "2", "Collin Reyes Hao Yang Vincent", "1"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Singapore (U21)", "9", "Eshan Kaul", "3"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Singapore (U21)", "11", "Karl Dahlén Phua", "2"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Singapore (U21)", "14", "Aditya Kaul", "3"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "2"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "13"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "2"],
+["Stop 6", "87ea77cd", "Singapore (U21)", "9", "20", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "3"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "New Zealand (U21)", "5", "CJ Paihana Flavell", "1"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "New Zealand (U21)", "8", "Xanda Athari Kaleel Marsters", "0"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "New Zealand (U21)", "9", "Hugo Gonzalez Garcia", "4"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "New Zealand (U21)", "55", "Aaron Wulf Sievert", "6"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "5"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "6"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "1"],
+["Stop 6", "9ad1a9b3", "New Zealand (U21)", "11", "17", "Philippines (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "5"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Philippines (U21)", "5", "Jedric Dennis Daa", "3"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Philippines (U21)", "6", "Wilhalm Lawrence Cabonilas", "3"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Philippines (U21)", "7", "Jhuniel Dela Rama", "6"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Philippines (U21)", "19", "Koji Ivan Buenaflor", "7"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Japan (U21)", "6", "Suguru Ishiguchi", "0"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Japan (U21)", "7", "Takumi Ii", "9"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Japan (U21)", "18", "Teruchika Naito", "7"],
+["Stop 6", "e2b46b06", "Philippines (U21)", "19", "18", "Japan (U21)", "Japan (U21)", "60", "Kenshin Kusumoto", "2"],
+];
+
+
+// Women's player names (unique identifiers from the data)
+const WOMEN_NAMES = new Set([
+  "Marianna Byvatov","Olivia Okpara","Maja Marie Manten","Lilly Küppers",
+  "Kilian Walter","Joshua Günther","David Galusic","Maximilian Matthias Eichbaum",
+  "Ludovica Sammartino","Ilaria Bernardi","Nancy Alessandra N'guessan","Cristina Osazuwa",
+  "Kenko Loredana Ngamene Takougang",
+  "Ela Nur Gokcol","Salminaz Ramazanli","Shilan Akbingol","Adila Yusubova",
+  "Danielė Paunksnytė","Urtė Čižauskaitė","Miglė Kisarauskaitė","Audronė Zdanevičiūtė",
+  "Hana Sambolic","Tina Tomšič","Anja Dragar","Mia Žekš",
+  "Lea Vukić","Ivana Mamić","Dalija Stabile","Jelena Brkičić","Elena Peričić",
+]);
+// Everyone else = Men
+
+function isWomen(name) { return WOMEN_NAMES.has(name); }
+
+// ── Build game index ──────────────────────────────────────────────────────────
+const gameIndex = {}; // gid -> {stop,ht,hs,as,at}
+for (const r of RAW) {
+  const [stop,gid,,hs,,as,,,,,] = r;
+  const ht=r[2], at=r[5];
+  if (!gameIndex[gid]) gameIndex[gid] = {stop,ht,hs:+r[3],as:+r[4],at};
+}
+
+// ── Gender classification — by game ID ───────────────────────────────────────
+const WOMEN_GAMES = new Set(["0150506b", "0549c311", "0d534e4d", "0ed284bc", "17886f5e", "2034dfbc", "255499ae", "306dda32", "320fd231", "37b0d536", "3b31acbb", "438d8cf5", "441c2f32", "44c4c065", "44d43aa9", "471a9a41", "51b56aa3", "51beca38", "52d5d455", "566a2059", "58a840d8", "5e555724", "5ee1164e", "61634926", "6ecfe979", "7100778a", "8708c484", "904dad42", "98ac30c8", "9e0e77ea", "a14d75b4", "a509f76a", "aa9f5117", "aeec50b3", "b7d2a6c7", "bdcde639", "bffc70af", "c29e8d20", "ccb71d2a", "cd2c9d8b", "cdaafb0f", "ecfdc0a9"]);
+const GAME_SEQ = ["25ad24d4", "3677f0a6", "44d43aa9", "51beca38", "557de127", "6361a862", "70993d67", "831168fd", "904dad42", "a14d75b4", "a509f76a", "cdaafb0f", "d832bd5d", "ecfdc0a9", "37b0d536", "441c2f32", "51b56aa3", "5c87ea5c", "5e555724", "8f5ca08d", "a5cb996e", "aa9f5117", "b7d2a6c7", "bffc70af", "c641f9ed", "e4911696", "ec2be460", "ee619d50", "0549c311", "0d534e4d", "0d5fa9fe", "0ed284bc", "17886f5e", "31caa5ba", "33bd82bd", "44c4c065", "44d9659a", "8424ee53", "9c1da34d", "bdcde639", "bfdf786d", "cd2c9d8b", "0150506b", "0352dd8c", "255499ae", "3b31acbb", "4cce025a", "52d5d455", "8ed4ef38", "98a20003", "9af0e48d", "a46f55bb", "aeec50b3", "c29e8d20", "ccb71d2a", "e23414c5", "09098bad", "320fd231", "39eda5fa", "566a2059", "5ee1164e", "613e55b6", "6ecfe979", "8708c484", "98ac30c8", "9acc033d", "9e0e77ea", "addadbce", "d41a2dcd", "d726946a", "2034dfbc", "306dda32", "3d2665ce", "438d8cf5", "471a9a41", "4ff0de7e", "58a840d8", "61634926", "7100778a", "73de7aa2", "85ab2bbe", "87ea77cd", "9ad1a9b3", "e2b46b06"];
+
+// ── Build per-team data ───────────────────────────────────────────────────────
+// teamData[gender][team][playerName] = {num, games:{gid:pts}}
+function buildTeamData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [stop,gid,ht,hs,as,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildTeamData();
+let currentGender = 'W';
+let visibleTeams = new Set();
+
+function getTeamsForGender(g) { return Object.keys(teamData[g]).sort(); }
+function getTeamGames(team, g) {
+  const players = teamData[g][team];
+  const gids = new Set();
+  for (const pd of Object.values(players)) for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return [...gids].sort((a,b) => {
+    const sa = gameIndex[a].stop, sb = gameIndex[b].stop;
+    if (sa !== sb) return sa.localeCompare(sb);
+    // chronological order within a stop = order games were played (CSV order)
+    return GAME_SEQ.indexOf(a) - GAME_SEQ.indexOf(b);
+  });
+}
+
+function updateHeroStats(g) {
+  const teams = getTeamsForGender(g);
+  const allGids = new Set();
+  let players = 0;
+  for (const t of teams) {
+    const gs = getTeamGames(t, g);
+    gs.forEach(id => allGids.add(id));
+    players += Object.keys(teamData[g][t]).length;
+  }
+  document.getElementById('hero-games').textContent = (allGids.size/2|0) + ' games';
+  document.getElementById('hero-players').textContent = players + ' players';
+}
+
+function renderAll() {
+  const g = currentGender;
+  const teams = getTeamsForGender(g);
+  updateHeroStats(g);
+
+  // Team filter chips
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of teams) {
+    const btn = document.createElement('button');
+    btn.className = 'team-chip' + (visibleTeams.has(t) ? ' active' : '');
+    btn.textContent = t;
+    btn.onclick = () => { visibleTeams.has(t) ? visibleTeams.delete(t) : visibleTeams.add(t); renderAll(); };
+    fr.appendChild(btn);
+  }
+
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  const filtered = visibleTeams.size > 0 ? teams.filter(t => visibleTeams.has(t)) : teams;
+  if (!filtered.length) {
+    content.innerHTML = '<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';
+    return;
+  }
+  for (const team of filtered) content.appendChild(buildTeamBlock(team, g));
+}
+
+function buildTeamBlock(team, g) {
+  const players = teamData[g][team];
+  const allGames = getTeamGames(team, g);
+  const byStop = {};
+  for (const gid of allGames) {
+    const s = gameIndex[gid].stop;
+    if (!byStop[s]) byStop[s] = [];
+    byStop[s].push(gid);
+  }
+  const stops = Object.keys(byStop).sort();
+  const playerStopMap = {};
+  for (const [name, pd] of Object.entries(players))
+    playerStopMap[name] = new Set(Object.keys(pd.games).map(g => gameIndex[g]?.stop));
+  const sortedPlayers = Object.entries(players).sort((a,b) => {
+    const ta = Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb = Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const totalGames = allGames.length;
+  const block = document.createElement('div');
+  block.className = 'team-block';
+
+  const title = document.createElement('div');
+  title.className = 'team-title';
+  const gTag = g === 'W'
+    ? '<span class="gender-tag w">W</span>'
+    : '<span class="gender-tag m">M</span>';
+  title.innerHTML = `${gTag}<h2>${team}</h2>
+    <span class="team-meta">${totalGames} game${totalGames!==1?'s':''} · ${sortedPlayers.length} players</span>
+    <span class="toggle-icon">▾</span>`;
+  block.appendChild(title);
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'team-body-wrap';
+  title.onclick = () => { bodyWrap.classList.toggle('collapsed'); title.classList.toggle('collapsed'); };
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+
+  // Row 1: stop group headers
+  const trStop = document.createElement('tr');
+  trStop.appendChild(mkTh('', 'col-num'));
+  trStop.appendChild(mkTh('Player', 'col-name'));
+  for (const stop of stops) {
+    const th1 = document.createElement('th');
+    th1.colSpan = byStop[stop].length;
+    th1.className = 'stop-group';
+    th1.textContent = stop;
+    trStop.appendChild(th1);
+  }
+  const thTot = mkTh('Total', 'col-total divider');
+  trStop.appendChild(thTot);
+  trStop.appendChild(mkTh('Avg', 'col-avg'));
+  thead.appendChild(trStop);
+
+  // Row 2: opponent headers
+  const trGame = document.createElement('tr');
+  trGame.appendChild(mkTh('#', 'col-num'));
+  trGame.appendChild(mkTh('', 'col-name'));
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const gi = gameIndex[gid];
+      const opp = gi.ht === team ? gi.at : gi.ht;
+      const myScore = gi.ht === team ? gi.hs : gi.as;
+      const oppScore = gi.ht === team ? gi.as : gi.hs;
+      const won = myScore > oppScore;
+      const cell = mkTh('', 'col-pts' + (i===0 ? ' divider':''));
+      cell.innerHTML = `<span class="opp-name">${opp}</span><span class="${won?'score-won':'score-lost'}">${myScore}–${oppScore}</span>`;
+      trGame.appendChild(cell);
+    }
+  }
+  trGame.appendChild(mkTh('', 'col-total divider'));
+  trGame.appendChild(mkTh('', 'col-avg'));
+  thead.appendChild(trGame);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  const allStops = stops;
+
+  for (const [name, pd] of sortedPlayers) {
+    const playerStops = playerStopMap[name];
+    const total = Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp = Object.keys(pd.games).length;
+    const avg = gp > 0 ? (total/gp).toFixed(1) : '—';
+    const tr = document.createElement('tr');
+
+    const tdNum = document.createElement('td');
+    tdNum.className = 'col-num'; tdNum.textContent = pd.num; tr.appendChild(tdNum);
+
+    const tdName = document.createElement('td');
+    tdName.className = 'col-name';
+    let nameHtml = name;
+    const missedStops = allStops.filter(s => !playerStops.has(s));
+    if (missedStops.length > 0 && playerStops.size > 0) {
+      if (!playerStops.has(allStops[0])) nameHtml += `<span class="badge-new">from ${[...playerStops][0]}</span>`;
+      else if (!playerStops.has(allStops[allStops.length-1])) nameHtml += `<span class="badge-left">left</span>`;
+    }
+    tdName.innerHTML = nameHtml;
+    tr.appendChild(tdName);
+
+    for (const stop of stops) {
+      for (let i = 0; i < byStop[stop].length; i++) {
+        const gid = byStop[stop][i];
+        const td = document.createElement('td');
+        if (i===0) td.classList.add('divider');
+        const pts = pd.games[gid];
+        if (pts === undefined) {
+          td.className += ' pts-dash'; td.textContent = '—';
+        } else if (pts === 0) {
+          td.className += ' pts-zero col-pts'; td.textContent = '0';
+        } else {
+          td.className += ' col-pts'; td.textContent = pts;
+        }
+        tr.appendChild(td);
+      }
+    }
+
+    const tdTot = document.createElement('td');
+    tdTot.className = 'col-total divider'; tdTot.textContent = total; tr.appendChild(tdTot);
+    const tdAvg = document.createElement('td');
+    tdAvg.className = 'col-avg'; tdAvg.textContent = avg; tr.appendChild(tdAvg);
+    tbody.appendChild(tr);
+  }
+
+  // Team totals row
+  const trTot = document.createElement('tr');
+  trTot.className = 'total-row';
+  const tdN = document.createElement('td'); tdN.textContent = ''; trTot.appendChild(tdN);
+  const tdNm = document.createElement('td'); tdNm.textContent = 'Team total'; trTot.appendChild(tdNm);
+  let grand = 0;
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const col = sortedPlayers.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+      grand += col;
+      const td = document.createElement('td');
+      td.style.textAlign='center';
+      if (i===0) td.classList.add('divider');
+      td.textContent = col; trTot.appendChild(td);
+    }
+  }
+  const tdG = document.createElement('td'); tdG.className='col-total divider'; tdG.textContent=grand; trTot.appendChild(tdG);
+  const tdGA = document.createElement('td'); tdGA.textContent=''; trTot.appendChild(tdGA);
+  tbody.appendChild(trTot);
+
+  table.appendChild(tbody);
+  bodyWrap.appendChild(table);
+  block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text, cls) {
+  const el = document.createElement('th');
+  if (cls) el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function setGender(g) {
+  currentGender = g;
+  visibleTeams.clear();
+  document.getElementById('btn-w').classList.toggle('active', g==='W');
+  document.getElementById('btn-m').classList.toggle('active', g==='M');
+  renderAll();
+}
+
+renderAll();
+</script>
+</body>
+</html>
