@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — NL 2026 Africa-East | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── THEME TOKENS ── */
+:root {
+  --bg:      #141210;
+  --s1:      #1c1916;
+  --s2:      #222018;
+  --s3:      #2c2820;
+  --s4:      #38332a;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #f0ece4;
+  --muted:   #6b6256;
+  --muted2:  #9e9082;
+  --accent:  #e8400c;
+  --nl:      #a78bfa;
+  --nl-bg:   rgba(167,139,250,0.10);
+  --won:     #34d399;
+  --lost:    #f87171;
+  --hero-grad: linear-gradient(150deg, #1e1a14 0%, #141210 60%);
+  --tabs-bg: rgba(20,18,16,0.95);
+}
+[data-theme="light"] {
+  --bg:      #faf8f5;
+  --s1:      #ffffff;
+  --s2:      #f3f0eb;
+  --s3:      #e8e3da;
+  --s4:      #dcd6cc;
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text:    #1a1612;
+  --muted:   #a09080;
+  --muted2:  #6e5e50;
+  --accent:  #d13408;
+  --nl:      #6d28d9;
+  --nl-bg:   rgba(109,40,217,0.09);
+  --won:     #0f766e;
+  --lost:    #be123c;
+  --hero-grad: linear-gradient(150deg, #f0ece3 0%, #faf8f5 60%);
+  --tabs-bg: rgba(250,248,245,0.97);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* grain */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+[data-theme="light"] body::after { opacity:.15; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  background: var(--tabs-bg);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 2rem;
+}
+.topbar-inner {
+  max-width: 1040px; margin: 0 auto;
+  height: 56px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: nowrap;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted2); text-decoration: none;
+  padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border2); background: transparent;
+  transition: all .15s; flex-shrink: 0;
+}
+.back-link:hover { color: var(--text); border-color: var(--border2); background: var(--s3); }
+.topbar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: .06em;
+  color: var(--text); flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-nl-badge {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 3px;
+  background: var(--nl-bg); color: var(--nl); border: 1px solid rgba(167,139,250,.22);
+  white-space: nowrap; flex-shrink: 0;
+}
+[data-theme="light"] .topbar-nl-badge { background: rgba(109,40,217,0.09); color: var(--nl); border-color: rgba(109,40,217,.22); }
+
+/* gender toggle */
+.gender-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; flex-shrink:0;
+}
+.gender-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 13px; border: none; background: none; cursor: pointer;
+  color: var(--muted2); transition: all .14s;
+}
+.gender-btn.active { background: var(--text); color: var(--bg); }
+
+/* theme toggle */
+.theme-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted2); cursor: pointer; transition: all .2s; flex-shrink:0;
+}
+.theme-toggle-btn:hover { color: var(--text); }
+.theme-toggle-btn svg { width:14px; height:14px; transition: transform .3s; }
+.theme-toggle-btn:hover svg { transform: rotate(18deg); }
+.t-sun { display:none; }
+.t-moon { display:block; }
+[data-theme="light"] .t-sun { display:block; }
+[data-theme="light"] .t-moon { display:none; }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  background: var(--hero-grad);
+  border-bottom: 1px solid var(--border2);
+  padding: 1.8rem 2rem 1.4rem;
+  position: relative; overflow: hidden;
+}
+.hero-strip-bg {
+  position: absolute; right: -0.04em; top: -0.1em;
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,16vw,180px);
+  line-height:1; color: rgba(167,139,250,0.05); pointer-events:none; user-select:none;
+}
+.hero-strip-inner { max-width: 1040px; margin: 0 auto; position:relative; z-index:1; }
+.hero-strip-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nl); display: flex; align-items: center; gap: 8px; margin-bottom: .4rem;
+}
+.hero-strip-eyebrow::before { content:''; width:18px; height:2px; background:var(--nl); flex-shrink:0; }
+.hero-strip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 46px); line-height:.95; letter-spacing:.02em;
+  margin-bottom:.8rem;
+}
+.hero-strip-title em { color: var(--accent); font-style:normal; }
+.hero-strip-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted2);
+}
+.hero-strip-meta strong { color: var(--text); font-weight:500; }
+
+/* ── TEAM FILTER ROW ── */
+.filter-row {
+  max-width: 1040px; margin: 0 auto;
+  padding: .9rem 2rem;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.filter-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); flex-shrink: 0;
+}
+.team-chip {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 4px;
+  border: 1px solid var(--border2); background: transparent; color: var(--muted2);
+  cursor: pointer; transition: all .14s; white-space: nowrap;
+}
+.team-chip:hover { color: var(--text); border-color: rgba(255,255,255,.22); }
+[data-theme="light"] .team-chip:hover { border-color: rgba(0,0,0,.2); }
+.team-chip.active { background: var(--text); color: var(--bg); border-color: transparent; }
+
+/* ── CONTENT ── */
+.content { max-width: 1040px; margin: 0 auto; padding: 1.5rem 2rem 5rem; }
+
+/* team block */
+.team-block {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.team-title {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: var(--s2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+}
+.team-title:hover { background: var(--s3); }
+.team-title h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: .04em; color: var(--text);
+}
+.team-meta { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); margin-left:auto; }
+.toggle-icon { font-size:14px; color:var(--muted); transition:transform .2s; }
+.team-body-wrap { overflow-x: auto; }
+.team-body-wrap.collapsed { display: none; }
+.team-title.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+.gender-tag {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:2px 7px; border-radius:3px; font-weight:500;
+}
+.gender-tag.w { background:rgba(248,113,113,.12); color:#f87171; border:1px solid rgba(248,113,113,.22); }
+.gender-tag.m { background:rgba(56,189,248,.12); color:#38bdf8; border:1px solid rgba(56,189,248,.22); }
+[data-theme="light"] .gender-tag.w { background:rgba(190,18,60,.09); color:#be123c; border-color:rgba(190,18,60,.2); }
+[data-theme="light"] .gender-tag.m { background:rgba(3,105,161,.09); color:#0369a1; border-color:rgba(3,105,161,.2); }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; font-size:12px; }
+thead th {
+  background: var(--s2);
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted2); font-weight: 500; white-space: nowrap;
+  position: sticky; top: 0;
+}
+thead th.col-num { text-align:center; }
+thead th.divider { border-left: 2px solid var(--border2); }
+thead th.stop-group {
+  text-align:center;
+  background: var(--s3);
+  border-left: 2px solid var(--border2);
+  color: var(--nl); letter-spacing: .12em;
+}
+
+tbody tr { border-top: 1px solid var(--border); }
+tbody tr:hover { background: var(--s2); }
+td { padding: 7px 8px; vertical-align: middle; }
+
+.col-num { width:28px; text-align:center; color:var(--muted); }
+.col-name { min-width:140px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:500; color:var(--text); }
+.col-pts { text-align:center; min-width:36px; font-weight:600; color:var(--text); }
+.col-total { text-align:center; min-width:40px; font-weight:700; color:var(--text); }
+.col-avg { text-align:center; min-width:38px; color:var(--muted2); font-family:'DM Mono',monospace; font-size:11px; }
+.pts-zero { color:var(--muted) !important; font-weight:400 !important; }
+.pts-dash { color:var(--border2); text-align:center; }
+.divider { border-left: 2px solid var(--border2); }
+.total-row td { background:var(--s3); font-weight:600; border-top:2px solid var(--border2); color:var(--muted2); font-size:11px; font-family:'DM Mono',monospace; }
+.total-row td.col-total { color:var(--text); font-size:14px; }
+
+.score-won { color:var(--won); font-weight:600; font-size:10px; }
+.score-lost { color:var(--lost); font-weight:600; font-size:10px; }
+.opp-name { display:block; font-size:10px; color:var(--muted2); margin-bottom:1px; white-space:nowrap; }
+
+/* badges */
+.badge-new { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(240,165,0,.15); color:var(--wt,#f0a500); margin-left:4px; }
+.badge-left { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(248,113,113,.12); color:#f87171; margin-left:4px; }
+[data-theme="light"] .badge-new { background:rgba(184,120,0,.12); color:#b87800; }
+[data-theme="light"] .badge-left { background:rgba(190,18,60,.1); color:#be123c; }
+
+/* empty */
+.empty { text-align:center; padding:4rem 0; color:var(--muted); }
+.empty-big { font-family:'Bebas Neue',sans-serif; font-size:52px; display:block; color:var(--s4); margin-bottom:.4rem; }
+
+@media(max-width:640px){
+  .topbar { padding: 0 1rem; }
+  .topbar-inner { gap:8px; }
+  .hero-strip { padding:1.4rem 1rem 1rem; }
+  .filter-row { padding:.75rem 1rem; }
+  .content { padding:1rem 1rem 3rem; }
+  .topbar-title { font-size:14px; }
+  .back-link span { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">NL 2026 — Africa-East Stats</div>
+    <div class="topbar-nl-badge">Nations League</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <div class="hero-strip-bg">AE</div>
+  <div class="hero-strip-inner">
+    <div class="hero-strip-eyebrow">Nations League 2026 · Stops 1–6</div>
+    <h1 class="hero-strip-title">Africa-East <em>Stats</em></h1>
+    <div class="hero-strip-meta">
+      <span><strong>Africa-East Conference</strong></span>
+      <span>·</span>
+      <span><strong>2026 Season</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM FILTER -->
+<div class="filter-row" id="filter-row">
+  <span class="filter-label">Teams:</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ────────────────────────────────────────────────────────────────────
+const html = document.documentElement;
+const saved = localStorage.getItem('fiba3x3-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── RAW DATA ─────────────────────────────────────────────────────────────────
+// ── Raw data ──────────────────────────────────────────────────────────────────
+const RAW = [
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Uganda", "9", "Mary Priscillar Nambogo", "7"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Uganda", "10", "Shillah Aber Lamunu", "1"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Uganda", "21", "Martina Alexis Anyango", "10"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Uganda", "99", "Syliva Nakituuka", "3"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Burundi", "9", "Espérance Kaneza", "0"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "2"],
+["Stop 1", "13e34c62", "Uganda", "21", "7", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "3"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Kenya", "1", "Jackson Waweru wangui", "4"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Kenya", "8", "Brian Eleman", "5"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Kenya", "25", "David Baraka Etyang", "6"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Kenya", "34", "Powell Hargos Owino", "6"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Burundi", "1", "Adonis Munezero", "6"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "0"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Burundi", "5", "Chris Flore Dushime", "12"],
+["Stop 1", "20f1dd5f", "Kenya", "21", "18", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "0"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Uganda", "0", "Ola Samuel", "6"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Uganda", "4", "Andrew Mukisa Ssendawula", "6"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Uganda", "14", "Carl Loum", "1"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "1"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "3"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "0"],
+["Stop 1", "3751b0f5", "Uganda", "13", "9", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "5"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "Kenya", "1", "Jackson Waweru wangui", "5"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "Kenya", "8", "Brian Eleman", "4"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "Kenya", "25", "David Baraka Etyang", "6"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "6"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "8"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "South Sudan", "19", "Ajak Simon Mathiang Garang", "0"],
+["Stop 1", "39bd81cb", "Kenya", "19", "18", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "4"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Somalia", "1", "Ayan Abdi Ali", "2"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Somalia", "15", "Anaam Abdi Ali", "1"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "3"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Burundi", "9", "Espérance Kaneza", "9"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "5"],
+["Stop 1", "60b66fde", "Somalia", "3", "21", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "4"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Burundi", "5", "Elsa Ingabire Bukuru", "3"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Burundi", "9", "Espérance Kaneza", "3"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Burundi", "10", "Simone-Kate Niyonzima", "0"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Burundi", "12", "Christa Ciella Igiraneza", "1"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Kenya", "0", "Babra Diana Achieng", "9"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Kenya", "15", "Ninel Naserian Meegesh", "3"],
+["Stop 1", "724d0b90", "Burundi", "7", "16", "Kenya", "Kenya", "16", "Consolata Atieno Odhiambo", "2"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "Kenya", "0", "Babra Diana Achieng", "4"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "Kenya", "9", "Mashar Roseline Ooko", "4"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "Kenya", "15", "Ninel Naserian Meegesh", "0"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "Kenya", "16", "Consolata Atieno Odhiambo", "4"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "6"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "1"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "5"],
+["Stop 1", "735d35d0", "Kenya", "12", "13", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "1"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Uganda", "9", "Mary Priscillar Nambogo", "4"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Uganda", "10", "Shillah Aber Lamunu", "8"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Uganda", "21", "Martina Alexis Anyango", "7"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Uganda", "99", "Syliva Nakituuka", "3"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "1"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 1", "88bb2030", "Uganda", "22", "3", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "2"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Kenya", "1", "Jackson Waweru wangui", "3"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Kenya", "8", "Brian Eleman", "4"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Kenya", "25", "David Baraka Etyang", "7"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Uganda", "0", "Ola Samuel", "10"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Uganda", "4", "Andrew Mukisa Ssendawula", "4"],
+["Stop 1", "8d41f70c", "Kenya", "18", "16", "Uganda", "Uganda", "14", "Carl Loum", "2"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "South Sudan", "1", "Ruai Gatyang Yar Luak", "12"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "South Sudan", "14", "Peter Cheng Malek Marial", "0"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "South Sudan", "19", "Ajak Simon Mathiang Garang", "6"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "South Sudan", "22", "Kur Amer Maler", "3"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "Burundi", "1", "Adonis Munezero", "0"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "3"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "Burundi", "5", "Chris Flore Dushime", "2"],
+["Stop 1", "98b8f578", "South Sudan", "21", "5", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "0"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "South Sudan", "1", "Ruai Gatyang Yar Luak", "4"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "South Sudan", "14", "Peter Cheng Malek Marial", "6"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "South Sudan", "19", "Ajak Simon Mathiang Garang", "0"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "South Sudan", "22", "Kur Amer Maler", "2"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "2"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "2"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "1"],
+["Stop 1", "e7d7957d", "South Sudan", "12", "6", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "1"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "7"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "Uganda", "10", "Shillah Aber Lamunu", "3"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "7"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "Uganda", "99", "Syliva Nakituuka", "2"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "1"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "2"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "3"],
+["Stop 1", "f7aeb49b", "Uganda", "19", "7", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "1"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "South Sudan", "1", "Ruai Gatyang Yar Luak", "12"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "South Sudan", "2", "Justin Ochaya", "7"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "South Sudan", "14", "Peter Cheng Malek Marial", "1"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "South Sudan", "22", "Kur Amer Maler", "1"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "Kenya", "8", "Brian Eleman", "2"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "Kenya", "24", "Brian Mutunga Musembi", "0"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "Kenya", "25", "David Baraka Etyang", "2"],
+["Stop 2", "15c99af8", "South Sudan", "21", "14", "Kenya", "Kenya", "34", "Powell Hargos Owino", "10"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Uganda", "0", "Ola Samuel", "1"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Uganda", "4", "Andrew Mukisa Ssendawula", "2"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Uganda", "6", "Marvin jesse Okurut", "16"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Uganda", "14", "Carl Loum", "2"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Burundi", "1", "Adonis Munezero", "1"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "2"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Burundi", "5", "Chris Flore Dushime", "0"],
+["Stop 2", "34f4abb9", "Uganda", "21", "5", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "Uganda", "0", "Ola Samuel", "5"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "Uganda", "4", "Andrew Mukisa Ssendawula", "0"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "Uganda", "6", "Marvin jesse Okurut", "1"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "Uganda", "14", "Carl Loum", "1"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "8"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "South Sudan", "2", "Justin Ochaya", "5"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "6"],
+["Stop 2", "42b0828a", "Uganda", "7", "21", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "2"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Uganda", "0", "Ola Samuel", "6"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Uganda", "4", "Andrew Mukisa Ssendawula", "2"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Uganda", "6", "Marvin jesse Okurut", "9"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Uganda", "14", "Carl Loum", "1"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "7"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "2"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "1"],
+["Stop 2", "46361868", "Uganda", "18", "10", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "0"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Kenya", "0", "Babra Diana Achieng", "3"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Kenya", "4", "Daisy Awino Onyango", "4"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Kenya", "9", "Mashar Roseline Ooko", "3"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Kenya", "15", "Ninel Naserian Meegesh", "0"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Uganda", "9", "Mary Priscillar Nambogo", "6"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Uganda", "10", "Shillah Aber Lamunu", "0"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Uganda", "21", "Martina Alexis Anyango", "5"],
+["Stop 2", "4b6c62ee", "Kenya", "10", "14", "Uganda", "Uganda", "99", "Syliva Nakituuka", "3"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Kenya", "0", "Babra Diana Achieng", "5"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Kenya", "4", "Daisy Awino Onyango", "6"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Kenya", "9", "Mashar Roseline Ooko", "6"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Kenya", "15", "Ninel Naserian Meegesh", "1"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "0"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Burundi", "9", "Espérance Kaneza", "11"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "1"],
+["Stop 2", "75fb3d82", "Kenya", "18", "17", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "5"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Somalia", "1", "Ayan Abdi Ali", "8"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Somalia", "15", "Anaam Abdi Ali", "2"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Burundi", "9", "Espérance Kaneza", "6"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "2"],
+["Stop 2", "7a4c5373", "Somalia", "10", "14", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "4"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Kenya", "0", "Babra Diana Achieng", "6"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Kenya", "4", "Daisy Awino Onyango", "1"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Kenya", "9", "Mashar Roseline Ooko", "3"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Kenya", "15", "Ninel Naserian Meegesh", "3"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "7"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 2", "7f79752a", "Kenya", "13", "11", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "4"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "Burundi", "5", "Elsa Ingabire Bukuru", "1"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "Burundi", "9", "Espérance Kaneza", "8"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "Burundi", "10", "Simone-Kate Niyonzima", "1"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "Burundi", "12", "Christa Ciella Igiraneza", "5"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "4"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "8"],
+["Stop 2", "8830f47f", "Burundi", "15", "13", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "1"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Kenya", "8", "Brian Eleman", "5"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Kenya", "24", "Brian Mutunga Musembi", "7"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Kenya", "25", "David Baraka Etyang", "6"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Kenya", "34", "Powell Hargos Owino", "0"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "0"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "3"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "7"],
+["Stop 2", "ac0419e6", "Kenya", "18", "14", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "4"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "4"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "Uganda", "10", "Shillah Aber Lamunu", "0"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "13"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "Uganda", "99", "Syliva Nakituuka", "0"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "4"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "4"],
+["Stop 2", "d6eac18f", "Uganda", "17", "10", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "2"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "South Sudan", "1", "Ruai Gatyang Yar Luak", "6"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "South Sudan", "2", "Justin Ochaya", "6"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "South Sudan", "14", "Peter Cheng Malek Marial", "4"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "South Sudan", "22", "Kur Amer Maler", "5"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "Burundi", "1", "Adonis Munezero", "0"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "2"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "Burundi", "5", "Chris Flore Dushime", "6"],
+["Stop 2", "d9946bbf", "South Sudan", "21", "9", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "1"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "Uganda", "0", "Ola Samuel", "7"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "Uganda", "5", "Elijah Obware Adakun", "0"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "Uganda", "6", "Marvin jesse Okurut", "0"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "Uganda", "9", "Ronald David Simo Ayume", "2"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "8"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "South Sudan", "2", "Justin Ochaya", "4"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "3"],
+["Stop 3", "0e7a2ffe", "Uganda", "9", "21", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "6"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Burundi", "9", "Espérance Kaneza", "7"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Burundi", "10", "Simone-Kate Niyonzima", "0"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Burundi", "12", "Christa Ciella Igiraneza", "3"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "7"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 3", "21aa20aa", "Burundi", "12", "14", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "7"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Uganda", "9", "Mary Priscillar Nambogo", "7"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Uganda", "11", "Sylvia Nantongo", "2"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Uganda", "21", "Martina Alexis Anyango", "5"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Uganda", "99", "Syliva Nakituuka", "4"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "3"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Burundi", "9", "Espérance Kaneza", "5"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "0"],
+["Stop 3", "2275c872", "Uganda", "18", "10", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "2"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "South Sudan", "1", "Arek Peter Ater Makuei", "5"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "South Sudan", "20", "Aluel Wek Tong", "1"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "5"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "South Sudan", "44", "Susan Nadir Peter Yohanis", "6"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "5"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "Burundi", "9", "Espérance Kaneza", "9"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "5"],
+["Stop 3", "320ca787", "South Sudan", "17", "19", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "0"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Kenya", "1", "Jackson Waweru wangui", "6"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Kenya", "8", "Brian Eleman", "10"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Kenya", "25", "David Baraka Etyang", "4"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Kenya", "34", "Powell Hargos Owino", "2"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Burundi", "1", "Adonis Munezero", "2"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "1"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Burundi", "5", "Chris Flore Dushime", "2"],
+["Stop 3", "374e27dd", "Kenya", "22", "7", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Somalia", "1", "Zaki Abdirashid Mohamed", "7"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Somalia", "5", "Ayub Mohamed Ahmed", "3"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "1"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Somalia", "23", "Ayanle Gamadid Iman", "5"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Burundi", "1", "Adonis Munezero", "2"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "2"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Burundi", "5", "Chris Flore Dushime", "5"],
+["Stop 3", "61fde494", "Somalia", "16", "11", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Kenya", "1", "Jackson Waweru wangui", "2"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Kenya", "8", "Brian Eleman", "9"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Kenya", "25", "David Baraka Etyang", "2"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "7"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "5"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "2"],
+["Stop 3", "a5c89176", "Kenya", "17", "14", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "0"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Kenya", "0", "Babra Diana Achieng", "10"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Kenya", "4", "Daisy Awino Onyango", "4"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Kenya", "16", "Consolata Atieno Odhiambo", "5"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "4"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 3", "b3485b27", "Kenya", "21", "5", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "1"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "7"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "Uganda", "11", "Sylvia Nantongo", "2"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "10"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "Uganda", "99", "Syliva Nakituuka", "2"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "5"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "3"],
+["Stop 3", "b4d0ee17", "Uganda", "21", "9", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "1"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Somalia", "1", "Zaki Abdirashid Mohamed", "4"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Somalia", "5", "Ayub Mohamed Ahmed", "7"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "1"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Somalia", "23", "Ayanle Gamadid Iman", "9"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Uganda", "0", "Ola Samuel", "7"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Uganda", "5", "Elijah Obware Adakun", "0"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Uganda", "6", "Marvin jesse Okurut", "6"],
+["Stop 3", "dcdbbdf8", "Somalia", "21", "15", "Uganda", "Uganda", "9", "Ronald David Simo Ayume", "2"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Uganda", "9", "Mary Priscillar Nambogo", "8"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Uganda", "11", "Sylvia Nantongo", "3"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Uganda", "21", "Martina Alexis Anyango", "4"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Uganda", "99", "Syliva Nakituuka", "2"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Kenya", "0", "Babra Diana Achieng", "4"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Kenya", "4", "Daisy Awino Onyango", "3"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 3", "ea3b4ab1", "Uganda", "17", "11", "Kenya", "Kenya", "16", "Consolata Atieno Odhiambo", "2"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "Kenya", "1", "Jackson Waweru wangui", "6"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "Kenya", "8", "Brian Eleman", "8"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "Kenya", "25", "David Baraka Etyang", "1"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "Kenya", "34", "Powell Hargos Owino", "3"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "2"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "South Sudan", "2", "Justin Ochaya", "5"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "2"],
+["Stop 3", "fb0cc97f", "Kenya", "18", "17", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "8"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Uganda", "9", "Mary Priscillar Nambogo", "2"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Uganda", "10", "Shillah Aber Lamunu", "3"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Uganda", "21", "Martina Alexis Anyango", "14"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Uganda", "99", "Syliva Nakituuka", "2"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "5"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Burundi", "9", "Espérance Kaneza", "3"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "0"],
+["Stop 4", "328337a5", "Uganda", "21", "14", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "6"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Kenya", "1", "Jackson Waweru wangui", "2"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Kenya", "8", "Brian Eleman", "5"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Kenya", "25", "David Baraka Etyang", "6"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Kenya", "34", "Powell Hargos Owino", "8"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Uganda", "5", "Elijah Obware Adakun", "2"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Uganda", "6", "Marvin jesse Okurut", "0"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Uganda", "9", "Ronald David Simo Ayume", "4"],
+["Stop 4", "40fd11a2", "Kenya", "21", "7", "Uganda", "Uganda", "14", "Carl Loum", "1"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Kenya", "1", "Jackson Waweru wangui", "4"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Kenya", "8", "Brian Eleman", "5"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Kenya", "25", "David Baraka Etyang", "6"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Kenya", "34", "Powell Hargos Owino", "6"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Burundi", "1", "Adonis Munezero", "3"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "3"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Burundi", "5", "Chris Flore Dushime", "3"],
+["Stop 4", "5eac00c1", "Kenya", "21", "11", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "South Sudan", "1", "Ruai Gatyang Yar Luak", "10"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "South Sudan", "2", "Justin Ochaya", "2"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "South Sudan", "14", "Peter Cheng Malek Marial", "6"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "South Sudan", "22", "Kur Amer Maler", "3"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "Burundi", "1", "Adonis Munezero", "3"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "1"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "Burundi", "5", "Chris Flore Dushime", "9"],
+["Stop 4", "71097988", "South Sudan", "21", "14", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "1"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Uganda", "9", "Mary Priscillar Nambogo", "5"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Uganda", "10", "Shillah Aber Lamunu", "1"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Uganda", "21", "Martina Alexis Anyango", "9"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Uganda", "99", "Syliva Nakituuka", "3"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "6"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Somalia", "13", "Adni Abdi Ali", "1"],
+["Stop 4", "a5921fee", "Uganda", "18", "10", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "3"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "South Sudan", "1", "Ruai Gatyang Yar Luak", "4"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "South Sudan", "2", "Justin Ochaya", "7"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "South Sudan", "14", "Peter Cheng Malek Marial", "5"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "South Sudan", "22", "Kur Amer Maler", "5"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "3"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "6"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "3"],
+["Stop 4", "a5fe9f89", "South Sudan", "21", "15", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "3"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Uganda", "5", "Elijah Obware Adakun", "0"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Uganda", "6", "Marvin jesse Okurut", "9"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Uganda", "9", "Ronald David Simo Ayume", "2"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Uganda", "14", "Carl Loum", "1"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "3"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "4"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "1"],
+["Stop 4", "cf8dd8fe", "Uganda", "12", "8", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "0"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "Kenya", "0", "Babra Diana Achieng", "3"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "Kenya", "4", "Daisy Awino Onyango", "0"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "Kenya", "16", "Consolata Atieno Odhiambo", "1"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "0"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "3"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "2"],
+["Stop 4", "d270ef20", "Kenya", "6", "11", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "6"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "Kenya", "1", "Jackson Waweru wangui", "2"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "Kenya", "8", "Brian Eleman", "3"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "Kenya", "25", "David Baraka Etyang", "12"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "7"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "South Sudan", "2", "Justin Ochaya", "5"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "1"],
+["Stop 4", "d34d5afe", "Kenya", "21", "20", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "7"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Somalia", "1", "Ayan Abdi Ali", "5"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Somalia", "15", "Anaam Abdi Ali", "8"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Kenya", "0", "Babra Diana Achieng", "13"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Kenya", "4", "Daisy Awino Onyango", "2"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Kenya", "9", "Mashar Roseline Ooko", "0"],
+["Stop 4", "dc2a41b9", "Somalia", "13", "18", "Kenya", "Kenya", "16", "Consolata Atieno Odhiambo", "3"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "4"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "Uganda", "10", "Shillah Aber Lamunu", "0"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "4"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "Uganda", "99", "Syliva Nakituuka", "4"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "4"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "4"],
+["Stop 4", "f61d7086", "Uganda", "12", "14", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "6"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Somalia", "1", "Ayan Abdi Ali", "7"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Somalia", "13", "Adni Abdi Ali", "1"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Somalia", "15", "Anaam Abdi Ali", "6"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "3"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Burundi", "9", "Espérance Kaneza", "1"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "2"],
+["Stop 4", "fbbe8d97", "Somalia", "14", "12", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "6"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Kenya", "1", "Jackson Waweru wangui", "1"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Kenya", "8", "Brian Eleman", "5"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Kenya", "25", "David Baraka Etyang", "13"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Kenya", "34", "Powell Hargos Owino", "2"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "4"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "1"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "2"],
+["Stop 5", "23df9cf9", "Kenya", "21", "8", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "1"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Somalia", "1", "Ayan Abdi Ali", "2"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Somalia", "15", "Anaam Abdi Ali", "5"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "6"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Burundi", "9", "Espérance Kaneza", "10"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "0"],
+["Stop 5", "3da5e091", "Somalia", "7", "16", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "0"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "Uganda", "0", "Ola Samuel", "4"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "Uganda", "4", "Andrew Mukisa Ssendawula", "6"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "Uganda", "6", "Marvin jesse Okurut", "8"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "Uganda", "14", "Carl Loum", "2"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "7"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "South Sudan", "2", "Justin Ochaya", "7"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "1"],
+["Stop 5", "3fdfe119", "Uganda", "20", "18", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "3"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Kenya", "0", "Babra Diana Achieng", "9"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Kenya", "4", "Daisy Awino Onyango", "0"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Kenya", "9", "Mashar Roseline Ooko", "7"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Kenya", "16", "Consolata Atieno Odhiambo", "3"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "10"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Somalia", "13", "Adni Abdi Ali", "1"],
+["Stop 5", "51c06a8e", "Kenya", "19", "14", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "3"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "3"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "Uganda", "10", "Shillah Aber Lamunu", "0"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "6"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "Uganda", "99", "Syliva Nakituuka", "7"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "1"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "3"],
+["Stop 5", "580c7c5a", "Uganda", "16", "10", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "6"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "South Sudan", "1", "Ruai Gatyang Yar Luak", "5"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "South Sudan", "2", "Justin Ochaya", "2"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "South Sudan", "14", "Peter Cheng Malek Marial", "4"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "South Sudan", "22", "Kur Amer Maler", "4"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "Kenya", "1", "Jackson Waweru wangui", "1"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "Kenya", "8", "Brian Eleman", "7"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "Kenya", "25", "David Baraka Etyang", "5"],
+["Stop 5", "5f9c1d91", "South Sudan", "15", "17", "Kenya", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Kenya", "0", "Babra Diana Achieng", "3"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Kenya", "4", "Daisy Awino Onyango", "6"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Kenya", "16", "Consolata Atieno Odhiambo", "8"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Burundi", "9", "Espérance Kaneza", "2"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "3"],
+["Stop 5", "6eeac8ce", "Kenya", "19", "15", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "8"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Kenya", "0", "Babra Diana Achieng", "7"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Kenya", "4", "Daisy Awino Onyango", "5"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Kenya", "9", "Mashar Roseline Ooko", "0"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Kenya", "16", "Consolata Atieno Odhiambo", "8"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Uganda", "9", "Mary Priscillar Nambogo", "3"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Uganda", "10", "Shillah Aber Lamunu", "3"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Uganda", "21", "Martina Alexis Anyango", "5"],
+["Stop 5", "79848a17", "Kenya", "20", "14", "Uganda", "Uganda", "99", "Syliva Nakituuka", "3"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "South Sudan", "1", "Ruai Gatyang Yar Luak", "6"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "South Sudan", "2", "Justin Ochaya", "10"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "South Sudan", "14", "Peter Cheng Malek Marial", "1"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "South Sudan", "22", "Kur Amer Maler", "4"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "Burundi", "1", "Adonis Munezero", "9"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "1"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "Burundi", "5", "Chris Flore Dushime", "8"],
+["Stop 5", "7e0ff858", "South Sudan", "21", "19", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "1"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Uganda", "0", "Ola Samuel", "7"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Uganda", "4", "Andrew Mukisa Ssendawula", "0"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Uganda", "6", "Marvin jesse Okurut", "2"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Uganda", "14", "Carl Loum", "5"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Burundi", "1", "Adonis Munezero", "4"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "8"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Burundi", "5", "Chris Flore Dushime", "4"],
+["Stop 5", "9e4fa942", "Uganda", "14", "16", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "0"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "Burundi", "5", "Elsa Ingabire Bukuru", "3"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "Burundi", "9", "Espérance Kaneza", "5"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "Burundi", "10", "Simone-Kate Niyonzima", "1"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "Burundi", "12", "Christa Ciella Igiraneza", "8"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "1"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "8"],
+["Stop 5", "aafa278b", "Burundi", "17", "12", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "3"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Burundi", "1", "Adonis Munezero", "4"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Burundi", "3", "Bruce Kenny Arakaza", "5"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Burundi", "5", "Chris Flore Dushime", "9"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "5"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "1"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "3"],
+["Stop 5", "c3a9bbd0", "Burundi", "20", "11", "Somalia", "Somalia", "7", "ABUBAKAR ISMAIL ABDULLAHI", "2"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "Kenya", "5", "Bill davis Nyongesa", "0"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "Kenya", "8", "Brian Eleman", "1"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "Kenya", "24", "Brian Mutunga Musembi", "2"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "Kenya", "34", "Powell Hargos Owino", "10"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "7"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "South Sudan", "2", "Justin Ochaya", "4"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "5"],
+["Stop 6", "02993aeb", "Kenya", "13", "19", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "3"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Somalia", "1", "Zaki Abdirashid Mohamed", "4"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Somalia", "2", "Abdirahman Ismail Ashkir", "2"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Somalia", "5", "Ayub Mohamed Ahmed", "5"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Somalia", "23", "Ayanle Gamadid Iman", "4"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Burundi", "1", "Adonis Munezero", "2"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "5"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Burundi", "5", "Chris Flore Dushime", "2"],
+["Stop 6", "1d808573", "Somalia", "15", "11", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "2"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "South Sudan", "1", "Arek Peter Ater Makuei", "0"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "South Sudan", "20", "Aluel Wek Tong", "1"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "3"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "South Sudan", "44", "Susan Nadir Peter Yohanis", "10"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "4"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 6", "215aec66", "South Sudan", "14", "10", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "6"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "South Sudan", "1", "Arek Peter Ater Makuei", "8"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "11"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "South Sudan", "44", "Susan Nadir Peter Yohanis", "2"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "Burundi", "9", "Espérance Kaneza", "8"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "2"],
+["Stop 6", "2b6675c5", "South Sudan", "21", "15", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "3"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Kenya", "5", "Bill davis Nyongesa", "3"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Kenya", "8", "Brian Eleman", "6"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Kenya", "24", "Brian Mutunga Musembi", "8"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Kenya", "34", "Powell Hargos Owino", "4"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Somalia", "1", "Zaki Abdirashid Mohamed", "6"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Somalia", "2", "Abdirahman Ismail Ashkir", "4"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Somalia", "5", "Ayub Mohamed Ahmed", "3"],
+["Stop 6", "39e08355", "Kenya", "21", "15", "Somalia", "Somalia", "23", "Ayanle Gamadid Iman", "2"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Kenya", "5", "Bill davis Nyongesa", "1"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Kenya", "8", "Brian Eleman", "8"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Kenya", "24", "Brian Mutunga Musembi", "1"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Kenya", "34", "Powell Hargos Owino", "11"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Burundi", "1", "Adonis Munezero", "0"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Burundi", "3", "Bruce Kenny Arakaza", "0"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Burundi", "5", "Chris Flore Dushime", "4"],
+["Stop 6", "468e6738", "Kenya", "21", "5", "Burundi", "Burundi", "9", "Mike Stephane Iteriteka", "1"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Uganda", "7", "Tamasha Nsubuga", "3"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Uganda", "9", "Mary Priscillar Nambogo", "7"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Uganda", "11", "Sylvia Nantongo", "1"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Uganda", "21", "Martina Alexis Anyango", "5"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Kenya", "0", "Babra Diana Achieng", "3"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Kenya", "4", "Daisy Awino Onyango", "2"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Kenya", "9", "Mashar Roseline Ooko", "2"],
+["Stop 6", "767541ec", "Uganda", "16", "14", "Kenya", "Kenya", "16", "Consolata Atieno Odhiambo", "7"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Kenya", "0", "Babra Diana Achieng", "11"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Kenya", "4", "Daisy Awino Onyango", "2"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Kenya", "9", "Mashar Roseline Ooko", "3"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Kenya", "16", "Consolata Atieno Odhiambo", "5"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Somalia", "1", "Ayan Abdi Ali", "5"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Somalia", "8", "Anab Abdulkadir Hassan", "0"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Somalia", "13", "Adni Abdi Ali", "0"],
+["Stop 6", "7cd3bf1f", "Kenya", "21", "12", "Somalia", "Somalia", "15", "Anaam Abdi Ali", "7"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Somalia", "1", "Zaki Abdirashid Mohamed", "11"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Somalia", "2", "Abdirahman Ismail Ashkir", "1"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Somalia", "5", "Ayub Mohamed Ahmed", "4"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Somalia", "23", "Ayanle Gamadid Iman", "5"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Uganda", "0", "Ola Samuel", "4"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Uganda", "4", "Andrew Mukisa Ssendawula", "5"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Uganda", "6", "Marvin jesse Okurut", "2"],
+["Stop 6", "a97cb221", "Somalia", "21", "11", "Uganda", "Uganda", "14", "Carl Loum", "0"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Uganda", "7", "Tamasha Nsubuga", "2"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Uganda", "9", "Mary Priscillar Nambogo", "6"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Uganda", "11", "Sylvia Nantongo", "3"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Uganda", "21", "Martina Alexis Anyango", "10"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Burundi", "5", "Elsa Ingabire Bukuru", "2"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Burundi", "9", "Espérance Kaneza", "1"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Burundi", "10", "Simone-Kate Niyonzima", "1"],
+["Stop 6", "ae1c6d17", "Uganda", "21", "10", "Burundi", "Burundi", "12", "Christa Ciella Igiraneza", "6"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "Uganda", "7", "Tamasha Nsubuga", "6"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "Uganda", "9", "Mary Priscillar Nambogo", "5"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "Uganda", "11", "Sylvia Nantongo", "7"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "Uganda", "21", "Martina Alexis Anyango", "3"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "South Sudan", "1", "Arek Peter Ater Makuei", "2"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "South Sudan", "20", "Aluel Wek Tong", "0"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "South Sudan", "22", "Nivin Alfred Philip Lokuku", "2"],
+["Stop 6", "c069e523", "Uganda", "21", "5", "South Sudan", "South Sudan", "44", "Susan Nadir Peter Yohanis", "1"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "Uganda", "0", "Ola Samuel", "6"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "Uganda", "4", "Andrew Mukisa Ssendawula", "1"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "Uganda", "6", "Marvin jesse Okurut", "2"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "Uganda", "14", "Carl Loum", "0"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "South Sudan", "1", "Ruai Gatyang Yar Luak", "7"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "South Sudan", "2", "Justin Ochaya", "1"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "South Sudan", "14", "Peter Cheng Malek Marial", "8"],
+["Stop 6", "cf47711b", "Uganda", "9", "22", "South Sudan", "South Sudan", "22", "Kur Amer Maler", "6"],
+];
+
+
+// Women's player names (unique identifiers from the data)
+const WOMEN_NAMES = new Set([
+  "Marianna Byvatov","Olivia Okpara","Maja Marie Manten","Lilly Küppers",
+  "Kilian Walter","Joshua Günther","David Galusic","Maximilian Matthias Eichbaum",
+  "Ludovica Sammartino","Ilaria Bernardi","Nancy Alessandra N'guessan","Cristina Osazuwa",
+  "Kenko Loredana Ngamene Takougang",
+  "Ela Nur Gokcol","Salminaz Ramazanli","Shilan Akbingol","Adila Yusubova",
+  "Danielė Paunksnytė","Urtė Čižauskaitė","Miglė Kisarauskaitė","Audronė Zdanevičiūtė",
+  "Hana Sambolic","Tina Tomšič","Anja Dragar","Mia Žekš",
+  "Lea Vukić","Ivana Mamić","Dalija Stabile","Jelena Brkičić","Elena Peričić",
+]);
+// Everyone else = Men
+
+function isWomen(name) { return WOMEN_NAMES.has(name); }
+
+// ── Build game index ──────────────────────────────────────────────────────────
+const gameIndex = {}; // gid -> {stop,ht,hs,as,at}
+for (const r of RAW) {
+  const [stop,gid,,hs,,as,,,,,] = r;
+  const ht=r[2], at=r[5];
+  if (!gameIndex[gid]) gameIndex[gid] = {stop,ht,hs:+r[3],as:+r[4],at};
+}
+
+// ── Gender classification — by game ID ───────────────────────────────────────
+const WOMEN_GAMES = new Set(["13e34c62", "215aec66", "21aa20aa", "2275c872", "2b6675c5", "320ca787", "328337a5", "3da5e091", "4b6c62ee", "51c06a8e", "580c7c5a", "60b66fde", "6eeac8ce", "724d0b90", "735d35d0", "75fb3d82", "767541ec", "79848a17", "7a4c5373", "7cd3bf1f", "7f79752a", "8830f47f", "88bb2030", "a5921fee", "aafa278b", "ae1c6d17", "b3485b27", "b4d0ee17", "c069e523", "d270ef20", "d6eac18f", "dc2a41b9", "ea3b4ab1", "f61d7086", "f7aeb49b", "fbbe8d97"]);
+const GAME_SEQ = ["13e34c62", "20f1dd5f", "3751b0f5", "39bd81cb", "60b66fde", "724d0b90", "735d35d0", "88bb2030", "8d41f70c", "98b8f578", "e7d7957d", "f7aeb49b", "15c99af8", "34f4abb9", "42b0828a", "46361868", "4b6c62ee", "75fb3d82", "7a4c5373", "7f79752a", "8830f47f", "ac0419e6", "d6eac18f", "d9946bbf", "0e7a2ffe", "21aa20aa", "2275c872", "320ca787", "374e27dd", "61fde494", "a5c89176", "b3485b27", "b4d0ee17", "dcdbbdf8", "ea3b4ab1", "fb0cc97f", "328337a5", "40fd11a2", "5eac00c1", "71097988", "a5921fee", "a5fe9f89", "cf8dd8fe", "d270ef20", "d34d5afe", "dc2a41b9", "f61d7086", "fbbe8d97", "23df9cf9", "3da5e091", "3fdfe119", "51c06a8e", "580c7c5a", "5f9c1d91", "6eeac8ce", "79848a17", "7e0ff858", "9e4fa942", "aafa278b", "c3a9bbd0", "02993aeb", "1d808573", "215aec66", "2b6675c5", "39e08355", "468e6738", "767541ec", "7cd3bf1f", "a97cb221", "ae1c6d17", "c069e523", "cf47711b"];
+
+// ── Build per-team data ───────────────────────────────────────────────────────
+// teamData[gender][team][playerName] = {num, games:{gid:pts}}
+function buildTeamData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [stop,gid,ht,hs,as,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildTeamData();
+let currentGender = 'W';
+let visibleTeams = new Set();
+
+function getTeamsForGender(g) { return Object.keys(teamData[g]).sort(); }
+function getTeamGames(team, g) {
+  const players = teamData[g][team];
+  const gids = new Set();
+  for (const pd of Object.values(players)) for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return [...gids].sort((a,b) => {
+    const sa = gameIndex[a].stop, sb = gameIndex[b].stop;
+    if (sa !== sb) return sa.localeCompare(sb);
+    // chronological order within a stop = order games were played (CSV order)
+    return GAME_SEQ.indexOf(a) - GAME_SEQ.indexOf(b);
+  });
+}
+
+function updateHeroStats(g) {
+  const teams = getTeamsForGender(g);
+  const allGids = new Set();
+  let players = 0;
+  for (const t of teams) {
+    const gs = getTeamGames(t, g);
+    gs.forEach(id => allGids.add(id));
+    players += Object.keys(teamData[g][t]).length;
+  }
+  document.getElementById('hero-games').textContent = (allGids.size/2|0) + ' games';
+  document.getElementById('hero-players').textContent = players + ' players';
+}
+
+function renderAll() {
+  const g = currentGender;
+  const teams = getTeamsForGender(g);
+  updateHeroStats(g);
+
+  // Team filter chips
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of teams) {
+    const btn = document.createElement('button');
+    btn.className = 'team-chip' + (visibleTeams.has(t) ? ' active' : '');
+    btn.textContent = t;
+    btn.onclick = () => { visibleTeams.has(t) ? visibleTeams.delete(t) : visibleTeams.add(t); renderAll(); };
+    fr.appendChild(btn);
+  }
+
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  const filtered = visibleTeams.size > 0 ? teams.filter(t => visibleTeams.has(t)) : teams;
+  if (!filtered.length) {
+    content.innerHTML = '<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';
+    return;
+  }
+  for (const team of filtered) content.appendChild(buildTeamBlock(team, g));
+}
+
+function buildTeamBlock(team, g) {
+  const players = teamData[g][team];
+  const allGames = getTeamGames(team, g);
+  const byStop = {};
+  for (const gid of allGames) {
+    const s = gameIndex[gid].stop;
+    if (!byStop[s]) byStop[s] = [];
+    byStop[s].push(gid);
+  }
+  const stops = Object.keys(byStop).sort();
+  const playerStopMap = {};
+  for (const [name, pd] of Object.entries(players))
+    playerStopMap[name] = new Set(Object.keys(pd.games).map(g => gameIndex[g]?.stop));
+  const sortedPlayers = Object.entries(players).sort((a,b) => {
+    const ta = Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb = Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const totalGames = allGames.length;
+  const block = document.createElement('div');
+  block.className = 'team-block';
+
+  const title = document.createElement('div');
+  title.className = 'team-title';
+  const gTag = g === 'W'
+    ? '<span class="gender-tag w">W</span>'
+    : '<span class="gender-tag m">M</span>';
+  title.innerHTML = `${gTag}<h2>${team}</h2>
+    <span class="team-meta">${totalGames} game${totalGames!==1?'s':''} · ${sortedPlayers.length} players</span>
+    <span class="toggle-icon">▾</span>`;
+  block.appendChild(title);
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'team-body-wrap';
+  title.onclick = () => { bodyWrap.classList.toggle('collapsed'); title.classList.toggle('collapsed'); };
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+
+  // Row 1: stop group headers
+  const trStop = document.createElement('tr');
+  trStop.appendChild(mkTh('', 'col-num'));
+  trStop.appendChild(mkTh('Player', 'col-name'));
+  for (const stop of stops) {
+    const th1 = document.createElement('th');
+    th1.colSpan = byStop[stop].length;
+    th1.className = 'stop-group';
+    th1.textContent = stop;
+    trStop.appendChild(th1);
+  }
+  const thTot = mkTh('Total', 'col-total divider');
+  trStop.appendChild(thTot);
+  trStop.appendChild(mkTh('Avg', 'col-avg'));
+  thead.appendChild(trStop);
+
+  // Row 2: opponent headers
+  const trGame = document.createElement('tr');
+  trGame.appendChild(mkTh('#', 'col-num'));
+  trGame.appendChild(mkTh('', 'col-name'));
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const gi = gameIndex[gid];
+      const opp = gi.ht === team ? gi.at : gi.ht;
+      const myScore = gi.ht === team ? gi.hs : gi.as;
+      const oppScore = gi.ht === team ? gi.as : gi.hs;
+      const won = myScore > oppScore;
+      const cell = mkTh('', 'col-pts' + (i===0 ? ' divider':''));
+      cell.innerHTML = `<span class="opp-name">${opp}</span><span class="${won?'score-won':'score-lost'}">${myScore}–${oppScore}</span>`;
+      trGame.appendChild(cell);
+    }
+  }
+  trGame.appendChild(mkTh('', 'col-total divider'));
+  trGame.appendChild(mkTh('', 'col-avg'));
+  thead.appendChild(trGame);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  const allStops = stops;
+
+  for (const [name, pd] of sortedPlayers) {
+    const playerStops = playerStopMap[name];
+    const total = Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp = Object.keys(pd.games).length;
+    const avg = gp > 0 ? (total/gp).toFixed(1) : '—';
+    const tr = document.createElement('tr');
+
+    const tdNum = document.createElement('td');
+    tdNum.className = 'col-num'; tdNum.textContent = pd.num; tr.appendChild(tdNum);
+
+    const tdName = document.createElement('td');
+    tdName.className = 'col-name';
+    let nameHtml = name;
+    const missedStops = allStops.filter(s => !playerStops.has(s));
+    if (missedStops.length > 0 && playerStops.size > 0) {
+      if (!playerStops.has(allStops[0])) nameHtml += `<span class="badge-new">from ${[...playerStops][0]}</span>`;
+      else if (!playerStops.has(allStops[allStops.length-1])) nameHtml += `<span class="badge-left">left</span>`;
+    }
+    tdName.innerHTML = nameHtml;
+    tr.appendChild(tdName);
+
+    for (const stop of stops) {
+      for (let i = 0; i < byStop[stop].length; i++) {
+        const gid = byStop[stop][i];
+        const td = document.createElement('td');
+        if (i===0) td.classList.add('divider');
+        const pts = pd.games[gid];
+        if (pts === undefined) {
+          td.className += ' pts-dash'; td.textContent = '—';
+        } else if (pts === 0) {
+          td.className += ' pts-zero col-pts'; td.textContent = '0';
+        } else {
+          td.className += ' col-pts'; td.textContent = pts;
+        }
+        tr.appendChild(td);
+      }
+    }
+
+    const tdTot = document.createElement('td');
+    tdTot.className = 'col-total divider'; tdTot.textContent = total; tr.appendChild(tdTot);
+    const tdAvg = document.createElement('td');
+    tdAvg.className = 'col-avg'; tdAvg.textContent = avg; tr.appendChild(tdAvg);
+    tbody.appendChild(tr);
+  }
+
+  // Team totals row
+  const trTot = document.createElement('tr');
+  trTot.className = 'total-row';
+  const tdN = document.createElement('td'); tdN.textContent = ''; trTot.appendChild(tdN);
+  const tdNm = document.createElement('td'); tdNm.textContent = 'Team total'; trTot.appendChild(tdNm);
+  let grand = 0;
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const col = sortedPlayers.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+      grand += col;
+      const td = document.createElement('td');
+      td.style.textAlign='center';
+      if (i===0) td.classList.add('divider');
+      td.textContent = col; trTot.appendChild(td);
+    }
+  }
+  const tdG = document.createElement('td'); tdG.className='col-total divider'; tdG.textContent=grand; trTot.appendChild(tdG);
+  const tdGA = document.createElement('td'); tdGA.textContent=''; trTot.appendChild(tdGA);
+  tbody.appendChild(trTot);
+
+  table.appendChild(tbody);
+  bodyWrap.appendChild(table);
+  block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text, cls) {
+  const el = document.createElement('th');
+  if (cls) el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function setGender(g) {
+  currentGender = g;
+  visibleTeams.clear();
+  document.getElementById('btn-w').classList.toggle('active', g==='W');
+  document.getElementById('btn-m').classList.toggle('active', g==='M');
+  renderAll();
+}
+
+renderAll();
+</script>
+</body>
+</html>

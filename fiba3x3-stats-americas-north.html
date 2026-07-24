@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats — NL 2026 Americas-North | FIBA 3×3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── THEME TOKENS ── */
+:root {
+  --bg:      #141210;
+  --s1:      #1c1916;
+  --s2:      #222018;
+  --s3:      #2c2820;
+  --s4:      #38332a;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #f0ece4;
+  --muted:   #6b6256;
+  --muted2:  #9e9082;
+  --accent:  #e8400c;
+  --nl:      #a78bfa;
+  --nl-bg:   rgba(167,139,250,0.10);
+  --won:     #34d399;
+  --lost:    #f87171;
+  --hero-grad: linear-gradient(150deg, #1e1a14 0%, #141210 60%);
+  --tabs-bg: rgba(20,18,16,0.95);
+}
+[data-theme="light"] {
+  --bg:      #faf8f5;
+  --s1:      #ffffff;
+  --s2:      #f3f0eb;
+  --s3:      #e8e3da;
+  --s4:      #dcd6cc;
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text:    #1a1612;
+  --muted:   #a09080;
+  --muted2:  #6e5e50;
+  --accent:  #d13408;
+  --nl:      #6d28d9;
+  --nl-bg:   rgba(109,40,217,0.09);
+  --won:     #0f766e;
+  --lost:    #be123c;
+  --hero-grad: linear-gradient(150deg, #f0ece3 0%, #faf8f5 60%);
+  --tabs-bg: rgba(250,248,245,0.97);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* grain */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+[data-theme="light"] body::after { opacity:.15; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  background: var(--tabs-bg);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 2rem;
+}
+.topbar-inner {
+  max-width: 1040px; margin: 0 auto;
+  height: 56px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: nowrap;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted2); text-decoration: none;
+  padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--border2); background: transparent;
+  transition: all .15s; flex-shrink: 0;
+}
+.back-link:hover { color: var(--text); border-color: var(--border2); background: var(--s3); }
+.topbar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: .06em;
+  color: var(--text); flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-nl-badge {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 3px;
+  background: var(--nl-bg); color: var(--nl); border: 1px solid rgba(167,139,250,.22);
+  white-space: nowrap; flex-shrink: 0;
+}
+[data-theme="light"] .topbar-nl-badge { background: rgba(109,40,217,0.09); color: var(--nl); border-color: rgba(109,40,217,.22); }
+
+/* gender toggle */
+.gender-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; flex-shrink:0;
+}
+.gender-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 13px; border: none; background: none; cursor: pointer;
+  color: var(--muted2); transition: all .14s;
+}
+.gender-btn.active { background: var(--text); color: var(--bg); }
+
+/* theme toggle */
+.theme-toggle-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted2); cursor: pointer; transition: all .2s; flex-shrink:0;
+}
+.theme-toggle-btn:hover { color: var(--text); }
+.theme-toggle-btn svg { width:14px; height:14px; transition: transform .3s; }
+.theme-toggle-btn:hover svg { transform: rotate(18deg); }
+.t-sun { display:none; }
+.t-moon { display:block; }
+[data-theme="light"] .t-sun { display:block; }
+[data-theme="light"] .t-moon { display:none; }
+
+/* ── HERO STRIP ── */
+.hero-strip {
+  background: var(--hero-grad);
+  border-bottom: 1px solid var(--border2);
+  padding: 1.8rem 2rem 1.4rem;
+  position: relative; overflow: hidden;
+}
+.hero-strip-bg {
+  position: absolute; right: -0.04em; top: -0.1em;
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,16vw,180px);
+  line-height:1; color: rgba(167,139,250,0.05); pointer-events:none; user-select:none;
+}
+.hero-strip-inner { max-width: 1040px; margin: 0 auto; position:relative; z-index:1; }
+.hero-strip-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--nl); display: flex; align-items: center; gap: 8px; margin-bottom: .4rem;
+}
+.hero-strip-eyebrow::before { content:''; width:18px; height:2px; background:var(--nl); flex-shrink:0; }
+.hero-strip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 46px); line-height:.95; letter-spacing:.02em;
+  margin-bottom:.8rem;
+}
+.hero-strip-title em { color: var(--accent); font-style:normal; }
+.hero-strip-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted2);
+}
+.hero-strip-meta strong { color: var(--text); font-weight:500; }
+
+/* ── TEAM FILTER ROW ── */
+.filter-row {
+  max-width: 1040px; margin: 0 auto;
+  padding: .9rem 2rem;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.filter-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); flex-shrink: 0;
+}
+.team-chip {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 4px;
+  border: 1px solid var(--border2); background: transparent; color: var(--muted2);
+  cursor: pointer; transition: all .14s; white-space: nowrap;
+}
+.team-chip:hover { color: var(--text); border-color: rgba(255,255,255,.22); }
+[data-theme="light"] .team-chip:hover { border-color: rgba(0,0,0,.2); }
+.team-chip.active { background: var(--text); color: var(--bg); border-color: transparent; }
+
+/* ── CONTENT ── */
+.content { max-width: 1040px; margin: 0 auto; padding: 1.5rem 2rem 5rem; }
+
+/* team block */
+.team-block {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.team-title {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: var(--s2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+}
+.team-title:hover { background: var(--s3); }
+.team-title h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: .04em; color: var(--text);
+}
+.team-meta { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); margin-left:auto; }
+.toggle-icon { font-size:14px; color:var(--muted); transition:transform .2s; }
+.team-body-wrap { overflow-x: auto; }
+.team-body-wrap.collapsed { display: none; }
+.team-title.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+.gender-tag {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:2px 7px; border-radius:3px; font-weight:500;
+}
+.gender-tag.w { background:rgba(248,113,113,.12); color:#f87171; border:1px solid rgba(248,113,113,.22); }
+.gender-tag.m { background:rgba(56,189,248,.12); color:#38bdf8; border:1px solid rgba(56,189,248,.22); }
+[data-theme="light"] .gender-tag.w { background:rgba(190,18,60,.09); color:#be123c; border-color:rgba(190,18,60,.2); }
+[data-theme="light"] .gender-tag.m { background:rgba(3,105,161,.09); color:#0369a1; border-color:rgba(3,105,161,.2); }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; font-size:12px; }
+thead th {
+  background: var(--s2);
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted2); font-weight: 500; white-space: nowrap;
+  position: sticky; top: 0;
+}
+thead th.col-num { text-align:center; }
+thead th.divider { border-left: 2px solid var(--border2); }
+thead th.stop-group {
+  text-align:center;
+  background: var(--s3);
+  border-left: 2px solid var(--border2);
+  color: var(--nl); letter-spacing: .12em;
+}
+
+tbody tr { border-top: 1px solid var(--border); }
+tbody tr:hover { background: var(--s2); }
+td { padding: 7px 8px; vertical-align: middle; }
+
+.col-num { width:28px; text-align:center; color:var(--muted); }
+.col-name { min-width:140px; max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:500; color:var(--text); }
+.col-pts { text-align:center; min-width:36px; font-weight:600; color:var(--text); }
+.col-total { text-align:center; min-width:40px; font-weight:700; color:var(--text); }
+.col-avg { text-align:center; min-width:38px; color:var(--muted2); font-family:'DM Mono',monospace; font-size:11px; }
+.pts-zero { color:var(--muted) !important; font-weight:400 !important; }
+.pts-dash { color:var(--border2); text-align:center; }
+.divider { border-left: 2px solid var(--border2); }
+.total-row td { background:var(--s3); font-weight:600; border-top:2px solid var(--border2); color:var(--muted2); font-size:11px; font-family:'DM Mono',monospace; }
+.total-row td.col-total { color:var(--text); font-size:14px; }
+
+.score-won { color:var(--won); font-weight:600; font-size:10px; }
+.score-lost { color:var(--lost); font-weight:600; font-size:10px; }
+.opp-name { display:block; font-size:10px; color:var(--muted2); margin-bottom:1px; white-space:nowrap; }
+
+/* badges */
+.badge-new { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(240,165,0,.15); color:var(--wt,#f0a500); margin-left:4px; }
+.badge-left { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(248,113,113,.12); color:#f87171; margin-left:4px; }
+[data-theme="light"] .badge-new { background:rgba(184,120,0,.12); color:#b87800; }
+[data-theme="light"] .badge-left { background:rgba(190,18,60,.1); color:#be123c; }
+
+/* empty */
+.empty { text-align:center; padding:4rem 0; color:var(--muted); }
+.empty-big { font-family:'Bebas Neue',sans-serif; font-size:52px; display:block; color:var(--s4); margin-bottom:.4rem; }
+
+@media(max-width:640px){
+  .topbar { padding: 0 1rem; }
+  .topbar-inner { gap:8px; }
+  .hero-strip { padding:1.4rem 1rem 1rem; }
+  .filter-row { padding:.75rem 1rem; }
+  .content { padding:1rem 1rem 3rem; }
+  .topbar-title { font-size:14px; }
+  .back-link span { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>Calendar</span>
+    </a>
+    <div class="topbar-title">NL 2026 — Americas-North Stats</div>
+    <div class="topbar-nl-badge">Nations League</div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-w" onclick="setGender('W')">W</button>
+      <button class="gender-btn" id="btn-m" onclick="setGender('M')">M</button>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <div class="hero-strip-bg">AN</div>
+  <div class="hero-strip-inner">
+    <div class="hero-strip-eyebrow">Nations League 2026 · Stops 1–6</div>
+    <h1 class="hero-strip-title">Americas-North <em>Stats</em></h1>
+    <div class="hero-strip-meta">
+      <span><strong>Americas-North Conference</strong></span>
+      <span>·</span>
+      <span><strong>2026 Season</strong></span>
+      <span>·</span>
+      <span id="hero-games">— games</span>
+      <span>·</span>
+      <span id="hero-players">— players</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM FILTER -->
+<div class="filter-row" id="filter-row">
+  <span class="filter-label">Teams:</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="content"></div>
+
+<script>
+// ── THEME ────────────────────────────────────────────────────────────────────
+const html = document.documentElement;
+const saved = localStorage.getItem('fiba3x3-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('fiba3x3-theme', next);
+});
+
+// ── RAW DATA ─────────────────────────────────────────────────────────────────
+// ── Raw data ──────────────────────────────────────────────────────────────────
+const RAW = [
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "0"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Argentina U21", "14", "Agustín Iván Ferrari", "10"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Argentina U21", "22", "Facundo Ariel Wolinsky", "10"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Argentina U21", "31", "Alfredo Ventura", "1"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "5"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "6"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "3"],
+["Stop 1", "0522cd5d", "Argentina U21", "21", "15", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "1"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "Canada", "5", "Edouard Benoit", "6"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "Canada", "6", "Jacob George Schneider Theodosiou", "1"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "Canada", "11", "Osetohanmhen Kamau Okojie", "2"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "Canada", "99", "Michael Osamudiamen Evbagharu", "6"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "USA", "4", "Kevair James Kennedy", "7"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "USA", "8", "Christopher Brown Gunn II", "10"],
+["Stop 1", "06189d72", "Canada", "15", "21", "USA", "USA", "15", "Henry Donovan Alvey", "0"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "USA", "4", "Katie Fiso", "6"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "USA", "6", "Danielle Liane Carnegie", "5"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "USA", "7", "Victoria Elizabeth Mckinney", "3"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "USA", "9", "Sunaja Ikim Agara", "7"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "0"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 1", "2148a3d0", "USA", "21", "0", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "0"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "USA", "4", "Katie Fiso", "3"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "USA", "6", "Danielle Liane Carnegie", "9"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "USA", "7", "Victoria Elizabeth Mckinney", "3"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "USA", "9", "Sunaja Ikim Agara", "4"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "Canada", "1", "Reagan Bree Robinson", "2"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "Canada", "11", "Skylar Forbes", "3"],
+["Stop 1", "6bfe3f18", "USA", "19", "7", "Canada", "Canada", "30", "T'yana Todd", "2"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "USA", "4", "Kevair James Kennedy", "5"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "USA", "5", "Pace Joseph Prosser", "3"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "USA", "8", "Christopher Brown Gunn II", "7"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "USA", "15", "Henry Donovan Alvey", "2"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "0"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "10"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "4"],
+["Stop 1", "6f15817b", "USA", "17", "15", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "1"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Chile", "5", "Gabi Ahumada", "4"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Chile", "6", "Fernanda Ovalle", "9"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Chile", "12", "Valentina Ojeda", "1"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Chile", "21", "Emilia Nicol Oliva Avalos", "4"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Argentina U21", "5", "Paulina Fissolo", "4"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Argentina U21", "6", "Maria Emilia Villar", "5"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Argentina U21", "9", "Olivia Oltmann", "7"],
+["Stop 1", "758e95cb", "Chile", "18", "19", "Argentina U21", "Argentina U21", "12", "Alessia Francesca Reale", "3"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "USA", "4", "Kevair James Kennedy", "8"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "USA", "5", "Pace Joseph Prosser", "3"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "USA", "8", "Christopher Brown Gunn II", "9"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "USA", "15", "Henry Donovan Alvey", "1"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "1"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "2"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "1"],
+["Stop 1", "77e29656", "USA", "21", "9", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "5"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Argentina U21", "5", "Paulina Fissolo", "2"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Argentina U21", "6", "Maria Emilia Villar", "1"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Argentina U21", "9", "Olivia Oltmann", "5"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Argentina U21", "12", "Alessia Francesca Reale", "1"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Canada", "1", "Reagan Bree Robinson", "4"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Canada", "4", "Marah Kelli Dykstra", "1"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Canada", "11", "Skylar Forbes", "9"],
+["Stop 1", "7f7483b4", "Argentina U21", "9", "18", "Canada", "Canada", "30", "T'yana Todd", "4"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Chile", "1", "Oscar Barría", "7"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Chile", "7", "Renato benjamin Muñoz fuentes", "0"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Chile", "8", "JUAN JOSÉ AGUAYO FERRADA", "6"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "2"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Canada", "5", "Edouard Benoit", "1"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "11"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Canada", "11", "Osetohanmhen Kamau Okojie", "6"],
+["Stop 1", "9dc5f2a7", "Chile", "15", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "3"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "USA", "4", "Katie Fiso", "4"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "USA", "6", "Danielle Liane Carnegie", "8"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "USA", "7", "Victoria Elizabeth Mckinney", "7"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "USA", "9", "Sunaja Ikim Agara", "2"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "7"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "2"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "4"],
+["Stop 1", "a7114184", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "2"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Cayman Islands", "4", "Xzavier Stevenson Miller", "3"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "5"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "0"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Cayman Islands", "15", "Daric Demarley Ebanks", "0"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Canada", "5", "Edouard Benoit", "9"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "4"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Canada", "11", "Osetohanmhen Kamau Okojie", "3"],
+["Stop 1", "ab5fd536", "Cayman Islands", "8", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "5"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Chile", "5", "Gabi Ahumada", "1"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Chile", "6", "Fernanda Ovalle", "7"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Chile", "21", "Emilia Nicol Oliva Avalos", "0"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Canada", "1", "Reagan Bree Robinson", "2"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Canada", "4", "Marah Kelli Dykstra", "1"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Canada", "11", "Skylar Forbes", "7"],
+["Stop 1", "c0def4dc", "Chile", "12", "13", "Canada", "Canada", "30", "T'yana Todd", "3"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Chile", "1", "Oscar Barría", "1"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Chile", "7", "Renato benjamin Muñoz fuentes", "7"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Chile", "8", "JUAN JOSÉ AGUAYO FERRADA", "4"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "9"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Cayman Islands", "4", "Xzavier Stevenson Miller", "4"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "3"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "1"],
+["Stop 1", "ed83d0de", "Chile", "21", "12", "Cayman Islands", "Cayman Islands", "15", "Daric Demarley Ebanks", "4"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Puerto Rico", "2", "Gabriela Ortega", "5"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Puerto Rico", "10", "Carolina Del Toro", "3"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "13"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "1"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "0"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 1", "ef293712", "Puerto Rico", "22", "2", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "2"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Chile", "1", "Oscar Barría", "11"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Chile", "7", "Renato benjamin Muñoz fuentes", "0"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Chile", "8", "JUAN JOSÉ AGUAYO FERRADA", "6"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "1"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "3"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "7"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "3"],
+["Stop 2", "0470976f", "Chile", "18", "19", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "6"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Puerto Rico", "2", "Gabriela Ortega", "4"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Puerto Rico", "10", "Carolina Del Toro", "6"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "9"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Puerto Rico", "21", "Paola Hernández", "2"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "3"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 2", "0bd5bff1", "Puerto Rico", "21", "5", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "2"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Chile", "5", "Gabi Ahumada", "2"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Chile", "6", "Fernanda Ovalle", "15"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Chile", "9", "Josefa Paz Orrego Aguila", "0"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "4"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "3"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "2"],
+["Stop 2", "196b1d62", "Chile", "21", "11", "Puerto Rico", "Puerto Rico", "21", "Paola Hernández", "2"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Cayman Islands", "1", "Lance Nehemiah Welcome", "0"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Cayman Islands", "4", "Xzavier Stevenson Miller", "5"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "5"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "0"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Canada", "1", "Dorile Joseph Jackson", "7"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Canada", "5", "Edouard Benoit", "8"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "4"],
+["Stop 2", "2a24ab64", "Cayman Islands", "10", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "2"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "USA", "4", "Katie Fiso", "3"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "USA", "5", "Imari Jainae Berry", "7"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "USA", "9", "Sunaja Ikim Agara", "8"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "USA", "15", "McKinna Lynn Brackens", "1"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "Canada", "1", "Reagan Bree Robinson", "2"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "Canada", "8", "Achol Akot", "7"],
+["Stop 2", "2d7fa83c", "USA", "19", "10", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "1"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "USA", "4", "Kevair James Kennedy", "4"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "USA", "5", "Pace Joseph Prosser", "1"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "USA", "6", "Eric Dailey Jr", "9"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "USA", "10", "Brady Edward Swartz", "7"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "Canada", "1", "Dorile Joseph Jackson", "2"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "Canada", "5", "Edouard Benoit", "8"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "4"],
+["Stop 2", "341becd1", "USA", "21", "17", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "3"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "Chile", "5", "Gabi Ahumada", "0"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "Chile", "6", "Fernanda Ovalle", "11"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "Chile", "9", "Josefa Paz Orrego Aguila", "2"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "Chile", "12", "Valentina Ojeda", "2"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "USA", "4", "Katie Fiso", "8"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "USA", "5", "Imari Jainae Berry", "1"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "USA", "9", "Sunaja Ikim Agara", "4"],
+["Stop 2", "3568e1df", "Chile", "15", "21", "USA", "USA", "15", "McKinna Lynn Brackens", "8"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "USA", "4", "Kevair James Kennedy", "10"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "USA", "6", "Eric Dailey Jr", "4"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "USA", "10", "Brady Edward Swartz", "3"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "4"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "3"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "2"],
+["Stop 2", "361436aa", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "5"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Argentina U21", "9", "Olivia Oltmann", "1"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Argentina U21", "11", "Martina Sol Chover", "0"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Argentina U21", "12", "Alessia Francesca Reale", "3"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Argentina U21", "15", "Victoria Micaela Fontana", "2"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Canada", "1", "Reagan Bree Robinson", "4"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Canada", "8", "Achol Akot", "10"],
+["Stop 2", "3c0ad1d2", "Argentina U21", "6", "21", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "7"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "2"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Argentina U21", "5", "Tiago Tomatis", "4"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Argentina U21", "7", "Agustin Zapillon", "2"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Argentina U21", "14", "Agustín Iván Ferrari", "9"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "3"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "6"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "4"],
+["Stop 2", "7479f9b7", "Argentina U21", "17", "21", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "8"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "USA", "4", "Kevair James Kennedy", "4"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "USA", "5", "Pace Joseph Prosser", "3"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "USA", "6", "Eric Dailey Jr", "6"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "USA", "10", "Brady Edward Swartz", "8"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "1", "Lance Nehemiah Welcome", "5"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "4", "Xzavier Stevenson Miller", "1"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "3"],
+["Stop 2", "a4696557", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "0"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "USA", "4", "Katie Fiso", "7"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "USA", "5", "Imari Jainae Berry", "2"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "USA", "9", "Sunaja Ikim Agara", "6"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "USA", "15", "McKinna Lynn Brackens", "6"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "Argentina U21", "9", "Olivia Oltmann", "6"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "Argentina U21", "11", "Martina Sol Chover", "1"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "Argentina U21", "12", "Alessia Francesca Reale", "4"],
+["Stop 2", "bdca20cf", "USA", "21", "16", "Argentina U21", "Argentina U21", "15", "Victoria Micaela Fontana", "5"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Chile", "1", "Oscar Barría", "14"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Chile", "7", "Renato benjamin Muñoz fuentes", "2"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Chile", "8", "JUAN JOSÉ AGUAYO FERRADA", "4"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "1"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "3"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Argentina U21", "5", "Tiago Tomatis", "3"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Argentina U21", "7", "Agustin Zapillon", "0"],
+["Stop 2", "bfebca3b", "Chile", "21", "15", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "9"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Chile", "5", "Gabi Ahumada", "4"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Chile", "6", "Fernanda Ovalle", "8"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Chile", "9", "Josefa Paz Orrego Aguila", "6"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Chile", "12", "Valentina Ojeda", "3"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "4"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 2", "cf1c3e8c", "Chile", "21", "4", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "0"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "USA", "6", "Eric Dailey Jr", "5"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "USA", "8", "Christopher Brown Gunn II", "9"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "USA", "10", "Brady Edward Swartz", "5"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "USA", "15", "Henry Donovan Alvey", "2"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "1"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "4"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "2"],
+["Stop 3", "0c192ebf", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "7"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Chile", "1", "Oscar Barría", "2"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Chile", "7", "Renato benjamin Muñoz fuentes", "3"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Chile", "10", "Miguel Ignacio Lobos Concha", "6"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "4"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "8"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Argentina U21", "5", "Tiago Tomatis", "2"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "5"],
+["Stop 3", "25ebef8e", "Chile", "15", "17", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "2"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "USA", "5", "Imari Jainae Berry", "5"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "USA", "6", "Danielle Liane Carnegie", "4"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "USA", "7", "Victoria Elizabeth Mckinney", "9"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "USA", "15", "McKinna Lynn Brackens", "3"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "1"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "1"],
+["Stop 3", "31f01c93", "USA", "21", "2", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "0"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Chile", "6", "Fernanda Ovalle", "11"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Chile", "12", "Valentina Ojeda", "1"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Chile", "18", "Constanza Amanda Cañas Villegas", "7"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Chile", "21", "Emilia Nicol Oliva Avalos", "2"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "0"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "4"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "5"],
+["Stop 3", "5d4143fd", "Chile", "21", "9", "Puerto Rico", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "0"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "4"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "Argentina U21", "5", "Tiago Tomatis", "0"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "Argentina U21", "22", "Facundo Ariel Wolinsky", "8"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "Argentina U21", "31", "Alfredo Ventura", "4"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "USA", "6", "Eric Dailey Jr", "10"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "USA", "8", "Christopher Brown Gunn II", "4"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "USA", "10", "Brady Edward Swartz", "3"],
+["Stop 3", "73b5720b", "Argentina U21", "16", "21", "USA", "USA", "15", "Henry Donovan Alvey", "4"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Argentina U21", "6", "Maria Emilia Villar", "5"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Argentina U21", "9", "Olivia Oltmann", "8"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Argentina U21", "12", "Alessia Francesca Reale", "5"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Argentina U21", "15", "Victoria Micaela Fontana", "3"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "0"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 3", "7ae3e3fb", "Argentina U21", "21", "1", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "1"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Chile", "6", "Fernanda Ovalle", "3"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Chile", "12", "Valentina Ojeda", "6"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Chile", "18", "Constanza Amanda Cañas Villegas", "0"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Chile", "21", "Emilia Nicol Oliva Avalos", "6"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Canada", "8", "Achol Akot", "6"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "4"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Canada", "11", "Skylar Forbes", "3"],
+["Stop 3", "7b51b0d5", "Chile", "15", "17", "Canada", "Canada", "30", "T'yana Todd", "4"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Cayman Islands", "1", "Lance Nehemiah Welcome", "4"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Cayman Islands", "4", "Xzavier Stevenson Miller", "3"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "3"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Cayman Islands", "15", "Daric Demarley Ebanks", "5"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "0"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "4"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "9"],
+["Stop 3", "875f3849", "Cayman Islands", "15", "21", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "8"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "USA", "5", "Imari Jainae Berry", "4"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "USA", "6", "Danielle Liane Carnegie", "8"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "USA", "7", "Victoria Elizabeth Mckinney", "7"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "USA", "15", "McKinna Lynn Brackens", "2"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "Argentina U21", "6", "Maria Emilia Villar", "1"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "Argentina U21", "9", "Olivia Oltmann", "3"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "Argentina U21", "12", "Alessia Francesca Reale", "1"],
+["Stop 3", "8fb1e8cd", "USA", "21", "9", "Argentina U21", "Argentina U21", "15", "Victoria Micaela Fontana", "4"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "9"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Argentina U21", "5", "Tiago Tomatis", "3"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Argentina U21", "22", "Facundo Ariel Wolinsky", "6"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Argentina U21", "31", "Alfredo Ventura", "2"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Canada", "1", "Dorile Joseph Jackson", "7"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Canada", "11", "Osetohanmhen Kamau Okojie", "0"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Canada", "24", "Jacob William Hammond", "7"],
+["Stop 3", "a8871955", "Argentina U21", "20", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "7"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "USA", "5", "Imari Jainae Berry", "10"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "USA", "6", "Danielle Liane Carnegie", "5"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "USA", "7", "Victoria Elizabeth Mckinney", "5"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "USA", "15", "McKinna Lynn Brackens", "1"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "Canada", "8", "Achol Akot", "3"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "1"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "Canada", "11", "Skylar Forbes", "2"],
+["Stop 3", "bae3bde7", "USA", "21", "11", "Canada", "Canada", "30", "T'yana Todd", "5"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Puerto Rico", "2", "Gabriela Ortega", "1"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Puerto Rico", "10", "Carolina Del Toro", "2"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "4"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "3"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Canada", "8", "Achol Akot", "7"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "2"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Canada", "11", "Skylar Forbes", "9"],
+["Stop 3", "cfd188a2", "Puerto Rico", "10", "21", "Canada", "Canada", "30", "T'yana Todd", "3"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "USA", "6", "Eric Dailey Jr", "5"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "USA", "8", "Christopher Brown Gunn II", "7"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "USA", "10", "Brady Edward Swartz", "6"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "USA", "15", "Henry Donovan Alvey", "3"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "Cayman Islands", "1", "Lance Nehemiah Welcome", "2"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "Cayman Islands", "4", "Xzavier Stevenson Miller", "1"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "0"],
+["Stop 3", "d1b4c2e3", "USA", "21", "8", "Cayman Islands", "Cayman Islands", "15", "Daric Demarley Ebanks", "5"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Chile", "1", "Oscar Barría", "3"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Chile", "7", "Renato benjamin Muñoz fuentes", "4"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Chile", "10", "Miguel Ignacio Lobos Concha", "3"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "9"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Canada", "1", "Dorile Joseph Jackson", "5"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Canada", "11", "Osetohanmhen Kamau Okojie", "2"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Canada", "24", "Jacob William Hammond", "6"],
+["Stop 3", "f3ebe51b", "Chile", "19", "16", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "3"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Chile", "1", "Oscar Barría", "5"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Chile", "7", "Renato benjamin Muñoz fuentes", "8"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Chile", "10", "Miguel Ignacio Lobos Concha", "3"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "5"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Canada", "1", "Dorile Joseph Jackson", "7"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Canada", "5", "Edouard Benoit", "2"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "7"],
+["Stop 4", "06a7e035", "Chile", "21", "19", "Canada", "Canada", "24", "Jacob William Hammond", "3"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Argentina U21", "7", "Agustin Zapillon", "0"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Argentina U21", "14", "Agustín Iván Ferrari", "8"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Argentina U21", "22", "Facundo Ariel Wolinsky", "5"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Argentina U21", "31", "Alfredo Ventura", "7"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "8"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "1"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "11"],
+["Stop 4", "07ad951c", "Argentina U21", "20", "21", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "1"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Chile", "6", "Fernanda Ovalle", "14"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Chile", "12", "Valentina Ojeda", "5"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Chile", "18", "Constanza Amanda Cañas Villegas", "0"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Chile", "21", "Emilia Nicol Oliva Avalos", "2"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Argentina U21", "9", "Olivia Oltmann", "5"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Argentina U21", "11", "Martina Sol Chover", "1"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Argentina U21", "12", "Alessia Francesca Reale", "7"],
+["Stop 4", "0d77c221", "Chile", "21", "16", "Argentina U21", "Argentina U21", "15", "Victoria Micaela Fontana", "3"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Cayman Islands", "1", "Lance Nehemiah Welcome", "6"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "0"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "3"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Cayman Islands", "15", "Daric Demarley Ebanks", "0"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Canada", "1", "Dorile Joseph Jackson", "4"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Canada", "5", "Edouard Benoit", "8"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "6"],
+["Stop 4", "1d994893", "Cayman Islands", "9", "22", "Canada", "Canada", "24", "Jacob William Hammond", "4"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "USA", "4", "Katie Fiso", "0"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "USA", "6", "Danielle Liane Carnegie", "9"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "USA", "7", "Victoria Elizabeth Mckinney", "10"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "USA", "15", "McKinna Lynn Brackens", "2"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "1"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 4", "34665d1b", "USA", "21", "3", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "2"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "USA", "4", "Kevair James Kennedy", "3"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "USA", "8", "Christopher Brown Gunn II", "10"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "USA", "15", "Henry Donovan Alvey", "4"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "Argentina U21", "7", "Agustin Zapillon", "2"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "1"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "2"],
+["Stop 4", "4aef8bf4", "USA", "21", "9", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "4"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Chile", "1", "Oscar Barría", "5"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Chile", "7", "Renato benjamin Muñoz fuentes", "4"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Chile", "10", "Miguel Ignacio Lobos Concha", "4"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "4"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Cayman Islands", "1", "Lance Nehemiah Welcome", "3"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "6"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "12"],
+["Stop 4", "4f957e4c", "Chile", "17", "21", "Cayman Islands", "Cayman Islands", "15", "Daric Demarley Ebanks", "0"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Puerto Rico", "2", "Gabriela Ortega", "2"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Puerto Rico", "10", "Carolina Del Toro", "3"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "5"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "6"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "5"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 4", "63bc6d7a", "Puerto Rico", "16", "9", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "4"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Argentina U21", "9", "Olivia Oltmann", "5"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Argentina U21", "11", "Martina Sol Chover", "0"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Argentina U21", "12", "Alessia Francesca Reale", "5"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Argentina U21", "15", "Victoria Micaela Fontana", "1"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Canada", "1", "Reagan Bree Robinson", "1"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Canada", "4", "Marah Kelli Dykstra", "6"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Canada", "8", "Achol Akot", "8"],
+["Stop 4", "7c73bcfb", "Argentina U21", "11", "21", "Canada", "Canada", "30", "T'yana Todd", "6"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "USA", "4", "Kevair James Kennedy", "8"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "USA", "8", "Christopher Brown Gunn II", "4"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "USA", "15", "Henry Donovan Alvey", "5"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "5"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "2"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "5"],
+["Stop 4", "7f5521a0", "USA", "21", "15", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "3"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "USA", "4", "Katie Fiso", "3"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "USA", "6", "Danielle Liane Carnegie", "7"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "USA", "7", "Victoria Elizabeth Mckinney", "8"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "USA", "15", "McKinna Lynn Brackens", "3"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "Chile", "6", "Fernanda Ovalle", "6"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "Chile", "12", "Valentina Ojeda", "2"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "Chile", "18", "Constanza Amanda Cañas Villegas", "4"],
+["Stop 4", "7ffc8d66", "USA", "21", "17", "Chile", "Chile", "21", "Emilia Nicol Oliva Avalos", "5"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "Canada", "1", "Dorile Joseph Jackson", "2"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "Canada", "5", "Edouard Benoit", "3"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "Canada", "6", "Jacob George Schneider Theodosiou", "13"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "Canada", "24", "Jacob William Hammond", "0"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "USA", "4", "Kevair James Kennedy", "4"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "USA", "8", "Christopher Brown Gunn II", "6"],
+["Stop 4", "831b6eda", "Canada", "18", "21", "USA", "USA", "15", "Henry Donovan Alvey", "7"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Chile", "6", "Fernanda Ovalle", "7"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Chile", "18", "Constanza Amanda Cañas Villegas", "1"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Chile", "21", "Emilia Nicol Oliva Avalos", "6"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Canada", "1", "Reagan Bree Robinson", "4"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Canada", "4", "Marah Kelli Dykstra", "2"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Canada", "8", "Achol Akot", "7"],
+["Stop 4", "cf915697", "Chile", "18", "17", "Canada", "Canada", "30", "T'yana Todd", "4"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "USA", "4", "Katie Fiso", "0"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "USA", "6", "Danielle Liane Carnegie", "4"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "USA", "7", "Victoria Elizabeth Mckinney", "9"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "USA", "15", "McKinna Lynn Brackens", "8"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "7"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "0"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "0"],
+["Stop 4", "e66a1040", "USA", "21", "7", "Puerto Rico", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "0"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Chile", "5", "Gabi Ahumada", "1"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Chile", "6", "Fernanda Ovalle", "11"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Chile", "9", "Josefa Paz Orrego Aguila", "6"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Chile", "12", "Valentina Ojeda", "3"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "4"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "5"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "1"],
+["Stop 5", "065b43f1", "Chile", "21", "13", "Puerto Rico", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "3"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "USA", "4", "Kevair James Kennedy", "7"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "USA", "6", "Eric Dailey Jr", "6"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "USA", "8", "Christopher Brown Gunn II", "4"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "USA", "10", "Brady Edward Swartz", "5"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "2"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "3"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "6"],
+["Stop 5", "33d7c854", "USA", "22", "15", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "4"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Argentina U21", "5", "Paulina Fissolo", "2"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Argentina U21", "6", "Maria Emilia Villar", "5"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Argentina U21", "9", "Olivia Oltmann", "3"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Argentina U21", "11", "Martina Sol Chover", "1"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Canada", "4", "Marah Kelli Dykstra", "2"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "6"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Canada", "11", "Skylar Forbes", "6"],
+["Stop 5", "3804085b", "Argentina U21", "11", "21", "Canada", "Canada", "30", "T'yana Todd", "7"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Chile", "1", "Oscar Barría", "6"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Chile", "10", "Miguel Ignacio Lobos Concha", "5"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Chile", "12", "Víctor Matías Aaron Poblete Riquelme", "1"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "3"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "5"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "6"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "6"],
+["Stop 5", "4056e37d", "Chile", "15", "21", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "4"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Chile", "5", "Gabi Ahumada", "6"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Chile", "6", "Fernanda Ovalle", "7"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Chile", "9", "Josefa Paz Orrego Aguila", "4"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "0"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "6"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 5", "4a3a9af8", "Chile", "21", "7", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "1"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Puerto Rico", "2", "Gabriela Ortega", "6"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Puerto Rico", "10", "Carolina Del Toro", "5"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "7"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "3"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "1"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "3"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 5", "51b13a9b", "Puerto Rico", "21", "4", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "0"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "USA", "4", "Katie Fiso", "6"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "USA", "6", "Danielle Liane Carnegie", "3"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "USA", "7", "Victoria Elizabeth Mckinney", "5"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "USA", "15", "McKinna Lynn Brackens", "2"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "6"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "Canada", "11", "Skylar Forbes", "6"],
+["Stop 5", "5b235e0d", "USA", "16", "18", "Canada", "Canada", "30", "T'yana Todd", "6"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "USA", "4", "Katie Fiso", "5"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "USA", "6", "Danielle Liane Carnegie", "5"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "USA", "7", "Victoria Elizabeth Mckinney", "7"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "USA", "15", "McKinna Lynn Brackens", "4"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "Argentina U21", "5", "Paulina Fissolo", "2"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "Argentina U21", "6", "Maria Emilia Villar", "3"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "Argentina U21", "9", "Olivia Oltmann", "6"],
+["Stop 5", "609374e4", "USA", "21", "12", "Argentina U21", "Argentina U21", "11", "Martina Sol Chover", "1"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "USA", "4", "Kevair James Kennedy", "1"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "USA", "6", "Eric Dailey Jr", "7"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "USA", "8", "Christopher Brown Gunn II", "11"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "USA", "10", "Brady Edward Swartz", "2"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "Canada", "5", "Edouard Benoit", "5"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "7"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "Canada", "24", "Jacob William Hammond", "1"],
+["Stop 5", "8ad4a655", "USA", "21", "17", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "4"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Chile", "1", "Oscar Barría", "6"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Chile", "10", "Miguel Ignacio Lobos Concha", "2"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Chile", "12", "Víctor Matías Aaron Poblete Riquelme", "1"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Chile", "15", "Ignacio Benjamin Ansaldo Toloza", "3"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "4"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "8"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "8"],
+["Stop 5", "aa93d242", "Chile", "12", "21", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "1"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Cayman Islands", "1", "Lance Nehemiah Welcome", "0"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Cayman Islands", "4", "Xzavier Stevenson Miller", "0"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "3"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "2"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Canada", "5", "Edouard Benoit", "4"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "6"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Canada", "24", "Jacob William Hammond", "6"],
+["Stop 5", "b7d37c7a", "Cayman Islands", "5", "22", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "6"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Chile", "5", "Gabi Ahumada", "1"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Chile", "6", "Fernanda Ovalle", "9"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Chile", "9", "Josefa Paz Orrego Aguila", "2"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Chile", "12", "Valentina Ojeda", "5"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "7"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Canada", "11", "Skylar Forbes", "6"],
+["Stop 5", "c2827cb5", "Chile", "17", "15", "Canada", "Canada", "30", "T'yana Todd", "2"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "10"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Argentina U21", "14", "Agustín Iván Ferrari", "2"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Argentina U21", "22", "Facundo Ariel Wolinsky", "10"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Argentina U21", "31", "Alfredo Ventura", "0"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Puerto Rico", "0", "José Enrique Medina Sanchez", "1"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "6"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "8"],
+["Stop 5", "cca2b596", "Argentina U21", "22", "20", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "5"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "USA", "4", "Kevair James Kennedy", "4"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "USA", "6", "Eric Dailey Jr", "5"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "USA", "8", "Christopher Brown Gunn II", "8"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "USA", "10", "Brady Edward Swartz", "4"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "1", "Lance Nehemiah Welcome", "4"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "4", "Xzavier Stevenson Miller", "1"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "3"],
+["Stop 5", "d1f9ff48", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "1"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Argentina U21", "5", "Paulina Fissolo", "4"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Argentina U21", "6", "Maria Emilia Villar", "6"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Argentina U21", "11", "Martina Sol Chover", "3"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Argentina U21", "15", "Victoria Micaela Fontana", "3"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "1"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "2"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 6", "09bcdd0c", "Argentina U21", "16", "4", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "1"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "USA", "4", "Katie Fiso", "6"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "USA", "6", "Danielle Liane Carnegie", "4"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "USA", "7", "Victoria Elizabeth Mckinney", "5"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "USA", "15", "McKinna Lynn Brackens", "6"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "Cayman Islands", "7", "Soleya Ashai Manzanares", "1"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "Cayman Islands", "8", "Ebony Bianca Thompson", "1"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "Cayman Islands", "12", "Jamie Alyssa Rankin-Maize", "0"],
+["Stop 6", "0a6ef82a", "USA", "21", "4", "Cayman Islands", "Cayman Islands", "15", "Bethany Shayanne Ebanks", "2"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Puerto Rico", "2", "Gabriela Ortega", "8"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Puerto Rico", "10", "Carolina Del Toro", "0"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "4"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "4"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Canada", "1", "Reagan Bree Robinson", "6"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Canada", "4", "Marah Kelli Dykstra", "4"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "5"],
+["Stop 6", "121cc8de", "Puerto Rico", "16", "21", "Canada", "Canada", "11", "Skylar Forbes", "6"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Cayman Islands", "4", "Xzavier Stevenson Miller", "7"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "6"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "0"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "1"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "2"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "5"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "13"],
+["Stop 6", "2574169c", "Cayman Islands", "14", "21", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "1"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Chile", "1", "Oscar Barría", "5"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Chile", "7", "Renato benjamin Muñoz fuentes", "6"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Chile", "10", "Miguel Ignacio Lobos Concha", "4"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Chile", "12", "Víctor Matías Aaron Poblete Riquelme", "0"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Canada", "1", "Dorile Joseph Jackson", "1"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Canada", "5", "Edouard Benoit", "8"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "5"],
+["Stop 6", "31561d4e", "Chile", "15", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "7"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "USA", "4", "Katie Fiso", "2"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "USA", "6", "Danielle Liane Carnegie", "7"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "USA", "7", "Victoria Elizabeth Mckinney", "6"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "USA", "15", "McKinna Lynn Brackens", "7"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "Canada", "1", "Reagan Bree Robinson", "4"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "Canada", "4", "Marah Kelli Dykstra", "3"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "2"],
+["Stop 6", "557b0393", "USA", "22", "11", "Canada", "Canada", "11", "Skylar Forbes", "2"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Chile", "5", "Gabi Ahumada", "3"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Chile", "6", "Fernanda Ovalle", "11"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Chile", "9", "Josefa Paz Orrego Aguila", "2"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Canada", "1", "Reagan Bree Robinson", "5"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Canada", "4", "Marah Kelli Dykstra", "0"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Canada", "10", "Mary-Anna Abigale Serena Asare", "10"],
+["Stop 6", "7ce8a85c", "Chile", "20", "21", "Canada", "Canada", "11", "Skylar Forbes", "6"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "Canada", "1", "Dorile Joseph Jackson", "3"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "Canada", "5", "Edouard Benoit", "2"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "Canada", "6", "Jacob George Schneider Theodosiou", "9"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "Canada", "99", "Michael Osamudiamen Evbagharu", "2"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "USA", "5", "Pace Joseph Prosser", "6"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "USA", "6", "Eric Dailey Jr", "8"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "USA", "10", "Brady Edward Swartz", "3"],
+["Stop 6", "98947ecb", "Canada", "16", "21", "USA", "USA", "15", "Henry Donovan Alvey", "4"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "7"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Argentina U21", "14", "Agustín Iván Ferrari", "7"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Argentina U21", "22", "Facundo Ariel Wolinsky", "4"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Argentina U21", "31", "Alfredo Ventura", "2"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Canada", "1", "Dorile Joseph Jackson", "3"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Canada", "5", "Edouard Benoit", "9"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Canada", "6", "Jacob George Schneider Theodosiou", "7"],
+["Stop 6", "bb593591", "Argentina U21", "20", "21", "Canada", "Canada", "99", "Michael Osamudiamen Evbagharu", "2"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "USA", "4", "Katie Fiso", "4"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "USA", "6", "Danielle Liane Carnegie", "3"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "USA", "7", "Victoria Elizabeth Mckinney", "8"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "USA", "15", "McKinna Lynn Brackens", "6"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "Argentina U21", "5", "Paulina Fissolo", "1"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "Argentina U21", "6", "Maria Emilia Villar", "1"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "Argentina U21", "11", "Martina Sol Chover", "1"],
+["Stop 6", "cc7efff5", "USA", "21", "5", "Argentina U21", "Argentina U21", "15", "Victoria Micaela Fontana", "2"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Chile", "5", "Gabi Ahumada", "5"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Chile", "6", "Fernanda Ovalle", "12"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Chile", "9", "Josefa Paz Orrego Aguila", "1"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Chile", "12", "Valentina Ojeda", "4"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Puerto Rico", "2", "Gabriela Ortega", "7"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Puerto Rico", "10", "Carolina Del Toro", "0"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Puerto Rico", "11", "Yeikamarie Jimenez Diaz", "1"],
+["Stop 6", "ccb667d8", "Chile", "22", "13", "Puerto Rico", "Puerto Rico", "15", "Paloma Del Mar Garcia Rosado", "5"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "USA", "5", "Pace Joseph Prosser", "2"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "USA", "6", "Eric Dailey Jr", "7"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "USA", "10", "Brady Edward Swartz", "7"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "USA", "15", "Henry Donovan Alvey", "5"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "5", "Keven Manuel Adorno Gonzalez", "3"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "13", "Eiram Omar Cuevas Ortiz", "8"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "17", "Adrian Joel Cruz Rojas", "2"],
+["Stop 6", "cdd7745e", "USA", "21", "14", "Puerto Rico", "Puerto Rico", "33", "Diego Jose Rodriguez Santiago", "1"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "USA", "5", "Pace Joseph Prosser", "4"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "USA", "6", "Eric Dailey Jr", "10"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "USA", "10", "Brady Edward Swartz", "2"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "USA", "15", "Henry Donovan Alvey", "5"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "4", "Xzavier Stevenson Miller", "3"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "7", "Nathaniel Jayden Hurlston-Anderson", "0"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "11", "Bryan Luiston Ebanks-Perez", "4"],
+["Stop 6", "e1ca3f06", "USA", "21", "9", "Cayman Islands", "Cayman Islands", "12", "Jamie-Dean Immanuel Stewart", "2"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Chile", "1", "Oscar Barría", "4"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Chile", "7", "Renato benjamin Muñoz fuentes", "7"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Chile", "10", "Miguel Ignacio Lobos Concha", "9"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Chile", "12", "Víctor Matías Aaron Poblete Riquelme", "2"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Argentina U21", "1", "Joaquin Bautista Lopez Lorenz", "6"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Argentina U21", "14", "Agustín Iván Ferrari", "2"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Argentina U21", "22", "Facundo Ariel Wolinsky", "7"],
+["Stop 6", "e8646d5c", "Chile", "22", "15", "Argentina U21", "Argentina U21", "31", "Alfredo Ventura", "0"],
+];
+
+
+// Women's player names (unique identifiers from the data)
+const WOMEN_NAMES = new Set([
+  "Marianna Byvatov","Olivia Okpara","Maja Marie Manten","Lilly Küppers",
+  "Kilian Walter","Joshua Günther","David Galusic","Maximilian Matthias Eichbaum",
+  "Ludovica Sammartino","Ilaria Bernardi","Nancy Alessandra N'guessan","Cristina Osazuwa",
+  "Kenko Loredana Ngamene Takougang",
+  "Ela Nur Gokcol","Salminaz Ramazanli","Shilan Akbingol","Adila Yusubova",
+  "Danielė Paunksnytė","Urtė Čižauskaitė","Miglė Kisarauskaitė","Audronė Zdanevičiūtė",
+  "Hana Sambolic","Tina Tomšič","Anja Dragar","Mia Žekš",
+  "Lea Vukić","Ivana Mamić","Dalija Stabile","Jelena Brkičić","Elena Peričić",
+]);
+// Everyone else = Men
+
+function isWomen(name) { return WOMEN_NAMES.has(name); }
+
+// ── Build game index ──────────────────────────────────────────────────────────
+const gameIndex = {}; // gid -> {stop,ht,hs,as,at}
+for (const r of RAW) {
+  const [stop,gid,,hs,,as,,,,,] = r;
+  const ht=r[2], at=r[5];
+  if (!gameIndex[gid]) gameIndex[gid] = {stop,ht,hs:+r[3],as:+r[4],at};
+}
+
+// ── Gender classification — by game ID ───────────────────────────────────────
+const WOMEN_GAMES = new Set(["065b43f1", "09bcdd0c", "0a6ef82a", "0bd5bff1", "0d77c221", "121cc8de", "196b1d62", "2148a3d0", "2d7fa83c", "31f01c93", "34665d1b", "3568e1df", "3804085b", "3c0ad1d2", "4a3a9af8", "51b13a9b", "557b0393", "5b235e0d", "5d4143fd", "609374e4", "63bc6d7a", "6bfe3f18", "758e95cb", "7ae3e3fb", "7b51b0d5", "7c73bcfb", "7ce8a85c", "7f7483b4", "7ffc8d66", "8fb1e8cd", "a7114184", "bae3bde7", "bdca20cf", "c0def4dc", "c2827cb5", "cc7efff5", "ccb667d8", "cf1c3e8c", "cf915697", "cfd188a2", "e66a1040", "ef293712"]);
+const GAME_SEQ = ["0522cd5d", "06189d72", "2148a3d0", "6bfe3f18", "6f15817b", "758e95cb", "77e29656", "7f7483b4", "9dc5f2a7", "a7114184", "ab5fd536", "c0def4dc", "ed83d0de", "ef293712", "0470976f", "0bd5bff1", "196b1d62", "2a24ab64", "2d7fa83c", "341becd1", "3568e1df", "361436aa", "3c0ad1d2", "7479f9b7", "a4696557", "bdca20cf", "bfebca3b", "cf1c3e8c", "0c192ebf", "25ebef8e", "31f01c93", "5d4143fd", "73b5720b", "7ae3e3fb", "7b51b0d5", "875f3849", "8fb1e8cd", "a8871955", "bae3bde7", "cfd188a2", "d1b4c2e3", "f3ebe51b", "06a7e035", "07ad951c", "0d77c221", "1d994893", "34665d1b", "4aef8bf4", "4f957e4c", "63bc6d7a", "7c73bcfb", "7f5521a0", "7ffc8d66", "831b6eda", "cf915697", "e66a1040", "065b43f1", "33d7c854", "3804085b", "4056e37d", "4a3a9af8", "51b13a9b", "5b235e0d", "609374e4", "8ad4a655", "aa93d242", "b7d37c7a", "c2827cb5", "cca2b596", "d1f9ff48", "09bcdd0c", "0a6ef82a", "121cc8de", "2574169c", "31561d4e", "557b0393", "7ce8a85c", "98947ecb", "bb593591", "cc7efff5", "ccb667d8", "cdd7745e", "e1ca3f06", "e8646d5c"];
+
+// ── Build per-team data ───────────────────────────────────────────────────────
+// teamData[gender][team][playerName] = {num, games:{gid:pts}}
+function buildTeamData() {
+  const td = {W:{}, M:{}};
+  for (const r of RAW) {
+    const [stop,gid,ht,hs,as,at,team,num,name,pts] = r;
+    const g = WOMEN_GAMES.has(gid) ? 'W' : 'M';
+    if (!td[g][team]) td[g][team] = {};
+    if (!td[g][team][name]) td[g][team][name] = {num, games:{}};
+    td[g][team][name].games[gid] = +pts;
+  }
+  return td;
+}
+
+const teamData = buildTeamData();
+let currentGender = 'W';
+let visibleTeams = new Set();
+
+function getTeamsForGender(g) { return Object.keys(teamData[g]).sort(); }
+function getTeamGames(team, g) {
+  const players = teamData[g][team];
+  const gids = new Set();
+  for (const pd of Object.values(players)) for (const gid of Object.keys(pd.games)) gids.add(gid);
+  return [...gids].sort((a,b) => {
+    const sa = gameIndex[a].stop, sb = gameIndex[b].stop;
+    if (sa !== sb) return sa.localeCompare(sb);
+    // chronological order within a stop = order games were played (CSV order)
+    return GAME_SEQ.indexOf(a) - GAME_SEQ.indexOf(b);
+  });
+}
+
+function updateHeroStats(g) {
+  const teams = getTeamsForGender(g);
+  const allGids = new Set();
+  let players = 0;
+  for (const t of teams) {
+    const gs = getTeamGames(t, g);
+    gs.forEach(id => allGids.add(id));
+    players += Object.keys(teamData[g][t]).length;
+  }
+  document.getElementById('hero-games').textContent = (allGids.size/2|0) + ' games';
+  document.getElementById('hero-players').textContent = players + ' players';
+}
+
+function renderAll() {
+  const g = currentGender;
+  const teams = getTeamsForGender(g);
+  updateHeroStats(g);
+
+  // Team filter chips
+  const fr = document.getElementById('filter-row');
+  fr.innerHTML = '<span class="filter-label">Teams:</span>';
+  for (const t of teams) {
+    const btn = document.createElement('button');
+    btn.className = 'team-chip' + (visibleTeams.has(t) ? ' active' : '');
+    btn.textContent = t;
+    btn.onclick = () => { visibleTeams.has(t) ? visibleTeams.delete(t) : visibleTeams.add(t); renderAll(); };
+    fr.appendChild(btn);
+  }
+
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  const filtered = visibleTeams.size > 0 ? teams.filter(t => visibleTeams.has(t)) : teams;
+  if (!filtered.length) {
+    content.innerHTML = '<div class="empty"><span class="empty-big">NO DATA</span>No teams selected.</div>';
+    return;
+  }
+  for (const team of filtered) content.appendChild(buildTeamBlock(team, g));
+}
+
+function buildTeamBlock(team, g) {
+  const players = teamData[g][team];
+  const allGames = getTeamGames(team, g);
+  const byStop = {};
+  for (const gid of allGames) {
+    const s = gameIndex[gid].stop;
+    if (!byStop[s]) byStop[s] = [];
+    byStop[s].push(gid);
+  }
+  const stops = Object.keys(byStop).sort();
+  const playerStopMap = {};
+  for (const [name, pd] of Object.entries(players))
+    playerStopMap[name] = new Set(Object.keys(pd.games).map(g => gameIndex[g]?.stop));
+  const sortedPlayers = Object.entries(players).sort((a,b) => {
+    const ta = Object.values(a[1].games).reduce((s,v)=>s+v,0);
+    const tb = Object.values(b[1].games).reduce((s,v)=>s+v,0);
+    return tb-ta;
+  });
+  const totalGames = allGames.length;
+  const block = document.createElement('div');
+  block.className = 'team-block';
+
+  const title = document.createElement('div');
+  title.className = 'team-title';
+  const gTag = g === 'W'
+    ? '<span class="gender-tag w">W</span>'
+    : '<span class="gender-tag m">M</span>';
+  title.innerHTML = `${gTag}<h2>${team}</h2>
+    <span class="team-meta">${totalGames} game${totalGames!==1?'s':''} · ${sortedPlayers.length} players</span>
+    <span class="toggle-icon">▾</span>`;
+  block.appendChild(title);
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'team-body-wrap';
+  title.onclick = () => { bodyWrap.classList.toggle('collapsed'); title.classList.toggle('collapsed'); };
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+
+  // Row 1: stop group headers
+  const trStop = document.createElement('tr');
+  trStop.appendChild(mkTh('', 'col-num'));
+  trStop.appendChild(mkTh('Player', 'col-name'));
+  for (const stop of stops) {
+    const th1 = document.createElement('th');
+    th1.colSpan = byStop[stop].length;
+    th1.className = 'stop-group';
+    th1.textContent = stop;
+    trStop.appendChild(th1);
+  }
+  const thTot = mkTh('Total', 'col-total divider');
+  trStop.appendChild(thTot);
+  trStop.appendChild(mkTh('Avg', 'col-avg'));
+  thead.appendChild(trStop);
+
+  // Row 2: opponent headers
+  const trGame = document.createElement('tr');
+  trGame.appendChild(mkTh('#', 'col-num'));
+  trGame.appendChild(mkTh('', 'col-name'));
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const gi = gameIndex[gid];
+      const opp = gi.ht === team ? gi.at : gi.ht;
+      const myScore = gi.ht === team ? gi.hs : gi.as;
+      const oppScore = gi.ht === team ? gi.as : gi.hs;
+      const won = myScore > oppScore;
+      const cell = mkTh('', 'col-pts' + (i===0 ? ' divider':''));
+      cell.innerHTML = `<span class="opp-name">${opp}</span><span class="${won?'score-won':'score-lost'}">${myScore}–${oppScore}</span>`;
+      trGame.appendChild(cell);
+    }
+  }
+  trGame.appendChild(mkTh('', 'col-total divider'));
+  trGame.appendChild(mkTh('', 'col-avg'));
+  thead.appendChild(trGame);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  const allStops = stops;
+
+  for (const [name, pd] of sortedPlayers) {
+    const playerStops = playerStopMap[name];
+    const total = Object.values(pd.games).reduce((s,v)=>s+v,0);
+    const gp = Object.keys(pd.games).length;
+    const avg = gp > 0 ? (total/gp).toFixed(1) : '—';
+    const tr = document.createElement('tr');
+
+    const tdNum = document.createElement('td');
+    tdNum.className = 'col-num'; tdNum.textContent = pd.num; tr.appendChild(tdNum);
+
+    const tdName = document.createElement('td');
+    tdName.className = 'col-name';
+    let nameHtml = name;
+    const missedStops = allStops.filter(s => !playerStops.has(s));
+    if (missedStops.length > 0 && playerStops.size > 0) {
+      if (!playerStops.has(allStops[0])) nameHtml += `<span class="badge-new">from ${[...playerStops][0]}</span>`;
+      else if (!playerStops.has(allStops[allStops.length-1])) nameHtml += `<span class="badge-left">left</span>`;
+    }
+    tdName.innerHTML = nameHtml;
+    tr.appendChild(tdName);
+
+    for (const stop of stops) {
+      for (let i = 0; i < byStop[stop].length; i++) {
+        const gid = byStop[stop][i];
+        const td = document.createElement('td');
+        if (i===0) td.classList.add('divider');
+        const pts = pd.games[gid];
+        if (pts === undefined) {
+          td.className += ' pts-dash'; td.textContent = '—';
+        } else if (pts === 0) {
+          td.className += ' pts-zero col-pts'; td.textContent = '0';
+        } else {
+          td.className += ' col-pts'; td.textContent = pts;
+        }
+        tr.appendChild(td);
+      }
+    }
+
+    const tdTot = document.createElement('td');
+    tdTot.className = 'col-total divider'; tdTot.textContent = total; tr.appendChild(tdTot);
+    const tdAvg = document.createElement('td');
+    tdAvg.className = 'col-avg'; tdAvg.textContent = avg; tr.appendChild(tdAvg);
+    tbody.appendChild(tr);
+  }
+
+  // Team totals row
+  const trTot = document.createElement('tr');
+  trTot.className = 'total-row';
+  const tdN = document.createElement('td'); tdN.textContent = ''; trTot.appendChild(tdN);
+  const tdNm = document.createElement('td'); tdNm.textContent = 'Team total'; trTot.appendChild(tdNm);
+  let grand = 0;
+  for (const stop of stops) {
+    for (let i = 0; i < byStop[stop].length; i++) {
+      const gid = byStop[stop][i];
+      const col = sortedPlayers.reduce((s,[,pd])=>s+(pd.games[gid]||0),0);
+      grand += col;
+      const td = document.createElement('td');
+      td.style.textAlign='center';
+      if (i===0) td.classList.add('divider');
+      td.textContent = col; trTot.appendChild(td);
+    }
+  }
+  const tdG = document.createElement('td'); tdG.className='col-total divider'; tdG.textContent=grand; trTot.appendChild(tdG);
+  const tdGA = document.createElement('td'); tdGA.textContent=''; trTot.appendChild(tdGA);
+  tbody.appendChild(trTot);
+
+  table.appendChild(tbody);
+  bodyWrap.appendChild(table);
+  block.appendChild(bodyWrap);
+  return block;
+}
+
+function mkTh(text, cls) {
+  const el = document.createElement('th');
+  if (cls) el.className = cls;
+  el.textContent = text;
+  return el;
+}
+
+function setGender(g) {
+  currentGender = g;
+  visibleTeams.clear();
+  document.getElementById('btn-w').classList.toggle('active', g==='W');
+  document.getElementById('btn-m').classList.toggle('active', g==='M');
+  renderAll();
+}
+
+renderAll();
+</script>
+</body>
+</html>
